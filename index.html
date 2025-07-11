@@ -354,13 +354,6 @@
         <p>Select from our 1 Day, VIP Ticket, or Jackpot packages to unlock expert predictions.</p>
         <div class="pricing-cards">
             <div class="pricing-card">
-                <h3 style="margin-top: 20px;">Pay Securely via Paystack</h3>
-<input type="email" id="email" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
-
-<button class="access-btn" onclick="payWithPaystack(99)">Pay Ksh 99 – 1 Day</button>
-<button class="access-btn" onclick="payWithPaystack(499)">Pay Ksh 499 – VIP</button>
-<button class="access-btn" onclick="payWithPaystack(599)">Pay Ksh 599 – Jackpot</button>
-
                 <h3>1 Day Package</h3>
                 <p>Access daily predictions for 24 hours.</p>
                 <div class="price">Ksh 99</div>
@@ -429,7 +422,6 @@
                 </tr>
             </tfoot>
         </table>
-        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access More Wins">Access Predictions</a>
     </div>
     <div class="today-ticket">
         <h2>🎯 Today's Predictions (11.07.2025)</h2>
@@ -465,7 +457,11 @@
                 </tr>
             </tfoot>
         </table>
-        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access Today's Predictions">Access Predictions</a>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-1day" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(99, 'email-1day')">Pay Ksh 99 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%201%20Day%20sub">Access Predictions →</a>
+        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
     </div>
     <div class="vip-ticket">
         <h2>🎟️ VIP Ticket Predictions</h2>
@@ -532,7 +528,11 @@
                 </tr>
             </tfoot>
         </table>
-        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20VIP%20Ticket" aria-label="Access VIP Ticket Predictions">Access Predictions</a>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-vip" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(499, 'email-vip')">Pay Ksh 499 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20VIP%20sub">Access Predictions →</a>
+        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
     </div>
     <div class="jackpot-section" id="jackpot">
         <h2>🎰 Sportpesa Mega Jackpot Predictions</h2>
@@ -545,7 +545,6 @@
                     <th scope="col">Date</th>
                     <th scope="col">Correct Predictions</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -554,18 +553,19 @@
                     <td>05.07.2025</td>
                     <td class="highlight">MISSED BONUS</td>
                     <td>SCORED12/17</td>
-                    <td><a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20Jackpot" aria-label="Access Jackpot Predictions">Access Now</a></td>
                 </tr>
-
                 <tr>
                     <td>Week 2</td>
                     <td>12.07.2025</td>
                     <td class="highlight">PENDING</td>
                     <td>UPCOMING</td>
-                    <td><a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20Jackpot" aria-label="Access Jackpot Predictions">Access Now</a></td>
-                
+                </tr>
             </tbody>
         </table>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-jackpot" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(599, 'email-jackpot')">Pay Ksh 599 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20JP">Access Predictions →</a>
         <div class="social-proof">
             <span class="jackpot-badge">90%+ Win Rate</span>
             <span class="jackpot-badge">Ksh 400M+ Jackpot</span>
@@ -655,30 +655,29 @@
         window.onload = showNotification;
     </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
-<script>
-  function payWithPaystack(amount) {
-    const email = document.getElementById('email').value;
-    if (!email) {
-      alert("Please enter your email.");
-      return;
-    }
+    <script>
+        function payWithPaystack(amount, emailId) {
+            const email = document.getElementById(emailId).value;
+            if (!email) {
+                alert("Please enter your email.");
+                return;
+            }
 
-    PaystackPop.setup({
-      key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
-      email: email,
-      amount: amount * 100,
-      currency: 'KES',
-      label: "ProTipstersKE",
-      ref: 'PT' + Math.floor(Math.random() * 1000000000),
-      callback: function(response) {
-        alert("✅ Payment Successful! Ref: " + response.reference);
-      },
-      onClose: function() {
-        alert("❌ Payment was cancelled.");
-      }
-    }).openIframe();
-  }
-</script>
-
+            PaystackPop.setup({
+                key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
+                email: email,
+                amount: amount * 100,
+                currency: 'KES',
+                label: "ProTipstersKE",
+                ref: 'PT' + Math.floor(Math.random() * 1000000000),
+                callback: function(response) {
+                    alert("✅ Payment Successful! Ref: " + response.reference);
+                },
+                onClose: function() {
+                    alert("❌ Payment was cancelled.");
+                }
+            }).openIframe();
+        }
+    </script>
 </body>
 </html>
