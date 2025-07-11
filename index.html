@@ -354,6 +354,13 @@
         <p>Select from our 1 Day, VIP Ticket, or Jackpot packages to unlock expert predictions.</p>
         <div class="pricing-cards">
             <div class="pricing-card">
+                <h3 style="margin-top: 20px;">Pay Securely via Paystack</h3>
+<input type="email" id="email" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+
+<button class="access-btn" onclick="payWithPaystack(99)">Pay Ksh 99 – 1 Day</button>
+<button class="access-btn" onclick="payWithPaystack(499)">Pay Ksh 499 – VIP</button>
+<button class="access-btn" onclick="payWithPaystack(599)">Pay Ksh 599 – Jackpot</button>
+
                 <h3>1 Day Package</h3>
                 <p>Access daily predictions for 24 hours.</p>
                 <div class="price">Ksh 99</div>
@@ -647,5 +654,31 @@
 
         window.onload = showNotification;
     </script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  function payWithPaystack(amount) {
+    const email = document.getElementById('email').value;
+    if (!email) {
+      alert("Please enter your email.");
+      return;
+    }
+
+    PaystackPop.setup({
+      key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
+      email: email,
+      amount: amount * 100,
+      currency: 'KES',
+      label: "ProTipstersKE",
+      ref: 'PT' + Math.floor(Math.random() * 1000000000),
+      callback: function(response) {
+        alert("✅ Payment Successful! Ref: " + response.reference);
+      },
+      onClose: function() {
+        alert("❌ Payment was cancelled.");
+      }
+    }).openIframe();
+  }
+</script>
+
 </body>
 </html>
