@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pro Tipsters delivers 95% accurate AI-driven sports predictions, trusted by 16,000+ clients. Unlock Ksh 400M+ fortunes with SportPesa Mega Jackpot, Daily, VIP, or Platinum VIP Tickets. Join our elite WhatsApp community now!">
-    <meta name="keywords" content="AI sports predictions, betting tips, Pro Tipsters, Sportpesa Mega Jackpot, M-Pesa, Paystack, WhatsApp community, live odds">
-    <meta property="og:title" content="Pro Tipsters - Unlock Ksh 400M+ with AI Precision">
-    <meta property="og:description" content="Join the elite circle of 16,000+ bettors with 95% accurate AI predictions. Pay via M-Pesa or Paystack for Daily, VIP, Platinum VIP, or Jackpot tips. Get live odds and join our WhatsApp community!">
+    <meta name="description" content="Pro Tipsters offers precise sports predictions with 95% accuracy, trusted by 15,000+ clients. Pay via M-Pesa (Till: 3744368) for 1 Day, VIP Ticket, or Jackpot predictions. App coming soon!">
+    <meta name="keywords" content="sports predictions, betting tips, Pro Tipsters, AI predictions, Sportpesa Mega Jackpot, M-Pesa">
+    <meta property="og:title" content="Pro Tipsters - Precise Predictions, Trusted Results">
+    <meta property="og:description" content="Join 15,000+ clients with 95% accurate sports predictions. Pay via M-Pesa (Till: 3744368) for daily, VIP, or Jackpot tips! App coming soon!">
     <meta property="og:image" content="/assets/og-image.jpg">
-    <title>Pro Tipsters - Unlock Ksh 400M+ with AI Precision</title>
+    <title>Pro Tipsters - Precise Predictions, Trusted Results</title>
     <link rel="icon" href="/assets/favicon.ico" alt="Pro Tipsters Favicon">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Exo:wght@700&display=swap" rel="stylesheet">
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script defer src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -22,337 +18,163 @@
             padding: 0;
         }
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0a1321, #1a2638);
-            color: #e6e7e8;
-            line-height: 1.6;
-            font-size: 16px;
-            overflow-x: hidden;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .hero {
-            position: relative;
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            border-radius: 15px;
-            padding: 80px 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #F5F5F5;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 168, 150, 0.5);
-            animation: fadeIn 1.2s ease-in;
-            overflow: hidden;
+            line-height: 1.5;
+            font-size: 14px;
         }
-        .hero #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        .header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            color: #FFD700;
+            padding: 20px 10px;
+            text-shadow: 0 0 8px #2ECC71;
         }
-        .hero h1 {
-            font-family: 'Exo', sans-serif;
-            font-size: 52px;
-            color: #ffd700;
-            text-shadow: 0 0 20px #00a896;
-            margin-bottom: 25px;
+        .hero, .how-to-pay, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket {
+            padding: 20px 10px;
+            background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            margin: 10px auto;
+            max-width: 95%;
         }
-        .hero p {
+        .hero h2, .how-to-pay h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2 {
+            color: #FFD700;
             font-size: 22px;
-            margin-bottom: 35px;
+            margin-bottom: 8px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(10, 19, 33, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 15px;
-            z-index: 1000;
-            border-bottom: 3px solid #ffd700;
-            text-align: center;
-        }
-        nav a {
-            color: #00a896;
-            text-decoration: none;
-            margin: 0 25px;
-            font-size: 16px;
-            font-weight: 700;
-            transition: color 0.3s, transform 0.3s;
-        }
-        nav a:hover {
-            color: #ffd700;
-            transform: scale(1.15);
-        }
-        .card {
-            background: linear-gradient(135deg, rgba(26, 38, 56, 0.95), rgba(65, 90, 119, 0.95));
-            border: 3px solid #ffd700;
-            border-radius: 15px;
-            padding: 35px;
-            transition: transform 0.4s, box-shadow 0.4s;
-            backdrop-filter: blur(8px);
-            position: relative;
-            overflow: hidden;
-        }
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 168, 150, 0.7);
-        }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2));
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .card:hover::before {
-            opacity: 1;
-        }
-        .card h2 {
-            font-family: 'Exo', sans-serif;
-            color: #ffd700;
-            font-size: 30px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00a896;
-        }
-        .card h3 {
-            font-family: 'Exo', sans-serif;
-            color: #00a896;
-            font-size: 24px;
-            margin: 20px 0 10px;
-        }
-        .card p {
-            font-size: 16px;
+        .hero p, .how-to-pay p, .how-to-use p, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p {
+            font-size: 14px;
             margin: 10px 0;
         }
-        .cta-btn {
+        .access-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #00a896);
-            color: #0a1321;
-            padding: 14px 35px;
+            background: linear-gradient(135deg, #FFD700, #2ECC71);
+            color: #121212;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-            margin: 15px 5px;
-            box-shadow: 0 5px 20px rgba(0, 168, 150, 0.5);
-            position: relative;
-            overflow: hidden;
-            animation: pulseGlow 2s infinite;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 10px;
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
         }
-        .cta-btn:hover {
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 168, 150, 0.8);
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 5px #ffd700; }
-            50% { box-shadow: 0 0 20px #ffd700; }
-            100% { box-shadow: 0 0 5px #ffd700; }
+        .access-btn:hover {
+            background: linear-gradient(135deg, #2ECC71, #FFD700);
+            color: #F5F5F5;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(46, 204, 113, 0.5);
         }
         .social-proof {
-            margin: 20px 0;
+            margin: 10px 0;
         }
         .badge {
-            background: #0a1321;
-            color: #ffd700;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            margin: 5px;
+            background: #FFD700;
+            color: #1A1A1A;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 4px;
             display: inline-block;
-            border: 2px solid #ffd700;
-            position: relative;
-            overflow: hidden;
-        }
-        .badge::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
-            transition: left 0.5s;
-        }
-        .badge:hover::before {
-            left: 100%;
-        }
-        .review-carousel {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            perspective: 1000px;
         }
         .review {
-            background: rgba(10, 19, 33, 0.95);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 20px;
-            font-size: 14px;
+            background: #2a2a2a;
+            border: 1px solid #FFD700;
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 13px;
             text-align: center;
-            width: 100%;
-            display: none;
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-        .review.active {
-            display: block;
-            transform: rotateY(0deg);
+            width: 300px;
+            margin: 10px auto;
         }
         .review span {
-            color: #ffd700;
-            font-weight: 700;
+            color: #2ECC71;
+            font-weight: bold;
         }
-        .popup {
-            position: fixed;
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            color: #0a1321;
-            padding: 25px;
-            border-radius: 12px;
-            font-size: 14px;
-            width: 300px;
-            box-shadow: 0 8px 20px rgba(0, 168, 150, 0.6);
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .popup.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .popup .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #0a1321;
-            font-size: 20px;
-            cursor: pointer;
-        }
-        .popup.top-left { top: 40px; left: 40px; }
-        .popup.top-right { top: 40px; right: 40px; }
-        .popup.bottom-left { bottom: 40px; left: 40px; }
-        .popup.bottom-right { bottom: 40px; right: 40px; }
-        .push-prompt {
+        .notification {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            color: #0a1321;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 168, 150, 0.5);
+            background: #2ECC71;
+            color: #121212;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
-        .push-prompt.show {
-            display: block;
+        .notification.show {
+            opacity: 1;
         }
-        .push-prompt .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            cursor: pointer;
-        }
-        .prediction-table, .jackpot-table, .vip-table, .performance-table {
+        .prediction-table, .jackpot-table, .vip-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
-            margin: 20px 0;
-            border: 1px solid #ffd700;
         }
-        .prediction-table th, .prediction-table td, .jackpot-table th, .jackpot-table td, .vip-table th, .vip-table td, .performance-table th, .performance-table td {
-            padding: 12px;
-            border: 1px solid #ffd700;
+        .prediction-table th, .prediction-table td, .jackpot-table th, .jackpot-table td, .vip-table th, .vip-table td {
+            padding: 8px;
+            border: 1px solid #FFD700;
             text-align: center;
         }
-        .prediction-table th, .jackpot-table th, .vip-table th, .performance-table th {
-            background: #0a1321;
-            color: #ffd700;
-            font-family: 'Exo', sans-serif;
+        .prediction-table th, .jackpot-table th, .vip-table th {
+            background: #2a2a2a;
+            color: #F5F5F5;
         }
-        .prediction-table .win, .jackpot-table .highlight, .vip-table .win, .vip-table .highlight, .performance-table .win {
-            color: #ffd700;
-            font-weight: 700;
+        .prediction-table .win, .jackpot-table .highlight, .vip-table .win, .vip-table .highlight {
+            color: #2ECC71;
+            font-weight: bold;
         }
         .blur {
             filter: blur(4px);
             pointer-events: none;
             user-select: none;
         }
-        .whatsapp-float, .community-float, .subscribe-float {
+        .whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            color: #0a1321;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 14px;
+            bottom: 15px;
+            right: 15px;
+            background: #2ECC71;
+            color: #F5F5F5;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 12px;
             text-decoration: none;
             z-index: 1000;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .community-float {
-            bottom: 70px;
-            background: #ffd700;
-            color: #0a1321;
+        .whatsapp-float:hover {
+            transform: scale(1.1);
         }
         .subscribe-float {
-            bottom: 120px;
-            background: linear-gradient(135deg, #ffd700, #00a896);
-        }
-        .whatsapp-float:hover, .community-float:hover, .subscribe-float:hover {
-            transform: scale(1.15);
-            box-shadow: 0 10px 20px rgba(0, 168, 150, 0.7);
-        }
-        .stories-carousel {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 10px 0;
-        }
-        .story-card {
-            background: linear-gradient(135deg, #ffd700, #00a896);
-            color: #0a1321;
-            padding: 20px;
-            border-radius: 10px;
+            position: fixed;
+            bottom: 60px;
+            right: 15px;
+            background: linear-gradient(135deg, #FFD700, #2ECC71);
+            color: #121212;
+            padding: 8px 12px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 12px;
             text-decoration: none;
-            font-weight: 700;
-            min-width: 150px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 168, 150, 0.5);
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
         }
-        .story-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 168, 150, 0.8);
+        .subscribe-float:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #2ECC71, #FFD700);
         }
         footer {
-            padding: 25px;
-            background: #0a1321;
-            border-top: 3px solid #ffd700;
-            text-align: center;
-            font-size: 14px;
-            font-family: 'Exo', sans-serif;
+            padding: 15px;
+            background: #1e1e1e;
+            border-top: 2px solid #FFD700;
+            margin-top: 10px;
+            font-size: 12px;
         }
         .how-to-use ol, .how-to-pay ol {
             list-style: none;
@@ -362,377 +184,449 @@
         .how-to-use li, .how-to-pay li {
             counter-increment: step-counter;
             position: relative;
-            padding-left: 45px;
-            margin-bottom: 25px;
-            font-size: 16px;
+            padding-left: 40px;
+            margin-bottom: 15px;
+            font-size: 14px;
             text-align: left;
         }
         .how-to-use li::before, .how-to-pay li::before {
             content: counter(step-counter);
             position: absolute;
             left: 0;
-            width: 35px;
-            height: 35px;
-            background: #ffd700;
-            color: #0a1321;
+            width: 24px;
+            height: 24px;
+            background: #2ECC71;
+            color: #121212;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            box-shadow: 0 0 10px #00a896;
+            font-weight: bold;
         }
         .mpesa-instructions {
-            font-size: 14px;
-            color: #00a896;
-            text-align: left;
-            margin: 20px 0;
-        }
-        .sales-pitch {
-            font-size: 18px;
-            line-height: 1.8;
-            margin: 25px 0;
-            color: #e6e7e8;
-        }
-        .sales-pitch strong {
-            color: #ffd700;
-            text-shadow: 0 0 5px #00a896;
-        }
-        .news-ticker {
-            background: #0a1321;
-            border: 2px solid #ffd700;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 20px 0;
-            overflow: hidden;
-            position: relative;
-            height: 60px;
-            box-shadow: 0 0 15px rgba(0, 168, 150, 0.5);
-        }
-        .news-ticker p {
-            position: absolute;
-            white-space: nowrap;
-            animation: ticker 15s linear infinite;
-            font-size: 16px;
-            color: #ffd700;
-            font-family: 'Exo', sans-serif;
-            text-shadow: 0 0 5px #00a896;
-        }
-        .news-ticker::before {
-            content: 'LIVE UPDATES';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: #ffd700;
-            color: #0a1321;
-            padding: 5px 10px;
-            border-radius: 5px;
             font-size: 12px;
-            font-weight: 700;
-            animation: pulseGlow 2s infinite;
+            color: #2ECC71;
+            text-align: left;
+            margin: 10px 0;
         }
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .subscribers-counter {
-            font-size: 22px;
-            color: #ffd700;
-            margin: 20px 0;
-            font-weight: 700;
-            text-align: center;
-            text-shadow: 0 0 10px #00a896;
-            animation: glow 2s infinite;
-        }
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #00a896; }
-            50% { text-shadow: 0 0 20px #00a896; }
-            100% { text-shadow: 0 0 5px #00a896; }
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #0a1321;
-            padding: 35px;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            border: 3px solid #ffd700;
-            box-shadow: 0 15px 40px rgba(0, 168, 150, 0.7);
-        }
-        .modal-content h2 {
-            color: #ffd700;
-            font-family: 'Exo', sans-serif;
-            margin-bottom: 25px;
-        }
-        .modal-content select, .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 20px 0;
-            border-radius: 10px;
-            border: 2px solid #ffd700;
-            background: #1a2638;
-            color: #e6e7e8;
-            font-size: 16px;
-        }
-        .modal-content button {
-            background: linear-gradient(135deg, #ffd700, #00a896);
-            color: #0a1321;
-            padding: 14px 35px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 168, 150, 0.5);
-        }
-        .modal-content button:hover {
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            box-shadow: 0 10px 20px rgba(0, 168, 150, 0.8);
-        }
-        .modal-content .close {
-            float: right;
-            color: #ffd700;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        .loading {
-            display: none;
-            color: #00a896;
-            font-size: 14px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .loading::before {
-            content: '';
+        .jackpot-cta {
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #ffd700;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        canvas {
-            margin: 20px auto;
-            max-width: 100%;
-            border-radius: 10px;
-            border: 2px solid #ffd700;
-        }
-        /* Chat Widget Styles */
-        #chatgpt-button {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #00a896, #ffd700);
-            color: #0a1321;
-            padding: 12px 18px;
-            border-radius: 50px;
+            background: linear-gradient(135deg, #FFD700, #2ECC71);
+            color: #121212;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
             font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 3000;
+            font-size: 16px;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.5);
         }
-        #chatgpt-window {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            width: 300px;
-            background: #0a1321;
-            border: 2px solid #ffd700;
-            border-radius: 12px;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 3000;
+        .jackpot-cta:hover {
+            background: linear-gradient(135deg, #2ECC71, #FFD700);
+            color: #F5F5F5;
+            transform: translateY(-2px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.7);
         }
-        #chatgpt-header {
-            padding: 10px;
-            background: #ffd700;
-            color: #0a1321;
+        .odds-counter {
+            font-size: 18px;
+            color: #FFD700;
+            margin: 10px 0;
             font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
         }
-        #chatgpt-header span {
-            cursor: pointer;
+        .odds-counter span {
+            color: #2ECC71;
         }
-        #chatgpt-messages {
-            max-height: 250px;
-            overflow-y: auto;
-            padding: 10px;
-            color: #e6e7e8;
-            font-size: 14px;
+        .jackpot-badge {
+            background: #2ECC71;
+            color: #121212;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 4px;
+            display: inline-block;
         }
-        #chatgpt-input {
-            border: none;
-            padding: 10px;
-            background: #1a2638;
-            color: white;
-            width: 100%;
-            border-top: 1px solid #ffd700;
-            border-radius: 0 0 12px 12px;
+        .vip-ticket h3 {
+            margin-top: 20px;
         }
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 18px;
-            }
-            .card h2 {
+            .header {
                 font-size: 24px;
             }
-            .card h3 {
-                font-size: 20px;
-            }
-            .card p {
-                font-size: 14px;
-            }
-            .cta-btn {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
-            .badge {
-                font-size: 12px;
-                padding: 6px 15px;
-            }
-            .review {
-                font-size: 13px;
-                width: 100%;
-            }
-            .popup {
-                width: 250px;
-                font-size: 12px;
-            }
-            .push-prompt {
-                width: 250px;
-                font-size: 12px;
-            }
-            .how-to-use li::before, .how-to-pay li::before {
-                width: 30px;
-                height: 30px;
-                font-size: 14px;
-            }
-            .prediction-table, .jackpot-table, .vip-table, .performance-table {
-                font-size: 12px;
-            }
-            .subscribers-counter {
+            .hero h2, .how-to-pay h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2 {
                 font-size: 18px;
             }
-            .news-ticker p {
-                font-size: 14px;
+            .hero p, .how-to-pay p, .how-to-use li, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p {
+                font-size: 12px;
             }
-            nav a {
-                margin: 0 15px;
-                font-size: 14px;
+            .access-btn, .jackpot-cta {
+                padding: 8px 16px;
+                font-size: 12px;
             }
-            .story-card {
-                min-width: 120px;
-                font-size: 14px;
+            .badge, .jackpot-badge {
+                font-size: 10px;
+                padding: 3px 10px;
             }
-            #chatgpt-window {
+            .review {
+                font-size: 12px;
                 width: 250px;
+            }
+            .notification {
+                width: 180px;
+                font-size: 11px;
+                bottom: 70px;
+                left: 10px;
+            }
+            .how-to-use li::before, .how-to-pay li::before {
+                width: 20px;
+                height: 20px;
+                font-size: 12px;
+            }
+            .prediction-table, .jackpot-table, .vip-table {
+                font-size: 12px;
+            }
+            .odds-counter {
+                font-size: 14px;
+            }
+            .mpesa-instructions {
+                font-size: 10px;
             }
         }
         @media (max-width: 600px) {
-            .prediction-table, .jackpot-table, .vip-table, .performance-table {
+            .prediction-table, .jackpot-table, .vip-table {
                 display: block;
                 overflow-x: auto;
-            }
-            .container {
-                padding: 15px;
-            }
-            .hero {
-                padding: 50px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="#hero">Home</a>
-        <a href="#free-tip">Free Tip</a>
-        <a href="#performance">Performance</a>
-        <a href="#yesterday-ticket">Yesterday's Wins</a>
-        <a href="#today-ticket">Daily</a>
-        <a href="#vip-ticket">VIP</a>
-        <a href="#jackpot">Jackpot</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#community">Community</a>
-        <a href="#affiliate">Affiliates</a>
-        <a href="#how-to-pay">How to Pay</a>
-        <a href="#how-to-use">How to Use</a>
-        <a href="#live-news">News</a>
-    </nav>
-    <div class="hero" id="hero" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000">
-        <div id="particles-js"></div>
-        <h1>Unlock Ksh 400M+ Fortunes with AI Precision</h1>
-        <p class="sales-pitch">
-            Join the <strong>elite circle of winners</strong> with Pro Tipsters’ 95% accurate AI predictions. Trusted by <strong>16,000+ bettors</strong> and verified by <strong>20,000+ bets</strong>, we’re your key to dominating SportPesa Mega Jackpots and daily wins. Try our <strong>free daily tip</strong> or go Platinum VIP for 50+ odds! Don’t miss your shot at <strong>Ksh 400M+ riches</strong> – subscribe now!
-        </p>
-        <a class="cta-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20Jackpot">Claim Your Jackpot Fortune!</a>
-        <a class="cta-btn" onclick="openPaymentModal('1 Day', 99)">Start with Ksh 99 Daily</a>
-        <a class="cta-btn" href="#free-tip">Get Free Tip!</a>
-        <a class="cta-btn" href="https://chat.whatsapp.com/LG057nsjwYu1RJ1NkkaywJ?mode=ac_t">Join 16,000+ Elite Bettors</a>
-    </div>
-    <div class="container">
-        <div class="card" id="free-tip" data-tilt data-tilt-max="5" data-tilt-speed="300">
-            <h2>🎁 Free Tip of the Day (27.07.2025)</h2>
-            <p>Get a taste of our 95% accurate AI predictions! Join our WhatsApp community for more free tips.</p>
-            <table class="prediction-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Match</th>
-                        <th scope="col">Tip</th>
-                        <th scope="col">Odds</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Tusker FC - Bandari</td>
-                        <td>Under 2.5</td>
-                        <td>1.95</td>
-                    </tr>
-                </tbody>
-            </table>
-            <a class="cta-btn" href="https://chat.whatsapp.com/LG057nsjwYu1RJ1NkkaywJ?mode=ac_t">Get More Free Tips!</a>
-            <a class="cta-btn" onclick="openPaymentModal('1 Day', 99)">Unlock Full Predictions</a>
+    <div class="header">Pro Tipsters</div>
+    <div class="hero" id="home">
+        <h2>🏆 Precise Sports Predictions</h2>
+        <p>Pro Tipsters delivers 95% accurate predictions using expert analysis and AI technology. Trusted by over 15,000 clients, our platform offers 1 Day, VIP Ticket, and Jackpot predictions. Pay via M-Pesa (Till: 3744368) to start winning today! App coming soon!</p>
+        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
+        <div class="social-proof">
+            <span class="badge">15,000+ Clients</span>
+            <span class="badge">95% Accuracy</span>
+            <span class="badge">10,000+ Wins</span>
+            <span class="badge">Avg. Odds: 3.5+</span>
         </div>
-        <div class="card" id="performance" data-tilt data-tilt-max="5" data-tilt-speed="300">
-            <h2>📊 AI Performance History (July 2025)</h2>
-            <p>Our AI delivered <strong>85 wins vs. 15 losses</strong> this month, with a 95% accuracy rate! Sort by date, package, or win rate to see our dominance.</p>
-            <div>
-                <label for="sort-performance">Sort by: </label>
-                <select id="sort-performance" onchange="sortPerformance()" aria-label="Sort Performance Data">
-                    <option value="date-desc">Date (Newest)</option>
-                    <option value="date-asc">Date (Oldest)</option>
-                    <option value="package">Package</option>
-                    <option value="win-rate">Win Rate</option>
-                </select>
-            </div>
-            <canvas id="performance-chart" height="200"></canvas>
-            <table class="performance-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Package</th>
-                        <th scope="col">Matches</th>
-                        <th scope="col">Wins</th>
-                        <th scope="col">Loss
+    </div>
+    <div class="yesterday-ticket">
+        <h2>🎉 Yesterday's Wins (24.07.2025)</h2>
+        <table class="prediction-table">
+            <thead>
+                <tr>
+                    <th scope="col">Match</th>
+                    <th scope="col">Tip</th>
+                    <th scope="col">Odds</th>
+                    <th scope="col">Result</th>
+                    <th scope="col">W/L</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sherif- Utrecht</td>
+                    <td>AWAY WIN</td>
+                    <td>1.90</td>
+                    <td>1:3</td>
+                    <td class="win">WIN</td>
+                </tr>
+                <tr>
+                    <td>Levski sofia - Braga</td>
+                    <td>Under2.5</td>
+                    <td>2.10</td>
+                    <td>0:0</td>
+                    <td class="win">WIN</td>
+                </tr>
+                <tr>
+                    <td>Anderlecht - Hacken</td>
+                    <td>Home Win</td>
+                    <td>2.23</td>
+                    <td>1:0</td>
+                    <td class="win">WIN</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right; font-weight: bold;">Total Odds:</td>
+                    <td>8.89</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="today-ticket">
+        <h2>🎯 Today's Predictions (25.07.2025)</h2>
+        <p>Get accurate daily predictions with competitive odds! Check yesterday's wins and subscribe for today's expert tips.</p>
+        <table class="prediction-table">
+            <thead>
+                <tr>
+                    <th scope="col">Match</th>
+                    <th scope="col">Tip</th>
+                    <th scope="col">Odds</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="blur">Team A - Team B</td>
+                    <td class="blur">HOME WIN</td>
+                    <td>2.50</td>
+                </tr>
+                <tr>
+                    <td class="blur">Team c - Team D</td>
+                    <td class="blur">Over 2.5</td>
+                    <td>1.80</td>
+                </tr>
+                <tr>
+                    <td class="blur">Team E - Team F</td>
+                    <td class="blur">Both Teams to Score</td>
+                    <td>1.93</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" style="text-align: right; font-weight: bold;">Total Odds:</td>
+                    <td>8.70</td>
+                </tr>
+            </tfoot>
+        </table>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-1day" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(99, 'email-1day')">Pay Ksh 99 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%201%20Day%20sub">Access Predictions →</a>
+        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
+    </div>
+    <div class="vip-ticket">
+        <h2>🎟️ VIP Ticket Predictions</h2>
+        <p>Unlock high-odds VIP predictions with +26 odds daily! See yesterday's wins and subscribe for today's premium tips.</p>
+        <h3>Yesterday's VIP Wins (24.07.2025)</h3>
+        <table class="vip-table">
+            <thead>
+                <tr>
+                    <th scope="col">Match</th>
+                    <th scope="col">Tip</th>
+                    <th scope="col">Odds</th>
+                    <th scope="col">Result</th>
+                    <th scope="col">W/L</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lugano- CFR Cluj</td>
+                    <td>Correct Score 0-0</td>
+                    <td>6.50</td>
+                    <td>0:0</td>
+                    <td class="win">WIN</td>
+                </tr>
+                <tr>
+                    <td>Astana - Zimbru</td>
+                    <td>Correct Score 1-1</td>
+                    <td>4.12</td>
+                    <td>1:1</td>
+                    <td class="win">WIN</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right; font-weight: bold;">Total Odds:</td>
+                    <td>26.78</td>
+                </tr>
+            </tfoot>
+        </table>
+        <h3>Today's VIP Predictions (25.07.2025)</h3>
+        <table class="vip-table">
+            <thead>
+                <tr>
+                    <th scope="col">Match</th>
+                    <th scope="col">Tip</th>
+                    <th scope="col">Odds</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="blur">Team G - TeaM H</td>
+                    <td class="blur">Correct Score 2-1</td>
+                    <td>7.00</td>
+                </tr>
+                <tr>
+                    <td class="blur">Team I - Team J</td>
+                    <td class="blur">Correct Score 1-0</td>
+                    <td>5.43</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2" style="text-align: right; font-weight: bold;">Total Odds:</td>
+                    <td>38.01</td>
+                </tr>
+            </tfoot>
+        </table>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-vip" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(499, 'email-vip')">Pay Ksh 499 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20VIP%20sub">Access Predictions →</a>
+        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
+    </div>
+    <div class="jackpot-section" id="jackpot">
+        <h2>🎰 Sportpesa Mega Jackpot Predictions</h2>
+        <p>Join the excitement of the Sportpesa Mega Jackpot with Pro Tipsters! Our expert analysis and AI-driven predictions offer a chance to win over Ksh 400M. Subscribe to get this week's 17-game predictions!</p>
+        <div class="odds-counter">Current Jackpot: <span>Ksh 400,401,735+</span></div>
+        <table class="jackpot-table">
+            <thead>
+                <tr>
+                    <th scope="col">Week</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Correct Predictions</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Week 1</td>
+                    <td>05.07.2025</td>
+                    <td class="highlight">MISSED BONUS</td>
+                    <td>SCORED12/17</td>
+                </tr>
+                <tr>
+                    <td>Week 2</td>
+                    <td>12.07.2025</td>
+                    <td class="highlight">BONUS</td>
+                    <td>13/17</td>
+                </tr>
+                <tr>
+                    <td>Week 3</td>
+                    <td>19.07.2025</td>
+                    <td class="highlight">BONUS WON</td>
+                    <td>14/17</td>
+<tr>
+                    <td>Week 4</td>
+                    <td>26.07.2025</td>
+                    <td class="highlight">TARGETING BONUS</td>
+                    <td>UPCOMING</td>
+
+            </tbody>
+        </table>
+        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
+        <input type="email" id="email-jackpot" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
+        <button class="access-btn" onclick="payWithPaystack(599, 'email-jackpot')">Pay Ksh 599 via Paystack</button>
+        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20JP">Access Predictions →</a>
+        <div class="social-proof">
+            <span class="jackpot-badge">90%+ Win Rate</span>
+            <span class="jackpot-badge">Ksh 400M+ Jackpot</span>
+            <span class="jackpot-badge">Trusted by 15,000+</span>
+        </div>
+        <a class="jackpot-cta" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20Jackpot" aria-label="Get Jackpot Predictions">Get This Week's Jackpot Predictions!</a>
+    </div>
+    <div class="how-to-pay" id="how-to-pay">
+        <h2>💸 How to Pay via M-Pesa</h2>
+        <p class="mpesa-instructions">1. Go to M-Pesa menu<br>2. Select Lipa na M-Pesa<br>3. Choose Buy Goods and Services<br>4. Enter Till Number: <strong>3744368</strong><br>5. Enter amount (e.g., Ksh 99, 499, or 599)<br>6. Enter PIN and confirm<br>7. Send confirmation to <a href="https://wa.me/254751655936">+254751655936</a></p>
+    </div>
+    <div class="live-reviews" id="reviews">
+        <h2>🌟 Client Success Stories</h2>
+        <div class="review">
+            <p>"Earned Ksh 25,000 in one week." - <span>James K.</span></p>
+        </div>
+        <div class="review">
+            <p>"Achieved +4.2 odds successfully." - <span>Linda W.</span></p>
+        </div>
+        <div class="review">
+            <p>"Gained Ksh 18,000 quickly." - <span>Esther M.</span></p>
+        </div>
+    </div>
+    <div class="hero" id="about">
+        <h2>💡 Why Choose Pro Tipsters?</h2>
+        <p>With a decade of expertise, our team and sophisticated AI analyze extensive data to provide 95% accurate predictions. Trusted by over 15,000 clients globally, Pro Tipsters delivers reliable results. Subscribe today to elevate your betting strategy! App coming soon!</p>
+        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
+    </div>
+    <div class="how-to-use" id="how-to-use">
+        <h2>📋 How to Get Started</h2>
+        <ol>
+            <li>Choose a package (1 Day, VIP Ticket, or Jackpot).</li>
+            <li>Pay via M-Pesa (Till: 3744368).</li>
+            <li>Send transaction confirmation to <a href="https://wa.me/254751655936">+254751655936</a> via WhatsApp.</li>
+            <li>Receive daily predictions or Jackpot tips via email or WhatsApp.</li>
+            <li>Place your bets and start winning!</li>
+        </ol>
+        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
+    </div>
+    <div class="notification" id="notification">
+        <p><strong id="notification-name"></strong>, <span id="notification-location"></span> just subscribed to <span id="notification-package"></span>!</p>
+    </div>
+    <a class="whatsapp-float" href="https://wa.me/254751655936" aria-label="Chat with us on WhatsApp">💬 Contact</a>
+    <a class="subscribe-float" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access Predictions">📱 Access Predictions</a>
+    <footer>
+        <p>© 2025 Pro Tipsters. All rights reserved.</p>
+    </footer>
+    <script>
+        const names = [
+            'Ann', 'John', 'Mary', 'Peter', 'Sarah', 'David', 'Emma', 'Michael', 'Grace', 'James',
+            'Lucy', 'Samuel', 'Faith', 'Joseph', 'Ruth', 'Daniel', 'Esther', 'Paul', 'Jane', 'Thomas',
+            'Mercy', 'George', 'Nancy', 'Simon', 'Beatrice', 'Charles', 'Lydia', 'Isaac', 'Rose', 'Moses',
+            'Hannah', 'Ben', 'Joy', 'Stephen', 'Dorothy', 'Mark', 'Janet', 'Victor', 'Susan', 'Andrew',
+            'Esther', 'Philip', 'Margaret', 'Edward', 'Christine', 'Brian', 'Winnie', 'Kevin', 'Doris', 'Joshua'
+        ];
+        const locations = [
+            'Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret', 'Thika', 'Nyeri', 'Machakos', 'Kakamega', 'Garissa',
+            'Kisii', 'Meru', 'Embu', 'Bungoma', 'Malindi', 'Lamu', 'Kitale', 'Kericho', 'Voi', 'Nanyuki',
+            'Homa Bay', 'Naivasha', 'Migori', 'Busia', 'Siaya', 'Murang’a', 'Kajiado', 'Kilifi', 'Isiolo', 'Narok'
+        ];
+        const packages = ['1 Day', 'VIP Ticket', 'Jackpot'];
+
+        function generatePhoneNumber() {
+            const prefix = '07';
+            const number = Math.floor(1000000 + Math.random() * 9000000).toString();
+            return prefix + number.substring(0, 7) + '****' + number.substring(7);
+        }
+
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            const nameElement = document.getElementById('notification-name');
+            const locationElement = document.getElementById('notification-location');
+            const packageElement = document.getElementById('notification-package');
+
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+            const randomPackage = packages[Math.floor(Math.random() * packages.length)];
+            const randomPhone = generatePhoneNumber();
+
+            nameElement.textContent = `${randomName} ${randomPhone}`;
+            locationElement.textContent = randomLocation;
+            packageElement.textContent = randomPackage;
+
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+            setTimeout(showNotification, 10000);
+        }
+
+        window.onload = showNotification;
+    </script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function payWithPaystack(amount, emailId) {
+            const email = document.getElementById(emailId).value;
+            if (!email) {
+                alert("Please enter your email.");
+                return;
+            }
+
+            PaystackPop.setup({
+                key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
+                email: email,
+                amount: amount * 100,
+                currency: 'KES',
+                label: "ProTipstersKE",
+                ref: 'PT' + Math.floor(Math.random() * 1000000000),
+                callback: function(response) {
+                    alert("✅ Payment Successful! Ref: " + response.reference);
+                },
+                onClose: function() {
+                    alert("❌ Payment was cancelled.");
+                }
+            }).openIframe();
+        }
+    </script>
+</body>
+</html>
