@@ -22,42 +22,70 @@
             background-color: #121212;
             color: #F5F5F5;
             text-align: center;
-            line-height: 1.5;
-            font-size: 14px;
+            line-height: 1.6;
+            font-size: 16px;
         }
         .header {
             font-family: 'Orbitron', sans-serif;
-            font-size: 36px;
+            font-size: 40px;
             color: #FFD700;
-            padding: 20px 10px;
+            padding: 20px 15px;
             text-shadow: 0 0 8px #2ECC71;
         }
-        .hero, .how-to-pay, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket {
-            padding: 20px 10px;
+        .nav {
+            position: sticky;
+            top: 0;
+            background: #1e1e1e;
+            padding: 10px 15px;
+            z-index: 1000;
+            border-bottom: 2px solid #FFD700;
+        }
+        .nav a {
+            color: #F5F5F5;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            color: #2ECC71;
+        }
+        .hero, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket, .free-predictions {
+            padding: 30px 15px;
             background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
             border: 2px solid #FFD700;
             border-radius: 8px;
-            margin: 10px auto;
+            margin: 0 auto 20px;
             max-width: 95%;
         }
-        .hero h2, .how-to-pay h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2 {
-            color: #FFD700;
-            font-size: 22px;
-            margin-bottom: 8px;
+        .free-predictions {
+            background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
         }
-        .hero p, .how-to-pay p, .how-to-use p, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p {
-            font-size: 14px;
+        .divider {
+            border-top: 1px solid #FFD700;
+            margin: 20px auto;
+            max-width: 80%;
+            opacity: 0.5;
+        }
+        .hero h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2, .free-predictions h2 {
+            color: #FFD700;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .hero p, .how-to-use p, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p, .free-predictions p {
+            font-size: 16px;
             margin: 10px 0;
         }
         .access-btn {
             display: inline-block;
             background: linear-gradient(135deg, #FFD700, #2ECC71);
             color: #121212;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
             margin: 10px;
             box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
         }
@@ -85,7 +113,7 @@
             border: 1px solid #FFD700;
             border-radius: 6px;
             padding: 10px;
-            font-size: 13px;
+            font-size: 14px;
             text-align: center;
             width: 300px;
             margin: 10px auto;
@@ -173,23 +201,23 @@
             padding: 15px;
             background: #1e1e1e;
             border-top: 2px solid #FFD700;
-            margin-top: 10px;
+            margin-top: 20px;
             font-size: 12px;
         }
-        .how-to-use ol, .how-to-pay ol {
+        .how-to-use ol {
             list-style: none;
             counter-reset: step-counter;
             padding: 0;
         }
-        .how-to-use li, .how-to-pay li {
+        .how-to-use li {
             counter-increment: step-counter;
             position: relative;
             padding-left: 40px;
             margin-bottom: 15px;
-            font-size: 14px;
+            font-size: 16px;
             text-align: left;
         }
-        .how-to-use li::before, .how-to-pay li::before {
+        .how-to-use li::before {
             content: counter(step-counter);
             position: absolute;
             left: 0;
@@ -204,10 +232,14 @@
             font-weight: bold;
         }
         .mpesa-instructions {
-            font-size: 12px;
+            font-size: 14px;
             color: #2ECC71;
             text-align: left;
             margin: 10px 0;
+        }
+        .mpesa-instructions strong {
+            font-size: 16px;
+            color: #FFD700;
         }
         .jackpot-cta {
             display: inline-block;
@@ -248,20 +280,106 @@
         }
         .vip-ticket h3 {
             margin-top: 20px;
+            font-size: 20px;
+            color: #FFD700;
+        }
+        .free-tip {
+            font-size: 16px;
+            color: #F5F5F5;
+            text-align: center;
+            margin: 10px auto;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+        .free-tip span {
+            color: #2ECC71;
+            font-weight: bold;
+        }
+        .free-tip-note {
+            font-size: 12px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+        .countdown {
+            font-size: 18px;
+            color: #FFD700;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .countdown span {
+            color: #2ECC71;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #1e1e1e;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+            text-align: center;
+        }
+        .modal-content h3 {
+            color: #FFD700;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #FFD700;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        .payment-option {
+            background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+            padding: 15px;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .payment-option.mpesa {
+            background: linear-gradient(135deg, #2ECC71, #1e1e1e);
+        }
+        .payment-option.paystack {
+            background: linear-gradient(135deg, #FFD700, #1e1e1e);
         }
         @media (max-width: 768px) {
             .header {
-                font-size: 24px;
+                font-size: 28px;
             }
-            .hero h2, .how-to-pay h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2 {
-                font-size: 18px;
-            }
-            .hero p, .how-to-pay p, .how-to-use li, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p {
+            .nav a {
                 font-size: 12px;
+                margin: 0 10px;
+            }
+            .hero h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2, .free-predictions h2 {
+                font-size: 20px;
+            }
+            .hero p, .how-to-use li, .jackpot-section p, .yesterday-ticket p, .today-ticket p, .live-reviews p, .vip-ticket p, .free-predictions p, .free-tip {
+                font-size: 14px;
             }
             .access-btn, .jackpot-cta {
-                padding: 8px 16px;
-                font-size: 12px;
+                padding: 10px 20px;
+                font-size: 14px;
             }
             .badge, .jackpot-badge {
                 font-size: 10px;
@@ -274,10 +392,10 @@
             .notification {
                 width: 180px;
                 font-size: 11px;
-                bottom: 70px;
+                bottom: 80px;
                 left: 10px;
             }
-            .how-to-use li::before, .how-to-pay li::before {
+            .how-to-use li::before {
                 width: 20px;
                 height: 20px;
                 font-size: 12px;
@@ -285,11 +403,38 @@
             .prediction-table, .jackpot-table, .vip-table {
                 font-size: 12px;
             }
-            .odds-counter {
+            .odds-counter, .countdown {
                 font-size: 14px;
             }
             .mpesa-instructions {
+                font-size: 12px;
+            }
+            .mpesa-instructions strong {
+                font-size: 14px;
+            }
+            .free-tip-note {
                 font-size: 10px;
+            }
+            .whatsapp-float, .subscribe-float {
+                padding: 6px 10px;
+                font-size: 11px;
+                bottom: 60px;
+            }
+            .subscribe-float {
+                bottom: 100px;
+            }
+            .today-ticket .payment-area, .vip-ticket .payment-area, .jackpot-section .payment-area {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .modal-content {
+                max-width: 95%;
+                padding: 15px;
+            }
+            .modal-content h3 {
+                font-size: 18px;
             }
         }
         @media (max-width: 600px) {
@@ -301,10 +446,17 @@
     </style>
 </head>
 <body>
+    <div class="nav">
+        <a href="#home">Home</a>
+        <a href="#jackpot">Jackpot</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#about">About</a>
+        <a href="#how-to-use">How to Use</a>
+    </div>
     <div class="header">Pro Tipsters</div>
     <div class="hero" id="home">
         <h2>🏆 Precise Sports Predictions</h2>
-        <p>Pro Tipsters delivers 95% accurate predictions using expert analysis and AI technology. Trusted by over 15,000 clients, our platform offers 1 Day, VIP Ticket, and Jackpot predictions. Pay via M-Pesa (Till: 3744368) to start winning today! App coming soon!</p>
+        <p>Transform your bets with Pro Tipsters’ AI-driven predictions! Our advanced algorithms and expert analysts deliver 95% accurate tips, trusted by 15,000+ winners. From daily picks to Ksh 400M+ jackpots, unlock your winning edge now—app launching soon!</p>
         <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
         <div class="social-proof">
             <span class="badge">15,000+ Clients</span>
@@ -313,6 +465,7 @@
             <span class="badge">Avg. Odds: 3.5+</span>
         </div>
     </div>
+    <div class="divider"></div>
     <div class="yesterday-ticket">
         <h2>🎉 Yesterday's Wins (27.07.2025)</h2>
         <table class="prediction-table">
@@ -341,7 +494,7 @@
                     <td class="win">WIN</td>
                 </tr>
                 <tr>
-                    <td>Palmeiras - Gremio</td>
+                    <td>Palmeiras - Gremo</td>
                     <td>Home Win</td>
                     <td>2.23</td>
                     <td>1:0</td>
@@ -356,9 +509,11 @@
             </tfoot>
         </table>
     </div>
+    <div class="divider"></div>
     <div class="today-ticket">
         <h2>🎯 Today's Predictions (28.07.2025)</h2>
-        <p>Get accurate daily predictions with competitive odds! Check yesterday's wins and subscribe for today's expert tips.</p>
+        <p>Subscribe now for today’s expert tips with competitive odds! Don’t miss out—place your bets before matches start!</p>
+        <div class="countdown">Hurry! Subscribe in <span id="countdown-timer">00:00:00</span> for today’s matches!</div>
         <table class="prediction-table">
             <thead>
                 <tr>
@@ -374,7 +529,7 @@
                     <td>2.50</td>
                 </tr>
                 <tr>
-                    <td class="blur">Team c - Team D</td>
+                    <td class="blur">Team C - Team D</td>
                     <td class="blur">Over 2.5</td>
                     <td>1.80</td>
                 </tr>
@@ -391,12 +546,26 @@
                 </tr>
             </tfoot>
         </table>
-        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
-        <input type="email" id="email-1day" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
-        <button class="access-btn" onclick="payWithPaystack(99, 'email-1day')">Pay Ksh 99 via Paystack</button>
-        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%201%20Day%20sub">Access Predictions →</a>
-        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
+        <div class="payment-area">
+            <button class="access-btn" onclick="openModal('1day')">Pay Now (Ksh 99)</button>
+        </div>
     </div>
+    <div class="divider"></div>
+    <div class="free-predictions">
+        <h2>🆓 Free Daily Prediction (28.07.2025)</h2>
+        <p>Try our free daily tip to see the power of Pro Tipsters! Upgrade to our premium 1 Day, VIP, or Jackpot packages for more tips and higher odds.</p>
+        <p class="free-tip">
+            <strong>Date:</strong> 28.07.2025<br>
+            <strong>League:</strong> Brazilian Serie A<br>
+            <strong>Teams:</strong> Santos vs Bahia<br>
+            <strong>Tip:</strong> Over 1.5<br>
+            <strong>Odds:</strong> 1.50<br>
+            <strong>Status:</strong> <span>Pending</span>
+        </p>
+        <p class="free-tip-note">Free tips updated daily at 3 PM.</p>
+        <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Upgrade to Premium Predictions">Upgrade to Premium</a>
+    </div>
+    <div class="divider"></div>
     <div class="vip-ticket">
         <h2>🎟️ VIP Ticket Predictions</h2>
         <p>Unlock high-odds VIP predictions with +26 odds daily! See yesterday's wins and subscribe for today's premium tips.</p>
@@ -445,7 +614,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="blur">Team G - TeaM H</td>
+                    <td class="blur">Team G - Team H</td>
                     <td class="blur">Correct Score 2-1</td>
                     <td>7.00</td>
                 </tr>
@@ -462,12 +631,11 @@
                 </tr>
             </tfoot>
         </table>
-        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
-        <input type="email" id="email-vip" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
-        <button class="access-btn" onclick="payWithPaystack(499, 'email-vip')">Pay Ksh 499 via Paystack</button>
-        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20VIP%20sub">Access Predictions →</a>
-        <p class="mpesa-instructions">NB: After payment, click Access Predictions to get the ticket.</p>
+        <div class="payment-area">
+            <button class="access-btn" onclick="openModal('vip')">Pay Now (Ksh 499)</button>
+        </div>
     </div>
+    <div class="divider"></div>
     <div class="jackpot-section" id="jackpot">
         <h2>🎰 Sportpesa Mega Jackpot Predictions</h2>
         <p>Join the excitement of the Sportpesa Mega Jackpot with Pro Tipsters! Our expert analysis and AI-driven predictions offer a chance to win over Ksh 400M. Subscribe to get this week's 17-game predictions!</p>
@@ -499,18 +667,18 @@
                     <td>19.07.2025</td>
                     <td class="highlight">BONUS WON</td>
                     <td>14/17</td>
-<tr>
+                </tr>
+                <tr>
                     <td>Week 4</td>
                     <td>26.07.2025</td>
                     <td class="highlight">TARGETING BONUS</td>
                     <td>UPCOMING</td>
-
+                </tr>
             </tbody>
         </table>
-        <p class="mpesa-instructions">Enter your email and click pay via Paystack</p>
-        <input type="email" id="email-jackpot" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;"><br>
-        <button class="access-btn" onclick="payWithPaystack(599, 'email-jackpot')">Pay Ksh 599 via Paystack</button>
-        <a class="access-btn" href="https://wa.me/254751655936?text=Paid%20for%20JP">Access Predictions →</a>
+        <div class="payment-area">
+            <button class="access-btn" onclick="openModal('jackpot')">Pay Now (Ksh 599)</button>
+        </div>
         <div class="social-proof">
             <span class="jackpot-badge">90%+ Win Rate</span>
             <span class="jackpot-badge">Ksh 400M+ Jackpot</span>
@@ -518,10 +686,7 @@
         </div>
         <a class="jackpot-cta" href="https://wa.me/254751655936?text=I%20want%20to%20buy%20Jackpot" aria-label="Get Jackpot Predictions">Get This Week's Jackpot Predictions!</a>
     </div>
-    <div class="how-to-pay" id="how-to-pay">
-        <h2>💸 How to Pay via M-Pesa</h2>
-        <p class="mpesa-instructions">1. Go to M-Pesa menu<br>2. Select Lipa na M-Pesa<br>3. Choose Buy Goods and Services<br>4. Enter Till Number: <strong>3744368</strong><br>5. Enter amount (e.g., Ksh 99, 499, or 599)<br>6. Enter PIN and confirm<br>7. Send confirmation to <a href="https://wa.me/254751655936">+254751655936</a></p>
-    </div>
+    <div class="divider"></div>
     <div class="live-reviews" id="reviews">
         <h2>🌟 Client Success Stories</h2>
         <div class="review">
@@ -534,27 +699,56 @@
             <p>"Gained Ksh 18,000 quickly." - <span>Esther M.</span></p>
         </div>
     </div>
+    <div class="divider"></div>
     <div class="hero" id="about">
         <h2>💡 Why Choose Pro Tipsters?</h2>
         <p>With a decade of expertise, our team and sophisticated AI analyze extensive data to provide 95% accurate predictions. Trusted by over 15,000 clients globally, Pro Tipsters delivers reliable results. Subscribe today to elevate your betting strategy! App coming soon!</p>
         <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
     </div>
+    <div class="divider"></div>
     <div class="how-to-use" id="how-to-use">
         <h2>📋 How to Get Started</h2>
         <ol>
             <li>Choose a package (1 Day, VIP Ticket, or Jackpot).</li>
-            <li>Pay via M-Pesa (Till: 3744368).</li>
+            <li>Pay via M-Pesa or Paystack (see payment options in each section).</li>
             <li>Send transaction confirmation to <a href="https://wa.me/254751655936">+254751655936</a> via WhatsApp.</li>
             <li>Receive daily predictions or Jackpot tips via email or WhatsApp.</li>
             <li>Place your bets and start winning!</li>
         </ol>
         <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
     </div>
+    <div class="modal" id="payment-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Payment Options - Complete Before <span id="modal-countdown">00:00:00</span></h3>
+            <div class="payment-options">
+                <div class="payment-option mpesa">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Pay via M-Pesa</h4>
+                    <p class="mpesa-instructions">
+                        1. Go to M-Pesa menu<br>
+                        2. Select Lipa na M-Pesa<br>
+                        3. Choose Buy Goods and Services<br>
+                        4. Enter Till Number: <strong>3744368</strong><br>
+                        5. Enter amount: <strong id="modal-amount">Ksh 99</strong><br>
+                        6. Enter PIN and confirm<br>
+                        7. Send confirmation to <strong><a href="https://wa.me/254751655936">+254751655936</a></strong>
+                    </p>
+                    <a class="access-btn" id="modal-mpesa-start" href="https://wa.me/254751655936?text=Start%20payment%20for%201%20Day" aria-label="Chat to Pay via M-Pesa">Chat to Pay via M-Pesa</a>
+                    <a class="access-btn" id="modal-whatsapp" href="https://wa.me/254751655936?text=Paid%20for%201%20Day%20sub" aria-label="Confirm M-Pesa Payment">Confirm Payment</a>
+                </div>
+                <div class="payment-option paystack">
+                    <h4 style="color: #FFD700; margin-bottom: 10px;">Pay via Paystack</h4>
+                    <input type="email" id="modal-email" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;">
+                    <button class="access-btn" id="modal-paystack" onclick="payWithPaystackFromModal()">Pay Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="notification" id="notification">
         <p><strong id="notification-name"></strong>, <span id="notification-location"></span> just subscribed to <span id="notification-package"></span>!</p>
     </div>
     <a class="whatsapp-float" href="https://wa.me/254751655936" aria-label="Chat with us on WhatsApp">💬 Contact</a>
-    <a class="subscribe-float" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access Predictions">📱 Access Predictions</a>
+    <a class="subscribe-float" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Subscribe to Predictions">Subscribe Now</a>
     <footer>
         <p>© 2025 Pro Tipsters. All rights reserved.</p>
     </footer>
@@ -601,7 +795,76 @@
             setTimeout(showNotification, 10000);
         }
 
-        window.onload = showNotification;
+        function openModal(packageType) {
+            const modal = document.getElementById('payment-modal');
+            const amountSpan = document.getElementById('modal-amount');
+            const whatsappLink = document.getElementById('modal-whatsapp');
+            const mpesaStartLink = document.getElementById('modal-mpesa-start');
+            const paystackButton = document.getElementById('modal-paystack');
+            let amount, whatsappText, mpesaStartText;
+
+            if (packageType === '1day') {
+                amount = 99;
+                whatsappText = 'Paid%20for%201%20Day%20sub';
+                mpesaStartText = 'Start%20payment%20for%201%20Day';
+            } else if (packageType === 'vip') {
+                amount = 499;
+                whatsappText = 'Paid%20for%20VIP%20sub';
+                mpesaStartText = 'Start%20payment%20for%20VIP';
+            } else {
+                amount = 599;
+                whatsappText = 'Paid%20for%20JP';
+                mpesaStartText = 'Start%20payment%20for%20Jackpot';
+            }
+
+            amountSpan.textContent = `Ksh ${amount}`;
+            whatsappLink.href = `https://wa.me/254751655936?text=${whatsappText}`;
+            mpesaStartLink.href = `https://wa.me/254751655936?text=${mpesaStartText}`;
+            paystackButton.setAttribute('onclick', `payWithPaystack(${amount}, 'modal-email')`);
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+        }
+
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown-timer');
+            const modalCountdownElement = document.getElementById('modal-countdown');
+            const targetTime = new Date();
+            targetTime.setHours(18, 0, 0, 0); // 6 PM today
+
+            if (targetTime < new Date()) {
+                targetTime.setDate(targetTime.getDate() + 1);
+            }
+
+            function updateTimer() {
+                const now = new Date();
+                const timeLeft = targetTime - now;
+
+                if (timeLeft <= 0) {
+                    countdownElement.textContent = '00:00:00';
+                    modalCountdownElement.textContent = '00:00:00';
+                    return;
+                }
+
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                countdownElement.textContent = timeString;
+                modalCountdownElement.textContent = timeString;
+                setTimeout(updateTimer, 1000);
+            }
+
+            updateTimer();
+        }
+
+        window.onload = function() {
+            showNotification();
+            startCountdown();
+        };
     </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
@@ -621,6 +884,7 @@
                 ref: 'PT' + Math.floor(Math.random() * 1000000000),
                 callback: function(response) {
                     alert("✅ Payment Successful! Ref: " + response.reference);
+                    closeModal();
                 },
                 onClose: function() {
                     alert("❌ Payment was cancelled.");
