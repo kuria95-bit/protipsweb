@@ -7,7 +7,6 @@
     <meta name="keywords" content="sports predictions, betting tips, Pro Tipsters, AI predictions, Sportpesa Mega Jackpot, M-Pesa">
     <meta property="og:title" content="Pro Tipsters - The World’s Premier Betting Platform">
     <meta property="og:description" content="Join 15,000+ elite bettors with 95% accurate predictions. Pay via M-Pesa (Till: 3744368) for daily, VIP, or Jackpot tips! App coming soon!">
-    <meta property="og:image" content="https://ibb.co/nNVr5Msm">
     <title>Pro Tipsters - The World’s Premier Betting Platform</title>
     <link rel="icon" href="/assets/favicon.ico" alt="Pro Tipsters Favicon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
@@ -517,7 +516,7 @@
                 text-shadow: 0 0 18px #FFD700;
             }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .header {
                 flex-direction: column;
                 align-items: center;
@@ -567,6 +566,7 @@
                 z-index: 1000;
                 align-items: center;
                 justify-content: flex-start;
+                overflow-y: auto;
             }
             .nav-items.active {
                 display: flex;
@@ -683,11 +683,11 @@
         </div>
         <div class="nav">
             <div class="nav-items">
-                <a href="#home" class="active">🏠 Home</a>
-                <a href="#jackpot">🎰 Jackpot</a>
-                <a href="#reviews">🌟 Reviews</a>
-                <a href="#about">💡 About</a>
-                <a href="#how-to-use">📋 How to Use</a>
+                <a href="#home" class="active" onclick="closeMobileMenu()">🏠 Home</a>
+                <a href="#jackpot" onclick="closeMobileMenu()">🎰 Jackpot</a>
+                <a href="#reviews" onclick="closeMobileMenu()">🌟 Reviews</a>
+                <a href="#about" onclick="closeMobileMenu()">💡 About</a>
+                <a href="#how-to-use" onclick="closeMobileMenu()">📋 How to Use</a>
             </div>
         </div>
     </div>
@@ -1043,6 +1043,13 @@
             hamburger.classList.toggle('active');
         }
 
+        function closeMobileMenu() {
+            const navItems = document.querySelector('.nav-items');
+            const hamburger = document.querySelector('.hamburger');
+            navItems.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
         function setActiveLink() {
             const navLinks = document.querySelectorAll('.nav a');
             navLinks.forEach(link => {
@@ -1051,6 +1058,14 @@
                     link.classList.add('active');
                 }
             });
+            // Smooth scroll to section
+            const hash = window.location.hash;
+            if (hash) {
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         }
 
         function openModal(packageType) {
