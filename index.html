@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pro Tipsters offers precise sports predictions with 95% accuracy, trusted by 15,000+ clients. Pay via M-Pesa (Till: 3744368) for 1 Day, VIP Ticket, or Jackpot predictions. App coming soon!">
+    <meta name="description" content="Pro Tipsters: The World’s Premier Betting Platform with 95% accurate predictions. Trusted by 15,000+ clients. Pay via M-Pesa (Till: 3744368) for elite daily, VIP, or Jackpot tips. App coming soon!">
     <meta name="keywords" content="sports predictions, betting tips, Pro Tipsters, AI predictions, Sportpesa Mega Jackpot, M-Pesa">
-    <meta property="og:title" content="Pro Tipsters - Precise Predictions, Trusted Results">
-    <meta property="og:description" content="Join 15,000+ clients with 95% accurate sports predictions. Pay via M-Pesa (Till: 3744368) for daily, VIP, or Jackpot tips! App coming soon!">
-    <meta property="og:image" content="/assets/og-image.jpg">
-    <title>Pro Tipsters - Precise Predictions, Trusted Results</title>
+    <meta property="og:title" content="Pro Tipsters - The World’s Premier Betting Platform">
+    <meta property="og:description" content="Join 15,000+ elite bettors with 95% accurate predictions. Pay via M-Pesa (Till: 3744368) for daily, VIP, or Jackpot tips! App coming soon!">
+    <meta property="og:image" content="https://ibb.co/nNVr5Msm">
+    <title>Pro Tipsters - The World’s Premier Betting Platform</title>
     <link rel="icon" href="/assets/favicon.ico" alt="Pro Tipsters Favicon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -26,29 +26,160 @@
             font-size: 16px;
         }
         .header {
+            background: linear-gradient(135deg, #1A1A1A, #FFD700);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+            position: relative;
+            z-index: 1000;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-logo img {
+            max-width: 80px;
+            height: auto;
+            filter: drop-shadow(0 0 10px #FFD700);
+            transition: transform 0.3s ease-in-out;
+        }
+        .header-logo img:hover {
+            transform: scale(1.1);
+        }
+        .header-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 40px;
+            font-size: 38px;
             color: #FFD700;
-            padding: 20px 15px;
-            text-shadow: 0 0 8px #2ECC71;
+            text-shadow: 0 0 12px #000000;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .header-tagline {
+            font-size: 15px;
+            color: #F5F5F5;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-top: 5px;
+        }
+        .header-cta {
+            background: linear-gradient(135deg, #FFD700, #D4A017);
+            color: #1A1A1A;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .header-cta:hover {
+            background: linear-gradient(135deg, #2ECC71, #27AE60);
+            transform: scale(1.1);
+            color: #F5F5F5;
+        }
+        .header-badges {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .header-badge {
+            background: #FFD700;
+            color: #1A1A1A;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        .header-social {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+        }
+        .social-btn {
+            background: #FFD700;
+            color: #1A1A1A;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .social-btn:hover {
+            background: #2ECC71;
+            transform: scale(1.1);
+        }
+        .header-countdown {
+            font-size: 14px;
+            color: #FFD700;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .header-countdown span {
+            color: #2ECC71;
         }
         .nav {
+            background: #1A1A1A;
+            padding: 12px 15px;
+            border-bottom: 4px solid #FFD700;
             position: sticky;
             top: 0;
-            background: #1e1e1e;
-            padding: 10px 15px;
-            z-index: 1000;
-            border-bottom: 2px solid #FFD700;
+            z-index: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-items {
+            display: flex;
+            gap: 25px;
         }
         .nav a {
             color: #F5F5F5;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
+            padding: 12px 18px;
+            border-radius: 10px;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .nav a:hover {
-            color: #2ECC71;
+            background: #FFD700;
+            color: #1A1A1A;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(255, 215, 0, 0.6);
+        }
+        .nav a.active {
+            background: #2ECC71;
+            color: #1A1A1A;
+            box-shadow: 0 5px 12px rgba(46, 204, 113, 0.6);
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #FFD700;
+            transition: width 0.3s, left 0.3s;
+        }
+        .nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            color: #FFD700;
+            cursor: pointer;
         }
         .hero, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket, .free-predictions {
             padding: 30px 15px;
@@ -363,13 +494,97 @@
         .payment-option.paystack {
             background: linear-gradient(135deg, #FFD700, #1e1e1e);
         }
+        .social-media-links {
+            margin: 15px 0;
+        }
+        .social-media-links a {
+            color: #2ECC71;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .social-media-links a:hover {
+            color: #FFD700;
+        }
+        .gambling-warning {
+            font-size: 12px;
+            color: #FF5555;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 12px #000000;
+            }
+            100% {
+                transform: scale(1.05);
+                text-shadow: 0 0 18px #FFD700;
+            }
+        }
         @media (max-width: 768px) {
             .header {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+            }
+            .header-title {
                 font-size: 28px;
             }
-            .nav a {
+            .header-tagline {
                 font-size: 12px;
-                margin: 0 10px;
+            }
+            .header-logo img {
+                max-width: 60px;
+            }
+            .header-cta {
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+            .header-badges {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .header-badge {
+                font-size: 11px;
+                padding: 5px 14px;
+            }
+            .header-social {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .header-countdown {
+                font-size: 12px;
+                margin-top: 10px;
+            }
+            .nav {
+                padding: 10px;
+            }
+            .nav-items {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #1A1A1A;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 15px 0;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            }
+            .nav-items.active {
+                display: flex;
+            }
+            .nav a {
+                font-size: 14px;
+                margin: 8px 0;
+                padding: 10px;
+            }
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 15px;
             }
             .hero h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2, .free-predictions h2 {
                 font-size: 20px;
@@ -403,7 +618,7 @@
             .prediction-table, .jackpot-table, .vip-table {
                 font-size: 12px;
             }
-            .odds-counter, .countdown {
+            .odds-counter, .countdown, .header-countdown {
                 font-size: 14px;
             }
             .mpesa-instructions {
@@ -436,6 +651,13 @@
             .modal-content h3 {
                 font-size: 18px;
             }
+            .social-media-links a {
+                font-size: 12px;
+                margin: 0 8px;
+            }
+            .gambling-warning {
+                font-size: 10px;
+            }
         }
         @media (max-width: 600px) {
             .prediction-table, .jackpot-table, .vip-table {
@@ -446,14 +668,37 @@
     </style>
 </head>
 <body>
-    <div class="nav">
-        <a href="#home">Home</a>
-        <a href="#jackpot">Jackpot</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#about">About</a>
-        <a href="#how-to-use">How to Use</a>
+    <div class="header">
+        <div class="header-logo">
+            <img src="https://ibb.co/nNVr5Msm" alt="Pro Tipsters Logo">
+            <div>
+                <div class="header-title">Pro Tipsters</div>
+                <div class="header-tagline">The World’s Premier Betting Platform</div>
+                <div class="header-badges">
+                    <span class="header-badge">15,000+ Elite Bettors</span>
+                    <span class="header-badge">95% Win Accuracy</span>
+                </div>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div class="header-countdown">Next Elite Tips in: <span id="header-countdown">00:00:00</span></div>
+            <div class="header-social">
+                <a href="https://chat.whatsapp.com/LG057nsjwYu1RJ1NkkaywJ?mode=ac_t" class="social-btn" aria-label="WhatsApp">📱</a>
+                <a href="https://t.me/protipsterske" class="social-btn" aria-label="Telegram">📢</a>
+            </div>
+            <a class="header-cta" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Join the Elite">Join the Elite</a>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+        <div class="nav">
+            <div class="nav-items">
+                <a href="#home" class="active">🏠 Home</a>
+                <a href="#jackpot">🎰 Jackpot</a>
+                <a href="#reviews">🌟 Reviews</a>
+                <a href="#about">💡 About</a>
+                <a href="#how-to-use">📋 How to Use</a>
+            </div>
+        </div>
     </div>
-    <div class="header">Pro Tipsters</div>
     <div class="hero" id="home">
         <h2>🏆 Precise Sports Predictions</h2>
         <p>Transform your bets with Pro Tipsters’ AI-driven predictions! Our advanced algorithms and expert analysts deliver 95% accurate tips, trusted by 15,000+ winners. From daily picks to Ksh 400M+ jackpots, unlock your winning edge now—app launching soon!</p>
@@ -480,7 +725,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Botafogo- Corinthians</td>
+                    <td>Botafogo - Corinthians</td>
                     <td>GOAL GOAL</td>
                     <td>1.90</td>
                     <td>1:1</td>
@@ -556,7 +801,7 @@
         <p>Try our free daily tip to see the power of Pro Tipsters! Upgrade to our premium 1 Day, VIP, or Jackpot packages for more tips and higher odds.</p>
         <p class="free-tip">
             <strong>Date:</strong> 28.07.2025<br>
-            <strong>League:</strong> Bulgaria Parva liga<br>
+            <strong>League:</strong> Bulgaria Parva Liga<br>
             <strong>Teams:</strong> Dobrudzha vs Slavia Sofia<br>
             <strong>Tip:</strong> Away win<br>
             <strong>Odds:</strong> 2.70<br>
@@ -582,7 +827,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Pachuca- Mazatlan</td>
+                    <td>Pachuca - Mazatlan</td>
                     <td>Correct Score 1-0</td>
                     <td>6.50</td>
                     <td>1:0</td>
@@ -654,7 +899,7 @@
                     <td>Week 1</td>
                     <td>05.07.2025</td>
                     <td class="highlight">MISSED BONUS</td>
-                    <td>SCORED12/17</td>
+                    <td>SCORED 12/17</td>
                 </tr>
                 <tr>
                     <td>Week 2</td>
@@ -701,8 +946,15 @@
     </div>
     <div class="divider"></div>
     <div class="hero" id="about">
-        <h2>💡 Why Choose Pro Tipsters?</h2>
-        <p>With a decade of expertise, our team and sophisticated AI analyze extensive data to provide 95% accurate predictions. Trusted by over 15,000 clients globally, Pro Tipsters delivers reliable results. Subscribe today to elevate your betting strategy! App coming soon!</p>
+        <h2>💡 About Pro Tipsters</h2>
+        <p>Founded in London, UK, Pro Tipsters is a global leader in sports betting predictions, delivering 95% accurate tips powered by cutting-edge AI and a team of expert analysts with over a decade of experience. Trusted by 15,000+ clients worldwide, we specialize in daily predictions, VIP tickets, and Sportpesa Mega Jackpot tips, with a focus on transforming bets into profits. Through our African franchise network, we bring world-class predictions to Kenya and beyond, tailored to local markets with seamless M-Pesa payments (Till: 3744368). Our mission is to empower bettors with reliable, data-driven insights for consistent wins.</p>
+        <p><strong>Join Our Community:</strong> Connect with thousands of bettors on our social platforms for real-time tips, updates, and exclusive offers!</p>
+        <div class="social-media-links">
+            <a href="https://chat.whatsapp.com/LG057nsjwYu1RJ1NkkaywJ?mode=ac_t" aria-label="Join WhatsApp Group">Join WhatsApp Group</a>
+            <a href="https://t.me/protipsterske" aria-label="Join Telegram Channel">Join Telegram Channel</a>
+        </div>
+        <p><strong>Contact Us:</strong><br>Pro Tipsters Ltd.<br>71-75 Shelton Street, Covent Garden, London, WC2H 9JQ, United Kingdom<br>Email: support@protipsterske.com<br>Phone: +254751655936 (WhatsApp)</p>
+        <p class="gambling-warning">⚠️ Responsible Gambling: Betting is for 18+ only. Gamble responsibly. Seek help if gambling becomes a problem.</p>
         <a class="access-btn" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
     </div>
     <div class="divider"></div>
@@ -743,9 +995,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="notification" id="notification">
-        <p><strong id="notification-name"></strong>, <span id="notification-location"></span> just subscribed to <span id="notification-package"></span>!</p>
     </div>
     <a class="whatsapp-float" href="https://wa.me/254751655936" aria-label="Chat with us on WhatsApp">💬 Contact</a>
     <a class="subscribe-float" href="https://wa.me/254751655936?text=I%20want%20to%20buy%201%20Day" aria-label="Subscribe to Predictions">Subscribe Now</a>
@@ -795,6 +1044,21 @@
             setTimeout(showNotification, 10000);
         }
 
+        function toggleMenu() {
+            const navItems = document.querySelector('.nav-items');
+            navItems.classList.toggle('active');
+        }
+
+        function setActiveLink() {
+            const navLinks = document.querySelectorAll('.nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (window.location.hash === link.getAttribute('href') || (!window.location.hash && link.getAttribute('href') === '#home')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
         function openModal(packageType) {
             const modal = document.getElementById('payment-modal');
             const amountSpan = document.getElementById('modal-amount');
@@ -831,12 +1095,10 @@
         function startCountdown() {
             const countdownElement = document.getElementById('countdown-timer');
             const modalCountdownElement = document.getElementById('modal-countdown');
+            const headerCountdownElement = document.getElementById('header-countdown');
             const targetTime = new Date();
-            targetTime.setHours(18, 0, 0, 0); // 6 PM today
-
-            if (targetTime < new Date()) {
-                targetTime.setDate(targetTime.getDate() + 1);
-            }
+            targetTime.setDate(targetTime.getDate() + 1);
+            targetTime.setHours(15, 0, 0, 0); // 3 PM next day for free tips
 
             function updateTimer() {
                 const now = new Date();
@@ -845,6 +1107,7 @@
                 if (timeLeft <= 0) {
                     countdownElement.textContent = '00:00:00';
                     modalCountdownElement.textContent = '00:00:00';
+                    headerCountdownElement.textContent = '00:00:00';
                     return;
                 }
 
@@ -855,6 +1118,7 @@
                 const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 countdownElement.textContent = timeString;
                 modalCountdownElement.textContent = timeString;
+                headerCountdownElement.textContent = timeString;
                 setTimeout(updateTimer, 1000);
             }
 
@@ -864,6 +1128,8 @@
         window.onload = function() {
             showNotification();
             startCountdown();
+            setActiveLink();
+            window.addEventListener('hashchange', setActiveLink);
         };
     </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
