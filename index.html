@@ -36,20 +36,6 @@
             position: relative;
             z-index: 1000;
         }
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .header-logo img {
-            max-width: 80px;
-            height: auto;
-            filter: drop-shadow(0 0 10px #FFD700);
-            transition: transform 0.3s ease-in-out;
-        }
-        .header-logo img:hover {
-            transform: scale(1.1);
-        }
         .header-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 38px;
@@ -180,6 +166,14 @@
             font-size: 30px;
             color: #FFD700;
             cursor: pointer;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1100;
+        }
+        .hamburger.active::before {
+            content: '✕';
+            font-size: 30px;
         }
         .hero, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket, .free-predictions {
             padding: 30px 15px;
@@ -535,9 +529,6 @@
             .header-tagline {
                 font-size: 12px;
             }
-            .header-logo img {
-                max-width: 60px;
-            }
             .header-cta {
                 font-size: 13px;
                 padding: 10px 20px;
@@ -560,31 +551,35 @@
             }
             .nav {
                 padding: 10px;
+                position: relative;
             }
             .nav-items {
                 display: none;
                 flex-direction: column;
                 width: 100%;
                 background: #1A1A1A;
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
-                padding: 15px 0;
+                height: 100%;
+                padding-top: 60px;
                 box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                align-items: center;
+                justify-content: flex-start;
             }
             .nav-items.active {
                 display: flex;
             }
             .nav a {
-                font-size: 14px;
-                margin: 8px 0;
-                padding: 10px;
+                font-size: 18px;
+                margin: 10px 0;
+                padding: 15px;
+                width: 80%;
+                text-align: center;
             }
             .hamburger {
                 display: block;
-                position: absolute;
-                right: 15px;
-                top: 15px;
             }
             .hero h2, .how-to-use h2, .jackpot-section h2, .yesterday-ticket h2, .today-ticket h2, .live-reviews h2, .vip-ticket h2, .free-predictions h2 {
                 font-size: 20px;
@@ -669,15 +664,12 @@
 </head>
 <body>
     <div class="header">
-        <div class="header-logo">
-            <img src="https://ibb.co/nNVr5Msm" alt="Pro Tipsters Logo">
-            <div>
-                <div class="header-title">Pro Tipsters</div>
-                <div class="header-tagline">The World’s Premier Betting Platform</div>
-                <div class="header-badges">
-                    <span class="header-badge">15,000+ Elite Bettors</span>
-                    <span class="header-badge">95% Win Accuracy</span>
-                </div>
+        <div>
+            <div class="header-title">Pro Tipsters</div>
+            <div class="header-tagline">The World’s Premier Betting Platform</div>
+            <div class="header-badges">
+                <span class="header-badge">15,000+ Elite Bettors</span>
+                <span class="header-badge">95% Win Accuracy</span>
             </div>
         </div>
         <div class="header-actions">
@@ -1046,7 +1038,9 @@
 
         function toggleMenu() {
             const navItems = document.querySelector('.nav-items');
+            const hamburger = document.querySelector('.hamburger');
             navItems.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
 
         function setActiveLink() {
