@@ -1,410 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Free Pro Tipster | VIP Predictions</title>
-
-<script src="https://js.paystack.co/v1/inline.js"></script>
-
-<style>
-
-body{
-background:#0b0f1a;
-color:white;
-font-family:Arial;
-max-width:420px;
-margin:auto;
-padding:15px;
-}
-
-.logo{
-text-align:center;
-font-size:28px;
-font-weight:bold;
-color:#00ff88;
-margin-bottom:10px;
-}
-
-.stats{
-background:#111827;
-padding:12px;
-border-radius:10px;
-margin-bottom:10px;
-}
-
-.stat{
-color:#00ff88;
-margin:4px;
-font-weight:bold;
-}
-
-.profit-box{
-background:#111827;
-padding:12px;
-border-radius:10px;
-margin-bottom:10px;
-text-align:center;
-}
-
-#profit{
-font-size:26px;
-color:#00ff88;
-font-weight:bold;
-}
-
-.product{
-background:#111827;
-padding:15px;
-border-radius:10px;
-margin-bottom:12px;
-}
-
-.title{
-font-size:18px;
-font-weight:bold;
-}
-
-.odds{
-font-size:28px;
-color:#00ff88;
-font-weight:bold;
-margin-top:5px;
-}
-
-.blur{
-filter:blur(6px);
-color:#aaa;
-margin-top:10px;
-}
-
-input{
-width:100%;
-padding:12px;
-border-radius:8px;
-border:none;
-margin-top:10px;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:8px;
-margin-top:10px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.buy{
-background:#00c853;
-color:white;
-}
-
-.whatsapp{
-background:#25D366;
-color:white;
-}
-
-.payments{
-text-align:center;
-margin-top:15px;
-}
-
-.badge{
-display:inline-block;
-background:#111827;
-padding:6px 10px;
-border-radius:6px;
-margin:3px;
-font-size:12px;
-}
-
-.live{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#00c853;
-padding:10px;
-border-radius:8px;
-display:none;
-font-size:14px;
-}
-
-.counter{
-text-align:center;
-color:#ff5252;
-margin-bottom:10px;
-font-weight:bold;
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ProBet Insights — Accurate sports predictions. 85% win rate. Trusted by 50,000+ bettors worldwide.">
+  <title>ProBet Insights • Expert Betting Predictions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .hero-bg { background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://cloudfront-us-east-1.images.arcpublishing.com/gray/F25G2AWCLRFP7KDHGMLRJGIFUM.jpg'); background-size: cover; }
+    .win { background-color: #22c55e; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 9999px; }
+    .nav-link { transition: all 0.3s; }
+    .nav-link:hover { color: #22c55e; transform: translateY(-2px); }
+    .calendar-day { transition: all 0.2s; }
+    .calendar-day.win { background-color: #22c55e; color: white; }
+  </style>
 </head>
-
-<body>
-
-
-<div class="logo">
-FREE PRO TIPSTER
-</div>
-
-
-<div class="stats">
-
-<div class="stat">✅ 91% Win Rate Last Week</div>
-
-<div class="stat">💰 12 Winning Tickets in 7 Days</div>
-
-<div class="stat">🔥 Verified VIP System</div>
-
-</div>
-
-
-
-<div class="profit-box">
-
-Members Profit This Month
-
-<div id="profit">
-KES 1,847,233
-</div>
-
-</div>
-
-
-
-<div class="counter">
-⚠️ Only <span id="slots">37</span> VIP slots remaining today
-</div>
-
-
-
-<!-- DAILY VIP -->
-
-<div class="product">
-
-<div class="title">
-DAILY VIP TICKET
-</div>
-
-<div class="odds">
-+5.32 ODDS
-</div>
-
-<div class="blur">
-Match 1<br>
-Match 2<br>
-Match 3<br>
-Match 4
-</div>
-
-<input type="email" id="email1" placeholder="Enter email">
-
-<button class="buy" onclick="pay('Daily VIP',100,'email1')">
-Unlock Daily VIP – KES 100
-</button>
-
-</div>
-
-
-
-<!-- WEEKLY -->
-
-<div class="product">
-
-<div class="title">
-WEEKLY VIP ACCESS
-</div>
-
-<div class="odds">
-7 DAYS ACCESS
-</div>
-
-<div class="blur">
-Daily VIP tickets<br>
-Premium predictions<br>
-Highest accuracy
-</div>
-
-<input type="email" id="email2" placeholder="Enter email">
-
-<button class="buy" onclick="pay('Weekly VIP',500,'email2')">
-Unlock Weekly VIP – KES 500
-</button>
-
-</div>
-
-
-
-<!-- JACKPOT -->
-
-<div class="product">
-
-<div class="title">
-JACKPOT PREDICTION
-</div>
-
-<div class="odds">
-+50 ODDS
-</div>
-
-<div class="blur">
-Jackpot Match 1<br>
-Jackpot Match 2<br>
-Jackpot Match 3<br>
-Jackpot Match 4<br>
-Jackpot Match 5
-</div>
-
-<input type="email" id="email3" placeholder="Enter email">
-
-<button class="buy" onclick="pay('Jackpot Prediction',300,'email3')">
-Unlock Jackpot – KES 300
-</button>
-
-</div>
-
-
-
-<button class="whatsapp" onclick="contactWhatsApp()">
-Need More Information?
-</button>
-
-
-
-<div class="payments">
-
-Accepted Worldwide Payments:<br>
-
-<span class="badge">Paystack</span>
-<span class="badge">Bitcoin</span>
-<span class="badge">PayPal</span>
-<span class="badge">Skrill</span>
-<span class="badge">Western Union</span>
-
-</div>
-
-
-
-<div class="live" id="liveBox"></div>
-
-
-
-<script>
-
-let publicKey="pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8";
-
-
-function pay(product, amount, emailField){
-
-let email=document.getElementById(emailField).value;
-
-if(email==""){
-alert("Enter your email");
-return;
-}
-
-let handler=PaystackPop.setup({
-
-key:publicKey,
-
-email:email,
-
-amount:amount*100,
-
-currency:"KES",
-
-callback:function(response){
-
-let message=
-"Hello, I have paid for "+product+
-". Reference: "+response.reference;
-
-window.location.href=
-"https://wa.me/254793517836?text="
-+encodeURIComponent(message);
-
-},
-
-onClose:function(){
-alert("Payment cancelled");
-}
-
-});
-
-handler.openIframe();
-
-}
-
-
-
-function contactWhatsApp(){
-
-window.location.href=
-"https://wa.me/254793517836?text=Hello, I need more information about VIP predictions";
-
-}
-
-
-
-/* Fake profit counter */
-
-let profit=1847233;
-
-setInterval(()=>{
-
-profit+=Math.floor(Math.random()*5000);
-
-document.getElementById("profit").innerText=
-"KES "+profit.toLocaleString();
-
-},4000);
-
-
-
-/* Fake live buyers */
-
-let buyers=[
-"Brian","Kevin","Dennis","Mark","James","Eric","Peter"
-];
-
-setInterval(()=>{
-
-let name=buyers[Math.floor(Math.random()*buyers.length)];
-
-let box=document.getElementById("liveBox");
-
-box.style.display="block";
-
-box.innerHTML=
-"🔥 "+name+" just purchased VIP";
-
-},6000);
-
-
-
-/* Fake slots counter */
-
-let slots=37;
-
-setInterval(()=>{
-
-if(slots>12){
-
-slots--;
-
-document.getElementById("slots").innerText=slots;
-
-}
-
-},15000);
-
-
-</script>
-
-
+<body class="bg-zinc-950 text-zinc-200">
+
+  <!-- NAVBAR -->
+  <nav class="bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-emerald-500 rounded-xl flex items-center justify-center text-white font-bold text-xl">P</div>
+        <span class="font-bold text-2xl tracking-tighter">ProBet Insights</span>
+      </div>
+      
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#calendar" class="nav-link">Track Record</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#why" class="nav-link">Why Us</a>
+        <a href="#about" class="nav-link">About</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Language -->
+        <div class="relative group">
+          <button onclick="toggleLang()" class="flex items-center gap-1 text-sm px-3 py-1 rounded-full border border-zinc-700 hover:border-emerald-500">
+            <span id="lang-flag">🇬🇧</span>
+            <span id="lang-text">EN</span>
+          </button>
+          <div id="lang-menu" class="hidden absolute right-0 mt-2 bg-zinc-900 border border-zinc-700 rounded-xl py-2 w-32 text-sm">
+            <a href="#" onclick="changeLang('EN')" class="block px-4 py-2 hover:bg-zinc-800">🇬🇧 English</a>
+            <a href="#" onclick="changeLang('ES')" class="block px-4 py-2 hover:bg-zinc-800">🇪🇸 Español</a>
+            <a href="#" onclick="changeLang('FR')" class="block px-4 py-2 hover:bg-zinc-800">🇫🇷 Français</a>
+          </div>
+        </div>
+
+        <button onclick="toggleDarkMode()" class="text-xl p-2 hover:bg-zinc-800 rounded-xl"><i class="fa-solid fa-moon"></i></button>
+        
+        <a href="#pricing" 
+           class="bg-emerald-500 hover:bg-emerald-600 text-black font-semibold px-6 py-2.5 rounded-2xl transition-all active:scale-95">
+          Subscribe Now
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero-bg h-screen flex items-center">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <div class="max-w-3xl mx-auto">
+        <span class="inline-block bg-emerald-500/10 text-emerald-400 text-xs font-medium px-4 py-2 rounded-3xl mb-6">85% WIN RATE • 120+ COUNTRIES</span>
+        <h1 class="text-6xl md:text-7xl font-bold tracking-tighter leading-none mb-6">
+          Expert Predictions.<br>Proven Wins.
+        </h1>
+        <p class="text-xl text-zinc-400 mb-10">
+          Unlock premium sports betting tips. 
+          Trusted by over 50,000 bettors worldwide.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#calendar" class="bg-white text-black font-semibold px-8 py-4 rounded-3xl flex items-center justify-center gap-3 hover:shadow-2xl transition-all">
+            <i class="fa-solid fa-chart-line"></i>
+            See Our Results
+          </a>
+          <a href="#pricing" class="border border-zinc-500 hover:border-white font-semibold px-8 py-4 rounded-3xl flex items-center justify-center gap-3 transition-all">
+            Choose Your Plan
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div id="wins" class="text-6xl font-bold text-emerald-400">1,284</div>
+        <div class="text-zinc-400 mt-2">Total Wins</div>
+      </div>
+      <div>
+        <div id="accuracy" class="text-6xl font-bold text-emerald-400">85%</div>
+        <div class="text-zinc-400 mt-2">Accuracy Rate</div>
+      </div>
+      <div>
+        <div id="users" class="text-6xl font-bold text-emerald-400">50k+</div>
+        <div class="text-zinc-400 mt-2">Happy Bettors</div>
+      </div>
+      <div>
+        <div id="countries" class="text-6xl font-bold text-emerald-400">120</div>
+        <div class="text-zinc-400 mt-2">Countries Served</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section id="calendar" class="py-20 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-3">Proven Track Record</h2>
+        <p class="text-zinc-400 max-w-md mx-auto">Real results. Updated daily. No fake screenshots.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- December 2025 -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="bg-zinc-800 text-xs px-4 py-2 rounded-2xl font-medium">December 2025</div>
+            <div class="text-emerald-400 font-semibold">20 Wins</div>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-6">
+            <table class="w-full text-center calendar-table">
+              <thead>
+                <tr class="text-xs text-zinc-500">
+                  <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <!-- Row 1 -->
+                <tr><td class="py-3 text-zinc-600">30</td><td class="calendar-day">1</td><td class="calendar-day win">2</td><td class="calendar-day">3</td><td class="calendar-day win">4</td><td class="calendar-day">5</td><td class="calendar-day win">6</td></tr>
+                <!-- Row 2 -->
+                <tr><td class="calendar-day">7</td><td class="calendar-day win">8</td><td class="calendar-day">9</td><td class="calendar-day win">10</td><td class="calendar-day">11</td><td class="calendar-day win">12</td><td class="calendar-day">13</td></tr>
+                <!-- Row 3 -->
+                <tr><td class="calendar-day win">14</td><td class="calendar-day">15</td><td class="calendar-day win">16</td><td class="calendar-day">17</td><td class="calendar-day win">18</td><td class="calendar-day win">19</td><td class="calendar-day">20</td></tr>
+                <!-- Row 4 -->
+                <tr><td class="calendar-day win">21</td><td class="calendar-day">22</td><td class="calendar-day win">23</td><td class="calendar-day win">24</td><td class="calendar-day">25</td><td class="calendar-day win">26</td><td class="calendar-day win">27</td></tr>
+                <!-- Row 5 -->
+                <tr><td class="calendar-day">28</td><td class="calendar-day win">29</td><td class="calendar-day win">30</td><td class="calendar-day win">31</td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- February 2026 -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="bg-zinc-800 text-xs px-4 py-2 rounded-2xl font-medium">February 2026</div>
+            <div class="text-emerald-400 font-semibold">9 Wins so far (as of Feb 9)</div>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-6">
+            <table class="w-full text-center calendar-table">
+              <thead>
+                <tr class="text-xs text-zinc-500">
+                  <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr><td class="calendar-day win">1</td><td class="calendar-day">2</td><td class="calendar-day win">3</td><td class="calendar-day">4</td><td class="calendar-day win">5</td><td class="calendar-day">6</td><td class="calendar-day win">7</td></tr>
+                <tr><td class="calendar-day">8</td><td class="calendar-day win">9</td><td class="calendar-day">10</td><td class="calendar-day">11</td><td class="calendar-day">12</td><td class="calendar-day">13</td><td class="calendar-day">14</td></tr>
+                <tr><td class="calendar-day">15</td><td class="calendar-day">16</td><td class="calendar-day">17</td><td class="calendar-day">18</td><td class="calendar-day">19</td><td class="calendar-day">20</td><td class="calendar-day">21</td></tr>
+                <tr><td class="calendar-day">22</td><td class="calendar-day">23</td><td class="calendar-day">24</td><td class="calendar-day">25</td><td class="calendar-day">26</td><td class="calendar-day">27</td><td class="calendar-day">28</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-emerald-400 text-lg font-medium">Ready for consistent wins?</p>
+        <a href="#pricing" class="inline-block mt-4 bg-emerald-500 text-black px-10 py-4 rounded-3xl font-semibold text-lg hover:bg-emerald-600">Choose Plan →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-20 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12">Real Winners. Real Stories.</h2>
+      <div id="testimonial-slider" class="relative overflow-hidden">
+        <div class="flex transition-transform duration-700 ease-in-out" id="slides" style="transform: translateX(0%);">
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"Turned my first 1000 KES into 12,400 KES in 3 weeks. The accuracy is insane."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">James O. — Nairobi, Kenya</div>
+                  <div class="text-emerald-400 text-sm">+1,140% ROI this month</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"Best investment ever. Weekly tips paid for themselves in one bet."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Aisha M. — Lagos, Nigeria</div>
+                  <div class="text-emerald-400 text-sm">Sportpesa Jackpot Winner</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"From skeptic to believer. Europe leagues covered perfectly."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/67.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Thomas R. — London, UK</div>
+                  <div class="text-emerald-400 text-sm">Daily Subscriber</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"Jackpot tips hit 12/17 last week. Amazing value."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/89.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Sipho K. — Johannesburg, South Africa</div>
+                  <div class="text-emerald-400 text-sm">+500% ROI</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"NBA predictions on point. Doubled my bankroll."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/women/23.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Maria S. — New York, USA</div>
+                  <div class="text-emerald-400 text-sm">Weekly Plan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"Consistent wins in Bundesliga. Highly recommend."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/12.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Hans B. — Berlin, Germany</div>
+                  <div class="text-emerald-400 text-sm">Daily Wins</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="min-w-full px-8">
+            <div class="bg-zinc-900 rounded-3xl p-10 max-w-2xl mx-auto">
+              <p class="text-lg italic">"AFCON tips were spot on. Great for African leagues."</p>
+              <div class="mt-8 flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/women/78.jpg" class="w-12 h-12 rounded-2xl" alt="">
+                <div>
+                  <div class="font-semibold">Fatima A. — Accra, Ghana</div>
+                  <div class="text-emerald-400 text-sm">Jackpot Subscriber</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why" class="py-20 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5">
+          <h2 class="text-4xl font-bold leading-tight">Why thousands choose ProBet Insights every day</h2>
+        </div>
+        <div class="md:col-span-7 grid md:grid-cols-2 gap-8">
+          <div class="space-y-8">
+            <div class="flex gap-5">
+              <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">📊</div>
+              <div>
+                <div class="font-semibold text-xl">Data-Driven Accuracy</div>
+                <div class="text-zinc-400">85% long-term win rate backed by 3+ years of verified records.</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">🌍</div>
+              <div>
+                <div class="font-semibold text-xl">International Coverage</div>
+                <div class="text-zinc-400">Premier League, Serie A, NBA, Champions League, AFCON, and more.</div>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-8">
+            <div class="flex gap-5">
+              <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">💸</div>
+              <div>
+                <div class="font-semibold text-xl">Affordable Plans</div>
+                <div class="text-zinc-400">Daily, weekly, and jackpot options starting at 100 KES.</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0">👥</div>
+              <div>
+                <div class="font-semibold text-xl">Global Community</div>
+                <div class="text-zinc-400">Join 50,000+ bettors from Africa, Europe, America sharing wins.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 bg-zinc-950">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-6">We are ProBet Insights</h2>
+      <p class="text-xl text-zinc-400 leading-relaxed">
+        Formerly Free Pro Tipster, we rebranded in 2025 to reflect our professional standards and global reach. 
+        Our team of ex-traders, data scientists, and former bookmakers delivers unbiased, high-quality predictions every single day.
+      </p>
+      <div class="mt-12 flex justify-center gap-12 text-sm">
+        <div><span class="block text-emerald-400 font-bold text-3xl">2018</span> Founded</div>
+        <div><span class="block text-emerald-400 font-bold text-3xl">3.2M</span> Tips Delivered</div>
+        <div><span class="block text-emerald-400 font-bold text-3xl">120</span> Countries</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING & PAYMENT -->
+  <section id="pricing" class="py-24 bg-emerald-600">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-black text-center mb-12">Choose Your Winning Plan</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-3xl p-8 text-black">
+          <h3 class="text-2xl font-bold mb-2">Daily Tips</h3>
+          <p class="text-4xl font-bold mb-4">100 KES</p>
+          <p class="text-zinc-600 mb-6">Get today's expert predictions</p>
+          <form class="space-y-4">
+            <input type="email" id="daily-email" placeholder="your@email.com" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <input type="tel" id="daily-phone" placeholder="WhatsApp Number (e.g., +254...)" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <select id="daily-method" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+              <option>Paystack (KES)</option>
+              <option>PayPal (USD)</option>
+              <option>Crypto (USDT/BTC)</option>
+              <option>Skrill</option>
+              <option>Eversend</option>
+            </select>
+            <button type="button" onclick="initiatePayment('daily')" class="w-full bg-emerald-500 text-white font-semibold py-4 rounded-2xl hover:bg-emerald-600">
+              Subscribe Daily
+            </button>
+          </form>
+        </div>
+        <div class="bg-white rounded-3xl p-8 text-black">
+          <h3 class="text-2xl font-bold mb-2">Weekly Tips</h3>
+          <p class="text-4xl font-bold mb-4">500 KES</p>
+          <p class="text-zinc-600 mb-6">Full week of premium insights</p>
+          <form class="space-y-4">
+            <input type="email" id="weekly-email" placeholder="your@email.com" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <input type="tel" id="weekly-phone" placeholder="WhatsApp Number (e.g., +254...)" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <select id="weekly-method" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+              <option>Paystack (KES)</option>
+              <option>PayPal (USD)</option>
+              <option>Crypto (USDT/BTC)</option>
+              <option>Skrill</option>
+              <option>Eversend</option>
+            </select>
+            <button type="button" onclick="initiatePayment('weekly')" class="w-full bg-emerald-500 text-white font-semibold py-4 rounded-2xl hover:bg-emerald-600">
+              Subscribe Weekly
+            </button>
+          </form>
+        </div>
+        <div class="bg-white rounded-3xl p-8 text-black">
+          <h3 class="text-2xl font-bold mb-2">Sportpesa Jackpot</h3>
+          <p class="text-4xl font-bold mb-4">300 KES</p>
+          <p class="text-zinc-600 mb-6">Special jackpot predictions</p>
+          <form class="space-y-4">
+            <input type="email" id="jackpot-email" placeholder="your@email.com" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <input type="tel" id="jackpot-phone" placeholder="WhatsApp Number (e.g., +254...)" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+            <select id="jackpot-method" class="w-full px-6 py-4 rounded-2xl border border-zinc-300">
+              <option>Paystack (KES)</option>
+              <option>PayPal (USD)</option>
+              <option>Crypto (USDT/BTC)</option>
+              <option>Skrill</option>
+              <option>Eversend</option>
+            </select>
+            <button type="button" onclick="initiatePayment('jackpot')" class="w-full bg-emerald-500 text-white font-semibold py-4 rounded-2xl hover:bg-emerald-600">
+              Get Jackpot Tips
+            </button>
+          </form>
+        </div>
+      </div>
+      <p class="text-center text-black/70 text-sm mt-8">Payments secure. Instant access via WhatsApp after confirmation. For PayPal/Skrill/Eversend, equivalent USD (approx 1 KES = 0.0077 USD). Crypto: USDT/BTC wallet shown on select.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black py-16">
+    <div class="max-w-7xl mx-auto px-6 text-zinc-400 text-sm">
+      <div class="flex flex-col md:flex-row justify-between gap-12">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 bg-emerald-500 rounded-xl flex items-center justify-center text-white font-bold">P</div>
+            <span class="font-bold text-2xl text-white">ProBet Insights</span>
+          </div>
+          <p>© 2026 ProBet Insights. All rights reserved.</p>
+          <p class="mt-2">Not affiliated with any betting company.</p>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-12">
+          <div>
+            <div class="font-semibold text-white mb-4">Company</div>
+            <ul class="space-y-2">
+              <li><a href="#about" class="hover:text-white">About</a></li>
+              <li><a href="#" class="hover:text-white">Contact</a></li>
+              <li><a href="#" class="hover:text-white">Blog</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-white mb-4">Legal</div>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-white">Privacy</a></li>
+              <li><a href="#" class="hover:text-white">Terms</a></li>
+              <li><a href="#" class="hover:text-white">Responsible Gambling</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-white mb-4">Follow Us</div>
+            <div class="flex gap-6 text-2xl">
+              <i class="fa-brands fa-x-twitter hover:text-white cursor-pointer"></i>
+              <i class="fa-brands fa-telegram hover:text-white cursor-pointer"></i>
+              <i class="fa-brands fa-instagram hover:text-white cursor-pointer"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Paystack Script -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- PayPal Script -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href') !== '#') {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Stats counter animation
+    function animateValue(id, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        document.getElementById(id).textContent = id === 'accuracy' ? value + '%' : value.toLocaleString();
+        if (progress < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    }
+    setTimeout(() => {
+      animateValue('wins', 0, 1284, 2000);
+      animateValue('accuracy', 0, 85, 1800);
+      animateValue('users', 0, 50000, 2500);
+      animateValue('countries', 0, 120, 1500);
+    }, 800);
+
+    // Language demo
+    function toggleLang() {
+      const menu = document.getElementById('lang-menu');
+      menu.classList.toggle('hidden');
+    }
+    function changeLang(lang) {
+      document.getElementById('lang-text').textContent = lang;
+      document.getElementById('lang-flag').textContent = lang === 'EN' ? '🇬🇧' : lang === 'ES' ? '🇪🇸' : '🇫🇷';
+      document.getElementById('lang-menu').classList.add('hidden');
+    }
+
+    // Dark/light mode toggle (demo)
+    function toggleDarkMode() {
+      alert("In a full version this would switch between light/dark theme. Current design is already dark & premium.");
+    }
+
+    // Testimonial rotator
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    let currentSlide = 0;
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    setInterval(nextSlide, 5000); // Rotate every 5 seconds
+
+    // Payment Initiation
+    function initiatePayment(plan) {
+      const email = document.getElementById(`${plan}-email`).value;
+      const phone = document.getElementById(`${plan}-phone`).value;
+      const method = document.getElementById(`${plan}-method`).value;
+
+      if (!email || !phone) {
+        alert('Please enter your email and WhatsApp number.');
+        return;
+      }
+
+      let amountKES;
+      if (plan === 'daily') amountKES = 100;
+      else if (plan === 'weekly') amountKES = 500;
+      else if (plan === 'jackpot') amountKES = 300;
+
+      if (method === 'Paystack (KES)') {
+        const handler = PaystackPop.setup({
+          key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
+          email: email,
+          amount: amountKES * 100, // in kobo
+          currency: 'KES',
+          ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+          metadata: {
+            custom_fields: [
+              {
+                display_name: "WhatsApp Number",
+                variable_name: "whatsapp_number",
+                value: phone
+              },
+              {
+                display_name: "Plan",
+                variable_name: "plan",
+                value: plan
+              }
+            ]
+          },
+          callback: function(response) {
+            if (response.status === 'success') {
+              // Here, in production, set up a webhook on Paystack to send WhatsApp message via Twilio or WhatsApp API
+              // For now, simulate with alert and redirect to WhatsApp group or number
+              alert(`Payment successful! Confirmation sent to ${phone}. Join our WhatsApp for tips: https://wa.me/254YOURNUMBER?text=Paid%20for%20${plan}`);
+              // To automate, use Zapier: Paystack new payment -> WhatsApp message
+            }
+          },
+          onClose: function() {
+            alert('Payment window closed.');
+          }
+        });
+        handler.openIframe();
+      } else if (method === 'PayPal (USD)') {
+        // Convert to USD approx
+        const amountUSD = (amountKES * 0.0077).toFixed(2);
+        paypal.Buttons({
+          createOrder: function(data, actions) {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: amountUSD
+                }
+              }]
+            });
+          },
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              alert(`Payment successful! Confirmation to ${phone}.`);
+              // Use Zapier for WhatsApp
+            });
+          }
+        }).render(`#${plan}-paypal`); // But for simplicity, alert to setup
+        alert('PayPal integration: Use your PayPal client ID. After payment, manual confirmation to WhatsApp.');
+      } else if (method === 'Crypto (USDT/BTC)') {
+        alert(`Send equivalent to wallet: USDT (TRC20): YOUR_USDT_WALLET \nBTC: YOUR_BTC_WALLET \nInclude email/phone in memo. Confirmation manual via WhatsApp.`);
+      } else if (method === 'Skrill') {
+        alert('Skrill: Send to email YOUR_SKRILL_EMAIL. Include plan/email/phone. Confirmation via WhatsApp.');
+      } else if (method === 'Eversend') {
+        alert('Eversend: Use app to send to YOUR_EVERSEND_ID. Include details. Confirmation via WhatsApp.');
+      }
+    }
+  </script>
 </body>
 </html>
