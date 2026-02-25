@@ -784,7 +784,7 @@
             </tfoot>
         </table>
         <div class="payment-area">
-            <button class="access-btn" onclick="openModal('1day')">Pay Now (Ksh 99)</button>
+         <a class="access-btn" href="https://paystack.shop/pay/1day">Unlock 1 Day – Ksh 99</a>   
         </div>
     </div>
     <div class="divider"></div>
@@ -856,7 +856,7 @@
             </tfoot>
         </table>
         <div class="payment-area">
-            <button class="access-btn" onclick="openModal('vip')">Pay Now (Ksh 499)</button>
+           <a class="access-btn" href="https://paystack.shop/pay/vipaccesske">Unlock VIP – Ksh 499</a>
         </div>
     </div>
     <div class="divider"></div>
@@ -901,7 +901,7 @@
             </tbody>
         </table>
         <div class="payment-area">
-            <button class="access-btn" onclick="openModal('jackpot')">Pay Now (Ksh 599)</button>
+        <a class="access-btn" href="https://paystack.shop/pay/jackpot">Unlock Jackpot – Ksh 599</a>
         </div>
         <div class="social-proof">
             <span class="jackpot-badge">90%+ Win Rate</span>
@@ -940,11 +940,11 @@
     <div class="how-to-use" id="how-to-use">
         <h2>How to Get Started</h2>
         <ol>
-            <li>Choose a package (1 Day, VIP Ticket, or Jackpot).</li>
-            <li>Pay via M-Pesa or Paystack (see payment options in each section).</li>
-            <li>Send transaction confirmation to <a href="https://wa.me/2540100494094">+254100494094</a> via WhatsApp.</li>
-            <li>Receive daily predictions or Jackpot tips via email or WhatsApp.</li>
-            <li>Place your bets and start winning!</li>
+<li>Choose a package (1 Day, VIP, or Jackpot).</li>
+<li>Complete secure payment via Paystack.</li>
+<li>You will be redirected instantly to your unlocked predictions.</li>
+<li>Place your bets responsibly.</li>
+</ol>
         </ol>
         <a class="access-btn" href="https://wa.me/2540100494094?text=I%20want%20to%20buy%201%20Day" aria-label="Access 1 Day Predictions">Access Predictions</a>
     </div>
@@ -952,21 +952,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
             <h3>Payment Options - Complete Before <span id="modal-countdown">00:00:00</span></h3>
-            <div class="payment-options">
-                <div class="payment-option mpesa">
-                    <h4 style="color: #FFD700; margin-bottom: 10px;">Pay via M-Pesa</h4>
-                    <p class="mpesa-instructions">
-                        1. Go to M-Pesa menu<br>
-                        2. Select Lipa na M-Pesa<br>
-                        3. Choose Buy Goods and Services<br>
-                        4. Enter Till Number: <strong>6012928</strong><br>
-                        5. Enter amount: <strong id="modal-amount">Ksh 99</strong><br>
-                        6. Enter PIN and confirm<br>
-                        7. Send confirmation to <strong><a href="https://wa.me/2540100494094">+254100494094</a></strong>
-                    </p>
-                    <a class="access-btn" id="modal-mpesa-start" href="https://wa.me/2540100494094?text=Start%20payment%20for%201%20Day">Chat to Pay via M-Pesa</a>
-                    <a class="access-btn" id="modal-whatsapp" href="https://wa.me/2540100494094?text=Paid%20for%201%20Day%20sub">Confirm Payment</a>
-                </div>
+           
                 <div class="payment-option paystack">
                     <h4 style="color: #FFD700; margin-bottom: 10px;">Pay via Paystack</h4>
                     <input type="email" id="modal-email" placeholder="Enter your email" style="padding: 8px; width: 250px; border-radius: 5px; margin: 10px 0;">
@@ -1126,32 +1112,58 @@
             setActiveLink();
             window.addEventListener('hashchange', setActiveLink);
         };
-    </script>
-    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-        function payWithPaystack(amount, emailId) {
-            const email = document.getElementById(emailId).value;
-            if (!email) {
-                alert("Please enter your email.");
-                return;
-            }
+const params = new URLSearchParams(window.location.search);
+const packageType = params.get("p");
 
-            PaystackPop.setup({
-                key: 'pk_live_9780d7fe46ddfc513ab2ead65b52880050c56bb8',
-                email: email,
-                amount: amount * 100,
-                currency: 'KES',
-                label: "ProTipstersKE",
-                ref: 'PT' + Math.floor(Math.random() * 1000000000),
-                callback: function(response) {
-                    alert("Payment Successful! Ref: " + response.reference);
-                    closeModal();
-                },
-                onClose: function() {
-                    alert("Payment was cancelled.");
-                }
-            }).openIframe();
-        }
-    </script>
+if(packageType){
+
+document.body.innerHTML = `
+<div style="background:#121212; color:white; padding:40px; font-family:Poppins, sans-serif; text-align:center;">
+<h2 style="color:#FFD700;">Premium Access Granted</h2>
+<div style="max-width:800px; margin:auto; border:2px solid #FFD700; padding:20px; border-radius:8px; background:#1e1e1e;">
+<div id="content-area"></div>
+</div>
+</div>
+`;
+
+const content=document.getElementById("content-area");
+
+if(packageType==="1day"){
+content.innerHTML=`
+<h3 style="color:#FFD700;">1 Day Predictions</h3>
+<table class="prediction-table">
+<tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
+<tr><td>Team A - Team B</td><td>Home Win</td><td>2.50</td></tr>
+<tr><td>Team C - Team D</td><td>Over 2.5</td><td>1.80</td></tr>
+<tr><td>Team E - Team F</td><td>BTTS</td><td>1.93</td></tr>
+</table>
+`;
+}
+
+if(packageType==="vip"){
+content.innerHTML=`
+<h3 style="color:#FFD700;">VIP Predictions</h3>
+<table class="vip-table">
+<tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
+<tr><td>Team G - Team H</td><td>Correct Score 2-1</td><td>7.00</td></tr>
+<tr><td>Team I - Team J</td><td>Correct Score 1-0</td><td>5.43</td></tr>
+</table>
+`;
+}
+
+if(packageType==="jackpot"){
+content.innerHTML=`
+<h3 style="color:#FFD700;">Jackpot Predictions</h3>
+<table class="jackpot-table">
+<tr><th>#</th><th>Match</th><th>Prediction</th></tr>
+<tr><td>1</td><td>Match 1</td><td>Home Win</td></tr>
+<tr><td>2</td><td>Match 2</td><td>Draw</td></tr>
+<tr><td>3</td><td>Match 3</td><td>Away Win</td></tr>
+</table>
+`;
+}
+}
+</script>
 </body>
 </html>
