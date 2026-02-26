@@ -1113,10 +1113,23 @@
             window.addEventListener('hashchange', setActiveLink);
         };
     <script>
-const params = new URLSearchParams(window.location.search);
-const packageType = params.get("p");
+const urlParams = new URLSearchParams(window.location.search);
+let packageType = urlParams.get("p");
 
 if(packageType){
+
+if(packageType.includes("1day")){
+showPackage("1day");
+}
+else if(packageType.includes("vip")){
+showPackage("vip");
+}
+else if(packageType.includes("jackpot")){
+showPackage("jackpot");
+}
+}
+
+function showPackage(type){
 
 document.body.innerHTML = `
 <div style="background:#121212; color:white; padding:40px; font-family:Poppins, sans-serif; text-align:center;">
@@ -1127,12 +1140,12 @@ document.body.innerHTML = `
 </div>
 `;
 
-const content=document.getElementById("content-area");
+const content = document.getElementById("content-area");
 
-if(packageType==="1day"){
+if(type==="1day"){
 content.innerHTML=`
 <h3 style="color:#FFD700;">1 Day Predictions</h3>
-<table class="prediction-table">
+<table>
 <tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
 <tr><td>Team A - Team B</td><td>Home Win</td><td>2.50</td></tr>
 <tr><td>Team C - Team D</td><td>Over 2.5</td><td>1.80</td></tr>
@@ -1141,10 +1154,10 @@ content.innerHTML=`
 `;
 }
 
-if(packageType==="vip"){
+if(type==="vip"){
 content.innerHTML=`
 <h3 style="color:#FFD700;">VIP Predictions</h3>
-<table class="vip-table">
+<table>
 <tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
 <tr><td>Team G - Team H</td><td>Correct Score 2-1</td><td>7.00</td></tr>
 <tr><td>Team I - Team J</td><td>Correct Score 1-0</td><td>5.43</td></tr>
@@ -1152,10 +1165,10 @@ content.innerHTML=`
 `;
 }
 
-if(packageType==="jackpot"){
+if(type==="jackpot"){
 content.innerHTML=`
 <h3 style="color:#FFD700;">Jackpot Predictions</h3>
-<table class="jackpot-table">
+<table>
 <tr><th>#</th><th>Match</th><th>Prediction</th></tr>
 <tr><td>1</td><td>Match 1</td><td>Home Win</td></tr>
 <tr><td>2</td><td>Match 2</td><td>Draw</td></tr>
@@ -1164,6 +1177,6 @@ content.innerHTML=`
 `;
 }
 }
+  </body>      
 </script>
-</body>
 </html>
