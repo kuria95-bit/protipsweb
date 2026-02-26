@@ -665,6 +665,7 @@
 <body>
     <div class="header">
         <div>
+            <div id="unlock-container" style="display:none;"></div>
             <div class="header-title">Pro Tipsters</div>
             <div class="header-tagline">The World’s Premier Betting Platform</div>
             <div class="header-badges">
@@ -966,217 +967,49 @@
     <footer>
         <p>© 2025 Pro Tipsters. All rights reserved.</p>
     </footer>
-    <script>
-        const names = [
-            'Ann', 'John', 'Mary', 'Peter', 'Sarah', 'David', 'Emma', 'Michael', 'Grace', 'James',
-            'Lucy', 'Samuel', 'Faith', 'Joseph', 'Ruth', 'Daniel', 'Esther', 'Paul', 'Jane', 'Thomas',
-            'Mercy', 'George', 'Nancy', 'Simon', 'Beatrice', 'Charles', 'Lydia', 'Isaac', 'Rose', 'Moses',
-            'Hannah', 'Ben', 'Joy', 'Stephen', 'Dorothy', 'Mark', 'Janet', 'Victor', 'Susan', 'Andrew',
-            'Esther', 'Philip', 'Margaret', 'Edward', 'Christine', 'Brian', 'Winnie', 'Kevin', 'Doris', 'Joshua'
-        ];
-        const locations = [
-            'Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret', 'Thika', 'Nyeri', 'Machakos', 'Kakamega', 'Garissa',
-            'Kisii', 'Meru', 'Embu', 'Bungoma', 'Malindi', 'Lamu', 'Kitale', 'Kericho', 'Voi', 'Nanyuki',
-            'Homa Bay', 'Naivasha', 'Migori', 'Busia', 'Siaya', 'Murang’a', 'Kajiado', 'Kilifi', 'Isiolo', 'Narok'
-        ];
-        const packages = ['1 Day', 'VIP Ticket', 'Jackpot'];
+   <script>
+const params = new URLSearchParams(window.location.search);
+const packageType = params.get("p");
 
-        function generatePhoneNumber() {
-            const prefix = '07';
-            const number = Math.floor(1000000 + Math.random() * 9000000).toString();
-            return prefix + number.substring(0, 7) + '****' + number.substring(7);
-        }
+if (packageType) {
 
-        function showNotification() {
-            const notification = document.getElementById('notification');
-            const nameElement = document.getElementById('notification-name');
-            const locationElement = document.getElementById('notification-location');
-            const packageElement = document.getElementById('notification-package');
+  // Hide entire landing page
+  document.querySelector("body > *:not(#unlock-container):not(script)").style.display = "none";
 
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            const randomLocation = locations[Math.floor(Math.random() * locations.length)];
-            const randomPackage = packages[Math.floor(Math.random() * packages.length)];
-            const randomPhone = generatePhoneNumber();
+  const unlockContainer = document.getElementById("unlock-container");
+  unlockContainer.style.display = "block";
 
-            nameElement.textContent = `${randomName} ${randomPhone}`;
-            locationElement.textContent = randomLocation;
-            packageElement.textContent = randomPackage;
+  if (packageType === "1day") {
+    unlockContainer.innerHTML = `
+      <div style="background:#121212;color:white;padding:40px;text-align:center;font-family:Poppins;">
+        <h2 style="color:#FFD700;">1 Day Access Granted</h2>
+        <table style="width:100%;max-width:700px;margin:auto;border-collapse:collapse;">
+          <tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
+          <tr><td>Team A vs Team B</td><td>Home Win</td><td>2.50</td></tr>
+          <tr><td>Team C vs Team D</td><td>Over 2.5</td><td>1.80</td></tr>
+        </table>
+      </div>
+    `;
+  }
 
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 5000);
-            setTimeout(showNotification, 10000);
-        }
+  if (packageType === "vip") {
+    unlockContainer.innerHTML = `
+      <div style="background:#121212;color:white;padding:40px;text-align:center;font-family:Poppins;">
+        <h2 style="color:#FFD700;">VIP Access Granted</h2>
+        <p>Premium High-Odds Predictions</p>
+      </div>
+    `;
+  }
 
-        function toggleMenu() {
-            const navItems = document.querySelector('.nav-items');
-            const hamburger = document.querySelector('.hamburger');
-            navItems.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
+  if (packageType === "jackpot") {
+    unlockContainer.innerHTML = `
+      <div style="background:#121212;color:white;padding:40px;text-align:center;font-family:Poppins;">
+        <h2 style="color:#FFD700;">Jackpot Access Granted</h2>
+        <p>Full Jackpot Slip Predictions</p>
+      </div>
+    `;
+  }
 
-        function closeMobileMenu() {
-            const navItems = document.querySelector('.nav-items');
-            const hamburger = document.querySelector('.hamburger');
-            navItems.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
-
-        function setActiveLink() {
-            const navLinks = document.querySelectorAll('.nav a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (window.location.hash === link.getAttribute('href') || (!window.location.hash && link.getAttribute('href') === '#home')) {
-                    link.classList.add('active');
-                }
-            });
-            const hash = window.location.hash;
-            if (hash) {
-                const targetSection = document.querySelector(hash);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        }
-
-        function openModal(packageType) {
-            const modal = document.getElementById('payment-modal');
-            const amountSpan = document.getElementById('modal-amount');
-            const whatsappLink = document.getElementById('modal-whatsapp');
-            const mpesaStartLink = document.getElementById('modal-mpesa-start');
-            const paystackButton = document.getElementById('modal-paystack');
-            let amount, whatsappText, mpesaStartText;
-
-            if (packageType === '1day') {
-                amount = 99;
-                whatsappText = 'Paid%20for%201%20Day%20sub';
-                mpesaStartText = 'Start%20payment%20for%201%20Day';
-            } else if (packageType === 'vip') {
-                amount = 499;
-                whatsappText = 'Paid%20for%20VIP%20sub';
-                mpesaStartText = 'Start%20payment%20for%20VIP';
-            } else {
-                amount = 599;
-                whatsappText = 'Paid%20for%20JP';
-                mpesaStartText = 'Start%20payment%20for%20Jackpot';
-            }
-
-            amountSpan.textContent = `Ksh ${amount}`;
-            whatsappLink.href = `https://wa.me/2540100494094?text=${whatsappText}`;
-            mpesaStartLink.href = `https://wa.me/2540100494094?text=${mpesaStartText}`;
-            paystackButton.setAttribute('onclick', `payWithPaystack(${amount}, 'modal-email')`);
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('payment-modal').style.display = 'none';
-        }
-
-        function startCountdown() {
-            const countdownElement = document.getElementById('countdown-timer');
-            const modalCountdownElement = document.getElementById('modal-countdown');
-            const headerCountdownElement = document.getElementById('header-countdown');
-            const targetTime = new Date();
-            targetTime.setDate(targetTime.getDate() + 1);
-            targetTime.setHours(15, 0, 0, 0);
-
-            function updateTimer() {
-                const now = new Date();
-                const timeLeft = targetTime - now;
-
-                if (timeLeft <= 0) {
-                    countdownElement.textContent = '00:00:00';
-                    modalCountdownElement.textContent = '00:00:00';
-                    headerCountdownElement.textContent = '00:00:00';
-                    return;
-                }
-
-                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                countdownElement.textContent = timeString;
-                modalCountdownElement.textContent = timeString;
-                headerCountdownElement.textContent = timeString;
-                setTimeout(updateTimer, 1000);
-            }
-
-            updateTimer();
-        }
-
-        window.onload = function() {
-            showNotification();
-            startCountdown();
-            setActiveLink();
-            window.addEventListener('hashchange', setActiveLink);
-        };
-   
-const urlParams = new URLSearchParams(window.location.search);
-let packageType = urlParams.get("p");
-
-if(packageType){
-
-if(packageType.includes("1day")){
-showPackage("1day");
 }
-else if(packageType.includes("vip")){
-showPackage("vip");
-}
-else if(packageType.includes("jackpot")){
-showPackage("jackpot");
-}
-}
-
-function showPackage(type){
-
-document.body.innerHTML = `
-<div style="background:#121212; color:white; padding:40px; font-family:Poppins, sans-serif; text-align:center;">
-<h2 style="color:#FFD700;">Premium Access Granted</h2>
-<div style="max-width:800px; margin:auto; border:2px solid #FFD700; padding:20px; border-radius:8px; background:#1e1e1e;">
-<div id="content-area"></div>
-</div>
-</div>
-`;
-
-const content = document.getElementById("content-area");
-
-if(type==="1day"){
-content.innerHTML=`
-<h3 style="color:#FFD700;">1 Day Predictions</h3>
-<table>
-<tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
-<tr><td>Team A - Team B</td><td>Home Win</td><td>2.50</td></tr>
-<tr><td>Team C - Team D</td><td>Over 2.5</td><td>1.80</td></tr>
-<tr><td>Team E - Team F</td><td>BTTS</td><td>1.93</td></tr>
-</table>
-`;
-}
-
-if(type==="vip"){
-content.innerHTML=`
-<h3 style="color:#FFD700;">VIP Predictions</h3>
-<table>
-<tr><th>Match</th><th>Tip</th><th>Odds</th></tr>
-<tr><td>Team G - Team H</td><td>Correct Score 2-1</td><td>7.00</td></tr>
-<tr><td>Team I - Team J</td><td>Correct Score 1-0</td><td>5.43</td></tr>
-</table>
-`;
-}
-
-if(type==="jackpot"){
-content.innerHTML=`
-<h3 style="color:#FFD700;">Jackpot Predictions</h3>
-<table>
-<tr><th>#</th><th>Match</th><th>Prediction</th></tr>
-<tr><td>1</td><td>Match 1</td><td>Home Win</td></tr>
-<tr><td>2</td><td>Match 2</td><td>Draw</td></tr>
-<tr><td>3</td><td>Match 3</td><td>Away Win</td></tr>
-</table>
-`;
-}
-}
-  </body>      
 </script>
 </html>
