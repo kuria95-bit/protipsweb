@@ -119,7 +119,7 @@
         
         <div class="package-grid">
 
-            <div class="package-card">
+           <div class="package-card" data-plan="1day">
                 <h3>1 Day Subscription – Ksh 49</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Daily premium tips • 3 high-confidence matches</p>
                 <div class="teaser">
@@ -134,7 +134,7 @@
                 <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:15px;">Unlock Now – Ksh 49</a>
             </div>
 
-            <div class="package-card">
+          <div class="package-card" data-plan="vip">
                 <h3>VIP High Odds – Ksh 399</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Correct Score & high-odds selections • 9+ combined odds</p>
                 <div class="teaser">
@@ -149,7 +149,7 @@
                 <a href="https://paystack.shop/pay/vip" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:15px;">Unlock Now – Ksh 399</a>
             </div>
 
-            <div class="package-card">
+            <div class="package-card" data-plan="jackpot">
                 <h3>Mega Jackpot Weekly – Ksh 299</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game Sportpesa slip • Targeting the bonus</p>
                 <div class="teaser">
@@ -173,7 +173,7 @@
         <p style="margin-top:15px;font-size:12px;">© 2026 Pro Tipsters. All rights reserved.</p>
     </footer>
 
-    <script>
+<script>
     // Live counter
     let viewers = 1428;
     setInterval(() => {
@@ -181,41 +181,93 @@
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
-    // PREMIUM MODE
     const params = new URLSearchParams(window.location.search);
     const plan = params.get("success");
 
     if (plan) {
 
-        // 1️⃣ Add success banner
+        // SUCCESS BANNER
         const banner = document.createElement('div');
         banner.className = 'success-banner';
-        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Package Is Now Unlocked. 
-        <span onclick="this.parentElement.remove()" style="cursor:pointer;font-size:26px;">✕</span>`;
+        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
         document.body.insertBefore(banner, document.body.firstChild);
 
-        // 2️⃣ Remove blur
-        document.querySelectorAll('.blur').forEach(el => {
-            el.classList.remove('blur');
+        // HIDE ALL NON-PREMIUM SECTIONS
+        const sectionsToHide = [
+            "hero-section",
+            "about-section",
+            "yesterday-section",
+            "vip-performance-section",
+            "jackpot-performance-section"
+        ];
+
+        sectionsToHide.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
         });
 
-        // 3️⃣ Hide all unlock buttons
-        document.querySelectorAll('a[href*="paystack"]').forEach(btn => {
-            btn.style.display = "none";
-        });
-
-        // 4️⃣ Hide other packages (show only purchased one)
-        const cards = document.querySelectorAll('.package-card');
-        cards.forEach(card => {
-            if (!card.innerHTML.toLowerCase().includes(plan.toLowerCase())) {
+        // HIDE ALL PACKAGE CARDS EXCEPT PURCHASED
+        document.querySelectorAll('.package-card').forEach(card => {
+            if (card.getAttribute('data-plan') !== plan) {
                 card.style.display = "none";
             }
         });
 
-        // 5️⃣ Scroll to unlocked package
-        document.querySelector('.package-section').scrollIntoView({
-            behavior: "smooth"
+        // REMOVE BLUR
+        document.querySelectorAll('.blur').forEach(el => {
+            el.classList.remove('blur');
         });
+
+        // REMOVE UNLOCK BUTTONS
+        document.querySelectorAll('a[href*="paystack"]').forEach(btn => {
+            btn.style.display = "none";
+        });
+
+        // ADD COPY BUTTON
+        const activeCard = document.querySelector(`.package-card[data-plan="${plan}"]`);
+        if (activeCard) {
+
+            const teaser = activeCard.querySelector('.teaser');
+            const textToCopy = teaser.innerText;
+
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = "📋 Copy Full Ticket";
+            copyBtn.style.marginTop = "15px";
+            copyBtn.style.padding = "12px 25px";
+            copyBtn.style.borderRadius = "30px";
+            copyBtn.style.border = "none";
+            copyBtn.style.background = "#FFD700";
+            copyBtn.style.fontWeight = "700";
+            copyBtn.style.cursor = "pointer";
+
+            copyBtn.onclick = function() {
+                navigator.clipboard.writeText(textToCopy);
+                copyBtn.textContent = "✅ Ticket Copied!";
+            };
+
+            activeCard.appendChild(copyBtn);
+        }
+
+        // ADD BACK BUTTON
+        const backBtn = document.createElement('button');
+        backBtn.textContent = "← Back to Landing Page";
+        backBtn.style.margin = "25px auto";
+        backBtn.style.display = "block";
+        backBtn.style.padding = "12px 30px";
+        backBtn.style.borderRadius = "30px";
+        backBtn.style.border = "none";
+        backBtn.style.background = "#2ECC71";
+        backBtn.style.fontWeight = "700";
+        backBtn.style.cursor = "pointer";
+
+        backBtn.onclick = function() {
+            window.location.href = "/";
+        };
+
+        document.querySelector('.package-section').appendChild(backBtn);
+
+        // SCROLL TO PACKAGE
+        document.querySelector('.package-section').scrollIntoView({behavior:"smooth"});
     }
 </script>
 </body>
