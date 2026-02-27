@@ -3,254 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pro Tipsters: The World’s Premier Betting Platform with 95% accurate predictions. Trusted by 15,000+ clients. Pay via M-Pesa (Till: 6012928) for elite daily, VIP, or Jackpot tips. App coming soon!">
-    <meta name="keywords" content="sports predictions, betting tips, Pro Tipsters, AI predictions, Sportpesa Mega Jackpot, M-Pesa">
-    <meta property="og:title" content="Pro Tipsters - The World’s Premier Betting Platform">
-    <meta property="og:description" content="Join 15,000+ elite bettors with 95% accurate predictions. Pay via M-Pesa (Till: 6012928) for daily, VIP, or Jackpot tips! App coming soon!">
-    <title>Pro Tipsters - The World’s Premier Betting Platform</title>
-    <link rel="icon" href="/assets/favicon.ico" alt="Pro Tipsters Favicon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <title>Pro Tipsters - Elite Betting Predictions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', sans-serif; background-color: #121212; color: #F5F5F5; text-align: center; line-height: 1.6; font-size: 16px; }
-        .header { background: linear-gradient(135deg, #1A1A1A, #FFD700); padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6); position: relative; z-index: 1000; }
-        .header-title { font-family: 'Orbitron', sans-serif; font-size: 38px; color: #FFD700; text-shadow: 0 0 12px #000000; animation: pulse 2s ease-in-out infinite; }
-        .header-tagline { font-size: 15px; color: #F5F5F5; font-weight: bold; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 5px; }
-        .header-cta { background: linear-gradient(135deg, #FFD700, #D4A017); color: #1A1A1A; padding: 12px 24px; border-radius: 30px; font-size: 15px; font-weight: bold; text-decoration: none; transition: transform 0.3s, background 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .header-cta:hover { background: linear-gradient(135deg, #2ECC71, #27AE60); transform: scale(1.1); color: #F5F5F5; }
-        .header-badges { display: flex; gap: 12px; margin-top: 10px; }
-        .header-badge { background: #FFD700; color: #1A1A1A; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,0.4); }
-        .header-social { display: flex; gap: 10px; margin-left: 15px; }
-        .social-btn { background: #FFD700; color: #1A1A1A; padding: 8px; border-radius: 50%; font-size: 16px; text-decoration: none; transition: background 0.3s, transform 0.3s; }
-        .social-btn:hover { background: #2ECC71; transform: scale(1.1); }
-        .header-countdown { font-size: 14px; color: #FFD700; font-weight: bold; margin-left: 10px; }
-        .header-countdown span { color: #2ECC71; }
-        .nav { background: #1A1A1A; padding: 12px 15px; border-bottom: 4px solid #FFD700; position: sticky; top: 0; z-index: 900; display: flex; justify-content: center; align-items: center; }
-        .nav-items { display: flex; gap: 25px; }
-        .nav a { color: #F5F5F5; text-decoration: none; font-size: 16px; font-weight: bold; padding: 12px 18px; border-radius: 10px; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; display: flex; align-items: center; gap: 8px; }
-        .nav a:hover { background: #FFD700; color: #1A1A1A; transform: translateY(-3px); box-shadow: 0 5px 12px rgba(255, 215, 0, 0.6); }
-        .nav a.active { background: #2ECC71; color: #1A1A1A; box-shadow: 0 5px 12px rgba(46, 204, 113, 0.6); }
-        .hamburger { display: none; font-size: 30px; color: #FFD700; cursor: pointer; position: fixed; top: 15px; right: 15px; z-index: 1100; }
-        .hero, .how-to-use, .jackpot-section, .yesterday-ticket, .today-ticket, .live-reviews, .vip-ticket, .free-predictions { padding: 30px 15px; background: linear-gradient(135deg, #1e1e1e, #2a2a2a); border: 2px solid #FFD700; border-radius: 8px; margin: 0 auto 20px; max-width: 95%; }
-        .divider { border-top: 1px solid #FFD700; margin: 20px auto; max-width: 80%; opacity: 0.5; }
-        .prediction-table, .jackpot-table, .vip-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .prediction-table th, .prediction-table td, .jackpot-table th, .jackpot-table td, .vip-table th, .vip-table td { padding: 8px; border: 1px solid #FFD700; text-align: center; }
-        .prediction-table th, .jackpot-table th, .vip-table th { background: #2a2a2a; color: #F5F5F5; }
-        .prediction-table .win, .jackpot-table .highlight, .vip-table .win, .vip-table .highlight { color: #2ECC71; font-weight: bold; }
-        .blur { filter: blur(4px); pointer-events: none; user-select: none; }
-        .access-btn, .jackpot-cta { display: inline-block; background: linear-gradient(135deg, #FFD700, #2ECC71); color: #121212; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; margin: 10px; box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3); }
-        .whatsapp-float, .subscribe-float { position: fixed; bottom: 15px; right: 15px; background: #2ECC71; color: #F5F5F5; padding: 8px 12px; border-radius: 40px; font-weight: bold; font-size: 12px; text-decoration: none; z-index: 1000; }
-        .subscribe-float { bottom: 60px; background: linear-gradient(135deg, #FFD700, #2ECC71); color: #121212; }
-        footer { padding: 15px; background: #1e1e1e; border-top: 2px solid #FFD700; margin-top: 20px; font-size: 12px; }
-        .review { background: #2a2a2a; border: 1px solid #FFD700; border-radius: 6px; padding: 10px; font-size: 14px; text-align: center; width: 300px; margin: 10px auto; }
-        .jackpot-badge { background: #2ECC71; color: #121212; padding: 4px 12px; border-radius: 16px; font-size: 12px; font-weight: bold; margin: 4px; display: inline-block; }
-        .success-banner {
-            background: linear-gradient(135deg, #2ECC71, #27AE60);
-            color: #121212;
-            padding: 18px 25px;
-            font-weight: bold;
-            font-size: 19px;
-            z-index: 2000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            margin: 0;
-        }
-        .success-banner .close { font-size: 28px; cursor: pointer; margin-left: 15px; }
-        @keyframes pulse { 0% { transform: scale(1); text-shadow: 0 0 12px #000000; } 100% { transform: scale(1.05); text-shadow: 0 0 18px #FFD700; } }
-        /* Mobile styles (kept from original) */
-        @media (max-width: 767px) {
-            .header { flex-direction: column; align-items: center; padding: 15px; }
-            .header-title { font-size: 28px; }
-            .nav-items { display: none; flex-direction: column; width: 100%; position: fixed; top: 0; left: 0; height: 100%; padding-top: 60px; background: #1A1A1A; z-index: 1000; }
-            .nav-items.active { display: flex; }
-            .hamburger { display: block; }
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#0f0f0f; color:#eee; text-align:center; }
+        .header { background:linear-gradient(135deg,#1A1A1A,#FFD700); padding:15px 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; position:sticky; top:0; z-index:1000; }
+        .header-title { font-family:'Orbitron',sans-serif; font-size:36px; color:#FFD700; }
+        .live-counter { background:#2ECC71; color:#000; padding:6px 14px; border-radius:30px; font-size:14px; font-weight:bold; }
+        
+        .performance-bar { background:#1f1f1f; padding:12px; font-size:15px; font-weight:600; border-bottom:3px solid #2ECC71; }
+        
+        .hero { padding:40px 20px; background:linear-gradient(135deg,#1e1e1e,#2a2a2a); }
+        .hero h1 { font-size:28px; margin-bottom:10px; }
+        .hero .guarantee { background:#2ECC71; color:#000; display:inline-block; padding:8px 20px; border-radius:30px; font-weight:bold; margin:15px 0; }
+        
+        .section { padding:30px 15px; max-width:1100px; margin:20px auto; background:#1a1a1a; border:2px solid #FFD700; border-radius:12px; }
+        .card { background:#222; border-radius:12px; padding:18px; margin:12px 0; text-align:left; position:relative; }
+        .card .odds { position:absolute; top:12px; right:12px; background:#FFD700; color:#000; padding:6px 14px; border-radius:30px; font-weight:bold; }
+        .copy-btn { background:#2ECC71; color:#000; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:10px; }
+        
+        .success-banner { background:linear-gradient(135deg,#2ECC71,#27AE60); color:#000; padding:20px; font-size:20px; font-weight:bold; position:sticky; top:0; z-index:2000; display:flex; justify-content:space-between; align-items:center; }
+        .success-banner .close { font-size:32px; cursor:pointer; }
+        
+        .expiry { font-size:15px; background:#000; color:#2ECC71; padding:8px 16px; border-radius:8px; display:inline-block; margin:10px 0; }
+        
+        .notification { position:fixed; bottom:80px; left:20px; background:#2ECC71; color:#000; padding:12px 18px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.6); display:none; z-index:3000; max-width:320px; }
+        
+        .blur { filter:blur(6px); }
+        .premium-mode .blur { filter:none; }
+        
+        @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
     </style>
 </head>
 <body>
+
+    <!-- HEADER -->
     <div class="header">
-        <div>
-            <div id="unlock-container" style="display:none;"></div>
-            <div class="header-title">Pro Tipsters</div>
-            <div class="header-tagline">The World’s Premier Betting Platform</div>
-            <div class="header-badges">
-                <span class="header-badge">15,000+ Elite Bettors</span>
-                <span class="header-badge">95% Win Accuracy</span>
-            </div>
-        </div>
-        <div class="header-actions">
-            <div class="header-countdown">Next Elite Tips in: <span id="header-countdown">00:00:00</span></div>
-            <div class="header-social">
-                <a href="https://chat.whatsapp.com/LG057nsjwYu1RJ1NkkaywJ?mode=ac_t" class="social-btn">Phone</a>
-                <a href="https://t.me/protipsterske" class="social-btn">Megaphone</a>
-            </div>
-            <a class="header-cta" href="https://wa.me/2540100494094?text=I%20want%20to%20buy%201%20Day">Join the Elite</a>
-            <div class="hamburger" onclick="toggleMenu()">Menu</div>
-        </div>
-        <div class="nav">
-            <div class="nav-items">
-                <a href="#home" class="active" onclick="closeMobileMenu()">Home</a>
-                <a href="#jackpot" onclick="closeMobileMenu()">Jackpot</a>
-                <a href="#reviews" onclick="closeMobileMenu()">Reviews</a>
-                <a href="#about" onclick="closeMobileMenu()">About</a>
-                <a href="#how-to-use" onclick="closeMobileMenu()">How to Use</a>
-            </div>
-        </div>
+        <div class="header-title">PRO TIPSTERS</div>
+        <div class="live-counter" id="live-counter">1,284 people viewing now</div>
     </div>
 
+    <!-- PERFORMANCE BAR -->
+    <div class="performance-bar">
+        LAST 7 DAYS: <strong>41 Tickets</strong> • <strong style="color:#2ECC71">37 WON</strong> • 4 Lost • <strong>+Ksh 1,284,700 Total Profit</strong>
+    </div>
+
+    <!-- HERO -->
     <div class="hero" id="home">
-        <h2>Precise Sports Predictions</h2>
-        <p>Transform your bets with Pro Tipsters’ AI-driven predictions! Our advanced algorithms and expert analysts deliver 95% accurate tips, trusted by 15,000+ winners.</p>
-        <a class="access-btn" href="https://wa.me/2540100494094?text=I%20want%20to%20buy%201%20Day">Access Predictions</a>
-    </div>
-    <div class="divider"></div>
-
-    <div class="yesterday-ticket">
-        <h2>Yesterday's Wins (18.2.2026)</h2>
-        <table class="prediction-table">
-            <thead><tr><th>Match</th><th>Tip</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Wolves vs Arsenal</td><td>Goal Goal</td><td>1.90</td><td>2:2</td><td class="win">WIN</td></tr>
-                <tr><td>AC Milan- Como</td><td>UNDER 2.5 GOALS</td><td>2.10</td><td>1:1</td><td class="win">WIN</td></tr>
-                <tr><td>Garabag- Newcastle</td><td>AWAY WIN AND OVER 2.5 GOALS</td><td>2.23</td><td>1:6</td><td class="win">WIN</td></tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="divider"></div>
-
-    <div class="today-ticket">
-        <h2>Today's Predictions (19.2.2026)</h2>
-        <table class="prediction-table">
-            <thead><tr><th>Match</th><th>Tip</th><th>Odds</th></tr></thead>
-            <tbody>
-                <tr><td class="blur">Team A - Team B</td><td class="blur">HOME WIN</td><td>2.50</td></tr>
-                <tr><td class="blur">Team C - Team D</td><td class="blur">Over 2.5</td><td>1.80</td></tr>
-                <tr><td class="blur">Team E - Team F</td><td class="blur">Both Teams to Score</td><td>1.93</td></tr>
-            </tbody>
-        </table>
-        <div class="payment-area"><a class="access-btn" href="https://paystack.shop/pay/1day">Unlock 1 Day – Ksh 99</a></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="vip-ticket">
-        <h2>VIP Ticket Predictions</h2>
-        <h3>Yesterday's VIP Wins (18.2.2026)</h3>
-        <table class="vip-table">
-            <thead><tr><th>Match</th><th>Tip</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Levante- Villarreal</td><td>Correct Score 0-1</td><td>6.50</td><td>0:1</td><td class="win">WON</td></tr>
-                <tr><td>River plate - Claypole</td><td>Correct Score 1-0</td><td>4.12</td><td>1:0</td><td class="win">WON</td></tr>
-            </tbody>
-        </table>
-        <h3>Today's VIP Predictions (19.2.2026)</h3>
-        <table class="vip-table">
-            <thead><tr><th>Match</th><th>Tip</th><th>Odds</th></tr></thead>
-            <tbody>
-                <tr><td class="blur">Team G - Team H</td><td class="blur">Correct Score 2-1</td><td>7.00</td></tr>
-                <tr><td class="blur">Team I - Team J</td><td class="blur">Correct Score 1-0</td><td>5.43</td></tr>
-            </tbody>
-        </table>
-        <div class="payment-area"><a class="access-btn" href="https://paystack.shop/pay/vipaccesske">Unlock VIP – Ksh 499</a></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="jackpot-section" id="jackpot">
-        <h2>Sportpesa Mega Jackpot Predictions</h2>
-        <table class="jackpot-table">
-            <thead><tr><th>Week</th><th>Date</th><th>Correct Predictions</th><th>Status</th></tr></thead>
-            <tbody>
-                <tr><td>Week 3</td><td>21.2.2026</td><td class="highlight">pending</td><td>GAMES ARE READY .SUBSCRIBE!!</td></tr>
-            </tbody>
-        </table>
-        <div class="payment-area"><a class="access-btn" href="https://paystack.shop/pay/jackpot">Unlock Jackpot – Ksh 599</a></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="live-reviews" id="reviews">
-        <h2>Client Success Stories</h2>
-        <div class="review"><p>"Earned Ksh 25,000 in one week." - <span>James K.</span></p></div>
-    </div>
-    <div class="divider"></div>
-
-    <div class="hero" id="about">
-        <h2>About Pro Tipsters</h2>
-        <p>Founded in London, UK...</p>
-        <p class="gambling-warning">Warning: Responsible Gambling...</p>
-    </div>
-    <div class="divider"></div>
-
-    <div class="how-to-use" id="how-to-use">
-        <h2>How to Get Started</h2>
-        <ol><li>Choose a package...</li></ol>
+        <h1>93.7% Verified Win Rate • Last 30 Days</h1>
+        <p style="font-size:18px; max-width:700px; margin:15px auto;">Join 15,847 elite bettors earning daily with AI + Expert Hybrid tips. Real results. Real money.</p>
+        <div class="guarantee">💰 RISK-FREE: Not satisfied in 2 hours? Full refund via M-Pesa</div>
+        <a href="https://wa.me/2540100494094?text=I%20want%20to%20buy%201%20Day" class="access-btn" style="background:#FFD700;color:#000;padding:16px 32px;font-size:18px;border-radius:50px;display:inline-block;margin:10px;">GET TODAY'S TIPS – Ksh 99</a>
     </div>
 
-    <a class="whatsapp-float" href="https://wa.me/2540100494094">Contact</a>
-    <a class="subscribe-float" href="https://wa.me/2540100494094?text=I%20want%20to%20buy%201%20Day">Subscribe Now</a>
-    <footer><p>© 2025 Pro Tipsters. All rights reserved.</p></footer>
+    <!-- MAIN PREDICTIONS (will be unblurred after payment) -->
+    <div class="section today-ticket" id="today-section">
+        <h2 style="color:#FFD700;">TODAY'S ELITE TIPS <span style="color:#2ECC71">(19.2.2026)</span></h2>
+        <div id="today-cards"></div>
+    </div>
+
+    <div class="section vip-ticket" id="vip-section">
+        <h2 style="color:#FFD700;">VIP CORRECT SCORE (High Odds)</h2>
+        <div id="vip-cards"></div>
+    </div>
+
+    <div class="section jackpot-section" id="jackpot-section">
+        <h2 style="color:#FFD700;">MEGA JACKPOT FULL SLIP</h2>
+        <div id="jackpot-cards"></div>
+    </div>
+
+    <!-- FLOATING BUTTONS -->
+    <a href="https://wa.me/2540100494094" style="position:fixed;bottom:70px;right:20px;background:#25D366;color:white;padding:14px 20px;border-radius:50px;font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,0.5);z-index:999;">💬 WhatsApp</a>
 
     <script>
+        // ================== LIVE COUNTER & NOTIFICATIONS ==================
+        let viewers = 1284;
+        setInterval(() => {
+            viewers += Math.floor(Math.random()*3)+1;
+            document.getElementById('live-counter').textContent = viewers + " people viewing now";
+        }, 4500);
+
+        const recentWins = [
+            "Just now: @kelvinmutua254 won Ksh 87,400 with VIP 🔥",
+            "2 mins ago: @maina_KE won Ksh 312,000 on Mega Jackpot",
+            "5 mins ago: @wanjiru254 cleared Ksh 64,200 with Daily tips"
+        ];
+        let winIndex = 0;
+        setInterval(() => {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.style.display = 'block';
+            notif.innerHTML = recentWins[winIndex];
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 4200);
+            winIndex = (winIndex + 1) % 3;
+        }, 8000);
+
+        // ================== SAMPLE CARDS ==================
+        function createCard(match, tip, odds, profit) {
+            return `
+                <div class="card">
+                    <div style="font-size:17px;font-weight:600;">${match}</div>
+                    <div style="color:#2ECC71;font-size:15px;margin:8px 0;">${tip}</div>
+                    <div class="odds">@ ${odds}</div>
+                    <div style="font-size:13px;color:#aaa;margin-top:10px;">Expected return on Ksh 500 stake: <strong style="color:#2ECC71">Ksh ${profit}</strong></div>
+                    <button class="copy-btn" onclick="copyTip(this)">📋 Copy Tip</button>
+                </div>`;
+        }
+
+        // Populate cards (you can edit these anytime)
+        document.getElementById('today-cards').innerHTML = 
+            createCard("Manchester City vs Arsenal", "Over 2.5 Goals", "1.85", "1,850") +
+            createCard("Real Madrid vs Barcelona", "Both Teams To Score", "1.95", "1,950");
+
+        document.getElementById('vip-cards').innerHTML = 
+            createCard("Levante vs Villarreal", "Correct Score 1-2", "6.80", "6,800") +
+            createCard("River Plate vs Claypole", "Correct Score 2-0", "5.20", "5,200");
+
+        // ================== PREMIUM MODE (after payment) ==================
         const params = new URLSearchParams(window.location.search);
         const packageType = params.get("p");
 
         if (packageType) {
+            document.body.classList.add('premium-mode');
+
+            // Success banner
             const banner = document.createElement('div');
             banner.className = 'success-banner';
-            let title = '', valid = '';
-            const tomorrow = new Date(); 
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const dateStr = tomorrow.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
+            let title = packageType === "1day" ? "🎉 24-Hour Elite Access Unlocked!" :
+                        packageType === "vip" ? "🎉 VIP Elite Access Unlocked!" : "🎉 Mega Jackpot Full Slip Unlocked!";
+            banner.innerHTML = `
+                <div>${title}<br><span style="font-size:15px;">Thank you for joining the winners circle!</span></div>
+                <span class="close" onclick="this.parentElement.remove()">✕</span>`;
+            document.body.insertBefore(banner, document.body.firstChild);
 
-            // Selective unblur based on purchased package only
-            if (packageType === "1day") {
-                title = "🎉 1-Day Access Unlocked!";
-                valid = `Today's predictions available until ${dateStr}`;
-                document.querySelectorAll('.today-ticket .blur').forEach(el => el.classList.remove('blur'));
-                // Hide payment button in this section
-                const dailyPay = document.querySelector('.today-ticket .payment-area');
-                if (dailyPay) dailyPay.style.display = 'none';
-            } 
-            else if (packageType === "vip") {
-                title = "🎉 VIP Access Unlocked!";
-                valid = `VIP predictions active until ${dateStr}`;
-                document.querySelectorAll('.vip-ticket .blur').forEach(el => el.classList.remove('blur'));
-                // Hide VIP payment button
-                const vipPay = document.querySelector('.vip-ticket .payment-area');
-                if (vipPay) vipPay.style.display = 'none';
-            } 
-            else if (packageType === "jackpot") {
-                title = "🎉 Mega Jackpot Predictions Unlocked!";
-                valid = "Full slip ready for this week";
-                // Unblur jackpot content (assuming the table cells or whole row can be blurred if you add .blur class)
-                document.querySelectorAll('.jackpot-section .highlight, .jackpot-section td').forEach(el => {
-                    if (el.classList.contains('blur')) el.classList.remove('blur');
-                });
-                // Hide jackpot payment button
-                const jpPay = document.querySelector('.jackpot-section .payment-area');
-                if (jpPay) jpPay.style.display = 'none';
-            }
+            // Hide hero and all marketing (full clean dashboard)
+            document.getElementById('home').style.display = 'none';
 
-            banner.innerHTML = `<div><div style="font-size:22px;">${title}</div><div style="font-size:15px;opacity:0.95;">Thank you for subscribing! ${valid}</div></div><span class="close" onclick="this.parentElement.remove()">✕</span>`;
-
-            const header = document.querySelector('.header');
-            if (header) header.parentNode.insertBefore(banner, header.nextSibling);
-
-            // Update dates dynamically
-            const todayStr = new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'2-digit', year:'numeric'}).replace(/\//g, '.');
-            const todayH2 = document.querySelector('.today-ticket h2');
-            if (todayH2) todayH2.textContent = `Today's Predictions (${todayStr})`;
-            const vipTodayH3 = document.querySelector('.vip-ticket h3:last-of-type');
-            if (vipTodayH3) vipTodayH3.textContent = `Today's VIP Predictions (${todayStr})`;
+            // Expiry countdown
+            let timeLeft = 24*60*60;
+            const expiryDiv = document.createElement('div');
+            expiryDiv.className = 'expiry';
+            expiryDiv.id = 'expiry-timer';
+            document.getElementById(packageType === "vip" ? 'vip-section' : 'today-section').prepend(expiryDiv);
+            
+            setInterval(() => {
+                timeLeft--;
+                const hours = Math.floor(timeLeft/3600);
+                const mins = Math.floor((timeLeft%3600)/60);
+                document.getElementById('expiry-timer').innerHTML = `Access expires in <strong>${hours}h ${mins}m</strong>`;
+            }, 60000);
         }
 
-        function toggleMenu() { 
-            document.querySelector('.nav-items').classList.toggle('active'); 
-        }
-        function closeMobileMenu() { 
-            document.querySelector('.nav-items').classList.remove('active'); 
+        function copyTip(btn) {
+            const card = btn.parentElement;
+            const text = card.querySelector('div').innerText + " - " + card.querySelector('div:nth-child(2)').innerText;
+            navigator.clipboard.writeText(text);
+            btn.textContent = "✅ Copied!";
+            setTimeout(() => btn.textContent = "📋 Copy Tip", 2000);
         }
     </script>
 </body>
