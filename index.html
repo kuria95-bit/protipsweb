@@ -174,22 +174,49 @@
     </footer>
 
     <script>
-        // Live counter
-        let viewers = 1428;
-        setInterval(() => {
-            viewers += Math.floor(Math.random()*4)+2;
-            document.getElementById('live-counter').textContent = viewers + " bettors online now";
-        }, 4800);
+    // Live counter
+    let viewers = 1428;
+    setInterval(() => {
+        viewers += Math.floor(Math.random()*4)+2;
+        document.getElementById('live-counter').textContent = viewers + " bettors online now";
+    }, 4800);
 
-        // Premium mode
-        const params = new URLSearchParams(window.location.search);
-        if (params.get("p")) {
-            const banner = document.createElement('div');
-            banner.className = 'success-banner';
-            banner.innerHTML = `🎉 Your Predictions Have Been Unlocked! <span onclick="this.parentElement.remove()" style="cursor:pointer;float:right;font-size:28px;">✕</span>`;
-            document.body.insertBefore(banner, document.body.firstChild);
-            document.querySelectorAll('.blur').forEach(el => el.classList.remove('blur'));
-        }
-    </script>
+    // PREMIUM MODE
+    const params = new URLSearchParams(window.location.search);
+    const plan = params.get("success");
+
+    if (plan) {
+
+        // 1️⃣ Add success banner
+        const banner = document.createElement('div');
+        banner.className = 'success-banner';
+        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Package Is Now Unlocked. 
+        <span onclick="this.parentElement.remove()" style="cursor:pointer;font-size:26px;">✕</span>`;
+        document.body.insertBefore(banner, document.body.firstChild);
+
+        // 2️⃣ Remove blur
+        document.querySelectorAll('.blur').forEach(el => {
+            el.classList.remove('blur');
+        });
+
+        // 3️⃣ Hide all unlock buttons
+        document.querySelectorAll('a[href*="paystack"]').forEach(btn => {
+            btn.style.display = "none";
+        });
+
+        // 4️⃣ Hide other packages (show only purchased one)
+        const cards = document.querySelectorAll('.package-card');
+        cards.forEach(card => {
+            if (!card.innerHTML.toLowerCase().includes(plan.toLowerCase())) {
+                card.style.display = "none";
+            }
+        });
+
+        // 5️⃣ Scroll to unlocked package
+        document.querySelector('.package-section').scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+</script>
 </body>
 </html>
