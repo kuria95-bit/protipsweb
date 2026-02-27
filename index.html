@@ -60,7 +60,6 @@
             margin: 0;
         }
         .success-banner .close { font-size: 28px; cursor: pointer; margin-left: 15px; }
-        .premium-mode .blur { filter: none !important; pointer-events: auto !important; user-select: auto !important; }
         @keyframes pulse { 0% { transform: scale(1); text-shadow: 0 0 12px #000000; } 100% { transform: scale(1.05); text-shadow: 0 0 18px #FFD700; } }
         /* Mobile styles (kept from original) */
         @media (max-width: 767px) {
@@ -198,28 +197,48 @@
         const packageType = params.get("p");
 
         if (packageType) {
-            document.body.classList.add('premium-mode');
-            document.querySelectorAll('.blur').forEach(el => el.classList.remove('blur'));
-
             const banner = document.createElement('div');
             banner.className = 'success-banner';
             let title = '', valid = '';
-            const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrow = new Date(); 
+            tomorrow.setDate(tomorrow.getDate() + 1);
             const dateStr = tomorrow.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'});
 
-            if (packageType === "1day") { title = "🎉 1-Day Premium Access Unlocked!"; valid = `Valid until ${dateStr}`; }
-            else if (packageType === "vip") { title = "🎉 VIP Premium Access Unlocked!"; valid = `High-odds VIP active until ${dateStr}`; }
-            else if (packageType === "jackpot") { title = "🎉 Mega Jackpot Predictions Unlocked!"; valid = "Full slip ready for this week"; }
+            // Selective unblur based on purchased package only
+            if (packageType === "1day") {
+                title = "🎉 1-Day Access Unlocked!";
+                valid = `Today's predictions available until ${dateStr}`;
+                document.querySelectorAll('.today-ticket .blur').forEach(el => el.classList.remove('blur'));
+                // Hide payment button in this section
+                const dailyPay = document.querySelector('.today-ticket .payment-area');
+                if (dailyPay) dailyPay.style.display = 'none';
+            } 
+            else if (packageType === "vip") {
+                title = "🎉 VIP Access Unlocked!";
+                valid = `VIP predictions active until ${dateStr}`;
+                document.querySelectorAll('.vip-ticket .blur').forEach(el => el.classList.remove('blur'));
+                // Hide VIP payment button
+                const vipPay = document.querySelector('.vip-ticket .payment-area');
+                if (vipPay) vipPay.style.display = 'none';
+            } 
+            else if (packageType === "jackpot") {
+                title = "🎉 Mega Jackpot Predictions Unlocked!";
+                valid = "Full slip ready for this week";
+                // Unblur jackpot content (assuming the table cells or whole row can be blurred if you add .blur class)
+                document.querySelectorAll('.jackpot-section .highlight, .jackpot-section td').forEach(el => {
+                    if (el.classList.contains('blur')) el.classList.remove('blur');
+                });
+                // Hide jackpot payment button
+                const jpPay = document.querySelector('.jackpot-section .payment-area');
+                if (jpPay) jpPay.style.display = 'none';
+            }
 
             banner.innerHTML = `<div><div style="font-size:22px;">${title}</div><div style="font-size:15px;opacity:0.95;">Thank you for subscribing! ${valid}</div></div><span class="close" onclick="this.parentElement.remove()">✕</span>`;
 
             const header = document.querySelector('.header');
             if (header) header.parentNode.insertBefore(banner, header.nextSibling);
 
-            document.querySelectorAll('#home, #about, #how-to-use, .live-reviews, .payment-area, .access-btn, .jackpot-cta, .subscribe-float, .header-cta').forEach(el => {
-                if (el) el.style.display = 'none';
-            });
-
+            // Update dates dynamically
             const todayStr = new Date().toLocaleDateString('en-GB', {day:'2-digit', month:'2-digit', year:'numeric'}).replace(/\//g, '.');
             const todayH2 = document.querySelector('.today-ticket h2');
             if (todayH2) todayH2.textContent = `Today's Predictions (${todayStr})`;
@@ -227,8 +246,12 @@
             if (vipTodayH3) vipTodayH3.textContent = `Today's VIP Predictions (${todayStr})`;
         }
 
-        function toggleMenu() { document.querySelector('.nav-items').classList.toggle('active'); }
-        function closeMobileMenu() { document.querySelector('.nav-items').classList.remove('active'); }
+        function toggleMenu() { 
+            document.querySelector('.nav-items').classList.toggle('active'); 
+        }
+        function closeMobileMenu() { 
+            document.querySelector('.nav-items').classList.remove('active'); 
+        }
     </script>
 </body>
 </html>
