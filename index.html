@@ -192,72 +192,51 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
+   <script>
+    // Live counter
+    let viewers = 1428;
+    setInterval(() => {
+        viewers += Math.floor(Math.random()*4)+2;
+        document.getElementById('live-counter').textContent = viewers + " bettors online now";
+    }, 4800);
+
+
+    // ✅ PAYMENT UNLOCK LOGIC (FIXED VERSION)
     const params = new URLSearchParams(window.location.search);
-    const plan = params.get("success");
+    let plan = params.get("success");
 
     if (plan) {
 
-        // 1️⃣ HIDE EVERYTHING
-        document.body.querySelectorAll("body > *").forEach(el => {
-            el.style.display = "none";
-        });
+        plan = plan.replace("/", "").toLowerCase();
 
-        // 2️⃣ SHOW HEADER (visitor counter)
-        const header = document.querySelector(".header");
-        if (header) header.style.display = "flex";
+        // Hide landing sections only (NOT everything)
+        document.querySelectorAll(".hero, .about, .performance, .section:not(.package-section), footer, .whatsapp-float")
+        .forEach(el => el.style.display = "none");
 
-        // 3️⃣ SHOW PACKAGE SECTION
-        const packageSection = document.querySelector(".package-section");
-        if (packageSection) packageSection.style.display = "block";
-
-        // 4️⃣ HIDE ALL PACKAGES EXCEPT PAID ONE
+        // Show only the paid package
         document.querySelectorAll(".package-card").forEach(card => {
             if (card.getAttribute("data-plan") !== plan) {
                 card.style.display = "none";
             }
         });
 
-        // 5️⃣ REMOVE BLUR
+        // Remove blur
         document.querySelectorAll(".blur").forEach(el => {
             el.classList.remove("blur");
         });
 
-        // 6️⃣ REMOVE UNLOCK BUTTONS
+        // Remove unlock buttons
         document.querySelectorAll('a[href*="pay"]').forEach(btn => {
             btn.remove();
         });
 
-        // 7️⃣ SUCCESS BANNER
+        // Success banner
         const banner = document.createElement("div");
         banner.className = "success-banner";
         banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
-        document.body.insertBefore(banner, header.nextSibling);
+        document.body.insertBefore(banner, document.querySelector(".header").nextSibling);
 
-        // 8️⃣ COPY BUTTON
-        const activeCard = document.querySelector(`.package-card[data-plan="${plan}"]`);
-        if (activeCard) {
-            const teaser = activeCard.querySelector(".teaser");
-            const textToCopy = teaser.innerText;
-
-            const copyBtn = document.createElement("button");
-            copyBtn.textContent = "📋 Copy Full Ticket";
-            copyBtn.style.marginTop = "20px";
-            copyBtn.style.padding = "12px 25px";
-            copyBtn.style.borderRadius = "30px";
-            copyBtn.style.border = "none";
-            copyBtn.style.background = "#FFD700";
-            copyBtn.style.fontWeight = "700";
-            copyBtn.style.cursor = "pointer";
-
-            copyBtn.onclick = function() {
-                navigator.clipboard.writeText(textToCopy);
-                copyBtn.textContent = "✅ Ticket Copied!";
-            };
-
-            activeCard.appendChild(copyBtn);
-        }
-
-        // 9️⃣ BACK BUTTON
+        // Back button
         const backBtn = document.createElement("button");
         backBtn.textContent = "← Back to Landing Page";
         backBtn.style.margin = "30px auto";
@@ -273,8 +252,9 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
             window.location.href = "/";
         };
 
-        packageSection.appendChild(backBtn);
+        document.querySelector(".package-section").appendChild(backBtn);
     }
+</script>
 </script>
 </body>
 </html>
