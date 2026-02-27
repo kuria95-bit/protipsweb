@@ -131,7 +131,7 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
         <div class="package-grid">
 
            <div class="package-card" data-plan="1day">
-                <h3>1 Day Subscription – Ksh 5</h3>
+                <h3>1 Day Subscription – Ksh 49</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Daily premium tips • 3 high-confidence matches</p>
                 <div class="teaser">
                     <div class="blur">Wolves vs Aston villa</div>
@@ -192,51 +192,72 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
-   <script>
-    // Live counter
-    let viewers = 1428;
-    setInterval(() => {
-        viewers += Math.floor(Math.random()*4)+2;
-        document.getElementById('live-counter').textContent = viewers + " bettors online now";
-    }, 4800);
-
-
-    // ✅ PAYMENT UNLOCK LOGIC (FIXED VERSION)
     const params = new URLSearchParams(window.location.search);
-    let plan = params.get("success");
+    const plan = params.get("success");
 
     if (plan) {
 
-        plan = plan.replace("/", "").toLowerCase();
+        // 1️⃣ HIDE EVERYTHING
+        document.body.querySelectorAll("body > *").forEach(el => {
+            el.style.display = "none";
+        });
 
-        // Hide landing sections only (NOT everything)
-        document.querySelectorAll(".hero, .about, .performance, .section:not(.package-section), footer, .whatsapp-float")
-        .forEach(el => el.style.display = "none");
+        // 2️⃣ SHOW HEADER (visitor counter)
+        const header = document.querySelector(".header");
+        if (header) header.style.display = "flex";
 
-        // Show only the paid package
+        // 3️⃣ SHOW PACKAGE SECTION
+        const packageSection = document.querySelector(".package-section");
+        if (packageSection) packageSection.style.display = "block";
+
+        // 4️⃣ HIDE ALL PACKAGES EXCEPT PAID ONE
         document.querySelectorAll(".package-card").forEach(card => {
             if (card.getAttribute("data-plan") !== plan) {
                 card.style.display = "none";
             }
         });
 
-        // Remove blur
+        // 5️⃣ REMOVE BLUR
         document.querySelectorAll(".blur").forEach(el => {
             el.classList.remove("blur");
         });
 
-        // Remove unlock buttons
+        // 6️⃣ REMOVE UNLOCK BUTTONS
         document.querySelectorAll('a[href*="pay"]').forEach(btn => {
             btn.remove();
         });
 
-        // Success banner
+        // 7️⃣ SUCCESS BANNER
         const banner = document.createElement("div");
         banner.className = "success-banner";
         banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
-        document.body.insertBefore(banner, document.querySelector(".header").nextSibling);
+        document.body.insertBefore(banner, header.nextSibling);
 
-        // Back button
+        // 8️⃣ COPY BUTTON
+        const activeCard = document.querySelector(`.package-card[data-plan="${plan}"]`);
+        if (activeCard) {
+            const teaser = activeCard.querySelector(".teaser");
+            const textToCopy = teaser.innerText;
+
+            const copyBtn = document.createElement("button");
+            copyBtn.textContent = "📋 Copy Full Ticket";
+            copyBtn.style.marginTop = "20px";
+            copyBtn.style.padding = "12px 25px";
+            copyBtn.style.borderRadius = "30px";
+            copyBtn.style.border = "none";
+            copyBtn.style.background = "#FFD700";
+            copyBtn.style.fontWeight = "700";
+            copyBtn.style.cursor = "pointer";
+
+            copyBtn.onclick = function() {
+                navigator.clipboard.writeText(textToCopy);
+                copyBtn.textContent = "✅ Ticket Copied!";
+            };
+
+            activeCard.appendChild(copyBtn);
+        }
+
+        // 9️⃣ BACK BUTTON
         const backBtn = document.createElement("button");
         backBtn.textContent = "← Back to Landing Page";
         backBtn.style.margin = "30px auto";
@@ -252,9 +273,8 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
             window.location.href = "/";
         };
 
-        document.querySelector(".package-section").appendChild(backBtn);
+        packageSection.appendChild(backBtn);
     }
-</script>
 </script>
 </body>
 </html>
