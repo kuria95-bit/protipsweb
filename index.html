@@ -186,53 +186,51 @@
 
     if (plan) {
 
-        // SUCCESS BANNER
-        const banner = document.createElement('div');
-        banner.className = 'success-banner';
-        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
-        document.body.insertBefore(banner, document.body.firstChild);
-
-        // HIDE ALL NON-PREMIUM SECTIONS
-        const sectionsToHide = [
-            "hero-section",
-            "about-section",
-            "yesterday-section",
-            "vip-performance-section",
-            "jackpot-performance-section"
-        ];
-
-        sectionsToHide.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = "none";
+        // 1️⃣ HIDE EVERYTHING
+        document.body.querySelectorAll("body > *").forEach(el => {
+            el.style.display = "none";
         });
 
-        // HIDE ALL PACKAGE CARDS EXCEPT PURCHASED
-        document.querySelectorAll('.package-card').forEach(card => {
-            if (card.getAttribute('data-plan') !== plan) {
+        // 2️⃣ SHOW HEADER (visitor counter)
+        const header = document.querySelector(".header");
+        if (header) header.style.display = "flex";
+
+        // 3️⃣ SHOW PACKAGE SECTION
+        const packageSection = document.querySelector(".package-section");
+        if (packageSection) packageSection.style.display = "block";
+
+        // 4️⃣ HIDE ALL PACKAGES EXCEPT PAID ONE
+        document.querySelectorAll(".package-card").forEach(card => {
+            if (card.getAttribute("data-plan") !== plan) {
                 card.style.display = "none";
             }
         });
 
-        // REMOVE BLUR
-        document.querySelectorAll('.blur').forEach(el => {
-            el.classList.remove('blur');
+        // 5️⃣ REMOVE BLUR
+        document.querySelectorAll(".blur").forEach(el => {
+            el.classList.remove("blur");
         });
 
-        // REMOVE UNLOCK BUTTONS
-        document.querySelectorAll('a[href*="paystack"]').forEach(btn => {
-            btn.style.display = "none";
+        // 6️⃣ REMOVE UNLOCK BUTTONS
+        document.querySelectorAll('a[href*="pay"]').forEach(btn => {
+            btn.remove();
         });
 
-        // ADD COPY BUTTON
+        // 7️⃣ SUCCESS BANNER
+        const banner = document.createElement("div");
+        banner.className = "success-banner";
+        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
+        document.body.insertBefore(banner, header.nextSibling);
+
+        // 8️⃣ COPY BUTTON
         const activeCard = document.querySelector(`.package-card[data-plan="${plan}"]`);
         if (activeCard) {
-
-            const teaser = activeCard.querySelector('.teaser');
+            const teaser = activeCard.querySelector(".teaser");
             const textToCopy = teaser.innerText;
 
-            const copyBtn = document.createElement('button');
+            const copyBtn = document.createElement("button");
             copyBtn.textContent = "📋 Copy Full Ticket";
-            copyBtn.style.marginTop = "15px";
+            copyBtn.style.marginTop = "20px";
             copyBtn.style.padding = "12px 25px";
             copyBtn.style.borderRadius = "30px";
             copyBtn.style.border = "none";
@@ -248,10 +246,10 @@
             activeCard.appendChild(copyBtn);
         }
 
-        // ADD BACK BUTTON
-        const backBtn = document.createElement('button');
+        // 9️⃣ BACK BUTTON
+        const backBtn = document.createElement("button");
         backBtn.textContent = "← Back to Landing Page";
-        backBtn.style.margin = "25px auto";
+        backBtn.style.margin = "30px auto";
         backBtn.style.display = "block";
         backBtn.style.padding = "12px 30px";
         backBtn.style.borderRadius = "30px";
@@ -264,10 +262,7 @@
             window.location.href = "/";
         };
 
-        document.querySelector('.package-section').appendChild(backBtn);
-
-        // SCROLL TO PACKAGE
-        document.querySelector('.package-section').scrollIntoView({behavior:"smooth"});
+        packageSection.appendChild(backBtn);
     }
 </script>
 </body>
