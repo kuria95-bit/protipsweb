@@ -196,6 +196,10 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
 
 let plan = params.get("success");
 
+if (plan) {
+    plan = plan.split("?")[0]; // remove accidental extra part
+}
+
 // If Paystack only sends reference, default to 1day
 if (!plan && params.get("reference")) {
     plan = "1day";
