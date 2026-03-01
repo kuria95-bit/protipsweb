@@ -140,7 +140,6 @@
             font-size:16.5px; 
         }
 
-        /* RESPONSIVE TABLES - NO HORIZONTAL SCROLL */
         .table-wrapper {
             width:100%;
             overflow-x:auto;
@@ -170,7 +169,7 @@
         }
         tbody tr:nth-child(even) { background:#1e1e1e; }
         .win { color:#2ECC71; font-weight:700; }
-        tfoot td { background:#222; padding:15px 6px; }
+        tfoot td { background:#222; padding:15px 6px; font-weight:700; }
 
         .success-banner { 
             background:linear-gradient(135deg,#2ECC71,#27AE60); 
@@ -239,15 +238,44 @@
             font-size:19px; 
         }
 
-        .aviator-section { 
+        .aviator-section, .education-section, .community-section { 
             background:linear-gradient(135deg,#111,#1f1f1f); 
-            border:3px solid #00BFFF; 
             border-radius:20px; 
             padding:38px 20px; 
             margin:32px auto; 
-            text-align:center; 
         }
         .aviator-icon { font-size:62px; margin-bottom:12px; }
+
+        .education-grid {
+            display:grid;
+            grid-template-columns:1fr;
+            gap:24px;
+        }
+        .education-card {
+            background:#1f1f1f;
+            padding:24px;
+            border-radius:16px;
+            border-left:5px solid #FFD700;
+        }
+
+        .community-links {
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+            align-items:center;
+        }
+        .community-links a {
+            background:#2ECC71;
+            color:#000;
+            padding:14px 32px;
+            border-radius:50px;
+            text-decoration:none;
+            font-weight:700;
+            display:block;
+            width:100%;
+            max-width:320px;
+            text-align:center;
+        }
 
         footer { 
             background:#0a0a0a; 
@@ -259,20 +287,15 @@
         }
         .gambling { color:#FF5555; font-weight:600; margin-top:16px; }
 
-        /* MOBILE FIXES - TIGHT & FITS PERFECTLY */
         @media (max-width: 600px) {
             .hero { padding:48px 15px 38px; }
             .hero h1 { font-size:25px; }
             .hero p { font-size:14.8px; }
             .hero a { padding:14px 24px; font-size:15.5px; max-width:100%; }
-            
             .section { padding:36px 15px; }
-            
             table { font-size:12.2px; }
             th, td { padding:10px 4px; }
-            
             .table-wrapper { margin:20px -4px; }
-            
             .package-card { padding:20px; }
             .performance { font-size:14px; padding:15px 15px; }
         }
@@ -316,14 +339,20 @@
                     <tr><td>STU vs CEL</td><td>U 2.5</td><td>2.10</td><td class="win">WIN</td></tr>
                     <tr><td>CEL vs PAO</td><td>Home Win</td><td>2.23</td><td class="win">WIN</td></tr>
                 </tbody>
+                <tfoot>
+                    <tr style="background:#222;">
+                        <td colspan="2" style="text-align:right;">Total Odds</td>
+                        <td colspan="2" style="color:#2ECC71;">8.90</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
 
-    <!-- VIP PERFORMANCE -->
+    <!-- YESTERDAY VIP PERFORMANCE -->
     <div class="section" style="background:#1a1a1a;">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">VIP High Odds • 26.02.2026</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">16/18 Correct Score tips won this month.</p>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's VIP Performance</h2>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day. 16/18 high-odds tips landed this month.</p>
         
         <div class="table-wrapper">
             <table>
@@ -337,10 +366,10 @@
         </div>
     </div>
 
-    <!-- JACKPOT & WEEKLY -->
+    <!-- FEBRUARY WEEKLY PERFORMANCE -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Mega Jackpot & Feb Weekly</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">17 games • 13 correct • Ksh 1.2M bonus • 2 bonuses won</p>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">February Weekly Performance</h2>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Real results. Real profits. Minimum stake Ksh 500 per ticket.</p>
         
         <div class="table-wrapper">
             <table>
@@ -365,7 +394,25 @@
         </div>
     </div>
 
-    <!-- PACKAGES -->
+    <!-- HOW TO SUBSCRIBE -->
+    <div class="section">
+        <div class="how-it-works">
+            <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">How to Subscribe (Super Simple)</h2>
+            <ol>
+                <li>Scroll down and choose the package you want.</li>
+                <li><strong>Click the green “Unlock Now” button</strong> on your chosen package.</li>
+                <li>Complete payment instantly via Paystack (M-Pesa, card or bank transfer).</li>
+                <li><strong>After payment completes:</strong> Wait just 2 seconds — your phone will automatically open a new page with your full ticket and all predictions revealed. No email, no login, nothing extra.</li>
+                <li>Copy the tips or place your bets immediately and start winning.</li>
+            </ol>
+            <p style="text-align:center;margin-top:25px;font-size:14.5px;color:#2ECC71;">
+                Any payment delay or issue? Our 24/7 team is ready to help instantly.<br>
+                <a href="https://wa.me/254100494094" style="color:#2ECC71;text-decoration:underline;">WhatsApp +254 100 494094</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- PACKAGES (Updated Prices) -->
     <div class="section package-section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
         <div class="package-grid">
@@ -381,18 +428,18 @@
             </div>
 
             <div class="package-card" data-plan="vip">
-                <h3>VIP High Odds – Ksh 399</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Correct Score & 9+ odds</p>
+                <h3>VIP High Odds – Ksh 299</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">High-odds selections • 9+ combined odds</p>
                 <div class="teaser">
-                    <div class="blur">Levante vs Alaves</div><div>CS 0-1</div><div class="odds">7.50</div>
-                    <div class="blur">Augsburg vs Koln</div><div>Home</div><div class="odds">2.28</div>
+                    <div class="blur">Levante vs Alaves</div><div>High Odds Pick</div><div class="odds">7.50</div>
+                    <div class="blur">Augsburg vs Koln</div><div>Home Win</div><div class="odds">2.28</div>
                     <div class="total">Total Odds: 17.1</div>
                 </div>
-                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 399</a>
+                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 299</a>
             </div>
 
             <div class="package-card" data-plan="jackpot">
-                <h3>Mega Jackpot – Ksh 299</h3>
+                <h3>Mega Jackpot – Ksh 399</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
                 <div class="teaser">
                     <div class="blur">17 Matches Ready</div>
@@ -400,7 +447,7 @@
                     <div class="odds">400M+</div>
                     <div class="total">2 Bonuses This Month</div>
                 </div>
-                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 299</a>
+                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 399</a>
             </div>
         </div>
     </div>
@@ -415,22 +462,6 @@
         </div>
     </div>
 
-    <!-- HOW IT WORKS -->
-    <div class="section">
-        <div class="how-it-works">
-            <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">How It Works</h2>
-            <ol>
-                <li>Pay instantly via Paystack (M-Pesa or card).</li>
-                <li>Instant redirect — your ticket appears immediately.</li>
-                <li>Place bets and collect. AI + experts deliver daily.</li>
-            </ol>
-            <p style="text-align:center;margin-top:25px;font-size:14.5px;">
-                Any issue? 24/7 care ready.<br>
-                <a href="https://wa.me/254100494094" style="color:#2ECC71;">WhatsApp +254 100 494094</a>
-            </p>
-        </div>
-    </div>
-
     <!-- AVIATOR -->
     <div class="section aviator-section">
         <div class="aviator-icon">✈️</div>
@@ -439,6 +470,32 @@
             Deposit Ksh 700 • Pay Ksh 150 fee • AI Bot gives Ksh 1,500+ profit fast.
         </p>
         <a href="https://wa.me/254100494094" style="background:#00BFFF;color:#000;padding:14px 34px;border-radius:50px;display:inline-block;text-align:center;text-decoration:none;font-weight:700;">Get Managed Aviator • +254 100 494094</a>
+    </div>
+
+    <!-- BETTING EDUCATION -->
+    <div class="section education-section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Betting Education & Advice</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3 style="color:#2ECC71;margin-bottom:12px;">How to Bet Responsibly</h3>
+                <p style="font-size:14.5px;">Only bet what you can afford to lose. Set a weekly budget and never chase losses. Remember: betting should be fun, not a way to make money. If you need help, contact our team or visit responsible gambling resources.</p>
+            </div>
+            <div class="education-card">
+                <h3 style="color:#2ECC71;margin-bottom:12px;">How to Place & Win Bets Like a Pro</h3>
+                <p style="font-size:14.5px;">Always research team form, injuries and head-to-head stats. Start small with our Daily Ticket (Ksh 49). Use our Total Odds to calculate potential profit. Never bet on emotion — follow the data. Our VIP members win consistently because they follow the system.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMUNITY & CONTACT -->
+    <div class="section community-section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Join Our Community</h2>
+        <div class="community-links">
+            <a href="https://t.me/protipsters2" target="_blank">📢 Join Telegram Channel (Free Tips Daily)</a>
+            <a href="https://wa.me/254100494094">💬 WhatsApp Us (+254 100 494094)</a>
+            <a href="mailto:protipsterske@gmail.com">📧 Email Us (protipsterske@gmail.com)</a>
+        </div>
+        <p style="text-align:center;margin-top:25px;font-size:14px;color:#aaa;">Get free updates, bonus tips, and direct support from the team.</p>
     </div>
 
     <a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp Us</a>
