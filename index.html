@@ -93,52 +93,46 @@
             max-width:1100px; 
             margin:0 auto; 
         }
-        .package-section { 
-            background:#1a1a1a; 
-            border:3px solid #FFD700; 
-            border-radius:20px; 
-            margin:32px auto; 
-            padding:35px 20px; 
+
+        /* MONTHLY TABS */
+        .monthly-overview {
+            background:#1a1a1a;
+            border-radius:20px;
+            padding:35px 20px;
+            margin:32px auto;
         }
-        .package-grid { 
-            display:grid; 
-            grid-template-columns:1fr; 
-            gap:24px; 
+        .month-tabs {
+            display:flex;
+            justify-content:center;
+            gap:8px;
+            margin-bottom:25px;
+            flex-wrap:wrap;
+        }
+        .month-tab {
+            background:#222;
+            color:#aaa;
+            padding:12px 24px;
+            border-radius:50px;
+            border:none;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.3s;
+            font-size:14.5px;
+        }
+        .month-tab.active {
+            background:#FFD700;
+            color:#000;
+            transform:scale(1.05);
         }
 
-        .package-card { 
-            background:#1f1f1f; 
-            border-radius:16px; 
-            padding:24px; 
-            text-align:left; 
-            box-shadow:0 8px 25px rgba(0,0,0,0.5);
+        .month-content {
+            display:none;
         }
-        .package-card h3 { 
-            color:#FFD700; 
-            font-size:21px; 
-            margin-bottom:10px; 
+        .month-content.active {
+            display:block;
+            animation:fadeIn 0.4s;
         }
-        .teaser { 
-            background:#111; 
-            padding:18px; 
-            border-radius:12px; 
-            margin:18px 0; 
-        }
-        .teaser .blur { filter:blur(5px); }
-        .odds { 
-            background:#FFD700; 
-            color:#000; 
-            padding:6px 14px; 
-            border-radius:30px; 
-            font-weight:700; 
-            float:right; 
-        }
-        .total { 
-            color:#2ECC71; 
-            font-weight:700; 
-            margin-top:14px; 
-            font-size:16.5px; 
-        }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
         .table-wrapper {
             width:100%;
@@ -238,15 +232,7 @@
             font-size:19px; 
         }
 
-        .aviator-section, .education-section, .community-section { 
-            background:linear-gradient(135deg,#111,#1f1f1f); 
-            border-radius:20px; 
-            padding:38px 20px; 
-            margin:32px auto; 
-        }
-        .aviator-icon { font-size:62px; margin-bottom:12px; }
-
-        .education-grid {
+        .education-grid, .community-links {
             display:grid;
             grid-template-columns:1fr;
             gap:24px;
@@ -257,13 +243,6 @@
             border-radius:16px;
             border-left:5px solid #FFD700;
         }
-
-        .community-links {
-            display:flex;
-            flex-direction:column;
-            gap:18px;
-            align-items:center;
-        }
         .community-links a {
             background:#2ECC71;
             color:#000;
@@ -271,9 +250,6 @@
             border-radius:50px;
             text-decoration:none;
             font-weight:700;
-            display:block;
-            width:100%;
-            max-width:320px;
             text-align:center;
         }
 
@@ -295,9 +271,7 @@
             .section { padding:36px 15px; }
             table { font-size:12.2px; }
             th, td { padding:10px 4px; }
-            .table-wrapper { margin:20px -4px; }
-            .package-card { padding:20px; }
-            .performance { font-size:14px; padding:15px 15px; }
+            .month-tab { padding:10px 18px; font-size:13.5px; }
         }
     </style>
 </head>
@@ -349,7 +323,7 @@
         </div>
     </div>
 
-    <!-- YESTERDAY VIP PERFORMANCE -->
+    <!-- YESTERDAY VIP -->
     <div class="section" style="background:#1a1a1a;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's VIP Performance</h2>
         <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day. 16/18 high-odds tips landed this month.</p>
@@ -366,31 +340,87 @@
         </div>
     </div>
 
-    <!-- FEBRUARY WEEKLY PERFORMANCE -->
-    <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">February Weekly Performance</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Real results. Real profits. Minimum stake Ksh 500 per ticket.</p>
+    <!-- MONTHLY PERFORMANCE - SLIDABLE TABS -->
+    <div class="section monthly-overview">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>1-7 Feb</td><td>15</td><td>11</td><td>4</td><td style="color:#2ECC71;">73%</td><td>198</td><td style="color:#2ECC71;">98.5K</td></tr>
-                    <tr><td>2</td><td>8-14 Feb</td><td>18</td><td>16</td><td>2</td><td style="color:#2ECC71;">89%</td><td>265</td><td style="color:#2ECC71;">152.3K</td></tr>
-                    <tr><td>3</td><td>15-21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;">91.2K</td></tr>
-                    <tr><td>4</td><td>22-28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;">119.8K</td></tr>
-                </tbody>
-                <tfoot>
-                    <tr style="background:#222;">
-                        <td colspan="7" style="text-align:right;color:#FFD700;">FEB TOTAL PROFIT</td>
-                        <td style="color:#2ECC71;">461.8K</td>
-                    </tr>
-                </tfoot>
-            </table>
+        <div class="month-tabs">
+            <button onclick="showMonth(0)" class="month-tab" id="tab-0">January 2026</button>
+            <button onclick="showMonth(1)" class="month-tab active" id="tab-1">February 2026</button>
+            <button onclick="showMonth(2)" class="month-tab" id="tab-2">March 2026 (This Month)</button>
+        </div>
+
+        <!-- JANUARY -->
+        <div id="content-0" class="month-content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>1-7 Jan</td><td>14</td><td>10</td><td>4</td><td style="color:#2ECC71;">71%</td><td>165</td><td style="color:#2ECC71;">72.3K</td></tr>
+                        <tr><td>2</td><td>8-14 Jan</td><td>16</td><td>13</td><td>3</td><td style="color:#2ECC71;">81%</td><td>210</td><td style="color:#2ECC71;">98.4K</td></tr>
+                        <tr><td>3</td><td>15-21 Jan</td><td>15</td><td>12</td><td>3</td><td style="color:#2ECC71;">80%</td><td>192</td><td style="color:#2ECC71;">85.1K</td></tr>
+                        <tr><td>4</td><td>22-31 Jan</td><td>13</td><td>11</td><td>2</td><td style="color:#2ECC71;">85%</td><td>178</td><td style="color:#2ECC71;">72.6K</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#222;">
+                            <td colspan="7" style="text-align:right;color:#FFD700;">JANUARY TOTAL PROFIT</td>
+                            <td style="color:#2ECC71;">Ksh 328,400</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- FEBRUARY -->
+        <div id="content-1" class="month-content active">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>1-7 Feb</td><td>15</td><td>11</td><td>4</td><td style="color:#2ECC71;">73%</td><td>198</td><td style="color:#2ECC71;">98.5K</td></tr>
+                        <tr><td>2</td><td>8-14 Feb</td><td>18</td><td>16</td><td>2</td><td style="color:#2ECC71;">89%</td><td>265</td><td style="color:#2ECC71;">152.3K</td></tr>
+                        <tr><td>3</td><td>15-21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;">91.2K</td></tr>
+                        <tr><td>4</td><td>22-28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;">119.8K</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#222;">
+                            <td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL PROFIT</td>
+                            <td style="color:#2ECC71;">Ksh 461,800</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- MARCH (DAY 1 - PENDING) -->
+        <div id="content-2" class="month-content">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1 Mar onwards</td>
+                            <td style="color:#aaa;">Pending</td>
+                            <td style="color:#aaa;">Pending</td>
+                            <td style="color:#aaa;">Pending</td>
+                            <td style="color:#aaa;">Pending</td>
+                            <td style="color:#aaa;">Pending</td>
+                            <td style="color:#aaa;">Pending</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#222;">
+                            <td colspan="7" style="text-align:right;color:#FFD700;">MARCH TOTAL SO FAR</td>
+                            <td style="color:#aaa;">Pending</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <p style="text-align:center;margin-top:15px;font-size:13.5px;color:#aaa;">
+                Today is Day 1 of March • Performance tracking starts today<br>
+                First tips will be added as we go • Updated every Sunday
+            </p>
         </div>
     </div>
 
@@ -412,7 +442,7 @@
         </div>
     </div>
 
-    <!-- PACKAGES (Updated Prices) -->
+    <!-- PACKAGES -->
     <div class="section package-section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
         <div class="package-grid">
@@ -463,8 +493,8 @@
     </div>
 
     <!-- AVIATOR -->
-    <div class="section aviator-section">
-        <div class="aviator-icon">✈️</div>
+    <div class="section" style="background:linear-gradient(135deg,#111,#1f1f1f);border-radius:20px;padding:38px 20px;margin:32px auto;text-align:center;">
+        <div style="font-size:62px;margin-bottom:12px;">✈️</div>
         <h2 style="color:#00BFFF;margin-bottom:10px;">Aviator Management</h2>
         <p style="max-width:100%;margin:0 auto 18px;font-size:14.8px;">
             Deposit Ksh 700 • Pay Ksh 150 fee • AI Bot gives Ksh 1,500+ profit fast.
@@ -473,29 +503,28 @@
     </div>
 
     <!-- BETTING EDUCATION -->
-    <div class="section education-section">
+    <div class="section" style="background:linear-gradient(135deg,#111,#1f1f1f);border-radius:20px;padding:38px 20px;margin:32px auto;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Betting Education & Advice</h2>
         <div class="education-grid">
             <div class="education-card">
                 <h3 style="color:#2ECC71;margin-bottom:12px;">How to Bet Responsibly</h3>
-                <p style="font-size:14.5px;">Only bet what you can afford to lose. Set a weekly budget and never chase losses. Remember: betting should be fun, not a way to make money. If you need help, contact our team or visit responsible gambling resources.</p>
+                <p style="font-size:14.5px;">Only bet what you can afford to lose. Set a weekly budget and never chase losses. Betting should be fun, not a way to make money.</p>
             </div>
             <div class="education-card">
                 <h3 style="color:#2ECC71;margin-bottom:12px;">How to Place & Win Bets Like a Pro</h3>
-                <p style="font-size:14.5px;">Always research team form, injuries and head-to-head stats. Start small with our Daily Ticket (Ksh 49). Use our Total Odds to calculate potential profit. Never bet on emotion — follow the data. Our VIP members win consistently because they follow the system.</p>
+                <p style="font-size:14.5px;">Research form, injuries and stats. Start with our Daily Ticket. Follow the data, not emotion. Our members win consistently because they follow the system.</p>
             </div>
         </div>
     </div>
 
-    <!-- COMMUNITY & CONTACT -->
-    <div class="section community-section">
+    <!-- COMMUNITY -->
+    <div class="section" style="background:linear-gradient(135deg,#111,#1f1f1f);border-radius:20px;padding:38px 20px;margin:32px auto;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Join Our Community</h2>
         <div class="community-links">
             <a href="https://t.me/protipsters2" target="_blank">📢 Join Telegram Channel (Free Tips Daily)</a>
             <a href="https://wa.me/254100494094">💬 WhatsApp Us (+254 100 494094)</a>
             <a href="mailto:protipsterske@gmail.com">📧 Email Us (protipsterske@gmail.com)</a>
         </div>
-        <p style="text-align:center;margin-top:25px;font-size:14px;color:#aaa;">Get free updates, bonus tips, and direct support from the team.</p>
     </div>
 
     <a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp Us</a>
@@ -514,6 +543,18 @@
         viewers += Math.floor(Math.random()*4)+2;
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
+
+    // MONTH TAB FUNCTION
+    function showMonth(n) {
+        document.querySelectorAll('.month-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.getElementById('content-' + n).classList.add('active');
+        
+        document.querySelectorAll('.month-tab').forEach((tab, index) => {
+            tab.classList.toggle('active', index === n);
+        });
+    }
 
     // SUCCESS PAGE LOGIC
     const params = new URLSearchParams(window.location.search);
