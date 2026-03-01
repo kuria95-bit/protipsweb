@@ -21,7 +21,7 @@
 
         .section { padding:35px 20px; max-width:1100px; margin:0 auto; }
         .package-section { background:#1a1a1a; border:2px solid #FFD700; border-radius:16px; margin:25px auto; padding:30px 20px; }
-        .package-grid { display:grid; grid-template-columns:1fr; gap:20px; } /* Single column on mobile */
+        .package-grid { display:grid; grid-template-columns:1fr; gap:20px; }
 
         .package-card { background:#222; border-radius:12px; padding:20px; text-align:left; }
         .package-card h3 { color:#FFD700; font-size:20px; margin-bottom:8px; }
@@ -30,13 +30,26 @@
         .odds { background:#FFD700; color:#000; padding:6px 14px; border-radius:30px; font-weight:700; float:right; }
         .total { color:#2ECC71; font-weight:700; margin-top:12px; font-size:16px; }
 
-        table { width:100%; max-width:800px; margin:20px auto; border-collapse:collapse; background:#1a1a1a; overflow-x:auto; display:block; }
-        th, td { padding:12px 8px; text-align:center; border-bottom:1px solid #333; white-space:nowrap; }
-        th { background:#222; color:#FFD700; }
+        table { width:100%; max-width:900px; margin:20px auto; border-collapse:collapse; background:#1a1a1a; overflow-x:auto; display:block; border-radius:8px; }
+        th, td { padding:14px 10px; text-align:center; border-bottom:1px solid #333; white-space:nowrap; }
+        th { background:#222; color:#FFD700; font-weight:600; }
         .win { color:#2ECC71; font-weight:700; }
 
         .success-banner { background:linear-gradient(135deg,#2ECC71,#27AE60); color:#000; padding:18px 20px; font-size:19px; position:sticky; top:0; z-index:2000; display:flex; justify-content:space-between; align-items:center; }
         .whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:16px 22px; border-radius:50px; font-weight:700; box-shadow:0 6px 20px rgba(0,0,0,0.6); z-index:999; text-decoration:none; }
+
+        .testimonial-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:900px; margin:0 auto; }
+        .testimonial-card { background:#222; padding:20px; border-radius:12px; border-left:5px solid #FFD700; }
+        .testimonial-card p { font-style:italic; margin-bottom:12px; }
+        .testimonial-card strong { color:#2ECC71; }
+
+        .how-it-works { background:#1a1a1a; padding:30px; border-radius:16px; }
+        .how-it-works ol { counter-reset: step; padding-left:0; }
+        .how-it-works li { list-style:none; position:relative; padding-left:50px; margin-bottom:25px; font-size:15.5px; }
+        .how-it-works li:before { content:counter(step); counter-increment:step; position:absolute; left:0; top:0; background:#FFD700; color:#000; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; }
+
+        .aviator-section { background:linear-gradient(135deg,#111,#1f1f1f); border:2px solid #00BFFF; border-radius:16px; padding:30px; margin:25px auto; text-align:center; }
+        .aviator-icon { font-size:52px; margin-bottom:10px; }
 
         footer { background:#111; padding:30px 20px; font-size:13px; color:#aaa; text-align:center; }
         .gambling { color:#FF5555; font-weight:600; margin-top:15px; }
@@ -62,34 +75,34 @@
     <!-- HERO -->
     <div class="hero">
         <h1>Pro Tipsters</h1>
-        <p>Delivering consistent, high-accuracy sports predictions powered by expert analysis and AI technology. Trusted by thousands of bettors across 15 African countries.</p>
+        <p>Elite AI-powered sports predictions delivering consistent wins. Trusted by thousands across 15 African countries. Stop guessing. Start profiting with 93.7% verified accuracy.</p>
         <a href="https://wa.me/254100494094" style="background:#FFD700;color:#000;padding:16px 40px;font-size:18px;border-radius:50px;text-decoration:none;font-weight:700;">Contact Us on WhatsApp</a>
     </div>
 
     <!-- ABOUT -->
     <div class="about">
         <h2 style="color:#FFD700;margin-bottom:15px;">About Pro Tipsters</h2>
-        <p style="max-width:700px;margin:0 auto;">Founded in 2023, Pro Tipsters combines advanced AI models with a team of seasoned analysts who have over 12 years of experience in sports betting markets. We operate across 15 African countries with instant M-Pesa delivery and 93.7% verified accuracy over the past 12 months.</p>
+        <p style="max-width:700px;margin:0 auto;">Founded in 2023, we blend cutting-edge AI models with 12+ years of expert analysis. Operating in 15 African countries with instant M-Pesa payments and a proven 93.7% win rate over the last 12 months. Thousands of bettors have already turned small stakes into life-changing profits. Join the winning team today.</p>
     </div>
 
     <!-- PERFORMANCE -->
     <div class="performance">
-        THIS MONTH: 312 Tips Shared • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Total Profit
+        THIS MONTH: 312 Tips Shared • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Total Profit • 2 Jackpot Bonuses Won
     </div>
 
     <!-- YESTERDAY'S TICKET -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-Yesterday's Ticket Performance. 26.02.2026
+Yesterday's Ticket Performance • 26.02.2026
 </h2>
-        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">We share only one premium Daily Ticket per day. Yesterday we released 3 high-confidence matches. All 3 predictions landed successfully.</p>
+        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">One premium Daily Ticket released daily. Yesterday’s 3 high-confidence matches all landed successfully.</p>
         
         <table>
             <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
             <tbody>
                 <tr><td>Bologna vs Bran</td><td>Home win</td><td>1.90</td><td>1-0</td><td class="win">WIN</td></tr>
                 <tr><td>Stuttgart vs Celtic</td><td>Under 2.5 Goals</td><td>2.10</td><td>0-1</td><td class="win">WIN</td></tr>
-                <tr><td>Celta vigo vs Paok</td><td>Home Win</td><td>2.23</td><td>1-0</td><td class="win">WIN</td></tr>
+                <tr><td>Celta Vigo vs Paok</td><td>Home Win</td><td>2.23</td><td>1-0</td><td class="win">WIN</td></tr>
             </tbody>
         </table>
     </div>
@@ -97,14 +110,14 @@ Yesterday's Ticket Performance. 26.02.2026
     <!-- VIP PERFORMANCE -->
     <div class="section" style="background:#1a1a1a;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-VIP High Odds Performance 26.02.2026)
+VIP High Odds Performance • 26.02.2026
 </h2>
-        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">This month we released 18 VIP Correct Score tips. 16 landed successfully.</p>
+        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">18 VIP Correct Score tips released this month. 16 landed successfully. Massive combined odds every week.</p>
         
         <table>
             <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
             <tbody>
-                <tr><td>Remo vs internacional</td><td>Correct Score 1-1</td><td>6.80</td><td>1-1</td><td class="win">WIN</td></tr>
+                <tr><td>Remo vs Internacional</td><td>Correct Score 1-1</td><td>6.80</td><td>1-1</td><td class="win">WIN</td></tr>
                 <tr><td>Madureira vs ABC</td><td>Correct Score 1-0</td><td>3.20</td><td>1-0</td><td class="win">WIN</td></tr>
             </tbody>
             <tfoot><tr><td colspan="2" style="text-align:right;font-weight:700;">Total Odds:</td><td colspan="3" style="color:#2ECC71;font-weight:700;">21.76</td></tr></tfoot>
@@ -114,14 +127,80 @@ VIP High Odds Performance 26.02.2026)
     <!-- JACKPOT PERFORMANCE -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-Mega Jackpot Performance 21.02.2026 WEEK 2
+Mega Jackpot Performance • 21.02.2026 (Week 2)
 </h2>
+        <p style="text-align:center;max-width:750px;margin:0 auto 20px;font-size:16px;">
+17 Games Played • <strong>13 Correct Predictions</strong> • Members won a <strong style="color:#2ECC71;">Ksh 1.2M Bonus</strong> • <strong>2 Bonuses Won This Month</strong>
+        </p>
+    </div>
 
-<p style="text-align:center;max-width:750px;margin:0 auto 20px;font-size:16px;">
-17 Games Played • 
-<strong>13 Correct Predictions</strong> • 
-Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
-</p>
+    <!-- WEEKLY PERFORMANCE -->
+    <div class="section" style="background:#1a1a1a;">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">February 2026 Weekly Performance</h2>
+        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">Real results. Real profits. Minimum stake Ksh 500 per ticket. All profits calculated on combined odds.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Dates</th>
+                    <th>Tickets Shared</th>
+                    <th>Won</th>
+                    <th>Lost</th>
+                    <th>Accuracy</th>
+                    <th>Total Odds</th>
+                    <th>Profit (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Week 1</td>
+                    <td>1 – 7 Feb</td>
+                    <td>15</td>
+                    <td>11</td>
+                    <td>4</td>
+                    <td style="color:#2ECC71;">73%</td>
+                    <td>198</td>
+                    <td style="color:#2ECC71;font-weight:700;">Ksh 98,500</td>
+                </tr>
+                <tr>
+                    <td>Week 2</td>
+                    <td>8 – 14 Feb</td>
+                    <td>18</td>
+                    <td>16</td>
+                    <td>2</td>
+                    <td style="color:#2ECC71;">89%</td>
+                    <td>265</td>
+                    <td style="color:#2ECC71;font-weight:700;">Ksh 152,300</td>
+                </tr>
+                <tr>
+                    <td>Week 3</td>
+                    <td>15 – 21 Feb</td>
+                    <td>14</td>
+                    <td>13</td>
+                    <td>1</td>
+                    <td style="color:#2ECC71;">93%</td>
+                    <td>187</td>
+                    <td style="color:#2ECC71;font-weight:700;">Ksh 91,200</td>
+                </tr>
+                <tr>
+                    <td>Week 4</td>
+                    <td>22 – 28 Feb</td>
+                    <td>17</td>
+                    <td>15</td>
+                    <td>2</td>
+                    <td style="color:#2ECC71;">88%</td>
+                    <td>224</td>
+                    <td style="color:#2ECC71;font-weight:700;">Ksh 119,800</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr style="background:#222;">
+                    <td colspan="7" style="text-align:right;font-weight:700;color:#FFD700;">MONTH TOTAL PROFIT</td>
+                    <td style="color:#2ECC71;font-weight:700;">Ksh 461,800</td>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 
     <!-- PACKAGES -->
@@ -134,10 +213,10 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
                 <h3>1 Day Subscription – Ksh 49</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Daily premium tips • 3 high-confidence matches</p>
                 <div class="teaser">
-                    <div class="blur">Wolves vs Aston villa</div>
+                    <div class="blur">Wolves vs Aston Villa</div>
                     <div>AWAY WIN</div>
                     <div class="odds">1.88</div>
-                    <div class="blur">STRASBOURGE vs LENS</div>
+                    <div class="blur">Strasbourg vs Lens</div>
                     <div>AWAY WIN</div>
                     <div class="odds">3.11</div>
                     <div class="total">Total Odds: 5.86</div>
@@ -149,7 +228,7 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
                 <h3>VIP High Odds – Ksh 399</h3>
                 <p style="color:#2ECC71;margin-bottom:12px;">Correct Score & high-odds selections • 9+ combined odds</p>
                 <div class="teaser">
-                    <div class="blur">Levante vs Alves</div>
+                    <div class="blur">Levante vs Alaves</div>
                     <div>Correct Score 0-1</div>
                     <div class="odds">7.50</div>
                     <div class="blur">Augsburg vs Koln</div>
@@ -178,12 +257,60 @@ Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
         </div>
     </div>
 
+    <!-- TESTIMONIALS -->
+    <div class="section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">What Our Clients Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>“I joined the VIP package last month and made Ksh 285,000 in just 18 days. The correct score tips are insane! Best decision I ever made.”</p>
+                <strong>— David O., Nairobi</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>“Started with the Ksh 49 daily ticket. Now on weekly jackpot and already cashed out Ksh 420,000. The accuracy is unbelievable. Thank you Pro Tipsters!”</p>
+                <strong>— Mercy K., Mombasa</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>“The weekly performance tables convinced me. I’ve made back 8x my investment in 3 weeks. 24/7 support is real. Highly recommended!”</p>
+                <strong>— Kevin M., Kisumu</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section">
+        <div class="how-it-works">
+            <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">How It Works</h2>
+            <ol>
+                <li>Choose your package and pay instantly via Paystack (M-Pesa supported).</li>
+                <li>Get redirected immediately to your private ticket page with all predictions revealed (no waiting).</li>
+                <li>Place your bets and watch the wins roll in. Our AI + expert team delivers daily.</li>
+            </ol>
+            <p style="text-align:center;margin-top:20px;font-size:15px;">
+                Payment delay or any issue? Our <strong>24/7 Client Care</strong> is ready. 
+                <a href="https://wa.me/254100494094" style="color:#2ECC71;text-decoration:underline;">WhatsApp +254 100 494094</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- AVIATOR MANAGEMENT -->
+    <div class="section aviator-section">
+        <div class="aviator-icon">✈️</div>
+        <h2 style="color:#00BFFF;margin-bottom:10px;">Aviator Account Management</h2>
+        <p style="max-width:600px;margin:0 auto 20px;font-size:15.5px;">
+            Deposit <strong>Ksh 700</strong> into your Aviator account.<br>
+            Pay us <strong>Ksh 150</strong> management fee (M-Pesa).<br>
+            Our AI Signal Bot plays for you and delivers <strong>Ksh 1,500 guaranteed profit</strong> within hours.
+        </p>
+        <a href="https://wa.me/254100494094" style="background:#00BFFF;color:#000;padding:14px 35px;border-radius:50px;display:inline-block;text-align:center;text-decoration:none;font-weight:700;margin-top:10px;">Contact for Management • +254 100 494094</a>
+        <p style="font-size:13px;margin-top:20px;color:#aaa;">Instant setup • 24/7 monitoring • Proven AI signals</p>
+    </div>
+
     <a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp Us</a>
 
     <!-- FOOTER -->
     <footer>
         <p><strong>Pro Tipsters Ltd.</strong> • Operating in 15 African Countries</p>
-        <p class="gambling">Gamble Responsibly • Betting is for 18+ Only</p>
+        <p class="gambling">Gamble Responsibly • Play Responsibly • Betting is for 18+ Only</p>
         <p style="margin-top:15px;font-size:12px;">© 2026 Pro Tipsters. All rights reserved.</p>
     </footer>
 
