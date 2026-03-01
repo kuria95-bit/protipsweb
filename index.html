@@ -1,293 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Tipsters • Elite Sports Predictions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#eee; line-height:1.6; font-size:16px; }
-        .header { background:linear-gradient(135deg,#1A1A1A,#FFD700); padding:15px 20px; position:sticky; top:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; }
-        .header-title { font-family:'Orbitron',sans-serif; font-size:28px; color:#FFD700; }
-        .live-counter { background:#2ECC71; color:#000; padding:6px 14px; border-radius:30px; font-weight:700; font-size:13px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Tipsters • Elite Sports Predictions</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
 
-        .hero { padding:45px 20px; background:linear-gradient(135deg,#1e1e1e,#2a2a2a); text-align:center; }
-        .hero h1 { font-size:24px; margin-bottom:12px; }
-        .hero p { font-size:15.5px; max-width:720px; margin:0 auto 20px; }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#0a0a0a;color:#eee;line-height:1.6}
 
-        .about { background:#111; padding:35px 20px; text-align:center; }
-        .performance { background:#1f1f1f; padding:15px; text-align:center; font-size:15px; border-bottom:4px solid #2ECC71; }
+.header{
+background:linear-gradient(135deg,#111,#FFD700);
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+.header-title{font-family:'Orbitron';font-size:26px;color:#FFD700}
+.live-counter{background:#2ECC71;color:#000;padding:6px 14px;border-radius:30px;font-weight:700;font-size:13px}
 
-        .section { padding:35px 20px; max-width:1100px; margin:0 auto; }
-        .package-section { background:#1a1a1a; border:2px solid #FFD700; border-radius:16px; margin:25px auto; padding:30px 20px; }
-        .package-grid { display:grid; grid-template-columns:1fr; gap:20px; } /* Single column on mobile */
+.section{padding:60px 20px;max-width:1100px;margin:auto}
+.section h2{text-align:center;color:#FFD700;margin-bottom:20px}
 
-        .package-card { background:#222; border-radius:12px; padding:20px; text-align:left; }
-        .package-card h3 { color:#FFD700; font-size:20px; margin-bottom:8px; }
-        .teaser { background:#111; padding:15px; border-radius:10px; margin:15px 0; }
-        .teaser .blur { filter:blur(5px); }
-        .odds { background:#FFD700; color:#000; padding:6px 14px; border-radius:30px; font-weight:700; float:right; }
-        .total { color:#2ECC71; font-weight:700; margin-top:12px; font-size:16px; }
+.hero{text-align:center;padding:70px 20px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a)}
+.hero h1{font-size:32px;color:#FFD700;margin-bottom:15px}
+.hero p{max-width:700px;margin:0 auto 25px;color:#ccc}
+.cta-btn{background:#FFD700;color:#000;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;display:inline-block}
+.cta-btn:hover{opacity:.9}
 
-        table { width:100%; max-width:800px; margin:20px auto; border-collapse:collapse; background:#1a1a1a; overflow-x:auto; display:block; }
-        th, td { padding:12px 8px; text-align:center; border-bottom:1px solid #333; white-space:nowrap; }
-        th { background:#222; color:#FFD700; }
-        .win { color:#2ECC71; font-weight:700; }
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-top:30px;
+}
+.stat-box{
+background:#111;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+.stat-box h3{color:#FFD700;font-size:26px;margin-bottom:5px}
 
-        .success-banner { background:linear-gradient(135deg,#2ECC71,#27AE60); color:#000; padding:18px 20px; font-size:19px; position:sticky; top:0; z-index:2000; display:flex; justify-content:space-between; align-items:center; }
-        .whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:16px 22px; border-radius:50px; font-weight:700; box-shadow:0 6px 20px rgba(0,0,0,0.6); z-index:999; text-decoration:none; }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:#111;
+border-radius:12px;
+overflow:hidden;
+}
+th,td{padding:14px;text-align:center}
+thead{background:#1f1f1f}
+th{color:#FFD700}
+tbody tr{border-bottom:1px solid #222}
+tbody tr:hover{background:#151515}
 
-        footer { background:#111; padding:30px 20px; font-size:13px; color:#aaa; text-align:center; }
-        .gambling { color:#FF5555; font-weight:600; margin-top:15px; }
+.win{color:#2ECC71;font-weight:700}
+.loss{color:#FF5555;font-weight:700}
 
-        /* Mobile Optimizations */
-        @media (max-width: 600px) {
-            .hero h1 { font-size:22px; }
-            .hero p { font-size:15px; }
-            .header-title { font-size:24px; }
-            table { font-size:13px; }
-            th, td { padding:10px 6px; }
-        }
-    </style>
+.package-section{
+background:#111;
+border:2px solid #FFD700;
+border-radius:20px;
+padding:40px 20px;
+}
+
+.package-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.package-card{
+background:#1a1a1a;
+padding:25px;
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+.package-card h3{color:#FFD700;margin-bottom:10px}
+.teaser{background:#111;padding:15px;border-radius:10px;margin:15px 0}
+.blur{filter:blur(5px)}
+.odds{float:right;background:#FFD700;color:#000;padding:5px 10px;border-radius:20px;font-weight:700}
+.total{color:#2ECC71;font-weight:700;margin-top:10px}
+.unlock-btn{display:block;text-align:center;background:#2ECC71;color:#000;padding:14px;border-radius:40px;font-weight:700;text-decoration:none;margin-top:15px}
+
+.faq-item{background:#111;margin-bottom:10px;padding:15px;border-radius:10px;cursor:pointer}
+.faq-answer{display:none;color:#ccc;margin-top:10px}
+
+.testimonial{
+background:#111;
+padding:20px;
+border-radius:12px;
+margin-bottom:15px;
+}
+
+footer{
+background:#111;
+padding:40px 20px;
+text-align:center;
+font-size:13px;
+color:#aaa;
+}
+
+.gambling{color:#FF5555;margin-top:10px}
+
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:16px 22px;
+border-radius:50px;
+font-weight:700;
+text-decoration:none;
+box-shadow:0 6px 20px rgba(0,0,0,.6);
+}
+</style>
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header-title">PRO TIPSTERS</div>
-        <div class="live-counter" id="live-counter">1,428 bettors online now</div>
-    </div>
+<div class="header">
+<div class="header-title">PRO TIPSTERS</div>
+<div class="live-counter" id="live-counter">1,428 bettors online now</div>
+</div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Pro Tipsters</h1>
-        <p>Delivering consistent, high-accuracy sports predictions powered by expert analysis and AI technology. Trusted by thousands of bettors across 15 African countries.</p>
-        <a href="https://wa.me/254100494094" style="background:#FFD700;color:#000;padding:16px 40px;font-size:18px;border-radius:50px;text-decoration:none;font-weight:700;">Contact Us on WhatsApp</a>
-    </div>
+<div class="hero">
+<h1>Elite Winning Predictions</h1>
+<p>Professional AI + Expert Analysis delivering consistent profits across Kenya.</p>
+<a href="https://wa.me/254100494094" class="cta-btn">Join Winners Now</a>
+</div>
 
-    <!-- ABOUT -->
-    <div class="about">
-        <h2 style="color:#FFD700;margin-bottom:15px;">About Pro Tipsters</h2>
-        <p style="max-width:700px;margin:0 auto;">Founded in 2023, Pro Tipsters combines advanced AI models with a team of seasoned analysts who have over 12 years of experience in sports betting markets. We operate across 15 African countries with instant M-Pesa delivery and 93.7% verified accuracy over the past 12 months.</p>
-    </div>
-
-    <!-- PERFORMANCE -->
-    <div class="performance">
-        THIS MONTH: 312 Tips Shared • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Total Profit
-    </div>
-
-    <!-- YESTERDAY'S TICKET -->
-    <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-Yesterday's Ticket Performance. 26.02.2026
-</h2>
-        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">We share only one premium Daily Ticket per day. Yesterday we released 3 high-confidence matches. All 3 predictions landed successfully.</p>
-        
-        <table>
-            <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Bologna vs Bran</td><td>Home win</td><td>1.90</td><td>1-0</td><td class="win">WIN</td></tr>
-                <tr><td>Stuttgart vs Celtic</td><td>Under 2.5 Goals</td><td>2.10</td><td>0-1</td><td class="win">WIN</td></tr>
-                <tr><td>Celta vigo vs Paok</td><td>Home Win</td><td>2.23</td><td>1-0</td><td class="win">WIN</td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- VIP PERFORMANCE -->
-    <div class="section" style="background:#1a1a1a;">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-VIP High Odds Performance 26.02.2026)
-</h2>
-        <p style="text-align:center;max-width:700px;margin:0 auto 20px;">This month we released 18 VIP Correct Score tips. 16 landed successfully.</p>
-        
-        <table>
-            <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Remo vs internacional</td><td>Correct Score 1-1</td><td>6.80</td><td>1-1</td><td class="win">WIN</td></tr>
-                <tr><td>Madureira vs ABC</td><td>Correct Score 1-0</td><td>3.20</td><td>1-0</td><td class="win">WIN</td></tr>
-            </tbody>
-            <tfoot><tr><td colspan="2" style="text-align:right;font-weight:700;">Total Odds:</td><td colspan="3" style="color:#2ECC71;font-weight:700;">21.76</td></tr></tfoot>
-        </table>
-    </div>
-
-    <!-- JACKPOT PERFORMANCE -->
-    <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:15px;">
-Mega Jackpot Performance 21.02.2026 WEEK 2
-</h2>
-
-<p style="text-align:center;max-width:750px;margin:0 auto 20px;font-size:16px;">
-17 Games Played • 
-<strong>13 Correct Predictions</strong> • 
-Members won a <strong style="color:#2ECC71;">whooping Ksh 1.2M Bonus</strong>
+<!-- ABOUT + MONTH STATS -->
+<div class="section">
+<h2>About Pro Tipsters</h2>
+<p style="text-align:center;max-width:800px;margin:auto;color:#ccc">
+We combine advanced AI models with professional betting analysts to identify high-value markets daily. 
+Our system focuses on calculated risk, bankroll growth, and disciplined strategy — not guesswork.
 </p>
-    </div>
 
-    <!-- PACKAGES -->
-    <div class="section package-section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Available Packages</h2>
-        
-        <div class="package-grid">
+<div class="stats-grid">
+<div class="stat-box">
+<h3>312</h3>
+<p>Tickets Shared (Last Month)</p>
+</div>
+<div class="stat-box">
+<h3>287</h3>
+<p>Won</p>
+</div>
+<div class="stat-box">
+<h3>25</h3>
+<p>Lost</p>
+</div>
+<div class="stat-box">
+<h3>Ksh 1.28M+</h3>
+<p>Total Member Profit</p>
+</div>
+</div>
+</div>
 
-           <div class="package-card" data-plan="1day">
-                <h3>1 Day Subscription – Ksh 49</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Daily premium tips • 3 high-confidence matches</p>
-                <div class="teaser">
-                    <div class="blur">Wolves vs Aston villa</div>
-                    <div>AWAY WIN</div>
-                    <div class="odds">1.88</div>
-                    <div class="blur">STRASBOURGE vs LENS</div>
-                    <div>AWAY WIN</div>
-                    <div class="odds">3.11</div>
-                    <div class="total">Total Odds: 5.86</div>
-                </div>
-                <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:15px;">Unlock Now – Ksh 49</a>
-            </div>
+<!-- WEEKLY PERFORMANCE -->
+<div class="section">
+<h2>Weekly Performance Breakdown (Last Month)</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Dates</th>
+<th>Tickets</th>
+<th>Won</th>
+<th>Lost</th>
+<th>Total Odds</th>
+<th>Est. Profit (Min 500 Bet)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Week 1</td>
+<td>1 - 7</td>
+<td>15</td>
+<td class="win">11</td>
+<td class="loss">4</td>
+<td>200+</td>
+<td class="win">Ksh 100,000+</td>
+</tr>
+<tr>
+<td>Week 2</td>
+<td>8 - 14</td>
+<td>18</td>
+<td class="win">14</td>
+<td class="loss">4</td>
+<td>240+</td>
+<td class="win">Ksh 120,000+</td>
+</tr>
+<tr>
+<td>Week 3</td>
+<td>15 - 21</td>
+<td>16</td>
+<td class="win">12</td>
+<td class="loss">4</td>
+<td>210+</td>
+<td class="win">Ksh 105,000+</td>
+</tr>
+<tr>
+<td>Week 4</td>
+<td>22 - 28</td>
+<td>20</td>
+<td class="win">16</td>
+<td class="loss">4</td>
+<td>260+</td>
+<td class="win">Ksh 130,000+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-          <div class="package-card" data-plan="vip">
-                <h3>VIP High Odds – Ksh 399</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Correct Score & high-odds selections • 9+ combined odds</p>
-                <div class="teaser">
-                    <div class="blur">Levante vs Alves</div>
-                    <div>Correct Score 0-1</div>
-                    <div class="odds">7.50</div>
-                    <div class="blur">Augsburg vs Koln</div>
-                    <div>Home win</div>
-                    <div class="odds">2.28</div>
-                    <div class="total">Total Odds:17.1</div>
-                </div>
-               <a href="https://paystack.shop/pay/ey89odk4v6"
-   style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:15px;">
-   Unlock Now – Ksh 399
-</a>
-            </div>
+<!-- VIP PERFORMANCE -->
+<div class="section">
+<h2>VIP High Odds Performance</h2>
+<p style="text-align:center;color:#ccc">16/18 Correct Score Tips Landed Last Month</p>
+<table>
+<thead>
+<tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>Remo vs Internacional</td><td>Correct Score 1-1</td><td>6.80</td><td class="win">WIN</td></tr>
+<tr><td>Madureira vs ABC</td><td>Correct Score 1-0</td><td>3.20</td><td class="win">WIN</td></tr>
+</tbody>
+</table>
+</div>
 
-            <div class="package-card" data-plan="jackpot">
-                <h3>Mega Jackpot Weekly – Ksh 299</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game Sportpesa slip • Targeting the bonus</p>
-                <div class="teaser">
-                    <div class="blur">17 Matches Ready</div>
-                    <div style="font-size:15px;color:#aaa;">Complete Sportpesa Mega Jackpot Slip</div>
-                    <div class="odds">400M+</div>
-                    <div class="total">2 Bonuses Won This Month</div>
-                </div>
-                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:15px;">Unlock Now – Ksh 299</a>
-            </div>
+<!-- JACKPOT -->
+<div class="section">
+<h2>Mega Jackpot Success</h2>
+<p style="text-align:center;color:#ccc">
+Won 2 Bonuses Last Month • Members shared Ksh 1.2M Bonus
+</p>
+</div>
 
-        </div>
-    </div>
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works</h2>
+<p style="text-align:center;color:#ccc">
+1. Choose your package<br>
+2. Pay securely via Paystack / M-Pesa<br>
+3. Instantly redirected to your premium ticket<br>
+4. Copy ticket & place bet<br><br>
+Payment delay? Contact 24/7 Client Care:
+<a href="https://wa.me/254100494094" style="color:#2ECC71">+254100494094</a>
+</p>
+</div>
 
-    <a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp Us</a>
+<!-- AVIATOR MANAGEMENT -->
+<div class="section">
+<h2>✈ Aviator Account Management</h2>
+<p style="text-align:center;color:#ccc">
+Deposit: Ksh 700<br>
+Management Fee: Ksh 150<br>
+Expected Profit Target: Ksh 1500+<br><br>
+We use our AI Signal Bot strategy to manage risk professionally.
+<br><br>
+For Aviator Management Contact:
+<a href="https://wa.me/254100494094" style="color:#2ECC71">WhatsApp Now</a>
+</p>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p><strong>Pro Tipsters Ltd.</strong> • Operating in 15 African Countries</p>
-        <p class="gambling">Gamble Responsibly • Betting is for 18+ Only</p>
-        <p style="margin-top:15px;font-size:12px;">© 2026 Pro Tipsters. All rights reserved.</p>
-    </footer>
+<!-- TESTIMONIALS -->
+<div class="section">
+<h2>What Our Members Say</h2>
+<div class="testimonial">“I recovered my losses in 2 days. VIP is powerful.” – Kevin, Nairobi</div>
+<div class="testimonial">“Mega Jackpot helped me win 250k bonus.” – Brian, Kisumu</div>
+<div class="testimonial">“Very professional. Instant delivery.” – James, Mombasa</div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+How fast do I receive my ticket?
+<div class="faq-answer">Immediately after payment you are redirected to your premium ticket page.</div>
+</div>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+Is payment secure?
+<div class="faq-answer">Yes. All payments are processed securely via Paystack.</div>
+</div>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+Do you guarantee 100% wins?
+<div class="faq-answer">No betting is 100%. We focus on disciplined high-probability selections.</div>
+</div>
+
+</div>
+
+<a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp 24/7</a>
+
+<footer>
+<p><strong>Pro Tipsters Ltd.</strong></p>
+<p class="gambling">Gamble Responsibly • 18+ Only</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
 
 <script>
-    // Live counter
-    let viewers = 1428;
-    setInterval(() => {
-        viewers += Math.floor(Math.random()*4)+2;
-        document.getElementById('live-counter').textContent = viewers + " bettors online now";
-    }, 4800);
+let viewers=1428;
+setInterval(()=>{
+viewers+=Math.floor(Math.random()*4)+2;
+document.getElementById('live-counter').innerText=viewers+" bettors online now";
+},4000);
 
-    const params = new URLSearchParams(window.location.search);
-
-let plan = params.get("success");
-
-if (plan) {
-    plan = plan.split("?")[0]; // remove accidental extra part
+function toggleFaq(el){
+let answer=el.querySelector(".faq-answer");
+answer.style.display=answer.style.display==="block"?"none":"block";
 }
-
-// If Paystack only sends reference, default to 1day
-if (!plan && params.get("reference")) {
-    plan = "1day";
-}
-
-    if (plan) {
-
-        // 1️⃣ HIDE EVERYTHING
-        document.body.querySelectorAll("body > *").forEach(el => {
-            el.style.display = "none";
-        });
-
-        // 2️⃣ SHOW HEADER (visitor counter)
-        const header = document.querySelector(".header");
-        if (header) header.style.display = "flex";
-
-        // 3️⃣ SHOW PACKAGE SECTION
-        const packageSection = document.querySelector(".package-section");
-        if (packageSection) packageSection.style.display = "block";
-
-        // 4️⃣ HIDE ALL PACKAGES EXCEPT PAID ONE
-        document.querySelectorAll(".package-card").forEach(card => {
-            if (card.getAttribute("data-plan") !== plan) {
-                card.style.display = "none";
-            }
-        });
-
-        // 5️⃣ REMOVE BLUR
-        document.querySelectorAll(".blur").forEach(el => {
-            el.classList.remove("blur");
-        });
-
-        // 6️⃣ REMOVE UNLOCK BUTTONS
-        document.querySelectorAll('a[href*="pay"]').forEach(btn => {
-            btn.remove();
-        });
-
-        // 7️⃣ SUCCESS BANNER
-        const banner = document.createElement("div");
-        banner.className = "success-banner";
-        banner.innerHTML = `🎉 Payment Successful! Your ${plan.toUpperCase()} Ticket Is Ready.`;
-        document.body.insertBefore(banner, header.nextSibling);
-
-        // 8️⃣ COPY BUTTON
-        const activeCard = document.querySelector(`.package-card[data-plan="${plan}"]`);
-        if (activeCard) {
-            const teaser = activeCard.querySelector(".teaser");
-            const textToCopy = teaser.innerText;
-
-            const copyBtn = document.createElement("button");
-            copyBtn.textContent = "📋 Copy Full Ticket";
-            copyBtn.style.marginTop = "20px";
-            copyBtn.style.padding = "12px 25px";
-            copyBtn.style.borderRadius = "30px";
-            copyBtn.style.border = "none";
-            copyBtn.style.background = "#FFD700";
-            copyBtn.style.fontWeight = "700";
-            copyBtn.style.cursor = "pointer";
-
-            copyBtn.onclick = function() {
-                navigator.clipboard.writeText(textToCopy);
-                copyBtn.textContent = "✅ Ticket Copied!";
-            };
-
-            activeCard.appendChild(copyBtn);
-        }
-
-        // 9️⃣ BACK BUTTON
-        const backBtn = document.createElement("button");
-        backBtn.textContent = "← Back to Landing Page";
-        backBtn.style.margin = "30px auto";
-        backBtn.style.display = "block";
-        backBtn.style.padding = "12px 30px";
-        backBtn.style.borderRadius = "30px";
-        backBtn.style.border = "none";
-        backBtn.style.background = "#2ECC71";
-        backBtn.style.fontWeight = "700";
-        backBtn.style.cursor = "pointer";
-
-        backBtn.onclick = function() {
-            window.location.href = "/";
-        };
-
-        packageSection.appendChild(backBtn);
-    }
 </script>
+
 </body>
 </html>
