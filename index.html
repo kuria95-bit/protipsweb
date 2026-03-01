@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pro Tipsters • Elite Sports Predictions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Orbitron:wght@700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body { 
@@ -192,13 +192,13 @@
         .testimonial-grid { 
             display:grid; 
             grid-template-columns:1fr; 
-            gap:24px; 
+            gap:24px;
         }
         .testimonial-card { 
             background:#1f1f1f; 
             padding:24px; 
             border-radius:16px; 
-            border-left:6px solid #FFD700; 
+            border-left:6px solid #FFD700;
         }
 
         .how-it-works { 
@@ -262,6 +262,26 @@
             border-top:1px solid #222;
         }
         .gambling { color:#FF5555; font-weight:600; margin-top:16px; }
+
+        /* Teaser blur effect */
+        .teaser .blur {
+            filter: blur(5px);
+            user-select: none;
+        }
+        .teaser div {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .teaser .odds {
+            font-weight: 700;
+            color: #FFD700;
+        }
+        .teaser .total {
+            margin-top: 16px;
+            font-weight: 700;
+            font-size: 15.5px;
+            color: #2ECC71;
+        }
 
         @media (max-width: 600px) {
             .hero { padding:48px 15px 38px; }
@@ -442,43 +462,65 @@
         </div>
     </div>
 
-    <!-- PACKAGES -->
+    <!-- PACKAGES (UPDATED WITH BLURRED TEAMS) -->
     <div class="section package-section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
-        <div class="package-grid">
-            <div class="package-card" data-plan="1day">
-                <h3>1 Day – Ksh 49</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">3 premium matches daily</p>
+        <div class="package-grid" style="display:grid; grid-template-columns:1fr; gap:28px; max-width:800px; margin:0 auto;">
+            
+            <div class="package-card" data-plan="1day" style="background:#1f1f1f; padding:28px; border-radius:20px; border:1px solid #333; text-align:center;">
+                <h3 style="color:#FFD700; margin-bottom:8px;">1 Day – Ksh 49</h3>
+                <p style="color:#2ECC71;margin-bottom:16px;font-size:15px;">3 premium matches daily</p>
                 <div class="teaser">
-                    <div class="blur">Wolves vs Aston Villa</div><div>AWAY WIN</div><div class="odds">1.88</div>
-                    <div class="blur">Strasbourg vs Lens</div><div>AWAY WIN</div><div class="odds">3.11</div>
-                    <div class="total">Total Odds: 5.86</div>
+                    <div class="blur">Arsenal vs Chelsea</div>
+                    <div>Home Win</div>
+                    <div class="odds">1.98</div>
+
+                    <div class="blur">Brighton vs Nottingham Forest</div>
+                    <div>Over 2.5 Goals</div>
+                    <div class="odds">2.10</div>
+
+                    <div class="blur">Liverpool vs Everton</div>
+                    <div>Home Win & Over 1.5</div>
+                    <div class="odds">2.25</div>
+
+                    <div class="total">Total Odds: 9.35</div>
                 </div>
-                <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 49</a>
+                <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:16px 36px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;margin-top:20px;font-size:16px;">Unlock Now – Ksh 49</a>
             </div>
 
-            <div class="package-card" data-plan="vip">
-                <h3>VIP High Odds – Ksh 299</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">High-odds selections • 9+ combined odds</p>
+            <div class="package-card" data-plan="vip" style="background:#1f1f1f; padding:28px; border-radius:20px; border:1px solid #333; text-align:center;">
+                <h3 style="color:#FFD700; margin-bottom:8px;">VIP High Odds – Ksh 299</h3>
+                <p style="color:#2ECC71;margin-bottom:16px;font-size:15px;">High-odds selections • 9+ combined odds</p>
                 <div class="teaser">
-                    <div class="blur">Levante vs Alaves</div><div>High Odds Pick</div><div class="odds">7.50</div>
-                    <div class="blur">Augsburg vs Koln</div><div>Home Win</div><div class="odds">2.28</div>
-                    <div class="total">Total Odds: 17.1</div>
+                    <div class="blur">Manchester City vs Newcastle</div>
+                    <div>Correct Score 3-1</div>
+                    <div class="odds">8.00</div>
+
+                    <div class="blur">Real Madrid vs Atletico Madrid</div>
+                    <div>Both Teams to Score</div>
+                    <div class="odds">1.95</div>
+
+                    <div class="blur">Bayern Munich vs Dortmund</div>
+                    <div>Over 3.5 Goals</div>
+                    <div class="odds">2.60</div>
+
+                    <div class="total">Total Odds: 40.56</div>
                 </div>
-                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 299</a>
+                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:16px 36px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;margin-top:20px;font-size:16px;">Unlock Now – Ksh 299</a>
             </div>
 
-            <div class="package-card" data-plan="jackpot">
-                <h3>Mega Jackpot – Ksh 399</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
+            <div class="package-card" data-plan="jackpot" style="background:#1f1f1f; padding:28px; border-radius:20px; border:1px solid #333; text-align:center;">
+                <h3 style="color:#FFD700; margin-bottom:8px;">Mega Jackpot – Ksh 399</h3>
+                <p style="color:#2ECC71;margin-bottom:16px;font-size:15px;">Full 17-game slip</p>
                 <div class="teaser">
                     <div class="blur">17 Matches Ready</div>
                     <div style="font-size:14px;color:#aaa;">Sportpesa Mega Jackpot</div>
                     <div class="odds">400M+</div>
                     <div class="total">2 Bonuses This Month</div>
                 </div>
-                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 399</a>
+                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:16px 36px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;margin-top:20px;font-size:16px;">Unlock Now – Ksh 399</a>
             </div>
+
         </div>
     </div>
 
