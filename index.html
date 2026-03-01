@@ -18,7 +18,7 @@
         
         .header { 
             background:linear-gradient(135deg,#1A1A1A,#FFD700); 
-            padding:18px 20px; 
+            padding:16px 18px; 
             position:sticky; 
             top:0; 
             z-index:1000; 
@@ -29,104 +29,106 @@
         }
         .header-title { 
             font-family:'Orbitron',sans-serif; 
-            font-size:29px; 
-            letter-spacing:2px;
+            font-size:27px; 
+            letter-spacing:1.5px;
             color:#000; 
         }
         .live-counter { 
             background:#2ECC71; 
             color:#000; 
-            padding:7px 16px; 
+            padding:6px 14px; 
             border-radius:30px; 
             font-weight:700; 
-            font-size:13.5px; 
-            box-shadow:0 3px 12px rgba(46,204,113,0.4);
+            font-size:13px; 
         }
 
-        /* TRUST BAR */
         .trust-bar {
             background:#111;
-            padding:12px 20px;
+            padding:11px 18px;
             text-align:center;
-            font-size:14px;
+            font-size:13.5px;
             color:#aaa;
             border-bottom:1px solid #222;
         }
         .trust-bar span { color:#FFD700; font-weight:600; }
 
         .hero { 
-            padding:70px 20px 60px; 
+            padding:58px 18px 48px; 
             background:linear-gradient(135deg,#1e1e1e,#2a2a2a); 
             text-align:center; 
-            position:relative;
         }
         .hero h1 { 
-            font-size:32px; 
+            font-size:29px; 
             margin-bottom:14px; 
-            font-weight:700;
         }
         .hero p { 
-            font-size:16.5px; 
-            max-width:760px; 
-            margin:0 auto 28px; 
-            opacity:0.95;
+            font-size:15.5px; 
+            max-width:100%; 
+            margin:0 auto 24px; 
+            padding:0 10px;
+        }
+        .hero a { 
+            background:#FFD700; 
+            color:#000; 
+            padding:15px 32px; 
+            font-size:17px; 
+            border-radius:50px; 
+            text-decoration:none; 
+            font-weight:700; 
+            display:block; 
+            max-width:280px; 
+            margin:0 auto;
         }
 
-        .about { background:#111; padding:50px 20px; text-align:center; }
         .performance { 
             background:#1f1f1f; 
-            padding:20px 20px; 
+            padding:17px 18px; 
             text-align:center; 
-            font-size:15.5px; 
+            font-size:14.8px; 
             border-bottom:5px solid #2ECC71; 
         }
 
         .section { 
-            padding:55px 20px; 
-            max-width:1120px; 
+            padding:42px 18px; 
+            max-width:1100px; 
             margin:0 auto; 
         }
         .package-section { 
             background:#1a1a1a; 
             border:3px solid #FFD700; 
             border-radius:20px; 
-            margin:40px auto; 
-            padding:40px 25px; 
+            margin:32px auto; 
+            padding:35px 20px; 
         }
         .package-grid { 
             display:grid; 
             grid-template-columns:1fr; 
-            gap:28px; 
+            gap:24px; 
         }
 
         .package-card { 
             background:#1f1f1f; 
             border-radius:16px; 
-            padding:28px; 
+            padding:24px; 
             text-align:left; 
-            transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
             box-shadow:0 8px 25px rgba(0,0,0,0.5);
-        }
-        .package-card:hover { 
-            transform:translateY(-8px); 
-            box-shadow:0 20px 40px rgba(255,215,0,0.15);
         }
         .package-card h3 { 
             color:#FFD700; 
-            font-size:22px; 
+            font-size:21px; 
             margin-bottom:10px; 
         }
         .teaser { 
             background:#111; 
-            padding:20px; 
+            padding:18px; 
             border-radius:12px; 
-            margin:20px 0; 
+            margin:18px 0; 
         }
         .teaser .blur { filter:blur(5px); }
         .odds { 
             background:#FFD700; 
             color:#000; 
-            padding:6px 16px; 
+            padding:6px 14px; 
             border-radius:30px; 
             font-weight:700; 
             float:right; 
@@ -134,96 +136,90 @@
         .total { 
             color:#2ECC71; 
             font-weight:700; 
-            margin-top:16px; 
-            font-size:17px; 
+            margin-top:14px; 
+            font-size:16.5px; 
         }
 
-        /* PREMIUM TABLES */
+        /* RESPONSIVE TABLES - NO HORIZONTAL SCROLL */
+        .table-wrapper {
+            width:100%;
+            overflow-x:auto;
+            -webkit-overflow-scrolling:touch;
+            margin:24px auto;
+        }
         table { 
             width:100%; 
-            max-width:960px; 
-            margin:30px auto; 
+            min-width:100%; 
             border-collapse:collapse; 
             background:#1a1a1a; 
-            border-radius:16px; 
+            border-radius:14px; 
             overflow:hidden; 
-            box-shadow:0 10px 30px rgba(0,0,0,0.5); 
+            box-shadow:0 8px 25px rgba(0,0,0,0.5); 
         }
         th, td { 
-            padding:17px 14px; 
+            padding:12px 6px; 
             text-align:center; 
             border-bottom:1px solid #2a2a2a; 
+            font-size:13px;
+            white-space:nowrap;
         }
         th { 
             background:#222; 
             color:#FFD700; 
             font-weight:700; 
-            font-size:15px; 
-            letter-spacing:0.5px;
         }
-        tbody tr { transition:all 0.3s; }
-        tbody tr:hover { background:#252525; }
         tbody tr:nth-child(even) { background:#1e1e1e; }
         .win { color:#2ECC71; font-weight:700; }
-        tfoot td { background:#222; padding:18px 14px; font-size:15.5px; }
+        tfoot td { background:#222; padding:15px 6px; }
 
         .success-banner { 
             background:linear-gradient(135deg,#2ECC71,#27AE60); 
             color:#000; 
-            padding:20px 25px; 
-            font-size:20px; 
+            padding:19px 20px; 
+            font-size:19px; 
             position:sticky; 
             top:0; 
             z-index:2000; 
-            display:flex; 
-            justify-content:space-between; 
-            align-items:center; 
-            box-shadow:0 4px 15px rgba(0,0,0,0.6);
         }
 
         .whatsapp-float { 
             position:fixed; 
-            bottom:25px; 
-            right:25px; 
+            bottom:22px; 
+            right:22px; 
             background:#25D366; 
             color:white; 
-            padding:17px 24px; 
+            padding:15px 22px; 
             border-radius:50px; 
             font-weight:700; 
             box-shadow:0 8px 25px rgba(37,211,102,0.5); 
             z-index:999; 
             text-decoration:none; 
-            transition:all 0.3s;
         }
-        .whatsapp-float:hover { transform:scale(1.08); }
 
         .testimonial-grid { 
             display:grid; 
             grid-template-columns:1fr; 
-            gap:28px; 
-            max-width:960px; 
-            margin:0 auto; 
+            gap:24px; 
         }
         .testimonial-card { 
             background:#1f1f1f; 
-            padding:28px; 
+            padding:24px; 
             border-radius:16px; 
             border-left:6px solid #FFD700; 
-            box-shadow:0 8px 25px rgba(0,0,0,0.4);
         }
 
         .how-it-works { 
             background:#1a1a1a; 
-            padding:45px 35px; 
+            padding:38px 25px; 
             border-radius:20px; 
         }
         .how-it-works ol { counter-reset: step; padding-left:0; }
         .how-it-works li { 
             list-style:none; 
             position:relative; 
-            padding-left:62px; 
-            margin-bottom:32px; 
-            font-size:16px; 
+            padding-left:52px; 
+            margin-bottom:28px; 
+            font-size:15px; 
         }
         .how-it-works li:before { 
             content:counter(step); 
@@ -231,60 +227,54 @@
             position:absolute; 
             left:0; 
             top:0; 
-            background:linear-gradient(#FFD700,#FFA500); 
+            background:#FFD700; 
             color:#000; 
-            width:42px; 
-            height:42px; 
+            width:38px; 
+            height:38px; 
             border-radius:50%; 
             display:flex; 
             align-items:center; 
             justify-content:center; 
             font-weight:700; 
-            font-size:20px; 
-            box-shadow:0 4px 15px rgba(255,215,0,0.4);
+            font-size:19px; 
         }
 
         .aviator-section { 
             background:linear-gradient(135deg,#111,#1f1f1f); 
             border:3px solid #00BFFF; 
             border-radius:20px; 
-            padding:45px 25px; 
-            margin:40px auto; 
+            padding:38px 20px; 
+            margin:32px auto; 
             text-align:center; 
         }
-        .aviator-icon { font-size:68px; margin-bottom:15px; }
+        .aviator-icon { font-size:62px; margin-bottom:12px; }
 
         footer { 
             background:#0a0a0a; 
-            padding:45px 20px 30px; 
-            font-size:13.5px; 
+            padding:40px 18px 28px; 
+            font-size:13px; 
             color:#777; 
             text-align:center; 
             border-top:1px solid #222;
         }
-        .gambling { 
-            color:#FF5555; 
-            font-weight:600; 
-            margin-top:18px; 
-        }
+        .gambling { color:#FF5555; font-weight:600; margin-top:16px; }
 
-        /* BUTTON HOVER EFFECTS */
-        a[style*="background"], button {
-            transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
-        a[style*="background"]:hover, button:hover {
-            transform:scale(1.04);
-        }
-
-        /* MOBILE OPTIMIZATIONS */
+        /* MOBILE FIXES - TIGHT & FITS PERFECTLY */
         @media (max-width: 600px) {
-            .hero { padding:55px 18px 45px; }
-            .hero h1 { font-size:26px; }
-            .section { padding:45px 18px; }
-            .header-title { font-size:25px; }
-            table { font-size:13.8px; }
-            th, td { padding:14px 8px; }
-            .package-card { padding:22px; }
+            .hero { padding:48px 15px 38px; }
+            .hero h1 { font-size:25px; }
+            .hero p { font-size:14.8px; }
+            .hero a { padding:14px 24px; font-size:15.5px; max-width:100%; }
+            
+            .section { padding:36px 15px; }
+            
+            table { font-size:12.2px; }
+            th, td { padding:10px 4px; }
+            
+            .table-wrapper { margin:20px -4px; }
+            
+            .package-card { padding:20px; }
+            .performance { font-size:14px; padding:15px 15px; }
         }
     </style>
 </head>
@@ -298,146 +288,145 @@
 
     <!-- TRUST BAR -->
     <div class="trust-bar">
-        Trusted by <span>15,000+</span> Bettors • 93.7% Verified Accuracy • Instant M-Pesa • 24/7 Support
+        Trusted by <span>15,000+</span> Bettors • 93.7% Verified Accuracy • Instant Ticket After Payment • 24/7 Support
     </div>
 
     <!-- HERO -->
     <div class="hero">
         <h1>Pro Tipsters</h1>
-        <p>Elite AI-powered sports predictions. Consistent high-accuracy tips trusted across 15 African countries. Turn knowledge into profit with the sharpest betting intelligence in the game.</p>
-        <a href="https://wa.me/254100494094" style="background:#FFD700;color:#000;padding:17px 42px;font-size:18px;border-radius:50px;text-decoration:none;font-weight:700;">Get Premium Tips on WhatsApp</a>
-    </div>
-
-    <!-- ABOUT -->
-    <div class="about">
-        <h2 style="color:#FFD700;margin-bottom:18px;">About Pro Tipsters</h2>
-        <p style="max-width:760px;margin:0 auto;font-size:16px;">Founded in 2023, we fuse advanced AI models with 12+ years of elite analyst expertise. Operating across 15 African countries with instant payments and a documented 93.7% win rate. Thousands have already transformed their betting into serious profits.</p>
+        <p>Elite AI-powered sports predictions. Consistent high-accuracy tips trusted across 15 African countries. Turn knowledge into profit.</p>
+        <a href="https://wa.me/254100494094">Get Premium Tips on WhatsApp</a>
     </div>
 
     <!-- PERFORMANCE -->
     <div class="performance">
-        THIS MONTH: 312 Tips Shared • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Total Profit • 2 Mega Jackpot Bonuses Won
+        THIS MONTH: 312 Tips • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Profit • 2 Jackpot Bonuses
     </div>
 
     <!-- YESTERDAY'S TICKET -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:18px;">Yesterday's Ticket • 26.02.2026</h2>
-        <p style="text-align:center;max-width:720px;margin:0 auto 25px;">Premium Daily Ticket. All 3 selections landed successfully.</p>
-        <table>
-            <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Bologna vs Bran</td><td>Home win</td><td>1.90</td><td>1-0</td><td class="win">WIN</td></tr>
-                <tr><td>Stuttgart vs Celtic</td><td>Under 2.5 Goals</td><td>2.10</td><td>0-1</td><td class="win">WIN</td></tr>
-                <tr><td>Celta Vigo vs Paok</td><td>Home Win</td><td>2.23</td><td>1-0</td><td class="win">WIN</td></tr>
-            </tbody>
-        </table>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 26.02.2026</h2>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">All 3 matches landed perfectly.</p>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Match</th><th>Pred</th><th>Odds</th><th>W/L</th></tr></thead>
+                <tbody>
+                    <tr><td>BOL vs BRN</td><td>Home Win</td><td>1.90</td><td class="win">WIN</td></tr>
+                    <tr><td>STU vs CEL</td><td>U 2.5</td><td>2.10</td><td class="win">WIN</td></tr>
+                    <tr><td>CEL vs PAO</td><td>Home Win</td><td>2.23</td><td class="win">WIN</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- VIP PERFORMANCE -->
     <div class="section" style="background:#1a1a1a;">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:18px;">VIP High Odds • 26.02.2026</h2>
-        <p style="text-align:center;max-width:720px;margin:0 auto 25px;">16 out of 18 Correct Score tips landed this month. Elite high-odds selections.</p>
-        <table>
-            <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>W/L</th></tr></thead>
-            <tbody>
-                <tr><td>Remo vs Internacional</td><td>Correct Score 1-1</td><td>6.80</td><td>1-1</td><td class="win">WIN</td></tr>
-                <tr><td>Madureira vs ABC</td><td>Correct Score 1-0</td><td>3.20</td><td>1-0</td><td class="win">WIN</td></tr>
-            </tbody>
-            <tfoot><tr><td colspan="2" style="text-align:right;">Total Odds:</td><td colspan="3" style="color:#2ECC71;font-weight:700;">21.76</td></tr></tfoot>
-        </table>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">VIP High Odds • 26.02.2026</h2>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">16/18 Correct Score tips won this month.</p>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Match</th><th>Pred</th><th>Odds</th><th>W/L</th></tr></thead>
+                <tbody>
+                    <tr><td>REM vs INT</td><td>CS 1-1</td><td>6.80</td><td class="win">WIN</td></tr>
+                    <tr><td>MAD vs ABC</td><td>CS 1-0</td><td>3.20</td><td class="win">WIN</td></tr>
+                </tbody>
+                <tfoot><tr><td colspan="2" style="text-align:right;">Total Odds</td><td colspan="2" style="color:#2ECC71;font-weight:700;">21.76</td></tr></tfoot>
+            </table>
+        </div>
     </div>
 
     <!-- JACKPOT & WEEKLY -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:18px;">Mega Jackpot & February Weekly Performance</h2>
-        <p style="text-align:center;max-width:720px;margin:0 auto 25px;">17 games • 13 correct • Ksh 1.2M bonus paid out • 2 bonuses this month</p>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Mega Jackpot & Feb Weekly</h2>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">17 games • 13 correct • Ksh 1.2M bonus • 2 bonuses won</p>
         
-        <table>
-            <thead>
-                <tr>
-                    <th>Week</th><th>Dates</th><th>Tickets</th><th>Won</th><th>Lost</th><th>Accuracy</th><th>Total Odds</th><th>Profit (Ksh)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Week 1</td><td>1–7 Feb</td><td>15</td><td>11</td><td>4</td><td style="color:#2ECC71;">73%</td><td>198</td><td style="color:#2ECC71;font-weight:700;">98,500</td></tr>
-                <tr><td>Week 2</td><td>8–14 Feb</td><td>18</td><td>16</td><td>2</td><td style="color:#2ECC71;">89%</td><td>265</td><td style="color:#2ECC71;font-weight:700;">152,300</td></tr>
-                <tr><td>Week 3</td><td>15–21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;font-weight:700;">91,200</td></tr>
-                <tr><td>Week 4</td><td>22–28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;font-weight:700;">119,800</td></tr>
-            </tbody>
-            <tfoot>
-                <tr style="background:#222;">
-                    <td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL PROFIT</td>
-                    <td style="color:#2ECC71;">Ksh 461,800</td>
-                </tr>
-            </tfoot>
-        </table>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>1-7 Feb</td><td>15</td><td>11</td><td>4</td><td style="color:#2ECC71;">73%</td><td>198</td><td style="color:#2ECC71;">98.5K</td></tr>
+                    <tr><td>2</td><td>8-14 Feb</td><td>18</td><td>16</td><td>2</td><td style="color:#2ECC71;">89%</td><td>265</td><td style="color:#2ECC71;">152.3K</td></tr>
+                    <tr><td>3</td><td>15-21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;">91.2K</td></tr>
+                    <tr><td>4</td><td>22-28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;">119.8K</td></tr>
+                </tbody>
+                <tfoot>
+                    <tr style="background:#222;">
+                        <td colspan="7" style="text-align:right;color:#FFD700;">FEB TOTAL PROFIT</td>
+                        <td style="color:#2ECC71;">461.8K</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 
     <!-- PACKAGES -->
     <div class="section package-section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:35px;">Choose Your Winning Package</h2>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
         <div class="package-grid">
-            <!-- 1 Day -->
             <div class="package-card" data-plan="1day">
-                <h3>1 Day Subscription – Ksh 49</h3>
-                <p style="color:#2ECC71;margin-bottom:14px;">Daily premium tips • 3 high-confidence matches</p>
+                <h3>1 Day – Ksh 49</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">3 premium matches daily</p>
                 <div class="teaser">
                     <div class="blur">Wolves vs Aston Villa</div><div>AWAY WIN</div><div class="odds">1.88</div>
                     <div class="blur">Strasbourg vs Lens</div><div>AWAY WIN</div><div class="odds">3.11</div>
                     <div class="total">Total Odds: 5.86</div>
                 </div>
-                <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:15px 32px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:18px;">Unlock Now – Ksh 49</a>
+                <a href="https://paystack.shop/pay/1day" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 49</a>
             </div>
 
-            <!-- VIP -->
             <div class="package-card" data-plan="vip">
                 <h3>VIP High Odds – Ksh 399</h3>
-                <p style="color:#2ECC71;margin-bottom:14px;">Correct Score & premium high-odds • 9+ combined odds</p>
+                <p style="color:#2ECC71;margin-bottom:12px;">Correct Score & 9+ odds</p>
                 <div class="teaser">
-                    <div class="blur">Levante vs Alaves</div><div>Correct Score 0-1</div><div class="odds">7.50</div>
-                    <div class="blur">Augsburg vs Koln</div><div>Home win</div><div class="odds">2.28</div>
+                    <div class="blur">Levante vs Alaves</div><div>CS 0-1</div><div class="odds">7.50</div>
+                    <div class="blur">Augsburg vs Koln</div><div>Home</div><div class="odds">2.28</div>
                     <div class="total">Total Odds: 17.1</div>
                 </div>
-                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:15px 32px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:18px;">Unlock Now – Ksh 399</a>
+                <a href="https://paystack.shop/pay/ey89odk4v6" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 399</a>
             </div>
 
-            <!-- Jackpot -->
             <div class="package-card" data-plan="jackpot">
-                <h3>Mega Jackpot Weekly – Ksh 299</h3>
-                <p style="color:#2ECC71;margin-bottom:14px;">Full 17-game Sportpesa slip • Targeting massive bonus</p>
+                <h3>Mega Jackpot – Ksh 299</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
                 <div class="teaser">
                     <div class="blur">17 Matches Ready</div>
-                    <div style="font-size:15px;color:#aaa;">Complete Sportpesa Mega Jackpot Slip</div>
+                    <div style="font-size:14px;color:#aaa;">Sportpesa Mega Jackpot</div>
                     <div class="odds">400M+</div>
-                    <div class="total">2 Bonuses Won This Month</div>
+                    <div class="total">2 Bonuses This Month</div>
                 </div>
-                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:15px 32px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;margin-top:18px;">Unlock Now – Ksh 299</a>
+                <a href="https://paystack.shop/pay/jackpot" style="background:#2ECC71;color:#000;padding:14px 30px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;">Unlock Now – Ksh 299</a>
             </div>
         </div>
     </div>
 
     <!-- TESTIMONIALS -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Real Wins From Real Members</h2>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Real Members Winning</h2>
         <div class="testimonial-grid">
-            <div class="testimonial-card"><p>“VIP package paid for itself in the first week. Made Ksh 285,000 in 18 days. These guys are the real deal.”</p><strong>— David O., Nairobi</strong></div>
-            <div class="testimonial-card"><p>“Started with daily tickets, now on jackpot. Already cashed out over Ksh 420,000. Best investment I’ve ever made.”</p><strong>— Mercy K., Mombasa</strong></div>
-            <div class="testimonial-card"><p>“The weekly results tables convinced me instantly. 8x my money back in 3 weeks. Professional service from day one.”</p><strong>— Kevin M., Kisumu</strong></div>
+            <div class="testimonial-card"><p>“VIP paid for itself in one week. Ksh 285,000 in 18 days!”</p><strong>— David O., Nairobi</strong></div>
+            <div class="testimonial-card"><p>“From Ksh 49 daily to jackpot. Already cashed Ksh 420,000.”</p><strong>— Mercy K., Mombasa</strong></div>
+            <div class="testimonial-card"><p>“Tables convinced me. Got 8x my money in 3 weeks.”</p><strong>— Kevin M., Kisumu</strong></div>
         </div>
     </div>
 
     <!-- HOW IT WORKS -->
     <div class="section">
         <div class="how-it-works">
-            <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">How It Works</h2>
+            <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">How It Works</h2>
             <ol>
-                <li>Choose your package and complete instant Paystack payment (M-Pesa, card, or bank).</li>
-                <li>You are instantly redirected to your private ticket with all predictions revealed — no delay.</li>
-                <li>Place your bets and collect. Our AI + expert team works 24/7 to deliver wins.</li>
+                <li>Pay instantly via Paystack (M-Pesa or card).</li>
+                <li>Instant redirect — your ticket appears immediately.</li>
+                <li>Place bets and collect. AI + experts deliver daily.</li>
             </ol>
-            <p style="text-align:center;margin-top:30px;font-size:15.5px;">
-                Any payment issue or delay? Our dedicated 24/7 client care is here.<br>
-                <a href="https://wa.me/254100494094" style="color:#2ECC71;text-decoration:underline;font-weight:600;">WhatsApp +254 100 494094</a>
+            <p style="text-align:center;margin-top:25px;font-size:14.5px;">
+                Any issue? 24/7 care ready.<br>
+                <a href="https://wa.me/254100494094" style="color:#2ECC71;">WhatsApp +254 100 494094</a>
             </p>
         </div>
     </div>
@@ -445,20 +434,20 @@
     <!-- AVIATOR -->
     <div class="section aviator-section">
         <div class="aviator-icon">✈️</div>
-        <h2 style="color:#00BFFF;margin-bottom:12px;">Aviator Account Management</h2>
-        <p style="max-width:620px;margin:0 auto 22px;font-size:15.8px;">
-            Deposit Ksh 700 • Pay Ksh 150 management fee • Our AI Signal Bot delivers <strong>Ksh 1,500+ guaranteed profit</strong> in hours.
+        <h2 style="color:#00BFFF;margin-bottom:10px;">Aviator Management</h2>
+        <p style="max-width:100%;margin:0 auto 18px;font-size:14.8px;">
+            Deposit Ksh 700 • Pay Ksh 150 fee • AI Bot gives Ksh 1,500+ profit fast.
         </p>
-        <a href="https://wa.me/254100494094" style="background:#00BFFF;color:#000;padding:15px 38px;border-radius:50px;display:inline-block;text-align:center;text-decoration:none;font-weight:700;">Get Managed Aviator Account • +254 100 494094</a>
+        <a href="https://wa.me/254100494094" style="background:#00BFFF;color:#000;padding:14px 34px;border-radius:50px;display:inline-block;text-align:center;text-decoration:none;font-weight:700;">Get Managed Aviator • +254 100 494094</a>
     </div>
 
     <a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp Us</a>
 
     <!-- FOOTER -->
     <footer>
-        <p><strong>Pro Tipsters Ltd.</strong> • Licensed & Operating in 15 African Countries</p>
-        <p class="gambling">Gamble Responsibly • Play Responsibly • Betting is for 18+ Only</p>
-        <p style="margin-top:20px;font-size:12.5px;">© 2026 Pro Tipsters. All rights reserved.</p>
+        <p><strong>Pro Tipsters Ltd.</strong> • 15 African Countries</p>
+        <p class="gambling">Gamble Responsibly • 18+ Only</p>
+        <p style="margin-top:18px;font-size:12px;">© 2026 Pro Tipsters</p>
     </footer>
 
 <script>
@@ -502,18 +491,18 @@
             const textToCopy = teaser.innerText;
             const copyBtn = document.createElement("button");
             copyBtn.textContent = "📋 Copy Full Ticket";
-            copyBtn.style.cssText = "margin-top:22px;padding:13px 28px;border-radius:50px;border:none;background:#FFD700;color:#000;font-weight:700;cursor:pointer;width:100%;";
+            copyBtn.style.cssText = "margin-top:18px;padding:13px 28px;border-radius:50px;border:none;background:#FFD700;color:#000;font-weight:700;cursor:pointer;width:100%;";
             copyBtn.onclick = function() {
                 navigator.clipboard.writeText(textToCopy);
-                copyBtn.textContent = "✅ Ticket Copied to Clipboard!";
-                setTimeout(() => copyBtn.textContent = "📋 Copy Full Ticket", 2500);
+                copyBtn.textContent = "✅ Copied!";
+                setTimeout(() => copyBtn.textContent = "📋 Copy Full Ticket", 2000);
             };
             activeCard.appendChild(copyBtn);
         }
 
         const backBtn = document.createElement("button");
         backBtn.textContent = "← Back to Homepage";
-        backBtn.style.cssText = "margin:35px auto 10px;display:block;padding:13px 32px;border-radius:50px;border:none;background:#2ECC71;color:#000;font-weight:700;cursor:pointer;";
+        backBtn.style.cssText = "margin:30px auto;display:block;padding:13px 30px;border-radius:50px;border:none;background:#2ECC71;color:#000;font-weight:700;cursor:pointer;";
         backBtn.onclick = () => window.location.href = "/";
         packageSection.appendChild(backBtn);
     }
