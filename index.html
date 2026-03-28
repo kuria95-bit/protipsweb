@@ -4,14 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pro Tipsters • Elite Sports Predictions</title>
-    
-    <!-- PWA Support -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#FFD700">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -65,18 +57,8 @@
             background:linear-gradient(135deg,#1e1e1e,#2a2a2a); 
             text-align:center; 
         }
-        .hero h1 { 
-            font-size:26px; 
-            margin-bottom:12px; 
-            line-height:1.2; 
-        }
-        .hero p { 
-            font-size:15px; 
-            max-width:100%; 
-            margin:0 auto 22px; 
-            padding:0 8px; 
-            color:#ddd; 
-        }
+        .hero h1 { font-size:26px; margin-bottom:12px; line-height:1.2; }
+        .hero p { font-size:15px; max-width:100%; margin:0 auto 22px; padding:0 8px; color:#ddd; }
         .hero a { 
             background:#FFD700; 
             color:#000; 
@@ -109,14 +91,14 @@
         .month-tabs { 
             display:flex; 
             justify-content:center; 
-            gap:6px; 
+            gap:8px; 
             margin-bottom:20px; 
             flex-wrap:wrap; 
         }
         .month-tab { 
             background:#222; 
             color:#aaa; 
-            padding:9px 16px; 
+            padding:10px 18px; 
             border-radius:50px; 
             border:none; 
             font-weight:600; 
@@ -138,7 +120,6 @@
         }
         table { 
             width:100%; 
-            min-width:100%; 
             border-collapse:collapse; 
             background:#1a1a1a; 
             border-radius:12px; 
@@ -146,39 +127,15 @@
             box-shadow:0 6px 20px rgba(0,0,0,0.5); 
         }
         th, td { 
-            padding:9px 5px; 
+            padding:10px 6px; 
             text-align:center; 
             border-bottom:1px solid #2a2a2a; 
             font-size:12.5px; 
-            white-space:nowrap; 
         }
-        th { 
-            background:#222; 
-            color:#FFD700; 
-            font-weight:700; 
-        }
+        th { background:#222; color:#FFD700; font-weight:700; }
         tbody tr:nth-child(even) { background:#1e1e1e; }
         .win { color:#2ECC71; font-weight:700; }
-        tfoot td { 
-            background:#222; 
-            padding:12px 5px; 
-            font-weight:700; 
-        }
-
-        .benefits { 
-            display:grid; 
-            grid-template-columns:1fr; 
-            gap:16px; 
-            margin:25px 0; 
-        }
-        .benefit-card { 
-            background:#1f1f1f; 
-            padding:16px; 
-            border-radius:14px; 
-            text-align:center; 
-            border-left:5px solid #FFD700; 
-            font-size:14.5px; 
-        }
+        tfoot td { background:#222; padding:12px 6px; font-weight:700; }
 
         .package-section { 
             background:#1a1a1a; 
@@ -195,34 +152,11 @@
             text-align:left; 
             box-shadow:0 8px 25px rgba(0,0,0,0.5); 
         }
-        .package-card h3 { 
-            color:#FFD700; 
-            font-size:20px; 
-            margin-bottom:8px; 
-        }
-        .teaser { 
-            background:#111; 
-            padding:16px; 
-            border-radius:12px; 
-            margin:16px 0; 
-            font-size:14px; 
-        }
+        .package-card h3 { color:#FFD700; font-size:20px; margin-bottom:8px; }
+        .teaser { background:#111; padding:16px; border-radius:12px; margin:16px 0; font-size:14px; }
         .teaser .blur { filter:blur(5px); }
-        .odds { 
-            background:#FFD700; 
-            color:#000; 
-            padding:5px 12px; 
-            border-radius:30px; 
-            font-weight:700; 
-            float:right; 
-            font-size:13px; 
-        }
-        .total { 
-            color:#2ECC71; 
-            font-weight:700; 
-            margin-top:12px; 
-            font-size:15.5px; 
-        }
+        .odds { background:#FFD700; color:#000; padding:5px 12px; border-radius:30px; font-weight:700; float:right; font-size:13px; }
+        .total { color:#2ECC71; font-weight:700; margin-top:12px; font-size:15.5px; }
 
         .whatsapp-button {
             background:#25D366 !important;
@@ -236,6 +170,14 @@
             font-size:15.5px;
             margin-top:18px;
             box-shadow:0 4px 15px rgba(37,211,102,0.4);
+        }
+
+        .confirmation-section {
+            background:#1a1a1a;
+            border-radius:20px;
+            padding:30px 15px;
+            margin:30px auto;
+            border:2px solid #FFD700;
         }
 
         .success-banner { 
@@ -259,7 +201,6 @@
             box-shadow:0 8px 25px rgba(37,211,102,0.5); 
             z-index:999; 
             text-decoration:none; 
-            font-size:15px; 
         }
 
         .testimonial-grid { display:grid; grid-template-columns:1fr; gap:20px; }
@@ -268,20 +209,10 @@
             padding:20px; 
             border-radius:16px; 
             border-left:6px solid #FFD700; 
-            font-size:14.5px; 
         }
 
-        .education-grid, .community-links { 
-            display:grid; 
-            grid-template-columns:1fr; 
-            gap:20px; 
-        }
-        .education-card { 
-            background:#1f1f1f; 
-            padding:20px; 
-            border-radius:16px; 
-            border-left:5px solid #FFD700; 
-        }
+        .education-grid, .community-links { display:grid; grid-template-columns:1fr; gap:20px; }
+        .education-card { background:#1f1f1f; padding:20px; border-radius:16px; border-left:5px solid #FFD700; }
         .community-links a { 
             background:#2ECC71; 
             color:#000; 
@@ -290,7 +221,6 @@
             text-decoration:none; 
             font-weight:700; 
             text-align:center; 
-            font-size:15px; 
         }
 
         footer { 
@@ -308,7 +238,6 @@
             .hero p { font-size:14.5px; }
             th, td { font-size:12px; padding:8px 4px; }
             .package-card { padding:20px; }
-            .whatsapp-button { padding:14px 28px; font-size:15px; }
         }
     </style>
 </head>
@@ -328,7 +257,7 @@
     <!-- HERO -->
     <div class="hero">
         <h1>Win Daily with Pro Tipsters</h1>
-        <p>93.7% Accurate AI-powered predictions • Over Ksh 28 Million paid out to members • Get today's winning ticket in under 2 minutes</p>
+        <p>93.7% Accurate AI-powered predictions • Over Ksh 28 Million paid out • Get today's winning ticket fast</p>
         <a href="https://wa.me/254100494094">Get Premium Tips on WhatsApp</a>
     </div>
 
@@ -339,7 +268,7 @@
 
     <!-- YESTERDAY'S TICKET -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 25.03.2026</h2>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 27.03.2026</h2>
         <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">All 3 matches landed perfectly.</p>
         <div class="table-wrapper">
             <table>
@@ -362,7 +291,7 @@
     <!-- YESTERDAY VIP -->
     <div class="section" style="background:#1a1a1a;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's VIP Performance</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day. 16/18 high-odds tips landed this month.</p>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day.</p>
         <div class="table-wrapper">
             <table>
                 <thead><tr><th>Match</th><th>Pred</th><th>Odds</th><th>W/L</th></tr></thead>
@@ -375,29 +304,17 @@
         </div>
     </div>
 
-    <!-- WHY CHOOSE US -->
-    <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Why Choose Pro Tipsters?</h2>
-        <div style="display:grid; grid-template-columns:1fr; gap:16px; max-width:900px; margin:0 auto;">
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ 93.7% Verified Accuracy</div>
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Instant Ticket Delivery After Payment</div>
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Till Number 6012928 (Safe & Fast)</div>
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ 24/7 WhatsApp Support</div>
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Real Members Winning Big Daily</div>
-        </div>
-    </div>
-
-    <!-- MONTHLY PERFORMANCE -->
+    <!-- MONTHLY PERFORMANCE - CLEAN & MOBILE FRIENDLY (Only March shows by default) -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
         <div class="month-tabs">
             <button onclick="showMonth(0)" class="month-tab" id="tab-0">January 2026</button>
-            <button onclick="showMonth(1)" class="month-tab active" id="tab-1">February 2026</button>
-            <button onclick="showMonth(2)" class="month-tab" id="tab-2">March 2026 (This Month)</button>
+            <button onclick="showMonth(1)" class="month-tab" id="tab-1">February 2026</button>
+            <button onclick="showMonth(2)" class="month-tab active" id="tab-2">March 2026</button>
         </div>
 
-        <!-- JANUARY -->
+        <!-- JANUARY (hidden by default) -->
         <div id="content-0" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -408,13 +325,13 @@
                         <tr><td>3</td><td>15-21 Jan</td><td>15</td><td>12</td><td>3</td><td style="color:#2ECC71;">80%</td><td>192</td><td style="color:#2ECC71;">85.1K</td></tr>
                         <tr><td>4</td><td>22-31 Jan</td><td>13</td><td>11</td><td>2</td><td style="color:#2ECC71;">85%</td><td>178</td><td style="color:#2ECC71;">72.6K</td></tr>
                     </tbody>
-                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">JANUARY TOTAL PROFIT</td><td style="color:#2ECC71;">Ksh 328,400</td></tr></tfoot>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">JANUARY TOTAL</td><td style="color:#2ECC71;">Ksh 328,400</td></tr></tfoot>
                 </table>
             </div>
         </div>
 
-        <!-- FEBRUARY -->
-        <div id="content-1" class="month-content active">
+        <!-- FEBRUARY (hidden by default) -->
+        <div id="content-1" class="month-content">
             <div class="table-wrapper">
                 <table>
                     <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
@@ -424,13 +341,13 @@
                         <tr><td>3</td><td>15-21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;">91.2K</td></tr>
                         <tr><td>4</td><td>22-28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;">119.8K</td></tr>
                     </tbody>
-                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL PROFIT</td><td style="color:#2ECC71;">Ksh 461,800</td></tr></tfoot>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL</td><td style="color:#2ECC71;">Ksh 461,800</td></tr></tfoot>
                 </table>
             </div>
         </div>
 
-        <!-- MARCH -->
-        <div id="content-2" class="month-content">
+        <!-- MARCH - SHOWN BY DEFAULT -->
+        <div id="content-2" class="month-content active">
             <div class="table-wrapper">
                 <table>
                     <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
@@ -450,18 +367,15 @@
     </div>
 
     <!-- CONFIRMATION FLOW -->
-    <div class="section" style="background:#1a1a1a;border-radius:20px;padding:30px 15px;margin:30px auto;">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">How to Subscribe (Super Simple)</h2>
+    <div class="section confirmation-section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">How to Subscribe</h2>
         <ol style="padding-left:20px;line-height:1.8;font-size:15px;">
-            <li>Tap "Subscribe Now" button for your package</li>
-            <li>WhatsApp opens — send the message</li>
-            <li>Pay to **Till Number: 6012928** via M-Pesa</li>
-            <li>Send M-Pesa confirmation screenshot</li>
-            <li>We send your full ticket instantly</li>
+            <li>Tap "Subscribe Now" for your package</li>
+            <li>Send the message on WhatsApp</li>
+            <li>Pay to Till Number: <strong>6012928</strong></li>
+            <li>Send M-Pesa confirmation</li>
+            <li>We send your ticket instantly</li>
         </ol>
-        <p style="text-align:center;margin-top:20px;color:#2ECC71;font-weight:600;">
-            Till Number: <strong style="color:#FFD700;font-size:18px;">6012928</strong>
-        </p>
     </div>
 
     <!-- PACKAGES -->
@@ -565,27 +479,17 @@
     </footer>
 
 <script>
-    // Live counter
     let viewers = 1428;
     setInterval(() => {
         viewers += Math.floor(Math.random()*4)+2;
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
-    // Month tabs
     function showMonth(n) {
         document.querySelectorAll('.month-content').forEach(c => c.classList.remove('active'));
         document.getElementById('content-' + n).classList.add('active');
         document.querySelectorAll('.month-tab').forEach((t,i) => t.classList.toggle('active', i === n));
     }
-
-    // PWA Install Prompt
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        console.log('PWA install prompt ready');
-    });
 </script>
 </body>
 </html>
