@@ -4,85 +4,311 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pro Tipsters • Elite Sports Predictions</title>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFD700">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins',sans-serif; background:#0a0a0a; color:#eee; line-height:1.7; font-size:16px; overflow-x:hidden; }
+        body { 
+            font-family:'Poppins',sans-serif; 
+            background:#0a0a0a; 
+            color:#eee; 
+            line-height:1.6; 
+            font-size:16px; 
+            overflow-x:hidden; 
+        }
         
-        .header { background:linear-gradient(135deg,#1A1A1A,#FFD700); padding:16px 18px; position:sticky; top:0; z-index:1000; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 20px rgba(0,0,0,0.6); }
-        .header-title { font-family:'Orbitron',sans-serif; font-size:27px; letter-spacing:1.5px; color:#000; }
-        .live-counter { background:#2ECC71; color:#000; padding:6px 14px; border-radius:30px; font-weight:700; font-size:13px; }
+        .header { 
+            background:linear-gradient(135deg,#1A1A1A,#FFD700); 
+            padding:14px 15px; 
+            position:sticky; 
+            top:0; 
+            z-index:1000; 
+            display:flex; 
+            justify-content:space-between; 
+            align-items:center; 
+            box-shadow:0 4px 20px rgba(0,0,0,0.6);
+        }
+        .header-title { 
+            font-family:'Orbitron',sans-serif; 
+            font-size:24px; 
+            letter-spacing:1px; 
+            color:#000; 
+        }
+        .live-counter { 
+            background:#2ECC71; 
+            color:#000; 
+            padding:5px 12px; 
+            border-radius:30px; 
+            font-weight:700; 
+            font-size:12.5px; 
+        }
 
-        .trust-bar { background:#111; padding:11px 18px; text-align:center; font-size:13.5px; color:#aaa; border-bottom:1px solid #222; }
+        .trust-bar { 
+            background:#111; 
+            padding:10px 15px; 
+            text-align:center; 
+            font-size:13px; 
+            color:#aaa; 
+            border-bottom:1px solid #222; 
+        }
         .trust-bar span { color:#FFD700; font-weight:600; }
 
-        .hero { padding:70px 18px 50px; background:linear-gradient(135deg,#1e1e1e,#2a2a2a); text-align:center; }
-        .hero h1 { font-size:32px; margin-bottom:12px; line-height:1.2; }
-        .hero p { font-size:16px; max-width:100%; margin:0 auto 24px; padding:0 10px; color:#ddd; }
+        .hero { 
+            padding:55px 15px 40px; 
+            background:linear-gradient(135deg,#1e1e1e,#2a2a2a); 
+            text-align:center; 
+        }
+        .hero h1 { 
+            font-size:26px; 
+            margin-bottom:12px; 
+            line-height:1.2; 
+        }
+        .hero p { 
+            font-size:15px; 
+            max-width:100%; 
+            margin:0 auto 22px; 
+            padding:0 8px; 
+            color:#ddd; 
+        }
+        .hero a { 
+            background:#FFD700; 
+            color:#000; 
+            padding:14px 28px; 
+            font-size:16px; 
+            border-radius:50px; 
+            text-decoration:none; 
+            font-weight:700; 
+            display:block; 
+            max-width:260px; 
+            margin:0 auto; 
+        }
 
-        .performance { background:#1f1f1f; padding:17px 18px; text-align:center; font-size:14.8px; border-bottom:5px solid #2ECC71; }
+        .performance { 
+            background:#1f1f1f; 
+            padding:14px 15px; 
+            text-align:center; 
+            font-size:14px; 
+            border-bottom:5px solid #2ECC71; 
+        }
 
-        .section { padding:42px 18px; max-width:1100px; margin:0 auto; }
+        .section { padding:36px 15px; max-width:1100px; margin:0 auto; }
 
-        .monthly-overview { background:#1a1a1a; border-radius:20px; padding:35px 20px; margin:32px auto; }
-        .month-tabs { display:flex; justify-content:center; gap:8px; margin-bottom:25px; flex-wrap:wrap; }
-        .month-tab { background:#222; color:#aaa; padding:12px 24px; border-radius:50px; border:none; font-weight:600; cursor:pointer; transition:all 0.3s; font-size:14.5px; }
-        .month-tab.active { background:#FFD700; color:#000; transform:scale(1.05); }
-        .month-content { display:none; }
-        .month-content.active { display:block; animation:fadeIn 0.4s; }
-        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        .monthly-overview { 
+            background:#1a1a1a; 
+            border-radius:16px; 
+            padding:25px 15px; 
+            margin:25px auto; 
+        }
+        .month-tabs { 
+            display:flex; 
+            justify-content:center; 
+            gap:6px; 
+            margin-bottom:20px; 
+            flex-wrap:wrap; 
+        }
+        .month-tab { 
+            background:#222; 
+            color:#aaa; 
+            padding:9px 16px; 
+            border-radius:50px; 
+            border:none; 
+            font-weight:600; 
+            cursor:pointer; 
+            transition:all 0.3s; 
+            font-size:13.5px; 
+        }
+        .month-tab.active { 
+            background:#FFD700; 
+            color:#000; 
+            transform:scale(1.05); 
+        }
 
-        .table-wrapper { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; margin:24px auto; }
-        table { width:100%; min-width:100%; border-collapse:collapse; background:#1a1a1a; border-radius:14px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.5); }
-        th, td { padding:12px 6px; text-align:center; border-bottom:1px solid #2a2a2a; font-size:13px; white-space:nowrap; }
-        th { background:#222; color:#FFD700; font-weight:700; }
+        .table-wrapper { 
+            width:100%; 
+            overflow-x:auto; 
+            -webkit-overflow-scrolling:touch; 
+            margin:20px 0; 
+        }
+        table { 
+            width:100%; 
+            min-width:100%; 
+            border-collapse:collapse; 
+            background:#1a1a1a; 
+            border-radius:12px; 
+            overflow:hidden; 
+            box-shadow:0 6px 20px rgba(0,0,0,0.5); 
+        }
+        th, td { 
+            padding:9px 5px; 
+            text-align:center; 
+            border-bottom:1px solid #2a2a2a; 
+            font-size:12.5px; 
+            white-space:nowrap; 
+        }
+        th { 
+            background:#222; 
+            color:#FFD700; 
+            font-weight:700; 
+        }
         tbody tr:nth-child(even) { background:#1e1e1e; }
         .win { color:#2ECC71; font-weight:700; }
-        tfoot td { background:#222; padding:15px 6px; font-weight:700; }
+        tfoot td { 
+            background:#222; 
+            padding:12px 5px; 
+            font-weight:700; 
+        }
 
-        .package-section { background:#1a1a1a; border:3px solid #FFD700; border-radius:20px; margin:32px auto; padding:35px 20px; }
-        .package-grid { display:grid; grid-template-columns:1fr; gap:28px; }
-        .package-card { background:#1f1f1f; border-radius:16px; padding:24px; text-align:left; box-shadow:0 8px 25px rgba(0,0,0,0.5); }
-        .package-card h3 { color:#FFD700; font-size:21px; margin-bottom:10px; }
-        .teaser { background:#111; padding:18px; border-radius:12px; margin:18px 0; }
+        .benefits { 
+            display:grid; 
+            grid-template-columns:1fr; 
+            gap:16px; 
+            margin:25px 0; 
+        }
+        .benefit-card { 
+            background:#1f1f1f; 
+            padding:16px; 
+            border-radius:14px; 
+            text-align:center; 
+            border-left:5px solid #FFD700; 
+            font-size:14.5px; 
+        }
+
+        .package-section { 
+            background:#1a1a1a; 
+            border:3px solid #FFD700; 
+            border-radius:20px; 
+            margin:30px auto; 
+            padding:30px 15px; 
+        }
+        .package-grid { display:grid; grid-template-columns:1fr; gap:22px; }
+        .package-card { 
+            background:#1f1f1f; 
+            border-radius:16px; 
+            padding:22px; 
+            text-align:left; 
+            box-shadow:0 8px 25px rgba(0,0,0,0.5); 
+        }
+        .package-card h3 { 
+            color:#FFD700; 
+            font-size:20px; 
+            margin-bottom:8px; 
+        }
+        .teaser { 
+            background:#111; 
+            padding:16px; 
+            border-radius:12px; 
+            margin:16px 0; 
+            font-size:14px; 
+        }
         .teaser .blur { filter:blur(5px); }
-        .odds { background:#FFD700; color:#000; padding:6px 14px; border-radius:30px; font-weight:700; float:right; }
-        .total { color:#2ECC71; font-weight:700; margin-top:14px; font-size:16.5px; }
+        .odds { 
+            background:#FFD700; 
+            color:#000; 
+            padding:5px 12px; 
+            border-radius:30px; 
+            font-weight:700; 
+            float:right; 
+            font-size:13px; 
+        }
+        .total { 
+            color:#2ECC71; 
+            font-weight:700; 
+            margin-top:12px; 
+            font-size:15.5px; 
+        }
 
         .whatsapp-button {
             background:#25D366 !important;
             color:#000 !important;
-            padding:16px 36px;
+            padding:15px 32px;
             border-radius:50px;
             display:block;
             text-align:center;
             text-decoration:none;
             font-weight:700;
-            font-size:16.5px;
-            margin-top:20px;
+            font-size:15.5px;
+            margin-top:18px;
             box-shadow:0 4px 15px rgba(37,211,102,0.4);
         }
 
-        .success-banner { background:linear-gradient(135deg,#2ECC71,#27AE60); color:#000; padding:19px 20px; font-size:19px; position:sticky; top:0; z-index:2000; }
-        .whatsapp-float { position:fixed; bottom:22px; right:22px; background:#25D366; color:white; padding:15px 22px; border-radius:50px; font-weight:700; box-shadow:0 8px 25px rgba(37,211,102,0.5); z-index:999; text-decoration:none; }
+        .success-banner { 
+            background:linear-gradient(135deg,#2ECC71,#27AE60); 
+            color:#000; 
+            padding:18px 20px; 
+            font-size:18px; 
+            position:sticky; 
+            top:0; 
+            z-index:2000; 
+        }
+        .whatsapp-float { 
+            position:fixed; 
+            bottom:18px; 
+            right:18px; 
+            background:#25D366; 
+            color:white; 
+            padding:14px 20px; 
+            border-radius:50px; 
+            font-weight:700; 
+            box-shadow:0 8px 25px rgba(37,211,102,0.5); 
+            z-index:999; 
+            text-decoration:none; 
+            font-size:15px; 
+        }
 
-        .testimonial-grid { display:grid; grid-template-columns:1fr; gap:24px; }
-        .testimonial-card { background:#1f1f1f; padding:24px; border-radius:16px; border-left:6px solid #FFD700; }
+        .testimonial-grid { display:grid; grid-template-columns:1fr; gap:20px; }
+        .testimonial-card { 
+            background:#1f1f1f; 
+            padding:20px; 
+            border-radius:16px; 
+            border-left:6px solid #FFD700; 
+            font-size:14.5px; 
+        }
 
-        .education-grid, .community-links { display:grid; grid-template-columns:1fr; gap:24px; }
-        .education-card { background:#1f1f1f; padding:24px; border-radius:16px; border-left:5px solid #FFD700; }
-        .community-links a { background:#2ECC71; color:#000; padding:14px 32px; border-radius:50px; text-decoration:none; font-weight:700; text-align:center; }
+        .education-grid, .community-links { 
+            display:grid; 
+            grid-template-columns:1fr; 
+            gap:20px; 
+        }
+        .education-card { 
+            background:#1f1f1f; 
+            padding:20px; 
+            border-radius:16px; 
+            border-left:5px solid #FFD700; 
+        }
+        .community-links a { 
+            background:#2ECC71; 
+            color:#000; 
+            padding:14px 28px; 
+            border-radius:50px; 
+            text-decoration:none; 
+            font-weight:700; 
+            text-align:center; 
+            font-size:15px; 
+        }
 
-        footer { background:#0a0a0a; padding:40px 18px 28px; font-size:13px; color:#777; text-align:center; border-top:1px solid #222; }
+        footer { 
+            background:#0a0a0a; 
+            padding:35px 15px 25px; 
+            font-size:13px; 
+            color:#777; 
+            text-align:center; 
+            border-top:1px solid #222; 
+        }
         .gambling { color:#FF5555; font-weight:600; margin-top:16px; }
 
         @media (max-width: 600px) {
-            .hero { padding:55px 15px 40px; }
-            .hero h1 { font-size:26px; }
-            .hero p { font-size:15px; }
-            .section { padding:36px 15px; }
-            table { font-size:12.2px; }
-            th, td { padding:10px 4px; }
+            .hero h1 { font-size:24px; }
+            .hero p { font-size:14.5px; }
+            th, td { font-size:12px; padding:8px 4px; }
+            .package-card { padding:20px; }
+            .whatsapp-button { padding:14px 28px; font-size:15px; }
         }
     </style>
 </head>
@@ -152,16 +378,16 @@
     <!-- WHY CHOOSE US -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Why Choose Pro Tipsters?</h2>
-        <div style="display:grid; grid-template-columns:1fr; gap:20px; max-width:900px; margin:0 auto;">
+        <div style="display:grid; grid-template-columns:1fr; gap:16px; max-width:900px; margin:0 auto;">
             <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ 93.7% Verified Accuracy</div>
             <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Instant Ticket Delivery After Payment</div>
-            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Till Number 6012928 (Safe & Fast M-Pesa)</div>
+            <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Till Number 6012928 (Safe & Fast)</div>
             <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ 24/7 WhatsApp Support</div>
             <div style="background:#1f1f1f; padding:20px; border-radius:16px; text-align:center; border-left:5px solid #FFD700;">✅ Real Members Winning Big Daily</div>
         </div>
     </div>
 
-    <!-- MONTHLY PERFORMANCE - FULLY FIXED -->
+    <!-- MONTHLY PERFORMANCE -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
@@ -221,6 +447,21 @@
                 Week 4 is running • Updated every Sunday
             </p>
         </div>
+    </div>
+
+    <!-- CONFIRMATION FLOW -->
+    <div class="section" style="background:#1a1a1a;border-radius:20px;padding:30px 15px;margin:30px auto;">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">How to Subscribe (Super Simple)</h2>
+        <ol style="padding-left:20px;line-height:1.8;font-size:15px;">
+            <li>Tap "Subscribe Now" button for your package</li>
+            <li>WhatsApp opens — send the message</li>
+            <li>Pay to **Till Number: 6012928** via M-Pesa</li>
+            <li>Send M-Pesa confirmation screenshot</li>
+            <li>We send your full ticket instantly</li>
+        </ol>
+        <p style="text-align:center;margin-top:20px;color:#2ECC71;font-weight:600;">
+            Till Number: <strong style="color:#FFD700;font-size:18px;">6012928</strong>
+        </p>
     </div>
 
     <!-- PACKAGES -->
@@ -324,17 +565,27 @@
     </footer>
 
 <script>
+    // Live counter
     let viewers = 1428;
     setInterval(() => {
         viewers += Math.floor(Math.random()*4)+2;
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
+    // Month tabs
     function showMonth(n) {
         document.querySelectorAll('.month-content').forEach(c => c.classList.remove('active'));
         document.getElementById('content-' + n).classList.add('active');
         document.querySelectorAll('.month-tab').forEach((t,i) => t.classList.toggle('active', i === n));
     }
+
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        console.log('PWA install prompt ready');
+    });
 </script>
 </body>
 </html>
