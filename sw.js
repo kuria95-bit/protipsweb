@@ -1,5 +1,5 @@
 const CACHE_NAME = 'protipsters-v1';
-const urlsToCache = ['/index.html'];
+const urlsToCache = ['/index.html', '/manifest.json'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
