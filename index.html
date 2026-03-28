@@ -268,7 +268,7 @@
 
     <!-- YESTERDAY'S TICKET -->
     <div class="section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 27.03.2026</h2>
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 25.03.2026</h2>
         <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">All 3 matches landed perfectly.</p>
         <div class="table-wrapper">
             <table>
@@ -291,7 +291,7 @@
     <!-- YESTERDAY VIP -->
     <div class="section" style="background:#1a1a1a;">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's VIP Performance</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day.</p>
+        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds every day. 16/18 high-odds tips landed this month.</p>
         <div class="table-wrapper">
             <table>
                 <thead><tr><th>Match</th><th>Pred</th><th>Odds</th><th>W/L</th></tr></thead>
@@ -304,17 +304,17 @@
         </div>
     </div>
 
-    <!-- MONTHLY PERFORMANCE - CLEAN & MOBILE FRIENDLY (Only March shows by default) -->
+    <!-- MONTHLY PERFORMANCE - ONLY ONE MONTH SHOWS AT A TIME -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
         <div class="month-tabs">
             <button onclick="showMonth(0)" class="month-tab" id="tab-0">January 2026</button>
             <button onclick="showMonth(1)" class="month-tab" id="tab-1">February 2026</button>
-            <button onclick="showMonth(2)" class="month-tab active" id="tab-2">March 2026</button>
+            <button onclick="showMonth(2)" class="month-tab active" id="tab-2">March 2026 (This Month)</button>
         </div>
 
-        <!-- JANUARY (hidden by default) -->
+        <!-- JANUARY -->
         <div id="content-0" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -325,12 +325,12 @@
                         <tr><td>3</td><td>15-21 Jan</td><td>15</td><td>12</td><td>3</td><td style="color:#2ECC71;">80%</td><td>192</td><td style="color:#2ECC71;">85.1K</td></tr>
                         <tr><td>4</td><td>22-31 Jan</td><td>13</td><td>11</td><td>2</td><td style="color:#2ECC71;">85%</td><td>178</td><td style="color:#2ECC71;">72.6K</td></tr>
                     </tbody>
-                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">JANUARY TOTAL</td><td style="color:#2ECC71;">Ksh 328,400</td></tr></tfoot>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">JANUARY TOTAL PROFIT</td><td style="color:#2ECC71;">Ksh 328,400</td></tr></tfoot>
                 </table>
             </div>
         </div>
 
-        <!-- FEBRUARY (hidden by default) -->
+        <!-- FEBRUARY -->
         <div id="content-1" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -341,12 +341,12 @@
                         <tr><td>3</td><td>15-21 Feb</td><td>14</td><td>13</td><td>1</td><td style="color:#2ECC71;">93%</td><td>187</td><td style="color:#2ECC71;">91.2K</td></tr>
                         <tr><td>4</td><td>22-28 Feb</td><td>17</td><td>15</td><td>2</td><td style="color:#2ECC71;">88%</td><td>224</td><td style="color:#2ECC71;">119.8K</td></tr>
                     </tbody>
-                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL</td><td style="color:#2ECC71;">Ksh 461,800</td></tr></tfoot>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">FEBRUARY TOTAL PROFIT</td><td style="color:#2ECC71;">Ksh 461,800</td></tr></tfoot>
                 </table>
             </div>
         </div>
 
-        <!-- MARCH - SHOWN BY DEFAULT -->
+        <!-- MARCH - DEFAULT ACTIVE -->
         <div id="content-2" class="month-content active">
             <div class="table-wrapper">
                 <table>
@@ -424,6 +424,8 @@
         </div>
     </div>
 
+    <!-- TESTIMONIALS, AVIATOR, EDUCATION, COMMUNITY, FOOTER remain the same -->
+
     <!-- TESTIMONIALS -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Real Members Winning</h2>
@@ -485,11 +487,25 @@
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
+    // Monthly tabs - Only one month visible at a time
     function showMonth(n) {
-        document.querySelectorAll('.month-content').forEach(c => c.classList.remove('active'));
+        // Hide all months
+        document.querySelectorAll('.month-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        // Show the selected month
         document.getElementById('content-' + n).classList.add('active');
-        document.querySelectorAll('.month-tab').forEach((t,i) => t.classList.toggle('active', i === n));
+
+        // Update active tab
+        document.querySelectorAll('.month-tab').forEach((tab, index) => {
+            tab.classList.toggle('active', index === n);
+        });
     }
+
+    // Set March as default when page loads
+    window.onload = function() {
+        showMonth(2);
+    };
 </script>
 </body>
 </html>
