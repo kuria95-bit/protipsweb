@@ -112,6 +112,13 @@
             transform:scale(1.05); 
         }
 
+        .month-content {
+            display: none;           /* Hide all by default */
+        }
+        .month-content.active {
+            display: block;          /* Show only the active one */
+        }
+
         .table-wrapper { 
             width:100%; 
             overflow-x:auto; 
@@ -180,15 +187,6 @@
             border:2px solid #FFD700;
         }
 
-        .success-banner { 
-            background:linear-gradient(135deg,#2ECC71,#27AE60); 
-            color:#000; 
-            padding:18px 20px; 
-            font-size:18px; 
-            position:sticky; 
-            top:0; 
-            z-index:2000; 
-        }
         .whatsapp-float { 
             position:fixed; 
             bottom:18px; 
@@ -304,7 +302,7 @@
         </div>
     </div>
 
-    <!-- MONTHLY PERFORMANCE - ONLY ONE MONTH SHOWS AT A TIME -->
+    <!-- MONTHLY PERFORMANCE - FIXED: ONLY ONE MONTH VISIBLE AT A TIME -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
@@ -314,7 +312,7 @@
             <button onclick="showMonth(2)" class="month-tab active" id="tab-2">March 2026 (This Month)</button>
         </div>
 
-        <!-- JANUARY -->
+        <!-- JANUARY - Hidden by default -->
         <div id="content-0" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -330,7 +328,7 @@
             </div>
         </div>
 
-        <!-- FEBRUARY -->
+        <!-- FEBRUARY - Hidden by default -->
         <div id="content-1" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -346,7 +344,7 @@
             </div>
         </div>
 
-        <!-- MARCH - DEFAULT ACTIVE -->
+        <!-- MARCH - Shown by default -->
         <div id="content-2" class="month-content active">
             <div class="table-wrapper">
                 <table>
@@ -424,8 +422,6 @@
         </div>
     </div>
 
-    <!-- TESTIMONIALS, AVIATOR, EDUCATION, COMMUNITY, FOOTER remain the same -->
-
     <!-- TESTIMONIALS -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Real Members Winning</h2>
@@ -489,14 +485,11 @@
 
     // Monthly tabs - Only one month visible at a time
     function showMonth(n) {
-        // Hide all months
         document.querySelectorAll('.month-content').forEach(content => {
             content.classList.remove('active');
         });
-        // Show the selected month
         document.getElementById('content-' + n).classList.add('active');
 
-        // Update active tab
         document.querySelectorAll('.month-tab').forEach((tab, index) => {
             tab.classList.toggle('active', index === n);
         });
