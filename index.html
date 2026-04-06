@@ -113,10 +113,10 @@
         }
 
         .month-content {
-            display: none;           /* Hide all by default */
+            display: none;
         }
         .month-content.active {
-            display: block;          /* Show only the active one */
+            display: block;
         }
 
         .table-wrapper { 
@@ -302,17 +302,18 @@
         </div>
     </div>
 
-    <!-- MONTHLY PERFORMANCE - FIXED: ONLY ONE MONTH VISIBLE AT A TIME -->
+    <!-- MONTHLY PERFORMANCE - UPDATED WITH MARCH COMPLETE + APRIL START -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
         <div class="month-tabs">
             <button onclick="showMonth(0)" class="month-tab" id="tab-0">January 2026</button>
             <button onclick="showMonth(1)" class="month-tab" id="tab-1">February 2026</button>
-            <button onclick="showMonth(2)" class="month-tab active" id="tab-2">March 2026 (This Month)</button>
+            <button onclick="showMonth(2)" class="month-tab" id="tab-2">March 2026</button>
+            <button onclick="showMonth(3)" class="month-tab active" id="tab-3">April 2026 (This Month)</button>
         </div>
 
-        <!-- JANUARY - Hidden by default -->
+        <!-- JANUARY -->
         <div id="content-0" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -328,7 +329,7 @@
             </div>
         </div>
 
-        <!-- FEBRUARY - Hidden by default -->
+        <!-- FEBRUARY -->
         <div id="content-1" class="month-content">
             <div class="table-wrapper">
                 <table>
@@ -344,8 +345,8 @@
             </div>
         </div>
 
-        <!-- MARCH - Shown by default -->
-        <div id="content-2" class="month-content active">
+        <!-- MARCH - NOW COMPLETE -->
+        <div id="content-2" class="month-content">
             <div class="table-wrapper">
                 <table>
                     <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
@@ -353,13 +354,29 @@
                         <tr><td>1</td><td>1–7 Mar</td><td>12</td><td>9</td><td>3</td><td style="color:#2ECC71;">75%</td><td>145</td><td style="color:#2ECC71;">68.4K</td></tr>
                         <tr><td>2</td><td>8–15 Mar</td><td>14</td><td>12</td><td>2</td><td style="color:#2ECC71;">86%</td><td>210</td><td style="color:#2ECC71;">95.2K</td></tr>
                         <tr><td>3</td><td>16–22 Mar</td><td>13</td><td>11</td><td>2</td><td style="color:#2ECC71;">85%</td><td>178</td><td style="color:#2ECC71;">82.6K</td></tr>
-                        <tr><td>4</td><td>23–31 Mar</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td></tr>
+                        <tr><td>4</td><td>23–31 Mar</td><td>15</td><td>13</td><td>2</td><td style="color:#2ECC71;">87%</td><td>195</td><td style="color:#2ECC71;">98.7K</td></tr>
                     </tbody>
-                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">MARCH TOTAL SO FAR</td><td style="color:#2ECC71;">Ksh 246.2K</td></tr></tfoot>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">MARCH TOTAL PROFIT</td><td style="color:#2ECC71;">Ksh 344.9K</td></tr></tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- APRIL - CURRENT MONTH (Week 1 done, Week 2 Pending) -->
+        <div id="content-3" class="month-content active">
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Week</th><th>Dates</th><th>Tix</th><th>W</th><th>L</th><th>Acc</th><th>Odds</th><th>Prof</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>1–7 Apr</td><td>13</td><td>11</td><td>2</td><td style="color:#2ECC71;">85%</td><td>168</td><td style="color:#2ECC71;">79.5K</td></tr>
+                        <tr><td>2</td><td>8–14 Apr</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td></tr>
+                        <tr><td>3</td><td>15–21 Apr</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td></tr>
+                        <tr><td>4</td><td>22–30 Apr</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td><td style="color:#aaa;">Pending</td></tr>
+                    </tbody>
+                    <tfoot><tr style="background:#222;"><td colspan="7" style="text-align:right;color:#FFD700;">APRIL TOTAL SO FAR</td><td style="color:#2ECC71;">Ksh 79.5K</td></tr></tfoot>
                 </table>
             </div>
             <p style="text-align:center;margin-top:15px;font-size:13.5px;color:#aaa;">
-                Week 4 is running • Updated every Sunday
+                Week 2 is running • Updated every Sunday
             </p>
         </div>
     </div>
@@ -483,7 +500,6 @@
         document.getElementById('live-counter').textContent = viewers + " bettors online now";
     }, 4800);
 
-    // Monthly tabs - Only one month visible at a time
     function showMonth(n) {
         document.querySelectorAll('.month-content').forEach(content => {
             content.classList.remove('active');
@@ -495,9 +511,9 @@
         });
     }
 
-    // Set March as default when page loads
+    // Set April as default when page loads
     window.onload = function() {
-        showMonth(2);
+        showMonth(3);
     };
 </script>
 </body>
