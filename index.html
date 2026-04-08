@@ -80,6 +80,35 @@
             border-bottom:5px solid #2ECC71; 
         }
 
+        .live-activity {
+            background: linear-gradient(90deg, #1a1a1a, #222);
+            padding: 18px 15px;
+            border-bottom: 4px solid #25D366;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .live-scroll {
+            display: inline-flex;
+            animation: scroll 25s linear infinite;
+        }
+        .live-item {
+            display: inline-flex;
+            align-items: center;
+            background: #111;
+            padding: 8px 16px;
+            margin-right: 12px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+        .live-item span { color: #2ECC71; font-weight: 700; margin-left: 6px; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         .section { padding:36px 15px; max-width:1100px; margin:0 auto; }
 
         .monthly-overview { 
@@ -112,12 +141,8 @@
             transform:scale(1.05); 
         }
 
-        .month-content {
-            display: none;
-        }
-        .month-content.active {
-            display: block;
-        }
+        .month-content { display: none; }
+        .month-content.active { display: block; }
 
         .table-wrapper { 
             width:100%; 
@@ -264,6 +289,19 @@
         THIS MONTH: 312 Tips • <strong style="color:#2ECC71">287 Correct</strong> • +Ksh 1,284,700 Profit • 2 Jackpot Bonuses
     </div>
 
+    <!-- LIVE ACTIVITY -->
+    <div class="live-activity">
+        <div class="live-scroll">
+            <div class="live-item">✅ Paul Kamau • 07974xxxx65 • Bungoma just paid for <strong>VIP</strong></div>
+            <div class="live-item">✅ Mercy Wanjiku • 0712xxxxxx • Nakuru just paid for <strong>Daily</strong></div>
+            <div class="live-item">✅ Kevin Omondi • 0756xxxxxx • Kisumu just paid for <strong>Mega Jackpot</strong></div>
+            <div class="live-item">✅ Aisha Mohammed • 0789xxxxxx • Mombasa just paid for <strong>VIP</strong></div>
+            <div class="live-item">✅ John Mwangi • 0723xxxxxx • Eldoret just paid for <strong>Daily</strong></div>
+            <div class="live-item">✅ Paul Kamau • 07974xxxx65 • Bungoma just paid for <strong>VIP</strong></div>
+            <div class="live-item">✅ Mercy Wanjiku • 0712xxxxxx • Nakuru just paid for <strong>Daily</strong></div>
+        </div>
+    </div>
+
     <!-- YESTERDAY'S TICKET -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:16px;">Yesterday's Ticket • 07.04.2026</h2>
@@ -302,7 +340,61 @@
         </div>
     </div>
 
-    <!-- MONTHLY PERFORMANCE -->
+    <!-- CHOOSE YOUR PACKAGE -->
+    <div class="section package-section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
+        <div class="package-grid">
+            <div class="package-card">
+                <h3>1 Day – Ksh 99</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">3 premium matches daily</p>
+                <div class="teaser">
+                    <div class="blur">Arsenal vs Chelsea</div><div>Home Win</div><div class="odds">1.98</div>
+                    <div class="blur">Brighton vs Nottingham Forest</div><div>Over 2.5 Goals</div><div class="odds">2.10</div>
+                    <div class="blur">Liverpool vs Everton</div><div>Home Win & Over 1.5</div><div class="odds">2.25</div>
+                    <div class="total">Total Odds: 9.35</div>
+                </div>
+                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Daily%20package%20for%2099sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Subscribe Now for 99sh</a>
+            </div>
+
+            <div class="package-card">
+                <h3>VIP High Odds – Ksh 499</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">High-odds selections • 9+ combined odds</p>
+                <div class="teaser">
+                    <div class="blur">Manchester City vs Newcastle</div><div>Correct Score 3-1</div><div class="odds">8.00</div>
+                    <div class="blur">Real Madrid vs Atletico Madrid</div><div>Both Teams to Score</div><div class="odds">1.95</div>
+                    <div class="blur">Bayern Munich vs Dortmund</div><div>Over 3.5 Goals</div><div class="odds">2.60</div>
+                    <div class="total">Total Odds: 40.56</div>
+                </div>
+                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20VIP%20package%20for%20499sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Subscribe Now for 499sh</a>
+            </div>
+
+            <div class="package-card">
+                <h3>Mega Jackpot – Ksh 599</h3>
+                <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
+                <div class="teaser">
+                    <div class="blur">17 Matches Ready</div>
+                    <div style="font-size:14px;color:#aaa;">Sportpesa Mega Jackpot</div>
+                    <div class="odds">400M+</div>
+                    <div class="total">2 Bonuses This Month</div>
+                </div>
+                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Mega%20Jackpot%20package%20for%20599sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Subscribe Now for 599sh</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW TO SUBSCRIBE -->
+    <div class="section confirmation-section">
+        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">How to Subscribe</h2>
+        <ol style="padding-left:20px;line-height:1.8;font-size:15px;">
+            <li>Tap "Subscribe Now" for your package</li>
+            <li>Send the message on WhatsApp</li>
+            <li>Pay to Till Number: <strong>6012928</strong></li>
+            <li>Send M-Pesa confirmation</li>
+            <li>We send your ticket instantly</li>
+        </ol>
+    </div>
+
+    <!-- MONTHLY PERFORMANCE - FULLY RESTORED -->
     <div class="section monthly-overview">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">Monthly Performance Overview</h2>
         
@@ -361,7 +453,7 @@
             </div>
         </div>
 
-        <!-- APRIL - CURRENT MONTH -->
+        <!-- APRIL -->
         <div id="content-3" class="month-content active">
             <div class="table-wrapper">
                 <table>
@@ -381,65 +473,7 @@
         </div>
     </div>
 
-    <!-- CONFIRMATION FLOW -->
-    <div class="section confirmation-section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:20px;">How to Subscribe</h2>
-        <ol style="padding-left:20px;line-height:1.8;font-size:15px;">
-            <li>Tap "Subscribe Now" for your package</li>
-            <li>Send the message on WhatsApp</li>
-            <li>Pay to Till Number: <strong>6012928</strong></li>
-            <li>Send M-Pesa confirmation</li>
-            <li>We send your ticket instantly</li>
-        </ol>
-    </div>
-
-    <!-- PACKAGES -->
-    <div class="section package-section">
-        <h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
-        <div class="package-grid">
-
-            <div class="package-card" data-plan="1day">
-                <h3>1 Day – Ksh 99</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">3 premium matches daily</p>
-                <div class="teaser">
-                    <div class="blur">Arsenal vs Chelsea</div><div>Home Win</div><div class="odds">1.98</div>
-                    <div class="blur">Brighton vs Nottingham Forest</div><div>Over 2.5 Goals</div><div class="odds">2.10</div>
-                    <div class="blur">Liverpool vs Everton</div><div>Home Win & Over 1.5</div><div class="odds">2.25</div>
-                    <div class="total">Total Odds: 9.35</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Daily%20package%20for%2099sh.%20How%20do%20I%20pay%3F" 
-                   class="whatsapp-button">Subscribe Now for 99sh</a>
-            </div>
-
-            <div class="package-card" data-plan="vip">
-                <h3>VIP High Odds – Ksh 499</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">High-odds selections • 9+ combined odds</p>
-                <div class="teaser">
-                    <div class="blur">Manchester City vs Newcastle</div><div>Correct Score 3-1</div><div class="odds">8.00</div>
-                    <div class="blur">Real Madrid vs Atletico Madrid</div><div>Both Teams to Score</div><div class="odds">1.95</div>
-                    <div class="blur">Bayern Munich vs Dortmund</div><div>Over 3.5 Goals</div><div class="odds">2.60</div>
-                    <div class="total">Total Odds: 40.56</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20VIP%20package%20for%20499sh.%20How%20do%20I%20pay%3F" 
-                   class="whatsapp-button">Subscribe Now for 499sh</a>
-            </div>
-
-            <div class="package-card" data-plan="jackpot">
-                <h3>Mega Jackpot – Ksh 599</h3>
-                <p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
-                <div class="teaser">
-                    <div class="blur">17 Matches Ready</div>
-                    <div style="font-size:14px;color:#aaa;">Sportpesa Mega Jackpot</div>
-                    <div class="odds">400M+</div>
-                    <div class="total">2 Bonuses This Month</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Mega%20Jackpot%20package%20for%20599sh.%20How%20do%20I%20pay%3F" 
-                   class="whatsapp-button">Subscribe Now for 599sh</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- TESTIMONIALS -->
+    <!-- CLIENT REVIEWS -->
     <div class="section">
         <h2 style="color:#FFD700;text-align:center;margin-bottom:25px;">Real Members Winning</h2>
         <div class="testimonial-grid">
@@ -501,9 +535,7 @@
     }, 4800);
 
     function showMonth(n) {
-        document.querySelectorAll('.month-content').forEach(content => {
-            content.classList.remove('active');
-        });
+        document.querySelectorAll('.month-content').forEach(content => content.classList.remove('active'));
         document.getElementById('content-' + n).classList.add('active');
 
         document.querySelectorAll('.month-tab').forEach((tab, index) => {
