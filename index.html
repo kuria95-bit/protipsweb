@@ -53,28 +53,39 @@
         }
         .trust-bar span { color:#10b981; font-weight:600; }
 
-        /* FIXED LIVE NOTIFICATION - NO "NOTIFICATION" TAG */
+        /* NEW TOP NOTIFICATION - COMPACT, FROM TOP, WITH BELL */
         .live-notification {
             position: fixed;
-            top: 75px;
+            top: 68px;
+            left: 15px;
             right: 15px;
             background: #ffffff;
-            border-left: 5px solid #10b981;
+            border-left: 6px solid #10b981;
             border-radius: 12px;
             padding: 14px 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            max-width: 320px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
             z-index: 9999;
             display: none;
-            animation: fadeInOut 8s forwards;
+            align-items: center;
+            gap: 12px;
+            max-width: 460px;
+            margin: 0 auto;
+            animation: slideDown 0.4s ease forwards;
         }
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(-20px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .live-notification::before {
+            content: "🛎";
+            font-size: 24px;
         }
         .live-notification strong { color: #10b981; }
+        .live-notification .content {
+            flex: 1;
+            font-size: 14.5px;
+            line-height: 1.4;
+        }
 
         .hero { 
             padding: 42px 15px 32px; 
@@ -192,7 +203,7 @@
         @media (max-width: 600px) {
             .hero { padding:32px 15px 26px; }
             .hero h1 { font-size:24px; }
-            .live-notification { right:10px; left:10px; max-width:none; }
+            .live-notification { left:10px; right:10px; }
         }
     </style>
 </head>
@@ -209,18 +220,20 @@
         Trusted by <span>15,000+</span> Bettors • 93.7% Accuracy • Instant Delivery • Till 6012928
     </div>
 
-    <!-- LIVE NOTIFICATION -->
-    <div id="live-notification" class="live-notification"></div>
+    <!-- NEW TOP NOTIFICATION -->
+    <div id="live-notification" class="live-notification">
+        <div class="content" id="notification-content"></div>
+    </div>
 
     <!-- SHORT HERO -->
     <div class="hero">
         <h1>Win Big Today with Pro Tipsters</h1>
-        <p>93.7% accurate tips • Millions paid out • Today's winning ticket is ready</p>
+        <p>93.7% accurate tips • Realistic profits • Today's winning ticket is ready</p>
     </div>
 
     <!-- PERFORMANCE -->
     <div class="performance">
-        THIS MONTH: 312 Tips • <strong style="color:#10b981">287 Wins</strong> • +Ksh 1.28M Profit
+        THIS MONTH: 312 Tips • <strong style="color:#10b981">287 Wins</strong> • +Ksh 370,000 Profit
     </div>
 
     <!-- YESTERDAY'S TICKET -->
@@ -323,7 +336,7 @@
     </footer>
 
 <script>
-    // Live counter that fluctuates realistically
+    // Realistic fluctuating live counter
     let viewers = 2147;
     setInterval(() => {
         const change = Math.floor(Math.random() * 80) - 35; 
@@ -331,7 +344,7 @@
         document.getElementById('live-counter').textContent = viewers.toLocaleString() + " bettors online now";
     }, 3200);
 
-    // Clean Live Notifications
+    // COMPLETELY NEW NOTIFICATION SYSTEM
     const notifications = [
         { name: "Paul Kamau", number: "07974xxxx65", location: "Bungoma", package: "VIP" },
         { name: "Mercy Wanjiku", number: "0712xxxxxx", location: "Nakuru", package: "Daily" },
@@ -341,20 +354,51 @@
         { name: "Esther Njeri", number: "0771xxxxxx", location: "Nairobi", package: "VIP" }
     ];
 
+    function playBeep() {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.frequency.value = 680;
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            setTimeout(() => {
+                oscillator.stop();
+            }, 180);
+        } catch(e) {}
+    }
+
     function showLiveNotification() {
         const notif = notifications[Math.floor(Math.random() * notifications.length)];
         const container = document.getElementById('live-notification');
-        container.innerHTML = `✅ <strong>${notif.name}</strong> • ${notif.number} • \( {notif.location}<br>just paid for <strong> \){notif.package}</strong>`;
-        container.style.display = 'block';
-        setTimeout(() => { container.style.display = 'none'; }, 8000);
+        const contentEl = document.getElementById('notification-content');
+        
+        contentEl.innerHTML = `
+            ✅ <strong>${notif.name}</strong> • ${notif.number} • ${notif.location}<br>
+            just paid for <strong>${notif.package}</strong>
+        `;
+        
+        container.style.display = 'flex';
+        playBeep();   // Beep sound
+        
+        setTimeout(() => {
+            container.style.animation = 'slideDown 0.4s ease reverse';
+            setTimeout(() => {
+                container.style.display = 'none';
+                container.style.animation = '';
+            }, 400);
+        }, 8000);
     }
 
+    // Start notifications
     setTimeout(() => {
         showLiveNotification();
         setInterval(() => {
             if (Math.random() > 0.25) showLiveNotification();
         }, 45000);
-    }, 8000);
+    }, 6000);
 </script>
 </body>
 </html>
