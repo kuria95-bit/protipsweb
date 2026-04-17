@@ -1,404 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Tipsters • Win Today</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { 
-            font-family:'Poppins',sans-serif; 
-            background:#f8fafc; 
-            color:#1e2937; 
-            line-height:1.6; 
-            font-size:16px; 
-            overflow-x:hidden; 
-        }
-        
-        .header { 
-            background:linear-gradient(135deg,#0f766e,#10b981); 
-            padding:14px 15px; 
-            position:sticky; 
-            top:0; 
-            z-index:1000; 
-            display:flex; 
-            justify-content:space-between; 
-            align-items:center; 
-            box-shadow:0 4px 15px rgba(0,0,0,0.1);
-        }
-        .header-title { 
-            font-family:'Orbitron',sans-serif; 
-            font-size:24px; 
-            color:#ffffff; 
-            font-weight:700;
-        }
-        .live-counter { 
-            background:#ffffff; 
-            color:#0f766e; 
-            padding:6px 14px; 
-            border-radius:30px; 
-            font-weight:700; 
-            font-size:13px; 
-            box-shadow:0 0 12px rgba(16,185,129,0.4);
-        }
+<!-- ONLY SHOWING KEY IMPROVED SECTIONS (KEEP YOUR EXISTING TABLES & STRUCTURE) -->
 
-        .trust-bar { 
-            background:#ffffff; 
-            padding:12px 15px; 
-            text-align:center; 
-            font-size:13.5px; 
-            color:#334155; 
-            border-bottom:1px solid #e2e8f0;
-        }
-        .trust-bar span { color:#10b981; font-weight:600; }
-
-        /* NEW TOP NOTIFICATION - COMPACT, FROM TOP, WITH BELL */
-        .live-notification {
-            position: fixed;
-            top: 68px;
-            left: 15px;
-            right: 15px;
-            background: #ffffff;
-            border-left: 6px solid #10b981;
-            border-radius: 12px;
-            padding: 14px 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            gap: 12px;
-            max-width: 460px;
-            margin: 0 auto;
-            animation: slideDown 0.4s ease forwards;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .live-notification::before {
-            content: "🛎";
-            font-size: 24px;
-        }
-        .live-notification strong { color: #10b981; }
-        .live-notification .content {
-            flex: 1;
-            font-size: 14.5px;
-            line-height: 1.4;
-        }
-
-        .hero { 
-            padding: 42px 15px 32px; 
-            background: linear-gradient(135deg,#0f766e,#10b981); 
-            text-align:center; 
-            color: #ffffff;
-        }
-        .hero h1 { 
-            font-size: 28px; 
-            line-height: 1.2; 
-            margin-bottom: 12px; 
-        }
-        .hero p { 
-            font-size: 15.5px; 
-            margin-bottom: 20px; 
-            opacity: 0.95;
-        }
-
-        .performance { 
-            background:#ffffff; 
-            padding:14px 15px; 
-            text-align:center; 
-            font-size:14px; 
-            border-bottom:5px solid #10b981; 
-            color:#1e2937;
-        }
-
-        .section { padding:36px 15px; max-width:1100px; margin:0 auto; }
-
-        .result-table {
-            width:100%; 
-            border-collapse:collapse; 
-            background:#ffffff; 
-            border-radius:12px; 
-            overflow:hidden; 
-            box-shadow:0 6px 20px rgba(0,0,0,0.08); 
-        }
-        .result-table th, .result-table td { 
-            padding:11px 8px; 
-            text-align:center; 
-            border-bottom:1px solid #e2e8f0; 
-            font-size:13.2px; 
-        }
-        .result-table th { background:#f1f5f9; color:#0f766e; font-weight:700; }
-        .result-table .win { 
-            color:#10b981; 
-            font-weight:700; 
-            text-transform: uppercase; 
-        }
-
-        .package-section { 
-            background:#ffffff; 
-            border:3px solid #10b981; 
-            border-radius:20px; 
-            margin:30px auto; 
-            padding:32px 15px; 
-        }
-        .package-grid { display:grid; grid-template-columns:1fr; gap:22px; }
-        .package-card { 
-            background:#f8fafc; 
-            border-radius:16px; 
-            padding:24px; 
-            text-align:left; 
-            box-shadow:0 6px 20px rgba(0,0,0,0.08); 
-        }
-        .package-card h3 { color:#0f766e; font-size:21px; margin-bottom:10px; }
-        .teaser { background:#f1f5f9; padding:16px; border-radius:12px; margin:16px 0; font-size:14px; }
-        .teaser .blur { filter:blur(5px); }
-        .whatsapp-button {
-            background:#10b981 !important;
-            color:#ffffff !important;
-            padding:16px 32px;
-            border-radius:50px;
-            display:block;
-            text-align:center;
-            text-decoration:none;
-            font-weight:700;
-            font-size:16.5px;
-            margin-top:18px;
-        }
-
-        .testimonial-grid { display:grid; grid-template-columns:1fr; gap:20px; }
-        .testimonial-card { 
-            background:#ffffff; 
-            padding:20px; 
-            border-radius:16px; 
-            border-left:6px solid #10b981; 
-            box-shadow:0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .whatsapp-float { 
-            position:fixed; 
-            bottom:18px; 
-            right:18px; 
-            background:#10b981; 
-            color:#ffffff; 
-            padding:14px 20px; 
-            border-radius:50px; 
-            font-weight:700; 
-            box-shadow:0 8px 25px rgba(16,185,129,0.4); 
-            z-index:999; 
-            text-decoration:none; 
-        }
-
-        footer { 
-            background:#f1f5f9; 
-            padding:35px 15px 25px; 
-            font-size:13px; 
-            color:#64748b; 
-            text-align:center; 
-            border-top:1px solid #e2e8f0; 
-        }
-        .gambling { color:#ef4444; font-weight:600; margin-top:16px; }
-
-        @media (max-width: 600px) {
-            .hero { padding:32px 15px 26px; }
-            .hero h1 { font-size:24px; }
-            .live-notification { left:10px; right:10px; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- HEADER -->
-    <div class="header">
-        <div class="header-title">PRO TIPSTERS</div>
-        <div class="live-counter" id="live-counter">2,347 bettors online now</div>
-    </div>
-
-    <!-- TRUST BAR -->
-    <div class="trust-bar">
-        Trusted by <span>15,000+</span> Bettors • 93.7% Accuracy • Instant Delivery • Till 6012928
-    </div>
-
-    <!-- NEW TOP NOTIFICATION -->
-    <div id="live-notification" class="live-notification">
-        <div class="content" id="notification-content"></div>
-    </div>
-
-    <!-- SHORT HERO -->
-    <div class="hero">
-        <h1>Win Big Today with Pro Tipsters</h1>
-        <p>93.7% accurate tips • Realistic profits • Today's winning ticket is ready</p>
-    </div>
-
-    <!-- PERFORMANCE -->
-    <div class="performance">
-        THIS MONTH: 312 Tips • <strong style="color:#10b981">287 Wins</strong> • +Ksh 370,000 Profit
-    </div>
-
-    <!-- YESTERDAY'S TICKET -->
-    <div class="section">
-        <h2 style="color:#0f766e;text-align:center;margin-bottom:16px;">Yesterday's Winning Ticket • 16.04.2026</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">All 3 matches landed perfectly.</p>
-        <div class="table-wrapper">
-            <table class="result-table">
-                <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th></tr></thead>
-                <tbody>
-                    <tr><td>Betis vs Braga</td><td>Away Win</td><td>1.45</td><td class="win">WIN</td></tr>
-                    <tr><td>Aston villa vs Bologna</td><td>Over 2.5 Goals</td><td>2.10</td><td class="win">WIN</td></tr>
-                    <tr><td>Peterborough vs Port valle</td><td>GG</td><td>2.23</td><td class="win">WIN</td></tr>
-                </tbody>
-                <tfoot>
-                    <tr style="background:#f1f5f9;">
-                        <td colspan="2" style="text-align:right;">Total Odds</td>
-                        <td colspan="2" style="color:#10b981;font-weight:700;">6.78</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-
-    <!-- YESTERDAY VIP -->
-    <div class="section" style="background:#ffffff;">
-        <h2 style="color:#0f766e;text-align:center;margin-bottom:16px;">Yesterday VIP High Odds</h2>
-        <p style="text-align:center;margin:0 auto 20px;font-size:14.5px;">Massive combined odds. 16/18 landed this month.</p>
-        <div class="table-wrapper">
-            <table class="result-table">
-                <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th></tr></thead>
-                <tbody>
-                    <tr><td>Bromley vs Cambridge</td><td>Correct Score 0-0</td><td>12.00</td><td class="win">WIN</td></tr>
-                    <tr><td>Betis vs Braga</td><td>Over 2.5 Goals</td><td>1.94</td><td class="win">WIN</td></tr>
-                </tbody>
-                <tfoot><tr><td colspan="2" style="text-align:right;">Total Odds</td><td colspan="2" style="color:#10b981;font-weight:700;">23.30</td></tr></tfoot>
-            </table>
-        </div>
-    </div>
-
-    <!-- PACKAGES -->
-    <div class="section package-section">
-        <h2 style="color:#0f766e;text-align:center;margin-bottom:28px;">Get Today's Winning Tips</h2>
-        <div class="package-grid">
-            <div class="package-card">
-                <h3>Daily Ticket – Ksh 99</h3>
-                <p style="color:#10b981;">3 premium matches daily</p>
-                <div class="teaser">
-                    <div class="blur">Arsenal vs Chelsea • Home Win</div>
-                    <div class="blur">Brighton vs Nott Forest • Over 2.5</div>
-                    <div class="total">Combined Odds \~9.35</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Daily%20package%20for%2099sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Get Daily Ticket – Ksh 99</a>
-            </div>
-
-            <div class="package-card">
-                <h3>VIP High Odds – Ksh 499</h3>
-                <p style="color:#10b981;">One high-odds ticket with total odds +40</p>
-                <div class="teaser">
-                    <div class="blur">Man City vs Newcastle • Correct Score</div>
-                    <div class="total">Combined Odds \~40+</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20VIP%20package%20for%20499sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Unlock VIP – Ksh 499</a>
-            </div>
-
-            <div class="package-card">
-                <h3>Mega Jackpot – Ksh 599</h3>
-                <p style="color:#10b981;">Full 17-game slip + bonuses</p>
-                <div class="teaser">
-                    <div class="blur">Sportpesa Mega Jackpot Ready</div>
-                    <div class="total">2 Bonuses This Month</div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20to%20subscribe%20for%20the%20Mega%20Jackpot%20package%20for%20599sh.%20How%20do%20I%20pay%3F" class="whatsapp-button">Play Mega Jackpot – Ksh 599</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- CLIENT REVIEWS -->
-    <div class="section">
-        <h2 style="color:#0f766e;text-align:center;margin-bottom:25px;">What Members Are Saying</h2>
-        <div class="testimonial-grid">
-            <div class="testimonial-card"><p>“VIP paid for itself in one week. Ksh 285,000 in 18 days!”</p><strong>— David O., Nairobi</strong></div>
-            <div class="testimonial-card"><p>“From daily Ksh 99 to jackpot wins. Already up Ksh 420k.”</p><strong>— Mercy K., Mombasa</strong></div>
-        </div>
-    </div>
-
-    <!-- AVIATOR -->
-    <div class="section" style="background:#ffffff;border-radius:20px;padding:38px 20px;margin:32px auto;text-align:center;border:2px solid #10b981;">
-        <div style="font-size:62px;margin-bottom:12px;">✈️</div>
-        <h2 style="color:#0f766e;margin-bottom:10px;">Aviator Account Management</h2>
-        <p>Deposit Ksh 700 • We manage with AI • Target Ksh 1,500+ profit fast</p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" 
-           style="background:#10b981;color:#ffffff;padding:16px 34px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;">Start Aviator Management Now</a>
-    </div>
-
-    <a href="https://wa.me/254762945530" class="whatsapp-float">💬 Chat on WhatsApp</a>
-
-    <footer>
-        <p><strong>Pro Tipsters</strong> • Gamble Responsibly • 18+</p>
-    </footer>
-
+<!-- HEADER COUNTER SCRIPT (REPLACE OLD ONE) -->
 <script>
-    // Realistic fluctuating live counter
-    let viewers = 2147;
-    setInterval(() => {
-        const change = Math.floor(Math.random() * 80) - 35; 
-        viewers = Math.max(1820, Math.min(2480, viewers + change));
-        document.getElementById('live-counter').textContent = viewers.toLocaleString() + " bettors online now";
-    }, 3200);
+let viewers = Math.floor(Math.random()*800) + 1200;
 
-    // COMPLETELY NEW NOTIFICATION SYSTEM
-    const notifications = [
-        { name: "Paul Kamau", number: "07974xxxx65", location: "Bungoma", package: "VIP" },
-        { name: "Mercy Wanjiku", number: "0712xxxxxx", location: "Nakuru", package: "Daily" },
-        { name: "Kevin Omondi", number: "0756xxxxxx", location: "Kisumu", package: "Mega Jackpot" },
-        { name: "Aisha Mohammed", number: "0789xxxxxx", location: "Mombasa", package: "VIP" },
-        { name: "John Mwangi", number: "0723xxxxxx", location: "Eldoret", package: "Daily" },
-        { name: "Esther Njeri", number: "0771xxxxxx", location: "Nairobi", package: "VIP" }
+setInterval(() => {
+    viewers += Math.floor(Math.random()*6)+1;
+
+    if (Math.random() > 0.7) {
+        viewers -= Math.floor(Math.random()*5);
+    }
+
+    document.getElementById('live-counter').textContent =
+        viewers + " bettors online now";
+}, 5000);
+</script>
+
+
+<!-- IMPROVED LIVE NOTIFICATIONS -->
+<script>
+const names = ["Brian","Kevin","Mercy","James","Faith","Dennis","Sharon","Victor"];
+const locations = ["Nairobi","Kiambu","Nakuru","Eldoret","Kisumu","Mombasa"];
+const packages = ["VIP","Jackpot","Gold Ticket","Daily"];
+
+function generateNotification() {
+    const name = names[Math.floor(Math.random()*names.length)];
+    const location = locations[Math.floor(Math.random()*locations.length)];
+    const pkg = packages[Math.floor(Math.random()*packages.length)];
+
+    const actions = [
+        `paid Ksh ${Math.floor(Math.random()*500+100)} via M-Pesa`,
+        `just joined <strong>${pkg}</strong>`,
+        `confirmed payment for <strong>${pkg}</strong>`,
+        `received today's <strong>${pkg}</strong>`
     ];
 
-    function playBeep() {
-        try {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.frequency.value = 680;
-            gainNode.gain.value = 0.3;
-            oscillator.start();
-            setTimeout(() => {
-                oscillator.stop();
-            }, 180);
-        } catch(e) {}
-    }
+    const action = actions[Math.floor(Math.random()*actions.length)];
+    return `✅ <strong>${name}</strong> • ${location}<br>${action}`;
+}
 
-    function showLiveNotification() {
-        const notif = notifications[Math.floor(Math.random() * notifications.length)];
-        const container = document.getElementById('live-notification');
-        const contentEl = document.getElementById('notification-content');
-        
-        contentEl.innerHTML = `
-            ✅ <strong>${notif.name}</strong> • ${notif.number} • ${notif.location}<br>
-            just paid for <strong>${notif.package}</strong>
-        `;
-        
-        container.style.display = 'flex';
-        playBeep();   // Beep sound
-        
-        setTimeout(() => {
-            container.style.animation = 'slideDown 0.4s ease reverse';
-            setTimeout(() => {
-                container.style.display = 'none';
-                container.style.animation = '';
-            }, 400);
-        }, 8000);
-    }
+function showLiveNotification() {
+    const container = document.getElementById('live-notification');
+    container.innerHTML = generateNotification();
+    container.style.display = 'block';
 
-    // Start notifications
     setTimeout(() => {
-        showLiveNotification();
-        setInterval(() => {
-            if (Math.random() > 0.25) showLiveNotification();
-        }, 45000);
-    }, 6000);
+        container.style.display = 'none';
+    }, 7000);
+}
+
+setInterval(() => {
+    if (Math.random() > 0.3) showLiveNotification();
+}, 30000);
 </script>
-</body>
-</html>
+
+
+<!-- PACKAGE SECTION (UPDATED ORDER + GOLD ADDED) -->
+
+<div class="section package-section">
+<h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
+
+<div class="package-grid">
+
+<!-- JACKPOT FIRST -->
+<div class="package-card">
+<h3>🔥 Mega Jackpot – Ksh 599</h3>
+<p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
+
+<p style="color:#FF5555;font-weight:700;">
+🔥 13/20 Jackpot Targets Achieved This Month
+</p>
+<p style="color:#aaa;">
+Limited Slots Available – Closing Soon
+</p>
+
+<div class="teaser">
+<div class="blur">17 Matches Ready</div>
+<div>Sportpesa Mega Jackpot</div>
+<div class="odds">400M+</div>
+<div class="total">2 Bonuses This Month</div>
+</div>
+
+<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Jackpot"
+class="whatsapp-button">
+Join Jackpot @599
+</a>
+</div>
+
+
+<!-- GOLD TICKET -->
+<div class="package-card" style="border:2px solid #FFD700;">
+<h3>💎 GOLD FIXED TICKET – Ksh 799</h3>
+<p style="color:#FFD700;">High Confidence • Limited Slots</p>
+
+<div class="teaser">
+<div class="blur">Elite Match Selection</div>
+<div>1–2 Premium Games Only</div>
+<div class="odds">3.5 – 5.0</div>
+<div class="total">🔥 Only 20 Slots Daily</div>
+</div>
+
+<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Gold%20Ticket"
+class="whatsapp-button">
+Get Gold Ticket @799
+</a>
+</div>
+
+
+<!-- VIP -->
+<div class="package-card">
+<h3>VIP High Odds – Ksh 499</h3>
+<p style="color:#2ECC71;">High-odds selections</p>
+
+<div class="teaser">
+<div class="blur">Top Matches</div>
+<div>Correct Score + Goals</div>
+<div class="odds">20+</div>
+<div class="total">Massive returns daily</div>
+</div>
+
+<a href="https://wa.me/254762945530?text=Hello%20I%20want%20VIP"
+class="whatsapp-button">
+Join VIP @499
+</a>
+</div>
+
+
+<!-- DAILY -->
+<div class="package-card">
+<h3>1 Day – Ksh 99</h3>
+<p style="color:#2ECC71;">3 premium matches daily</p>
+
+<div class="teaser">
+<div class="blur">Top League Matches</div>
+<div>Safe Predictions</div>
+<div class="odds">8+</div>
+<div class="total">Best for beginners</div>
+</div>
+
+<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Daily"
+class="whatsapp-button">
+Start with 99
+</a>
+</div>
+
+</div>
+</div>
