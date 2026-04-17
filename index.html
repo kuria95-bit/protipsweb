@@ -1,148 +1,166 @@
-<!-- ONLY SHOWING KEY IMPROVED SECTIONS (KEEP YOUR EXISTING TABLES & STRUCTURE) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Tipsters • Elite Predictions</title>
 
-<!-- HEADER COUNTER SCRIPT (REPLACE OLD ONE) -->
-<script>
-let viewers = Math.floor(Math.random()*800) + 1200;
-
-setInterval(() => {
-    viewers += Math.floor(Math.random()*6)+1;
-
-    if (Math.random() > 0.7) {
-        viewers -= Math.floor(Math.random()*5);
-    }
-
-    document.getElementById('live-counter').textContent =
-        viewers + " bettors online now";
-}, 5000);
-</script>
-
-
-<!-- IMPROVED LIVE NOTIFICATIONS -->
-<script>
-const names = ["Brian","Kevin","Mercy","James","Faith","Dennis","Sharon","Victor"];
-const locations = ["Nairobi","Kiambu","Nakuru","Eldoret","Kisumu","Mombasa"];
-const packages = ["VIP","Jackpot","Gold Ticket","Daily"];
-
-function generateNotification() {
-    const name = names[Math.floor(Math.random()*names.length)];
-    const location = locations[Math.floor(Math.random()*locations.length)];
-    const pkg = packages[Math.floor(Math.random()*packages.length)];
-
-    const actions = [
-        `paid Ksh ${Math.floor(Math.random()*500+100)} via M-Pesa`,
-        `just joined <strong>${pkg}</strong>`,
-        `confirmed payment for <strong>${pkg}</strong>`,
-        `received today's <strong>${pkg}</strong>`
-    ];
-
-    const action = actions[Math.floor(Math.random()*actions.length)];
-    return `✅ <strong>${name}</strong> • ${location}<br>${action}`;
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background:#0a0a0a;
+    color:#fff;
+    margin:0;
 }
 
-function showLiveNotification() {
-    const container = document.getElementById('live-notification');
-    container.innerHTML = generateNotification();
-    container.style.display = 'block';
-
-    setTimeout(() => {
-        container.style.display = 'none';
-    }, 7000);
+.header {
+    background:#FFD700;
+    color:#000;
+    padding:15px;
+    text-align:center;
+    font-weight:700;
 }
 
-setInterval(() => {
-    if (Math.random() > 0.3) showLiveNotification();
-}, 30000);
-</script>
+.hero {
+    padding:40px 20px;
+    text-align:center;
+}
 
+.hero h1 {
+    font-size:26px;
+}
 
-<!-- PACKAGE SECTION (UPDATED ORDER + GOLD ADDED) -->
+.cta {
+    background:#25D366;
+    padding:15px;
+    border-radius:30px;
+    display:inline-block;
+    margin-top:20px;
+    color:#000;
+    font-weight:bold;
+    text-decoration:none;
+}
 
-<div class="section package-section">
-<h2 style="color:#FFD700;text-align:center;margin-bottom:30px;">Choose Your Package</h2>
+.section {
+    padding:30px 20px;
+}
 
-<div class="package-grid">
+.card {
+    background:#1a1a1a;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
 
-<!-- JACKPOT FIRST -->
-<div class="package-card">
-<h3>🔥 Mega Jackpot – Ksh 599</h3>
-<p style="color:#2ECC71;margin-bottom:12px;">Full 17-game slip</p>
+.highlight {
+    border:2px solid #FFD700;
+}
 
-<p style="color:#FF5555;font-weight:700;">
-🔥 13/20 Jackpot Targets Achieved This Month
-</p>
-<p style="color:#aaa;">
-Limited Slots Available – Closing Soon
-</p>
+button, .btn {
+    display:block;
+    width:100%;
+    padding:14px;
+    border-radius:30px;
+    border:none;
+    font-weight:bold;
+    margin-top:15px;
+    background:#25D366;
+    color:#000;
+}
 
-<div class="teaser">
-<div class="blur">17 Matches Ready</div>
-<div>Sportpesa Mega Jackpot</div>
-<div class="odds">400M+</div>
-<div class="total">2 Bonuses This Month</div>
+.red {
+    color:#ff4d4d;
+    font-weight:bold;
+}
+
+.green {
+    color:#2ecc71;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🔥 PRO TIPSTERS • 15,000+ MEMBERS
 </div>
 
-<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Jackpot"
-class="whatsapp-button">
+<div class="hero">
+<h1>Win Daily with Smart Betting</h1>
+<p>Consistent Odds • Verified Results • Instant Delivery</p>
+<a href="https://wa.me/254762945530" class="cta">Join Now on WhatsApp</a>
+</div>
+
+<div class="section">
+
+<!-- JACKPOT -->
+<div class="card highlight">
+<h2>🔥 JACKPOT MISSION – Ksh 599</h2>
+<p class="red">13 / 20 Targets Achieved This Month</p>
+<p>Full 17-game jackpot ticket carefully analyzed.</p>
+<p class="green">Limited Slots • Closing Soon</p>
+
+<a href="https://wa.me/254762945530?text=I%20want%20Jackpot" class="btn">
 Join Jackpot @599
 </a>
 </div>
 
+<!-- GOLD -->
+<div class="card highlight">
+<h2>💎 GOLD FIXED TICKET – Ksh 799</h2>
+<p>1–2 High Confidence Matches</p>
+<p class="green">For Serious Bettors Only</p>
+<p class="red">Only 20 Slots Daily</p>
 
-<!-- GOLD TICKET -->
-<div class="package-card" style="border:2px solid #FFD700;">
-<h3>💎 GOLD FIXED TICKET – Ksh 799</h3>
-<p style="color:#FFD700;">High Confidence • Limited Slots</p>
-
-<div class="teaser">
-<div class="blur">Elite Match Selection</div>
-<div>1–2 Premium Games Only</div>
-<div class="odds">3.5 – 5.0</div>
-<div class="total">🔥 Only 20 Slots Daily</div>
-</div>
-
-<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Gold%20Ticket"
-class="whatsapp-button">
+<a href="https://wa.me/254762945530?text=I%20want%20Gold%20Ticket" class="btn">
 Get Gold Ticket @799
 </a>
 </div>
 
-
 <!-- VIP -->
-<div class="package-card">
-<h3>VIP High Odds – Ksh 499</h3>
-<p style="color:#2ECC71;">High-odds selections</p>
+<div class="card">
+<h2>⭐ VIP PACKAGE – Ksh 499</h2>
+<p>High odds games daily</p>
+<p>Perfect for consistent players</p>
 
-<div class="teaser">
-<div class="blur">Top Matches</div>
-<div>Correct Score + Goals</div>
-<div class="odds">20+</div>
-<div class="total">Massive returns daily</div>
-</div>
-
-<a href="https://wa.me/254762945530?text=Hello%20I%20want%20VIP"
-class="whatsapp-button">
+<a href="https://wa.me/254762945530?text=I%20want%20VIP" class="btn">
 Join VIP @499
 </a>
 </div>
 
-
 <!-- DAILY -->
-<div class="package-card">
-<h3>1 Day – Ksh 99</h3>
-<p style="color:#2ECC71;">3 premium matches daily</p>
+<div class="card">
+<h2>📊 DAILY PACKAGE – Ksh 99</h2>
+<p>3 matches daily</p>
+<p>Best for beginners</p>
 
-<div class="teaser">
-<div class="blur">Top League Matches</div>
-<div>Safe Predictions</div>
-<div class="odds">8+</div>
-<div class="total">Best for beginners</div>
-</div>
-
-<a href="https://wa.me/254762945530?text=Hello%20I%20want%20Daily"
-class="whatsapp-button">
+<a href="https://wa.me/254762945530?text=I%20want%20Daily" class="btn">
 Start with 99
 </a>
 </div>
 
 </div>
+
+<div class="section">
+<h2>📈 PROOF OF PERFORMANCE</h2>
+<p>✔ 93% Accuracy Rate</p>
+<p>✔ Thousands of winning clients</p>
+<p>✔ Daily consistent results</p>
 </div>
+
+<div class="section">
+<h2>💬 HOW TO JOIN</h2>
+<p>1. Click any package</p>
+<p>2. Pay via Till Number: <strong>6012928</strong></p>
+<p>3. Send confirmation</p>
+<p>4. Receive ticket instantly</p>
+</div>
+
+<div class="section">
+<h2>⚠️ LIMITED ACCESS</h2>
+<p class="red">Slots fill fast daily. Once closed, you wait for next drop.</p>
+</div>
+
+</body>
+</html>
