@@ -9,6 +9,13 @@
     <meta property="og:description" content="93.7% accurate tips. Ksh 99 daily ticket. Mega Jackpot slips powered by AI.">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f766e'/><text y='.9em' font-size='80'>⚽</text></svg>">
+    <link rel="manifest" href="#" id="pwa-manifest">
+    <meta name="theme-color" content="#0f766e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Pro Tipsters">
+    <meta name="mobile-web-app-capable" content="yes">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -165,6 +172,14 @@
         .gambling{color:var(--red);font-weight:600;margin-top:12px;}
         .divider{height:5px;background:linear-gradient(90deg,var(--green),var(--mint));}
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+        .pwa-banner{display:none;position:fixed;bottom:110px;left:14px;right:14px;background:linear-gradient(135deg,#1e2937,#0f766e);color:#fff;border-radius:16px;padding:14px 16px;z-index:1000;box-shadow:0 8px 28px rgba(0,0,0,.3);align-items:center;gap:12px;max-width:460px;margin:0 auto;}
+        .pwa-banner.show{display:flex;}
+        .pwa-banner-icon{font-size:28px;flex-shrink:0;}
+        .pwa-banner-text{flex:1;}
+        .pwa-banner-text strong{display:block;font-size:14px;font-weight:700;}
+        .pwa-banner-text span{font-size:12px;opacity:.85;}
+        .pwa-install-btn{background:var(--gold);color:var(--green);border:none;padding:10px 16px;border-radius:30px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0;}
+        .pwa-close{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.7;padding:4px;flex-shrink:0;}
         @media(min-width:640px){
             .package-grid{grid-template-columns:repeat(3,1fr);}
             .wa-bubbles{grid-template-columns:repeat(2,1fr);}
@@ -249,22 +264,21 @@
         <button class="btn-primary" onclick="showTodayPackagesModal()">Get Today's Winning Ticket →</button>
         <button class="btn-secondary" onclick="scrollToFreeTip()">👀 See Today's Free Tip First</button>
     </div>
+    <div style="margin-top:16px;">
+        <button id="heroInstallBtn" onclick="triggerInstall()" style="background:#fff;color:var(--green);border:none;padding:13px 28px;border-radius:50px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.2);display:inline-flex;align-items:center;gap:8px;transition:transform .2s;">
+            📲 Download App — Free
+        </button>
+        <div id="iosHint" style="display:none;margin-top:10px;font-size:12.5px;opacity:.9;background:rgba(255,255,255,.15);border-radius:10px;padding:8px 14px;">
+            Tap <strong>Share ⬆️</strong> then <strong>"Add to Home Screen"</strong>
+        </div>
+    </div>
 </div>
 
 <!-- STATS -->
 <div class="stats-bar">
-    <div class="stat-item">
-        <span class="stat-num">287</span>
-        <span class="stat-label">Wins This Month</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-num">93.7%</span>
-        <span class="stat-label">Accuracy Rate</span>
-    </div>
-    <div class="stat-item">
-        <span class="stat-num">370K</span>
-        <span class="stat-label">Ksh Profit</span>
-    </div>
+    <div class="stat-item"><span class="stat-num">287</span><span class="stat-label">Wins This Month</span></div>
+    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Accuracy Rate</span></div>
+    <div class="stat-item"><span class="stat-num">370K</span><span class="stat-label">Ksh Profit</span></div>
 </div>
 
 <div class="divider"></div>
@@ -277,44 +291,19 @@
         <table class="result-table">
             <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>Outcome</th></tr></thead>
             <tbody>
-                <tr>
-                    <td data-label="Match">Lens vs Toulouse</td>
-                    <td data-label="Prediction">Home Win</td>
-                    <td data-label="Odds">1.95</td>
-                    <td data-label="Result">3-2</td>
-                    <td data-label="Outcome" class="win">WIN ✓</td>
-                </tr>
-                <tr>
-                    <td data-label="Match">Sassuolo vs Como</td>
-                    <td data-label="Prediction">GG</td>
-                    <td data-label="Odds">1.80</td>
-                    <td data-label="Result">2-1</td>
-                    <td data-label="Outcome" class="win">WIN ✓</td>
-                </tr>
-                <tr>
-                    <td data-label="Match">Inter Milan vs Cagliari</td>
-                    <td data-label="Prediction">Over 2.5</td>
-                    <td data-label="Odds">1.65</td>
-                    <td data-label="Result">3-0</td>
-                    <td data-label="Outcome" class="win">WIN ✓</td>
-                </tr>
+                <tr><td data-label="Match">Lens vs Toulouse</td><td data-label="Prediction">Home Win</td><td data-label="Odds">1.95</td><td data-label="Result">3-2</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
+                <tr><td data-label="Match">Sassuolo vs Como</td><td data-label="Prediction">GG</td><td data-label="Odds">1.80</td><td data-label="Result">2-1</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
+                <tr><td data-label="Match">Inter Milan vs Cagliari</td><td data-label="Prediction">Over 2.5</td><td data-label="Odds">1.65</td><td data-label="Result">3-0</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" style="text-align:right;padding:11px 10px;">Total Odds</td>
-                    <td colspan="2" style="color:var(--mint);font-size:15px;padding:11px 10px;">5.79 ✓</td>
-                </tr>
-            </tfoot>
+            <tfoot><tr><td colspan="3" style="text-align:right;padding:11px 10px;">Total Odds</td><td colspan="2" style="color:var(--mint);font-size:15px;padding:11px 10px;">5.79 ✓</td></tr></tfoot>
         </table>
     </div>
-    <div style="text-align:center;">
-        <a href="#" onclick="showTrackRecord();return false;" class="view-record">📊 View Full Month Track Record →</a>
-    </div>
+    <div style="text-align:center;"><a href="#" onclick="showTrackRecord();return false;" class="view-record">📊 View Full Month Track Record →</a></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ③ FREE TIP INLINE -->
+<!-- ③ FREE TIP -->
 <div class="section" id="free-tip-anchor">
     <div class="section-title">👀 Today's Free Sample Tip</div>
     <div class="section-sub">One real match from today's full ticket — completely free.</div>
@@ -331,11 +320,8 @@
             <div class="blur-line">Arsenal vs Chelsea • Home Win • Odds 1.85</div>
             <div class="blur-line">Brighton vs Nott Forest • Over 2.5 • Odds 2.10</div>
         </div>
-        <div class="full-ticket-teaser">
-            🎯 Full ticket combined odds: ~9.35 &nbsp;|&nbsp; Unlock all 3 matches for just <strong>Ksh 99</strong>
-        </div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F"
-           class="wa-btn">Unlock Full Ticket – Ksh 99 →</a>
+        <div class="full-ticket-teaser">🎯 Full ticket combined odds: ~9.35 &nbsp;|&nbsp; Unlock all 3 matches for just <strong>Ksh 99</strong></div>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Unlock Full Ticket – Ksh 99 →</a>
     </div>
 </div>
 
@@ -349,21 +335,9 @@
         <h3>If you had the 5-Day Plan last week…</h3>
         <p>Ksh 499 subscription → consistent daily wins → here's what different stake sizes returned:</p>
         <div class="fomo-grid">
-            <div class="fomo-item">
-                <div class="fomo-stake">Ksh 100/day</div>
-                <div class="fomo-return">Ksh 4,217</div>
-                <div class="fomo-plan">across 5 days</div>
-            </div>
-            <div class="fomo-item">
-                <div class="fomo-stake">Ksh 200/day</div>
-                <div class="fomo-return">Ksh 8,434</div>
-                <div class="fomo-plan">across 5 days</div>
-            </div>
-            <div class="fomo-item">
-                <div class="fomo-stake">Ksh 500/day</div>
-                <div class="fomo-return">Ksh 21,085</div>
-                <div class="fomo-plan">across 5 days</div>
-            </div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 100/day</div><div class="fomo-return">Ksh 4,217</div><div class="fomo-plan">across 5 days</div></div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 200/day</div><div class="fomo-return">Ksh 8,434</div><div class="fomo-plan">across 5 days</div></div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 500/day</div><div class="fomo-return">Ksh 21,085</div><div class="fomo-plan">across 5 days</div></div>
         </div>
         <p style="font-size:12px;opacity:.7;margin-bottom:18px;">Based on last week's average combined odds of 8.43 per day</p>
         <button class="btn-primary" onclick="showTodayPackagesModal()" style="margin:0 auto;">Don't Miss This Week Too →</button>
@@ -372,43 +346,15 @@
 
 <div class="divider"></div>
 
-<!-- ⑤ WHATSAPP TESTIMONIALS -->
+<!-- ⑤ TESTIMONIALS -->
 <div class="section">
     <div class="section-title">💬 Real Clients. Real Wins.</div>
     <div class="section-sub">Actual WhatsApp messages from members this week</div>
     <div class="wa-bubbles">
-        <div class="wa-bubble-wrap">
-            <div class="wa-avatar">DK</div>
-            <div class="wa-bubble">
-                <div class="wa-name">David K. • Nairobi</div>
-                Nimepata!! 3/3 WIN 🔥🔥 Ksh 200 stake nilirudisha <span class="wa-amount">Ksh 1,870</span> saa moja tu. Asante sana Pro Tipsters!
-                <div class="wa-time">Yesterday 4:47 PM ✓✓</div>
-            </div>
-        </div>
-        <div class="wa-bubble-wrap right">
-            <div class="wa-avatar">MK</div>
-            <div class="wa-bubble">
-                <div class="wa-name">Mercy K. • Mombasa</div>
-                5-day plan imenisaidia sana. Week moja peke yangu nilifanya <span class="wa-amount">Ksh 14,200</span> 😭🙏 Ksh 99 ni kitu kidogo sana compared to returns!
-                <div class="wa-time">2 days ago 9:12 AM ✓✓</div>
-            </div>
-        </div>
-        <div class="wa-bubble-wrap">
-            <div class="wa-avatar">JO</div>
-            <div class="wa-bubble">
-                <div class="wa-name">Juma O. • Eldoret</div>
-                AI odds generator ilinipa 15x ticket. Nilieka Ksh 300 nikapata <span class="wa-amount">Ksh 4,500</span> 😤 Sasa niko 5-day plan kila wiki bila kusita.
-                <div class="wa-time">3 days ago 7:23 PM ✓✓</div>
-            </div>
-        </div>
-        <div class="wa-bubble-wrap right">
-            <div class="wa-avatar">AW</div>
-            <div class="wa-bubble">
-                <div class="wa-name">Aisha W. • Nakuru</div>
-                Kwanza nilikuwa skeptical, baada ya free tip kupita nikanunua full ticket. <span class="wa-amount">3/3 WIN</span> siku ya kwanza! Sasa ni member wa miezi 4 💪
-                <div class="wa-time">Today 11:05 AM ✓✓</div>
-            </div>
-        </div>
+        <div class="wa-bubble-wrap"><div class="wa-avatar">DK</div><div class="wa-bubble"><div class="wa-name">David K. • Nairobi</div>Nimepata!! 3/3 WIN 🔥🔥 Ksh 200 stake nilirudisha <span class="wa-amount">Ksh 1,870</span> saa moja tu. Asante sana Pro Tipsters!<div class="wa-time">Yesterday 4:47 PM ✓✓</div></div></div>
+        <div class="wa-bubble-wrap right"><div class="wa-avatar">MK</div><div class="wa-bubble"><div class="wa-name">Mercy K. • Mombasa</div>5-day plan imenisaidia sana. Week moja peke yangu nilifanya <span class="wa-amount">Ksh 14,200</span> 😭🙏<div class="wa-time">2 days ago 9:12 AM ✓✓</div></div></div>
+        <div class="wa-bubble-wrap"><div class="wa-avatar">JO</div><div class="wa-bubble"><div class="wa-name">Juma O. • Eldoret</div>AI odds generator ilinipa 15x ticket. Nilieka Ksh 300 nikapata <span class="wa-amount">Ksh 4,500</span> 😤<div class="wa-time">3 days ago 7:23 PM ✓✓</div></div></div>
+        <div class="wa-bubble-wrap right"><div class="wa-avatar">AW</div><div class="wa-bubble"><div class="wa-name">Aisha W. • Nakuru</div>Kwanza nilikuwa skeptical, baada ya free tip kupita nikanunua full ticket. <span class="wa-amount">3/3 WIN</span> siku ya kwanza! 💪<div class="wa-time">Today 11:05 AM ✓✓</div></div></div>
     </div>
 </div>
 
@@ -418,21 +364,14 @@
 <div class="section">
     <div class="section-title">Choose Your Package</div>
     <div class="section-sub">Delivered instantly on WhatsApp after M-Pesa payment</div>
-    <div class="slots-bar">
-        ⚡ Only <span class="slots-num" id="slots-display">11</span> VIP slots available — closes when today's first match kicks off
-    </div>
+    <div class="slots-bar">⚡ Only <span class="slots-num" id="slots-display">11</span> VIP slots available — closes when today's first match kicks off</div>
     <div class="package-grid">
         <div class="package-card">
             <div class="pack-badge">STARTER</div>
             <div class="pack-name">Daily Ticket</div>
             <div class="pack-price">Ksh 99</div>
             <div class="pack-sub">Best for first-timers</div>
-            <ul class="pack-features">
-                <li>3 premium matches today</li>
-                <li>Combined odds ~9.35</li>
-                <li>95% confidence picks</li>
-                <li>Instant WhatsApp delivery</li>
-            </ul>
+            <ul class="pack-features"><li>3 premium matches today</li><li>Combined odds ~9.35</li><li>95% confidence picks</li><li>Instant WhatsApp delivery</li></ul>
             <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
         </div>
         <div class="package-card featured">
@@ -440,12 +379,7 @@
             <div class="pack-name">5-Day Plan</div>
             <div class="pack-price">Ksh 499</div>
             <div class="pack-sub">Best for consistent profit</div>
-            <ul class="pack-features">
-                <li>5 days of daily tickets</li>
-                <li>Priority WhatsApp support</li>
-                <li>High-confidence daily picks</li>
-                <li>Save Ksh 496 vs daily</li>
-            </ul>
+            <ul class="pack-features"><li>5 days of daily tickets</li><li>Priority WhatsApp support</li><li>High-confidence daily picks</li><li>Save Ksh 496 vs daily</li></ul>
             <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
         </div>
         <div class="package-card">
@@ -453,12 +387,7 @@
             <div class="pack-name">Mega Jackpot</div>
             <div class="pack-price">Ksh 599</div>
             <div class="pack-sub">Full 17-game slip + AI</div>
-            <ul class="pack-features">
-                <li>Full 17-game Jackpot slip</li>
-                <li>Expert + AI analysis</li>
-                <li>Won 2 bonuses this month</li>
-                <li>Ksh 121M+ current pool</li>
-            </ul>
+            <ul class="pack-features"><li>Full 17-game Jackpot slip</li><li>Expert + AI analysis</li><li>Won 2 bonuses this month</li><li>Ksh 121M+ current pool</li></ul>
             <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
         </div>
     </div>
@@ -472,41 +401,20 @@
         <div style="font-size:42px;margin-bottom:10px;">🚀</div>
         <h2>AI Odds Generator</h2>
         <p>Enter your target odds — AI finds matching games and shows your exact price instantly.</p>
-        <div class="ai-range-info">
-            <span>📉 Min: <strong>2x</strong> — Ksh 50</span>
-            <span>📈 Max: <strong>+23x</strong> — Ksh 499</span>
-        </div>
+        <div class="ai-range-info"><span>📉 Min: <strong>2x</strong> — Ksh 50</span><span>📈 Max: <strong>+23x</strong> — Ksh 499</span></div>
         <div class="ai-input-row">
             <input id="aiInput" class="ai-input" type="number" min="2" max="23" placeholder="Enter odds e.g. 10">
             <button class="ai-btn" onclick="runAI()">Generate</button>
         </div>
         <div id="aiError" class="ai-error"></div>
-        <div id="aiLoading" class="ai-loading">
-            <div class="spinner"></div> AI scanning today's matches...
-        </div>
+        <div id="aiLoading" class="ai-loading"><div class="spinner"></div> AI scanning today's matches...</div>
         <div id="aiResult" class="ai-result">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;">
-                <strong style="color:var(--green);font-size:15px;">🎯 AI Matches Found</strong>
-                <div id="aiConfidence" class="ai-confidence"></div>
-            </div>
-            <div class="pack-teaser">
-                <div class="blur-row" id="aiMatch1"></div>
-                <div class="blur-row" id="aiMatch2"></div>
-                <div class="blur-row" id="aiMatch3"></div>
-                <div class="teaser-total" id="aiOdds"></div>
-            </div>
-            <div class="ai-price-box">
-                <div class="ai-price-label">Your Ticket Price</div>
-                <div class="ai-price-num" id="aiPrice"></div>
-                <div class="ai-price-tier" id="aiTier"></div>
-            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;"><strong style="color:var(--green);font-size:15px;">🎯 AI Matches Found</strong><div id="aiConfidence" class="ai-confidence"></div></div>
+            <div class="pack-teaser"><div class="blur-row" id="aiMatch1"></div><div class="blur-row" id="aiMatch2"></div><div class="blur-row" id="aiMatch3"></div><div class="teaser-total" id="aiOdds"></div></div>
+            <div class="ai-price-box"><div class="ai-price-label">Your Ticket Price</div><div class="ai-price-num" id="aiPrice"></div><div class="ai-price-tier" id="aiTier"></div></div>
             <div class="calc-box">
                 <div style="font-size:13px;font-weight:600;color:#334155;">💰 Potential Return Calculator</div>
-                <div class="calc-row">
-                    <span style="font-size:13px;color:var(--muted);white-space:nowrap;">Stake (Ksh)</span>
-                    <input id="stakeInput" class="calc-input" type="number" min="10" placeholder="e.g. 200" oninput="calcReturn()">
-                    <span style="font-size:13px;color:var(--muted);white-space:nowrap;">→ <strong id="returnAmt" style="color:var(--mint);font-size:15px;">--</strong></span>
-                </div>
+                <div class="calc-row"><span style="font-size:13px;color:var(--muted);white-space:nowrap;">Stake (Ksh)</span><input id="stakeInput" class="calc-input" type="number" min="10" placeholder="e.g. 200" oninput="calcReturn()"><span style="font-size:13px;color:var(--muted);white-space:nowrap;">→ <strong id="returnAmt" style="color:var(--mint);font-size:15px;">--</strong></span></div>
             </div>
             <a id="aiWaBtn" href="#" class="wa-btn" style="font-size:15.5px;"></a>
         </div>
@@ -522,10 +430,7 @@
         <h2>Mega Jackpot Predictions</h2>
         <div class="jackpot-pool">Current Pool: Ksh 121 Million+</div>
         <p>Expert analysts + AI — high-accuracy full 17-game slip ready.<br><strong>Already won 2 bonuses this month.</strong></p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F"
-           class="wa-btn wa-btn-gold" style="display:inline-block;padding:16px 36px;font-size:16px;margin-top:0;">
-           Get Mega Jackpot – Ksh 599
-        </a>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn wa-btn-gold" style="display:inline-block;padding:16px 36px;font-size:16px;margin-top:0;">Get Mega Jackpot – Ksh 599</a>
     </div>
 </div>
 
@@ -537,14 +442,9 @@
         <div style="font-size:50px;margin-bottom:12px;">✈️</div>
         <h2>Aviator Account Management</h2>
         <p>Deposit Ksh 700 — our expert team + AI manages your Aviator account and targets consistent profits.</p>
-        <div class="av-features">
-            <div class="av-feat">Deposit Ksh 700</div>
-            <div class="av-feat">AI Strategy</div>
-            <div class="av-feat">Target Ksh 1,500+</div>
-        </div>
+        <div class="av-features"><div class="av-feat">Deposit Ksh 700</div><div class="av-feat">AI Strategy</div><div class="av-feat">Target Ksh 1,500+</div></div>
         <p style="font-size:12.5px;color:var(--muted);">We manage — you profit. Results typically within 24 hours.</p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F"
-           class="wa-btn" style="display:inline-block;padding:14px 34px;margin-top:16px;">Start Aviator Management Now</a>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" class="wa-btn" style="display:inline-block;padding:14px 34px;margin-top:16px;">Start Aviator Management Now</a>
     </div>
 </div>
 
@@ -554,30 +454,20 @@
 <div class="section">
     <div class="section-title">Frequently Asked Questions</div>
     <div class="section-sub">Everything you need to know before subscribing</div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button>
-        <div class="faq-a">Pay via <strong>M-Pesa Till Number 6012928</strong>. After paying, screenshot your confirmation and send to our WhatsApp. You'll receive your tips within 5–10 minutes.</div>
-    </div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">When do I receive my tips? <span class="arrow">▼</span></button>
-        <div class="faq-a">Immediately after payment is confirmed — usually within 5 minutes. All tips are also sent by <strong>10AM daily</strong> so you have time to place bets before matches kick off.</div>
-    </div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button>
-        <div class="faq-a">No service guarantees 100% wins — football is unpredictable. But our <strong>93.7% monthly accuracy</strong> means the vast majority hit. On rare losing days, we send a <strong>double-tip bonus the next day</strong>.</div>
-    </div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Is Pro Tipsters legit? <span class="arrow">▼</span></button>
-        <div class="faq-a">Yes — we've served <strong>15,000+ Kenyan bettors</strong> for over 3 years. Our full monthly track record is updated daily and viewable above. All payments via M-Pesa for full transparency.</div>
-    </div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do you send tips on weekends? <span class="arrow">▼</span></button>
-        <div class="faq-a"><strong>7 days a week.</strong> Weekends usually have the best odds and most fixtures — some of our biggest wins happen on Saturdays and Sundays.</div>
-    </div>
-    <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How much should I stake? <span class="arrow">▼</span></button>
-        <div class="faq-a">Start with <strong>Ksh 100–200 per day</strong> while you build confidence. With daily ticket odds averaging ~9x, a Ksh 200 stake typically returns Ksh 1,800+. Always bet only what you can afford to lose.</div>
-    </div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button><div class="faq-a">Pay via <strong>M-Pesa Till Number 6012928</strong>. After paying, screenshot your confirmation and send to our WhatsApp. You'll receive your tips within 5–10 minutes.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">When do I receive my tips? <span class="arrow">▼</span></button><div class="faq-a">Immediately after payment is confirmed — usually within 5 minutes. All tips are also sent by <strong>10AM daily</strong> so you have time to place bets before matches kick off.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">No service guarantees 100% wins — football is unpredictable. But our <strong>93.7% monthly accuracy</strong> means the vast majority hit. On rare losing days, we send a <strong>double-tip bonus the next day</strong>.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is Pro Tipsters legit? <span class="arrow">▼</span></button><div class="faq-a">Yes — we've served <strong>15,000+ Kenyan bettors</strong> for over 3 years. Our full monthly track record is updated daily and viewable above. All payments via M-Pesa for full transparency.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you send tips on weekends? <span class="arrow">▼</span></button><div class="faq-a"><strong>7 days a week.</strong> Weekends usually have the best odds and most fixtures — some of our biggest wins happen on Saturdays and Sundays.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How much should I stake? <span class="arrow">▼</span></button><div class="faq-a">Start with <strong>Ksh 100–200 per day</strong> while you build confidence. With daily ticket odds averaging ~9x, a Ksh 200 stake typically returns Ksh 1,800+. Always bet only what you can afford to lose.</div></div>
+</div>
+
+<!-- PWA INSTALL BANNER -->
+<div class="pwa-banner" id="pwaBanner">
+    <div class="pwa-banner-icon">📲</div>
+    <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tips on your home screen — free!</span></div>
+    <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
+    <button class="pwa-close" onclick="dismissPWA()">&#x2715;</button>
 </div>
 
 <!-- FLOATS -->
@@ -596,32 +486,9 @@
     <div class="modal-content">
         <div class="modal-handle"></div>
         <div class="modal-title">Get Today's Package</div>
-        <div class="modal-pkg">
-            <strong>Daily Ticket – Ksh 99</strong>
-            <div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div>
-            <div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;">
-                <div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div>
-                <div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div>
-                <div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div>
-            </div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
-        </div>
-        <div class="modal-pkg">
-            <strong>5-Day Subscription – Ksh 499</strong>
-            <div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div>
-            <div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">
-                Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.
-            </div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
-        </div>
-        <div class="modal-pkg">
-            <strong>Mega Jackpot – Ksh 599</strong>
-            <div class="conf">🤖 Expert + AI • 17-Game Slip • Ksh 121M+ Pool</div>
-            <div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">
-                Full 17-game slip — won 2 bonuses this month. One win can change everything.
-            </div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
-        </div>
+        <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div><div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div></div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
+        <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a></div>
+        <div class="modal-pkg"><strong>Mega Jackpot – Ksh 599</strong><div class="conf">🤖 Expert + AI • 17-Game Slip • Ksh 121M+ Pool</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Full 17-game slip — won 2 bonuses this month. One win can change everything.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a></div>
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
 </div>
@@ -631,56 +498,28 @@
     <div class="modal-content" style="max-width:480px;">
         <div class="modal-handle"></div>
         <div class="modal-title">📊 This Month's Track Record</div>
-        <div class="table-wrap">
-            <table class="track-table">
-                <thead><tr><th>Date</th><th>Tips</th><th>Wins</th><th>Outcome</th></tr></thead>
-                <tbody id="trackRecordBody"></tbody>
-            </table>
-        </div>
-        <div style="text-align:center;margin-top:14px;">
-            <strong style="color:var(--mint);">312 Tips • 287 Wins • 92.0% Accuracy</strong>
-        </div>
+        <div class="table-wrap"><table class="track-table"><thead><tr><th>Date</th><th>Tips</th><th>Wins</th><th>Outcome</th></tr></thead><tbody id="trackRecordBody"></tbody></table></div>
+        <div style="text-align:center;margin-top:14px;"><strong style="color:var(--mint);">312 Tips • 287 Wins • 92.0% Accuracy</strong></div>
         <button class="modal-back" onclick="hideTrackRecord()" style="margin-top:12px;">Close</button>
     </div>
 </div>
 
 <script>
-// Live counter
 let viewers=2147;
-setInterval(()=>{
-    viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));
-    document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';
-},3200);
+setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';},3200);
 
-// Countdown
-function updateCountdown(){
-    const now=new Date(),midnight=new Date();
-    midnight.setHours(23,59,59,0);
-    const diff=midnight-now;
-    const h=String(Math.floor(diff/3600000)).padStart(2,'0');
-    const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-    const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-    document.getElementById('countdown').textContent=`${h}:${m}:${s}`;
-}
+function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
 updateCountdown();setInterval(updateCountdown,1000);
 
-// Slots
 let slots=11;
-function updateSlots(){
-    document.getElementById('slots-urgency').textContent=slots;
-    document.getElementById('slots-display').textContent=slots;
-}
+function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
 updateSlots();
-setInterval(()=>{
-    if(slots>3&&Math.random()>0.65){slots--;updateSlots();}
-},40000);
+setInterval(()=>{if(slots>3&&Math.random()>0.65){slots--;updateSlots();}},40000);
 
-// Dynamic date
 const yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
 const d=yesterday.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
 document.getElementById('results-date').textContent=`Yesterday (${d}) — All 3 matches landed perfectly.`;
 
-// Notifications
 const notifications=[
     {name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},
     {name:'Mercy Wanjiku',number:'0712••••',pkg:'5-Day Plan'},
@@ -691,113 +530,49 @@ const notifications=[
     {name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},
     {name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'},
 ];
-function playBeep(){
-    try{
-        const ctx=new(window.AudioContext||window.webkitAudioContext)();
-        const osc=ctx.createOscillator(),g=ctx.createGain();
-        osc.connect(g);g.connect(ctx.destination);
-        osc.frequency.value=680;g.gain.value=0.22;
-        osc.start();setTimeout(()=>osc.stop(),160);
-    }catch(e){}
-}
-function showLiveNotification(){
-    const notif=notifications[Math.floor(Math.random()*notifications.length)];
-    const container=document.getElementById('live-notification');
-    const el=document.getElementById('notification-content');
-    el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;
-    container.classList.remove('slide-out');
-    container.style.display='flex';
-    container.classList.add('slide-in');
-    playBeep();
-    setTimeout(()=>{
-        container.classList.remove('slide-in');
-        container.classList.add('slide-out');
-        setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);
-    },6500);
-}
-setTimeout(()=>{
-    showLiveNotification();
-    setInterval(()=>{if(Math.random()>0.3)showLiveNotification();},42000);
-},4000);
+function playBeep(){try{const ctx=new(window.AudioContext||window.webkitAudioContext)();const osc=ctx.createOscillator(),g=ctx.createGain();osc.connect(g);g.connect(ctx.destination);osc.frequency.value=680;g.gain.value=0.22;osc.start();setTimeout(()=>osc.stop(),160);}catch(e){}}
+function showLiveNotification(){const notif=notifications[Math.floor(Math.random()*notifications.length)];const container=document.getElementById('live-notification');const el=document.getElementById('notification-content');el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;container.classList.remove('slide-out');container.style.display='flex';container.classList.add('slide-in');playBeep();setTimeout(()=>{container.classList.remove('slide-in');container.classList.add('slide-out');setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);},6500);}
+setTimeout(()=>{showLiveNotification();setInterval(()=>{if(Math.random()>0.3)showLiveNotification();},42000);},4000);
 
-// AI Generator
 const aiTiers=[
-    {min:2,max:4,price:50,label:'Entry Odds (2x–4x)',conf:'93%',odds:'~3.45',
-     matches:['Arsenal vs Wolves • Home Win','Brighton vs Nott Forest • Over 1.5','Man Utd vs Bournemouth • GG']},
-    {min:5,max:9,price:99,label:'Standard Odds (5x–9x)',conf:'89%',odds:'~7.80',
-     matches:['Man City vs Newcastle • Over 2.5','Liverpool vs Chelsea • GG','Barca vs Real Madrid • Home Win']},
-    {min:10,max:14,price:199,label:'High Odds (10x–14x)',conf:'85%',odds:'~12.40',
-     matches:['Dortmund vs Bayern • Over 3.5','PSG vs Monaco • Home Win & Over 2.5','Inter vs Napoli • GG']},
-    {min:15,max:19,price:299,label:'Premium Odds (15x–19x)',conf:'81%',odds:'~17.60',
-     matches:['Atletico vs Sevilla • Away Win','Ajax vs PSV • GG & Over 2.5','Celtic vs Rangers • Correct Score 2-1']},
-    {min:20,max:23,price:499,label:'Elite Odds (20x–23x)',conf:'76%',odds:'~22.80',
-     matches:['Betis vs Braga • Correct Score 2-1','Udinese vs Lecce • Home Win & Over 2.5','Lazio vs Fiorentina • GG & Over 3.5']},
+    {min:2,max:4,price:50,label:'Entry Odds (2x–4x)',conf:'93%',odds:'~3.45',matches:['Arsenal vs Wolves • Home Win','Brighton vs Nott Forest • Over 1.5','Man Utd vs Bournemouth • GG']},
+    {min:5,max:9,price:99,label:'Standard Odds (5x–9x)',conf:'89%',odds:'~7.80',matches:['Man City vs Newcastle • Over 2.5','Liverpool vs Chelsea • GG','Barca vs Real Madrid • Home Win']},
+    {min:10,max:14,price:199,label:'High Odds (10x–14x)',conf:'85%',odds:'~12.40',matches:['Dortmund vs Bayern • Over 3.5','PSG vs Monaco • Home Win & Over 2.5','Inter vs Napoli • GG']},
+    {min:15,max:19,price:299,label:'Premium Odds (15x–19x)',conf:'81%',odds:'~17.60',matches:['Atletico vs Sevilla • Away Win','Ajax vs PSV • GG & Over 2.5','Celtic vs Rangers • Correct Score 2-1']},
+    {min:20,max:23,price:499,label:'Elite Odds (20x–23x)',conf:'76%',odds:'~22.80',matches:['Betis vs Braga • Correct Score 2-1','Udinese vs Lecce • Home Win & Over 2.5','Lazio vs Fiorentina • GG & Over 3.5']},
 ];
 let currentOddsVal=0;
-function calcReturn(){
-    const stake=parseFloat(document.getElementById('stakeInput').value);
-    const el=document.getElementById('returnAmt');
-    if(!stake||stake<1||currentOddsVal<2){el.textContent='--';return;}
-    el.textContent='Ksh '+Number((stake*currentOddsVal).toFixed(0)).toLocaleString();
-}
-function runAI(){
-    const rawVal=document.getElementById('aiInput').value.trim();
-    const errEl=document.getElementById('aiError');
-    const loading=document.getElementById('aiLoading');
-    const result=document.getElementById('aiResult');
-    errEl.style.display='none';result.style.display='none';
-    const val=parseFloat(rawVal);
-    if(!rawVal||isNaN(val)){errEl.textContent='⚠️ Please enter a number between 2 and 23.';errEl.style.display='block';return;}
-    if(val<2){errEl.textContent='📉 Minimum odds are 2x. Please enter 2 or higher.';errEl.style.display='block';return;}
-    if(val>23){errEl.textContent='📈 Our AI maximum is +23x odds. Please enter 23 or lower.';errEl.style.display='block';return;}
-    const tier=aiTiers.find(t=>Math.floor(val)>=t.min&&Math.floor(val)<=t.max);
-    if(!tier){errEl.textContent='⚠️ Enter odds between 2 and 23.';errEl.style.display='block';return;}
-    loading.style.display='flex';
-    setTimeout(()=>{
-        loading.style.display='none';
-        currentOddsVal=parseFloat(tier.odds.replace('~',''));
-        document.getElementById('aiMatch1').textContent=tier.matches[0];
-        document.getElementById('aiMatch2').textContent=tier.matches[1];
-        document.getElementById('aiMatch3').textContent=tier.matches[2];
-        document.getElementById('aiOdds').textContent='Combined Odds: '+tier.odds;
-        document.getElementById('aiConfidence').textContent=tier.conf+' AI Confidence';
-        document.getElementById('aiPrice').textContent='Ksh '+tier.price;
-        document.getElementById('aiTier').textContent=tier.label;
-        const waText=encodeURIComponent('Hello Pro Tipsters, I used the AI Odds Generator and want a '+tier.odds+' odds ticket for Ksh '+tier.price+'. How do I pay?');
-        const btn=document.getElementById('aiWaBtn');
-        btn.href='https://wa.me/254762945530?text='+waText;
-        btn.textContent='Get Ticket for Ksh '+tier.price+' →';
-        document.getElementById('stakeInput').value='';
-        document.getElementById('returnAmt').textContent='--';
-        result.style.display='block';
-    },1800);
-}
+function calcReturn(){const stake=parseFloat(document.getElementById('stakeInput').value);const el=document.getElementById('returnAmt');if(!stake||stake<1||currentOddsVal<2){el.textContent='--';return;}el.textContent='Ksh '+Number((stake*currentOddsVal).toFixed(0)).toLocaleString();}
+function runAI(){const rawVal=document.getElementById('aiInput').value.trim();const errEl=document.getElementById('aiError');const loading=document.getElementById('aiLoading');const result=document.getElementById('aiResult');errEl.style.display='none';result.style.display='none';const val=parseFloat(rawVal);if(!rawVal||isNaN(val)){errEl.textContent='⚠️ Please enter a number between 2 and 23.';errEl.style.display='block';return;}if(val<2){errEl.textContent='📉 Minimum odds are 2x. Please enter 2 or higher.';errEl.style.display='block';return;}if(val>23){errEl.textContent='📈 Our AI maximum is +23x odds. Please enter 23 or lower.';errEl.style.display='block';return;}const tier=aiTiers.find(t=>Math.floor(val)>=t.min&&Math.floor(val)<=t.max);if(!tier){errEl.textContent='⚠️ Enter odds between 2 and 23.';errEl.style.display='block';return;}loading.style.display='flex';setTimeout(()=>{loading.style.display='none';currentOddsVal=parseFloat(tier.odds.replace('~',''));document.getElementById('aiMatch1').textContent=tier.matches[0];document.getElementById('aiMatch2').textContent=tier.matches[1];document.getElementById('aiMatch3').textContent=tier.matches[2];document.getElementById('aiOdds').textContent='Combined Odds: '+tier.odds;document.getElementById('aiConfidence').textContent=tier.conf+' AI Confidence';document.getElementById('aiPrice').textContent='Ksh '+tier.price;document.getElementById('aiTier').textContent=tier.label;const waText=encodeURIComponent('Hello Pro Tipsters, I used the AI Odds Generator and want a '+tier.odds+' odds ticket for Ksh '+tier.price+'. How do I pay?');const btn=document.getElementById('aiWaBtn');btn.href='https://wa.me/254762945530?text='+waText;btn.textContent='Get Ticket for Ksh '+tier.price+' →';document.getElementById('stakeInput').value='';document.getElementById('returnAmt').textContent='--';result.style.display='block';},1800);}
 document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')runAI();});
 
-// Modals
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
-function showTrackRecord(){
-    const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';
-    const data=[
-        ['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],
-        ['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],
-        ['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],
-        ['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],
-        ['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],
-        ['02/04','3','3'],['01/04','3','3'],
-    ];
-    data.forEach(([date,tips,wins])=>{
-        const isLoss=parseInt(wins)<parseInt(tips);
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;
-        tbody.appendChild(tr);
-    });
-    document.getElementById('trackRecordModal').style.display='flex';
-}
+function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],['02/04','3','3'],['01/04','3','3']];data.forEach(([date,tips,wins])=>{const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;tbody.appendChild(tr);});document.getElementById('trackRecordModal').style.display='flex';}
 function hideTrackRecord(){document.getElementById('trackRecordModal').style.display='none';}
 function scrollToFreeTip(){document.getElementById('free-tip-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
+
+// ── PWA ──────────────────────────────────────────────────────
+const manifest={name:'Pro Tipsters',short_name:'ProTipsters',description:"Kenya's #1 Betting Tips",start_url:'.',display:'standalone',background_color:'#0f766e',theme_color:'#0f766e',icons:[{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="32" fill="%230f766e"/><text y="145" x="20" font-size="150">%E2%9A%BD</text></svg>',sizes:'192x192',type:'image/svg+xml'},{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="%230f766e"/><text y="390" x="40" font-size="400">%E2%9A%BD</text></svg>',sizes:'512x512',type:'image/svg+xml'}]};
+const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
+document.getElementById('pwa-manifest').setAttribute('href',URL.createObjectURL(blob));
+
+const swCode=`self.addEventListener('install',e=>{e.waitUntil(caches.open('pro-tipsters-v1').then(cache=>cache.addAll([location.href])));self.skipWaiting();});self.addEventListener('activate',e=>{self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
+if('serviceWorker' in navigator){const swBlob=new Blob([swCode],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(swBlob),{scope:'/'}).catch(()=>{});}
+
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem('pwa-dismissed')){setTimeout(()=>document.getElementById('pwaBanner').classList.add('show'),8000);}});
+
+async function triggerInstall(){if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('pwaBanner').classList.remove('show');if(outcome==='accepted'){document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;}}else{const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);if(isIOS){document.getElementById('iosHint').style.display='block';}else{document.getElementById('heroInstallBtn').textContent='✅ Already Installed / Open in Browser';}}}
+
+document.getElementById('pwaInstallBtn').addEventListener('click',()=>triggerInstall());
+function dismissPWA(){document.getElementById('pwaBanner').classList.remove('show');localStorage.setItem('pwa-dismissed','1');}
+window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
+
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
 </script>
 </body>
 </html>
