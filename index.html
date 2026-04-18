@@ -17,10 +17,27 @@
         .trust-bar { background:#ffffff; padding:12px 15px; text-align:center; font-size:13.5px; color:#334155; border-bottom:1px solid #e2e8f0; }
         .trust-bar span { color:#10b981; font-weight:600; }
 
-        .live-notification { position:fixed; top:68px; left:15px; right:15px; background:#ffffff; border-left:6px solid #10b981; border-radius:12px; padding:14px 18px; box-shadow:0 8px 25px rgba(0,0,0,0.18); z-index:9999; display:none; align-items:center; gap:12px; max-width:460px; margin:0 auto; animation:slideDown 0.4s ease forwards; }
-        @keyframes slideDown { from { opacity:0; transform:translateY(-30px); } to { opacity:1; transform:translateY(0); } }
-        .live-notification::before { content:"🛎"; font-size:24px; }
-        .live-notification strong { color:#10b981; }
+        /* Compact WhatsApp-style Notification at Top */
+        .live-notification { 
+            position:fixed; 
+            top: 68px; 
+            left: 15px; 
+            right: 15px; 
+            background:#ffffff; 
+            border-left: 5px solid #10b981; 
+            border-radius: 8px; 
+            padding: 12px 16px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12); 
+            z-index: 9999; 
+            display:none; 
+            align-items:center; 
+            gap: 10px; 
+            max-width: 460px; 
+            margin: 0 auto; 
+            font-size: 14.2px;
+            animation: slideDown 0.4s ease forwards; 
+        }
+        @keyframes slideDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
 
         .hero { padding:42px 15px 32px; background:linear-gradient(135deg,#0f766e,#10b981); text-align:center; color:#ffffff; }
         .hero h1 { font-size:28px; line-height:1.2; margin-bottom:12px; }
@@ -39,7 +56,7 @@
         .result-table th { background:#f1f5f9; color:#0f766e; font-weight:700; }
         .result-table .win { color:#10b981; font-weight:700; text-transform:uppercase; }
 
-        /* Modal Packages - Compact & Professional */
+        /* Compact Modal */
         .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:10000; align-items:center; justify-content:center; }
         .modal-content { background:#fff; max-width:400px; width:92%; border-radius:20px; padding:28px 20px; text-align:center; box-shadow:0 15px 40px rgba(0,0,0,0.3); max-height:88vh; overflow-y:auto; }
         .package-option { background:#f8fafc; padding:20px; border-radius:16px; margin-bottom:16px; text-align:left; border:1px solid #e2e8f0; }
@@ -71,19 +88,32 @@
 </head>
 <body>
 
-    <!-- HEADER + TRUST BAR + HERO + PERFORMANCE (same) -->
+    <!-- HEADER -->
     <div class="header">
         <div class="header-title">PRO TIPSTERS</div>
         <div class="live-counter"><span class="live-dot"></span> <span id="live-counter">2,347 bettors online now</span></div>
     </div>
-    <div class="trust-bar">Trusted by <span>15,000+</span> Kenyan bettors • 93.7% Accuracy • Instant WhatsApp Delivery • M-Pesa Till 6012928</div>
 
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        Trusted by <span>15,000+</span> Kenyan bettors • 93.7% Accuracy • Instant WhatsApp Delivery • M-Pesa Till 6012928
+    </div>
+
+    <!-- COMPACT LIVE NOTIFICATION -->
+    <div id="live-notification" class="live-notification">
+        <div id="notification-content"></div>
+    </div>
+
+    <!-- HERO -->
     <div class="hero">
         <h1>93.7% Winning Tips • Turn Ksh 99 into Real Profits Today</h1>
         <p>Proven daily tickets • 5 Days Subscription • Mega Jackpot slips powered by AI</p>
     </div>
 
-    <div class="performance">THIS MONTH: 312 Tips • <strong style="color:#10b981">287 Wins</strong> • +Ksh 370,000 Profit Realized</div>
+    <!-- PERFORMANCE -->
+    <div class="performance">
+        THIS MONTH: 312 Tips • <strong style="color:#10b981">287 Wins</strong> • +Ksh 370,000 Profit Realized
+    </div>
 
     <!-- MEGA JACKPOT -->
     <div class="section">
@@ -91,7 +121,10 @@
             <h2>Mega Jackpot Predictions</h2>
             <p class="pool">Current Pool: Ksh 121 Million+</p>
             <p>Our expert analysts + AI have prepared a high-accuracy full 17-game slip.<br><strong>Won 2 bonuses this month.</strong></p>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="whatsapp-button" style="background:#ffd700;color:#0f766e;font-size:17px;padding:17px 32px;">Get Mega Jackpot Slip – Ksh 599 Only</a>
+            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" 
+               class="whatsapp-button" style="background:#ffd700;color:#0f766e;font-size:17px;padding:17px 32px;">
+                Get Mega Jackpot Slip – Ksh 599 Only
+            </a>
         </div>
     </div>
 
@@ -108,39 +141,36 @@
             </tbody>
             <tfoot><tr style="background:#f1f5f9;"><td colspan="3" style="text-align:right;">Total Odds</td><td colspan="2" style="color:#10b981;font-weight:700;">5.79</td></tr></tfoot>
         </table>
-        <a href="#" onclick="showTodayPackagesModal(); return false;" style="display:block;margin:30px auto 0;width:fit-content;background:#10b981;color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:17px;">Get Today's Ticket Now →</a>
+        <a href="#" onclick="showTodayPackagesModal(); return false;" 
+           style="display:block;margin:30px auto 0;width:fit-content;background:#10b981;color:#fff;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:700;font-size:17px;">
+            Get Today's Ticket Now →
+        </a>
     </div>
 
-    <!-- AI ODDS FINDER - FUN & COOL AI MODULE -->
+    <!-- AI ODDS FINDER -->
     <div class="section">
         <div class="ai-section">
             <h2>🚀 AI Odds Generator</h2>
             <p style="font-size:15.5px;opacity:0.95;">Tell our AI what odds you want — it instantly finds high-confidence matches.</p>
-            
             <input id="aiInput" type="text" placeholder="e.g. I need 5+ odds" style="width:100%; max-width:340px; padding:14px; border-radius:50px; border:none; font-size:15px; margin:20px 0;">
-            
             <button onclick="runAI()" style="background:#ffd700;color:#0f766e;padding:14px 32px;border-radius:50px;font-weight:700;border:none;cursor:pointer;">Generate with AI</button>
 
-            <!-- Loading -->
-            <div id="aiLoading" class="ai-loading">
-                <span style="animation:spin 1s linear infinite;">⟳</span> AI is searching the best matches for you...
-            </div>
+            <div id="aiLoading" class="ai-loading">AI is analyzing the best matches for you...</div>
 
-            <!-- Result -->
             <div id="aiResult" class="ai-result">
-                <strong>AI Found a Perfect Match for You</strong><br><br>
+                <strong>AI Match Found</strong><br><br>
                 <div class="teaser" style="background:#f1f5f9;color:#1e2937;">
                     <div class="blur">Man City vs Arsenal • Over 2.5</div>
                     <div class="blur">Liverpool vs Chelsea • GG</div>
-                    <div class="total">Total Odds <strong>3.25</strong> (within your request)</div>
+                    <div class="total">Total Odds <strong>3.25</strong></div>
                 </div>
-                <p style="font-size:13.5px;color:#10b981;margin:12px 0;">95% AI Confidence • Expert + AI module</p>
+                <p style="font-size:13.5px;color:#10b981;margin:12px 0;">95% AI Confidence</p>
                 <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20AI%20odds%20and%20want%20the%20full%20ticket%20at%20Ksh%2050.%20How%20do%20I%20pay%3F" class="whatsapp-button" style="background:#10b981;color:#fff;">Get Full Ticket @ Ksh 50 Now</a>
             </div>
         </div>
     </div>
 
-    <!-- TESTIMONIALS - Smaller & Professional -->
+    <!-- TESTIMONIALS -->
     <div class="section">
         <h2 style="color:#0f766e;text-align:center;margin-bottom:25px;">What Clients Say About Us</h2>
         <div class="testimonial-grid">
@@ -155,7 +185,8 @@
         <div style="font-size:62px;margin-bottom:12px;">✈️</div>
         <h2 style="color:#0f766e;margin-bottom:10px;">Aviator Account Management</h2>
         <p>Deposit Ksh 700 • AI + Expert management • Target Ksh 1,500+ profit fast</p>
-        <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" style="background:#10b981;color:#ffffff;padding:16px 34px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;margin-top:15px;">Start Aviator Management Now</a>
+        <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" 
+           style="background:#10b981;color:#ffffff;padding:16px 34px;border-radius:50px;display:inline-block;text-decoration:none;font-weight:700;margin-top:15px;">Start Aviator Management Now</a>
     </div>
 
     <!-- FREE TIP BUTTON -->
@@ -167,34 +198,41 @@
         <p class="gambling">Bet only what you can afford to lose.</p>
     </footer>
 
-    <!-- PACKAGES MODAL -->
+    <!-- TODAY'S PACKAGES MODAL -->
     <div id="todayPackagesModal" class="modal">
         <div class="modal-content">
-            <h3 style="color:#0f766e;margin-bottom:20px;">Today's Packages</h3>
-            <!-- Daily, 5 Days, Mega cards (same as previous version) -->
+            <h3 style="color:#0f766e;margin-bottom:22px;">Today's Packages</h3>
+            
             <div class="package-option">
                 <strong>Daily Ticket – Ksh 99</strong>
                 <div class="confidence">95% Confidence • 3 Matches</div>
-                <div class="teaser"><div class="blur">Arsenal vs Chelsea • Home Win</div><div class="blur">Brighton vs Nott Forest • Over 2.5</div><div class="total">Combined Odds \~9.35</div></div>
+                <div class="teaser">
+                    <div class="blur">Arsenal vs Chelsea • Home Win</div>
+                    <div class="blur">Brighton vs Nott Forest • Over 2.5</div>
+                    <div class="total">Combined Odds \~9.35</div>
+                </div>
                 <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="whatsapp-button">Get Daily Ticket – Ksh 99</a>
             </div>
+
             <div class="package-option">
                 <strong>5 Days Subscription – Ksh 499</strong>
                 <div class="confidence">Strong Assurance • Daily Tips</div>
                 <div class="teaser">Consistent high-confidence picks every day</div>
                 <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="whatsapp-button">Subscribe for 5 Days – Ksh 499</a>
             </div>
+
             <div class="package-option">
                 <strong>Mega Jackpot – Ksh 599</strong>
                 <div class="confidence">Expert + AI Analysis</div>
                 <div class="teaser">Full 17-game slip • Won 2 bonuses this month</div>
                 <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="whatsapp-button">Get Mega Jackpot Slip – Ksh 599</a>
             </div>
+
             <button onclick="hideTodayPackagesModal()" style="margin-top:15px;background:#64748b;color:#fff;border:none;padding:12px 30px;border-radius:50px;font-weight:600;">← Back</button>
         </div>
     </div>
 
-    <!-- FREE TIP MODAL (same as before) -->
+    <!-- FREE TIP MODAL -->
     <div id="freeTipModal" class="modal">
         <div class="modal-content" style="max-width:380px;">
             <h3 style="color:#0f766e;">Today's Free Sample Tip</h3>
@@ -205,29 +243,81 @@
                 Odds \~9.35 | 3 Combined Matches<br>
                 <span style="color:#10b981;font-weight:700;">95% Confidence Sure Win</span>
             </div>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20at%20Ksh%2099.%20How%20do%20I%20pay%3F" style="display:block;background:#10b981;color:#fff;padding:16px;border-radius:50px;text-decoration:none;font-weight:700;margin-bottom:12px;">Get Full Ticket @ Ksh 99 Now</a>
+            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20at%20Ksh%2099.%20How%20do%20I%20pay%3F" 
+               style="display:block;background:#10b981;color:#fff;padding:16px;border-radius:50px;text-decoration:none;font-weight:700;margin-bottom:12px;">
+                Get Full Ticket @ Ksh 99 Now
+            </a>
             <button onclick="hideFreeTipModal()" style="background:#64748b;color:#fff;border:none;padding:12px 30px;border-radius:50px;font-weight:600;">Close</button>
         </div>
     </div>
 
 <script>
-    // Live counter + notifications (unchanged)
+    // Live counter
     let viewers = 2147;
-    setInterval(() => { /* same as before */ }, 3200);
+    setInterval(() => {
+        const change = Math.floor(Math.random() * 80) - 35; 
+        viewers = Math.max(1820, Math.min(2480, viewers + change));
+        document.getElementById('live-counter').textContent = viewers.toLocaleString() + " bettors online now";
+    }, 3200);
 
-    // AI Generator Function
+    // Clean Notifications - Simple format
+    const notifications = [
+        { name: "Paul Kamau", number: "07974xxxx65", package: "Daily" },
+        { name: "Mercy Wanjiku", number: "0712xxxxxx", package: "5 Days" },
+        { name: "Kevin Omondi", number: "0756xxxxxx", package: "Mega Jackpot" },
+        { name: "Aisha Mohammed", number: "0789xxxxxx", package: "Daily" },
+        { name: "John Mwangi", number: "0723xxxxxx", package: "5 Days" },
+        { name: "Esther Njeri", number: "0771xxxxxx", package: "Mega Jackpot" }
+    ];
+
+    function playBeep() {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.frequency.value = 680;
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 180);
+        } catch(e) {}
+    }
+
+    function showLiveNotification() {
+        const notif = notifications[Math.floor(Math.random() * notifications.length)];
+        const container = document.getElementById('live-notification');
+        const contentEl = document.getElementById('notification-content');
+        
+        contentEl.textContent = `${notif.name} • ${notif.number} • just paid for ${notif.package}`;
+        
+        container.style.display = 'flex';
+        playBeep();
+        
+        setTimeout(() => {
+            container.style.animation = 'slideDown 0.4s ease reverse';
+            setTimeout(() => {
+                container.style.display = 'none';
+                container.style.animation = '';
+            }, 400);
+        }, 6500);
+    }
+
+    setTimeout(() => {
+        showLiveNotification();
+        setInterval(() => { if (Math.random() > 0.35) showLiveNotification(); }, 55000);
+    }, 4500);
+
+    // AI Generator
     function runAI() {
-        const input = document.getElementById('aiInput').value.trim() || "5+ odds";
         const loading = document.getElementById('aiLoading');
         const result = document.getElementById('aiResult');
-        
         loading.style.display = 'flex';
         result.style.display = 'none';
-
         setTimeout(() => {
             loading.style.display = 'none';
             result.style.display = 'block';
-        }, 1850); // realistic AI "thinking" time
+        }, 1800);
     }
 
     // Modal functions
