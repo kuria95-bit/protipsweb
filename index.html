@@ -18,22 +18,14 @@
         }
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--text);line-height:1.6;font-size:16px;overflow-x:hidden;}
-
-        /* HEADER */
         .header{background:linear-gradient(135deg,var(--green),var(--mint));padding:13px 18px;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
         .header-title{font-family:'Syne',sans-serif;font-size:20px;color:#fff;font-weight:800;letter-spacing:.5px;}
         .live-counter{background:#fff;color:var(--green);padding:5px 13px;border-radius:30px;font-weight:700;font-size:12px;display:flex;align-items:center;gap:6px;}
         .live-dot{width:7px;height:7px;background:var(--mint);border-radius:50%;animation:pulse 1.8s infinite;}
-
-        /* URGENCY */
         .urgency-bar{background:#dc2626;color:#fff;text-align:center;padding:8px 18px;font-size:13px;font-weight:600;}
         .urgency-bar span{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;}
-
-        /* TRUST BAR */
         .trust-bar{background:#fff;padding:9px 18px;text-align:center;font-size:12.5px;color:#334155;border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
         .trust-bar strong{color:var(--mint);}
-
-        /* NOTIFICATION */
         .live-notification{position:fixed;top:60px;left:10px;right:10px;background:#fff;border-left:5px solid var(--mint);border-radius:10px;padding:11px 14px;box-shadow:0 6px 22px rgba(0,0,0,0.16);z-index:9999;display:none;align-items:center;gap:10px;max-width:440px;margin:0 auto;font-size:13.5px;}
         .notif-text strong{color:var(--green);}
         .notif-text small{color:var(--muted);font-size:11.5px;display:block;}
@@ -41,8 +33,6 @@
         .slide-out{animation:slideOut .35s ease forwards;}
         @keyframes slideIn{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
         @keyframes slideOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-18px)}}
-
-        /* HERO */
         .hero{background:linear-gradient(135deg,var(--green),var(--mint));padding:44px 18px 38px;text-align:center;color:#fff;position:relative;overflow:hidden;}
         .hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(255,255,255,.06);border-radius:50%;}
         .hero::after{content:'';position:absolute;bottom:-70px;left:-40px;width:260px;height:260px;background:rgba(255,255,255,.04);border-radius:50%;}
@@ -57,20 +47,14 @@
         .btn-primary:hover{transform:translateY(-2px);}
         .btn-secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:13px 30px;border-radius:50px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;max-width:340px;transition:background .2s;}
         .btn-secondary:hover{background:rgba(255,255,255,.1);}
-
-        /* STATS */
         .stats-bar{background:#fff;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:4px solid var(--mint);}
         .stat-item{padding:13px 8px;text-align:center;border-right:1px solid var(--border);}
         .stat-item:last-child{border-right:none;}
         .stat-num{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--green);display:block;}
         .stat-label{font-size:11px;color:var(--muted);}
-
-        /* SECTION */
         .section{padding:32px 18px;max-width:1100px;margin:0 auto;}
         .section-title{font-family:'Syne',sans-serif;color:var(--green);font-size:21px;font-weight:800;text-align:center;margin-bottom:6px;}
         .section-sub{text-align:center;font-size:13.5px;color:var(--muted);margin-bottom:20px;}
-
-        /* TABLE */
         .table-wrap{overflow-x:auto;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.08);}
         .result-table{width:100%;border-collapse:collapse;background:#fff;min-width:380px;}
         .result-table th,.result-table td{padding:11px 10px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;}
@@ -79,8 +63,6 @@
         .result-table tfoot td{background:#f1f5f9;font-weight:700;}
         .win{color:var(--mint);font-weight:700;text-transform:uppercase;}
         .view-record{display:inline-block;margin-top:14px;font-size:13px;color:var(--mint);font-weight:600;text-decoration:none;border-bottom:1px solid var(--mint);}
-
-        /* FOMO */
         .fomo-card{background:linear-gradient(135deg,#1e2937,#0f766e);color:#fff;border-radius:18px;padding:28px 20px;text-align:center;}
         .fomo-card h3{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:8px;}
         .fomo-card p{font-size:13.5px;opacity:.9;margin-bottom:16px;}
@@ -89,8 +71,6 @@
         .fomo-stake{font-size:11.5px;opacity:.8;}
         .fomo-return{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);}
         .fomo-plan{font-size:11px;margin-top:3px;opacity:.7;}
-
-        /* FREE TIP INLINE */
         .free-tip-section{background:#fff;border:2px solid var(--mint);border-radius:18px;padding:26px 20px;position:relative;overflow:hidden;}
         .free-tip-section::before{content:'FREE';position:absolute;top:14px;right:-22px;background:var(--mint);color:#fff;font-size:11px;font-weight:800;padding:4px 30px;transform:rotate(45deg);letter-spacing:1px;}
         .free-tip-match{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--green);margin-bottom:6px;}
@@ -104,8 +84,6 @@
         .blur-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
         .blur-line{filter:blur(4px);user-select:none;font-size:13.5px;color:var(--text);padding:3px 0;}
         .full-ticket-teaser{background:var(--mint);color:#fff;border-radius:10px;padding:12px 14px;font-size:13.5px;font-weight:600;text-align:center;margin-bottom:16px;}
-
-        /* WA BUBBLES */
         .wa-bubbles{display:grid;grid-template-columns:1fr;gap:14px;}
         .wa-bubble-wrap{display:flex;align-items:flex-end;gap:10px;}
         .wa-bubble-wrap.right{flex-direction:row-reverse;}
@@ -115,8 +93,6 @@
         .wa-name{font-size:12px;font-weight:700;color:var(--green);margin-bottom:3px;}
         .wa-time{font-size:11px;color:var(--muted);margin-top:6px;text-align:right;}
         .wa-amount{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);}
-
-        /* PACKAGES */
         .package-grid{display:grid;grid-template-columns:1fr;gap:16px;}
         .package-card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:22px 18px;transition:border-color .2s,transform .2s;}
         .package-card:hover{border-color:var(--mint);transform:translateY(-3px);}
@@ -132,12 +108,8 @@
         .wa-btn{background:var(--mint);color:#fff;padding:14px 28px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;margin-top:14px;transition:opacity .2s;}
         .wa-btn:hover{opacity:.9;}
         .wa-btn-gold{background:var(--gold);color:var(--green);}
-
-        /* SLOTS */
         .slots-bar{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;text-align:center;font-size:13.5px;color:#92400e;font-weight:600;margin-bottom:16px;}
         .slots-num{font-family:'Syne',sans-serif;font-size:18px;color:#dc2626;font-weight:800;}
-
-        /* AI */
         .ai-card{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:36px 20px;border-radius:20px;text-align:center;}
         .ai-card h2{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;margin-bottom:8px;}
         .ai-card p{font-size:14px;opacity:.92;margin-bottom:14px;}
@@ -161,29 +133,21 @@
         .calc-box{background:#f8fafc;border-radius:10px;padding:12px 14px;margin-bottom:12px;}
         .calc-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;}
         .calc-input{flex:1;min-width:80px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
-
-        /* JACKPOT */
         .jackpot-card{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:32px 20px;border-radius:20px;text-align:center;}
         .jackpot-card h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
         .jackpot-pool{font-size:26px;font-weight:800;color:var(--gold);margin:12px 0 8px;font-family:'Syne',sans-serif;}
         .jackpot-card p{font-size:14px;opacity:.92;margin-bottom:18px;}
-
-        /* AVIATOR */
         .aviator-card{background:#fff;border:2px solid var(--mint);border-radius:20px;padding:34px 20px;text-align:center;}
         .aviator-card h2{font-family:'Syne',sans-serif;color:var(--green);font-size:20px;font-weight:800;margin-bottom:8px;}
         .aviator-card p{color:var(--muted);font-size:14px;margin-bottom:6px;}
         .av-features{display:flex;justify-content:center;gap:10px;margin:16px 0;flex-wrap:wrap;}
         .av-feat{background:#f0fdf4;color:var(--green);font-weight:700;font-size:12.5px;padding:7px 14px;border-radius:30px;}
-
-        /* FAQ */
         .faq-item{background:#fff;border-radius:12px;margin-bottom:8px;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden;}
         .faq-q{width:100%;text-align:left;padding:15px 16px;background:none;border:none;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
         .faq-q .arrow{transition:transform .25s;font-size:12px;color:var(--mint);flex-shrink:0;margin-left:8px;}
         .faq-a{display:none;padding:0 16px 14px;font-size:13.5px;color:#334155;line-height:1.6;}
         .faq-item.open .arrow{transform:rotate(180deg);}
         .faq-item.open .faq-a{display:block;}
-
-        /* MODAL */
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:10000;align-items:flex-end;justify-content:center;}
         .modal-content{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:26px 20px 36px;max-height:92vh;overflow-y:auto;}
         .modal-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 20px;}
@@ -192,26 +156,15 @@
         .modal-pkg strong{font-size:15px;color:var(--green);display:block;margin-bottom:3px;}
         .modal-pkg .conf{color:var(--mint);font-size:12.5px;font-weight:600;margin-bottom:8px;}
         .modal-back{background:#e2e8f0;color:var(--text);border:none;padding:12px 28px;border-radius:50px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'Poppins',sans-serif;font-size:14px;display:block;width:100%;}
-
-        /* TRACK TABLE */
         .track-table{width:100%;border-collapse:collapse;background:#fff;min-width:280px;}
         .track-table th,.track-table td{padding:10px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;}
         .track-table th{background:#f1f5f9;color:var(--green);font-weight:700;}
-
-        /* FLOATS */
         .free-tip-float{position:fixed;bottom:84px;right:14px;background:var(--gold);color:#fff;padding:12px 18px;border-radius:50px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(245,158,11,.45);z-index:998;cursor:pointer;border:none;font-family:'Poppins',sans-serif;}
         .whatsapp-float{position:fixed;bottom:16px;right:14px;background:var(--mint);color:#fff;padding:14px 20px;border-radius:50px;font-weight:700;font-size:14px;box-shadow:0 8px 25px rgba(16,185,129,.4);z-index:999;text-decoration:none;}
-
-        /* FOOTER */
         footer{background:#f1f5f9;padding:32px 18px 110px;font-size:12.5px;color:var(--muted);text-align:center;border-top:1px solid var(--border);}
         .gambling{color:var(--red);font-weight:600;margin-top:12px;}
-
-        /* DIVIDER */
         .divider{height:5px;background:linear-gradient(90deg,var(--green),var(--mint));}
-
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-        /* DESKTOP */
         @media(min-width:640px){
             .package-grid{grid-template-columns:repeat(3,1fr);}
             .wa-bubbles{grid-template-columns:repeat(2,1fr);}
@@ -219,8 +172,6 @@
             .hero-btns{flex-direction:row;justify-content:center;}
             .btn-primary,.btn-secondary{width:auto;}
         }
-
-        /* MOBILE */
         @media(max-width:600px){
             body{font-size:15px;}
             .header{padding:11px 14px;}
@@ -383,14 +334,14 @@
         <div class="full-ticket-teaser">
             🎯 Full ticket combined odds: ~9.35 &nbsp;|&nbsp; Unlock all 3 matches for just <strong>Ksh 99</strong>
         </div>
-        <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F"
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F"
            class="wa-btn">Unlock Full Ticket – Ksh 99 →</a>
     </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ④ FOMO — WHAT YOU MISSED -->
+<!-- ④ FOMO -->
 <div class="section">
     <div class="section-title">💸 What Subscribers Made Last Week</div>
     <div class="section-sub">Real returns from last week's daily tickets. You could have had these.</div>
@@ -482,7 +433,7 @@
                 <li>95% confidence picks</li>
                 <li>Instant WhatsApp delivery</li>
             </ul>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
         </div>
         <div class="package-card featured">
             <div class="pack-badge">MOST POPULAR</div>
@@ -495,7 +446,7 @@
                 <li>High-confidence daily picks</li>
                 <li>Save Ksh 496 vs daily</li>
             </ul>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
         </div>
         <div class="package-card">
             <div class="pack-badge gold">JACKPOT</div>
@@ -508,7 +459,7 @@
                 <li>Won 2 bonuses this month</li>
                 <li>Ksh 121M+ current pool</li>
             </ul>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
         </div>
     </div>
 </div>
@@ -571,7 +522,7 @@
         <h2>Mega Jackpot Predictions</h2>
         <div class="jackpot-pool">Current Pool: Ksh 121 Million+</div>
         <p>Expert analysts + AI — high-accuracy full 17-game slip ready.<br><strong>Already won 2 bonuses this month.</strong></p>
-        <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F"
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F"
            class="wa-btn wa-btn-gold" style="display:inline-block;padding:16px 36px;font-size:16px;margin-top:0;">
            Get Mega Jackpot – Ksh 599
         </a>
@@ -592,7 +543,7 @@
             <div class="av-feat">Target Ksh 1,500+</div>
         </div>
         <p style="font-size:12.5px;color:var(--muted);">We manage — you profit. Results typically within 24 hours.</p>
-        <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F"
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F"
            class="wa-btn" style="display:inline-block;padding:14px 34px;margin-top:16px;">Start Aviator Management Now</a>
     </div>
 </div>
@@ -631,12 +582,12 @@
 
 <!-- FLOATS -->
 <button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
-<a href="https://wa.me/254100494094" class="whatsapp-float">💬 WhatsApp</a>
+<a href="https://wa.me/254762945530" class="whatsapp-float">💬 WhatsApp</a>
 
 <!-- FOOTER -->
 <footer>
     <p><strong>Pro Tipsters</strong> &nbsp;•&nbsp; Gamble Responsibly &nbsp;•&nbsp; 18+ Only &nbsp;•&nbsp; Not affiliated with any bookmaker</p>
-    <p style="margin-top:8px;">Contact: <a href="https://wa.me/254100494094" style="color:var(--mint);">+254 100 494 094</a></p>
+    <p style="margin-top:8px;">Contact: <a href="https://wa.me/254762945530" style="color:var(--mint);">+254 762 945 530</a></p>
     <p class="gambling">⚠️ Gambling can be addictive. Bet only what you can afford to lose.</p>
 </footer>
 
@@ -653,7 +604,7 @@
                 <div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div>
                 <div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div>
             </div>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
         </div>
         <div class="modal-pkg">
             <strong>5-Day Subscription – Ksh 499</strong>
@@ -661,7 +612,7 @@
             <div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">
                 Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.
             </div>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
         </div>
         <div class="modal-pkg">
             <strong>Mega Jackpot – Ksh 599</strong>
@@ -669,7 +620,7 @@
             <div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">
                 Full 17-game slip — won 2 bonuses this month. One win can change everything.
             </div>
-            <a href="https://wa.me/254100494094?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
         </div>
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
@@ -814,7 +765,7 @@ function runAI(){
         document.getElementById('aiTier').textContent=tier.label;
         const waText=encodeURIComponent('Hello Pro Tipsters, I used the AI Odds Generator and want a '+tier.odds+' odds ticket for Ksh '+tier.price+'. How do I pay?');
         const btn=document.getElementById('aiWaBtn');
-        btn.href='https://wa.me/254100494094?text='+waText;
+        btn.href='https://wa.me/254762945530?text='+waText;
         btn.textContent='Get Ticket for Ksh '+tier.price+' →';
         document.getElementById('stakeInput').value='';
         document.getElementById('returnAmt').textContent='--';
