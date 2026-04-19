@@ -4,247 +4,214 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Tipsters — Live Analytics</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Firebase SDKs -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <style>
-  :root{--bg:#060a0f;--card:#0d1520;--border:#1a2d42;--green:#0f766e;--mint:#10b981;--gold:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--text:#e2f0ff;--muted:#5a7a96;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.2;pointer-events:none;}
-  .wrap{max-width:540px;margin:0 auto;padding:24px 16px 80px;position:relative;}
-  .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
-  .brand{display:flex;align-items:center;gap:10px;}
-  .brand-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--green),var(--mint));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-  .brand-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;}
-  .brand-sub{font-size:10px;color:var(--muted);}
-  .live-pill{background:#0c1f0e;border:1px solid var(--mint);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:var(--mint);display:flex;align-items:center;gap:6px;}
-  .live-dot{width:6px;height:6px;background:var(--mint);border-radius:50%;animation:blink 1.4s infinite;}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-  .reset-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
-  .reset-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
-  .reset-timer{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:var(--gold);}
-  .reset-info{font-size:10px;color:var(--muted);margin-top:2px;}
-  .hero-card{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid var(--mint);border-radius:20px;padding:28px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;}
-  .hero-label{font-size:11px;font-weight:700;color:var(--mint);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;}
-  .hero-num{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
-  .hero-sub{font-size:12px;color:var(--muted);margin-top:8px;}
-  .hero-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--mint);margin-top:6px;opacity:.7;}
-  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 14px;}
-  .stat-icon{font-size:20px;margin-bottom:8px;}
-  .stat-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
-  .blue{color:var(--blue);} .gold{color:var(--gold);} .red{color:var(--red);} .mint{color:var(--mint);}
-  .stat-label{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-  .card-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
-  .bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
-  .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-  .bar{width:100%;background:linear-gradient(180deg,var(--mint),var(--green));border-radius:3px 3px 0 0;min-height:2px;}
-  .bar.cur{background:linear-gradient(180deg,var(--gold),#d97706);box-shadow:0 0 8px rgba(245,158,11,.4);}
-  .bar-lbl{font-size:8px;color:var(--muted);font-family:'Space Mono',monospace;}
-  .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
-  .row:last-child{border-bottom:none;}
-  .row-label{font-size:13px;color:var(--text);font-weight:600;flex:1;}
-  .row-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--mint);}
-  .row-bar{height:4px;background:var(--border);border-radius:4px;margin-top:4px;}
-  .row-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--mint));border-radius:4px;}
-  .loading{text-align:center;padding:50px 20px;color:var(--muted);}
-  .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .btn{width:100%;padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:'Poppins',sans-serif;margin-bottom:10px;}
-  .error-box{background:#1c0a06;border:1px solid var(--red);border-radius:12px;padding:16px;color:#f87171;font-size:13px;line-height:1.6;margin-bottom:16px;display:none;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#060a0f;color:#e2f0ff;min-height:100vh;padding:20px 16px 60px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(#1a2d42 1px,transparent 1px),linear-gradient(90deg,#1a2d42 1px,transparent 1px);background-size:40px 40px;opacity:.2;pointer-events:none;}
+.wrap{max-width:500px;margin:0 auto;position:relative;}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,#0f766e,#10b981);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;}
+.logo-sub{font-size:10px;color:#5a7a96;}
+.live{background:#0c1f0e;border:1px solid #10b981;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#10b981;display:flex;align-items:center;gap:5px;}
+.dot{width:6px;height:6px;background:#10b981;border-radius:50%;animation:bl 1.4s infinite;}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.timer-bar{background:#0d1520;border:1px solid #1a2d42;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+.tl{font-size:11px;color:#5a7a96;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.td{font-size:10px;color:#5a7a96;margin-top:2px;}
+.tc{font-size:20px;font-weight:700;color:#f59e0b;font-family:monospace;}
+.hero{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid #10b981;border-radius:20px;padding:28px;margin-bottom:16px;text-align:center;}
+.hl{font-size:11px;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+.hn{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
+.hs{font-size:12px;color:#5a7a96;margin-top:6px;}
+.hd{font-size:11px;color:#10b981;margin-top:4px;font-family:monospace;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.sc{background:#0d1520;border:1px solid #1a2d42;border-radius:14px;padding:16px;}
+.si{font-size:20px;margin-bottom:8px;}
+.sv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
+.mint{color:#10b981;} .blue{color:#38bdf8;} .gold{color:#f59e0b;} .red{color:#f43f5e;}
+.sl{font-size:11px;color:#5a7a96;margin-top:4px;font-weight:600;}
+.card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+.ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
+.bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.b{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:linear-gradient(180deg,#10b981,#0f766e);}
+.b.now{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 0 8px rgba(245,158,11,.4);}
+.bl{font-size:8px;color:#5a7a96;font-family:monospace;}
+.row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
+.row:last-child{border-bottom:none;}
+.rn{font-size:13px;color:#e2f0ff;font-weight:600;}
+.rv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#10b981;}
+.rb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
+.rbf{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;}
+.rl{flex:1;margin-right:14px;}
+.loading{text-align:center;padding:50px 20px;color:#5a7a96;}
+.sp{width:32px;height:32px;border:3px solid #1a2d42;border-top-color:#10b981;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{background:#1c0a06;border:1px solid #f43f5e;border-radius:12px;padding:16px;color:#f87171;font-size:13px;line-height:1.6;margin-bottom:16px;display:none;}
+.btn{width:100%;padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:1.5px solid #1a2d42;background:transparent;color:#e2f0ff;font-family:'Poppins',sans-serif;margin-bottom:10px;}
 </style>
 </head>
 <body>
 <div class="wrap">
-
-  <div class="header">
-    <div class="brand">
-      <div class="brand-icon">⚽</div>
-      <div>
-        <div class="brand-name">PRO TIPSTERS</div>
-        <div class="brand-sub">Live Analytics — All Visitors</div>
-      </div>
+  <div class="top">
+    <div class="logo">
+      <div class="logo-icon">⚽</div>
+      <div><div class="logo-name">PRO TIPSTERS</div><div class="logo-sub">Live Analytics — All Visitors</div></div>
     </div>
-    <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+    <div class="live"><span class="dot"></span>LIVE</div>
   </div>
 
-  <div class="reset-bar">
-    <div>
-      <div class="reset-label">⏱ Resets at Midnight</div>
-      <div class="reset-info" id="dateLabel">--</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="reset-timer" id="resetTimer">--:--:--</div>
-      <div class="reset-info">until reset</div>
-    </div>
+  <div class="timer-bar">
+    <div><div class="tl">⏱ Resets at Midnight</div><div class="td" id="dateLabel">--</div></div>
+    <div style="text-align:right"><div class="tc" id="timer">--:--:--</div><div class="td">until reset</div></div>
   </div>
 
-  <div id="errorBox" class="error-box"></div>
+  <div class="err" id="errBox"></div>
 
-  <div id="loadingDiv" class="loading">
-    <div class="spinner"></div>
-    Connecting to Firebase...
-  </div>
+  <div class="loading" id="loadDiv"><div class="sp"></div>Connecting to Firebase...</div>
 
-  <div id="mainDiv" style="display:none;">
-
-    <div class="hero-card">
-      <div class="hero-label">👥 Total Visitors Today</div>
-      <div class="hero-num" id="todayNum">0</div>
-      <div class="hero-sub">real people visited your site today</div>
-      <div class="hero-date" id="todayDate">--</div>
+  <div id="mainDiv" style="display:none">
+    <div class="hero">
+      <div class="hl">👥 Total Visitors Today</div>
+      <div class="hn" id="bigNum">0</div>
+      <div class="hs">real people visited your site today</div>
+      <div class="hd" id="dateStr">--</div>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-val blue" id="weekNum">0</div><div class="stat-label">This Week</div></div>
-      <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-val gold" id="bestNum">0</div><div class="stat-label">Best Day Ever</div></div>
-      <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-val mint" id="avgNum">0</div><div class="stat-label">Daily Average</div></div>
-      <div class="stat-card"><div class="stat-icon">🔔</div><div class="stat-val red" id="notifNum">0</div><div class="stat-label">From Notifs</div></div>
+    <div class="grid">
+      <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div></div>
+      <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div></div>
+      <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div></div>
+      <div class="sc"><div class="si">🔔</div><div class="sv red" id="notif">0</div><div class="sl">From Notifs</div></div>
     </div>
 
     <div class="card">
-      <div class="card-title">📈 Hourly Visits Today</div>
+      <div class="ct">📈 Hourly Visits Today</div>
       <div class="bars" id="barsDiv"></div>
     </div>
 
     <div class="card">
-      <div class="card-title">🔗 Traffic Sources Today</div>
-      <div class="row"><div class="row-label">📘 Facebook</div><div class="row-val" id="srcFb">0</div></div>
-      <div class="row"><div class="row-label">🔔 Notifications</div><div class="row-val" id="srcNotif">0</div></div>
-      <div class="row"><div class="row-label">💬 WhatsApp</div><div class="row-val" id="srcWa">0</div></div>
-      <div class="row"><div class="row-label">🌐 Direct</div><div class="row-val" id="srcDirect">0</div></div>
+      <div class="ct">🔗 Traffic Sources</div>
+      <div class="row"><div class="rn">📘 Facebook</div><div class="rv" id="fb">0</div></div>
+      <div class="row"><div class="rn">🔔 Notifications</div><div class="rv" id="notifSrc">0</div></div>
+      <div class="row"><div class="rn">💬 WhatsApp</div><div class="rv" id="wa">0</div></div>
+      <div class="row"><div class="rn">🌐 Direct</div><div class="rv" id="direct">0</div></div>
     </div>
 
     <div class="card">
-      <div class="card-title">📆 Last 7 Days</div>
-      <div id="histDiv"><div style="color:var(--muted);font-size:13px;text-align:center;">No history yet</div></div>
+      <div class="ct">📆 Last 7 Days</div>
+      <div id="histDiv"></div>
     </div>
 
-    <button class="btn" onclick="loadData()">🔄 Refresh</button>
-
+    <button class="btn" onclick="load()">🔄 Refresh</button>
   </div>
 </div>
 
 <script>
-// ── FIREBASE INIT ─────────────────────────────────────────────
-const firebaseConfig = {
-  apiKey: "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
-  authDomain: "pro-tipsters-94171.firebaseapp.com",
-  projectId: "pro-tipsters-94171",
-  storageBucket: "pro-tipsters-94171.firebasestorage.app",
-  messagingSenderId: "737923794509",
-  appId: "1:737923794509:web:921f6a558c11786beebe04"
-};
-
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp({
+  apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+  authDomain:"pro-tipsters-94171.firebaseapp.com",
+  projectId:"pro-tipsters-94171",
+  storageBucket:"pro-tipsters-94171.firebasestorage.app",
+  messagingSenderId:"737923794509",
+  appId:"1:737923794509:web:921f6a558c11786beebe04"
+});
 const db = firebase.firestore();
 
-// ── HELPERS ───────────────────────────────────────────────────
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
-function todayLabel(){ return new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}); }
 
-// ── LOAD DATA ─────────────────────────────────────────────────
-async function loadData(){
+async function load(){
+  document.getElementById('loadDiv').style.display='block';
+  document.getElementById('mainDiv').style.display='none';
+  document.getElementById('errBox').style.display='none';
   try {
-    document.getElementById('loadingDiv').style.display = 'block';
-    document.getElementById('mainDiv').style.display    = 'none';
-    document.getElementById('errorBox').style.display   = 'none';
-
     const today = todayKey();
+    // Get today's data
+    const snap = await db.collection('analytics').doc(today).get();
+    const td = snap.exists ? snap.data() : {total:0, hourly:new Array(24).fill(0), sources:{}};
 
-    // Get today
-    const todaySnap = await db.collection('analytics').doc(today).get();
-    const td = todaySnap.exists ? todaySnap.data() : {total:0,hourly:new Array(24).fill(0),sources:{}};
+    // Get all days
+    const col = await db.collection('analytics').get();
+    const days = [];
+    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0}); });
+    days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
 
-    // Get last 30 days
-    const allSnap = await db.collection('analytics').orderBy(firebase.firestore.FieldPath.documentId(),'desc').limit(30).get();
-    const allDays = [];
-    allSnap.forEach(d => allDays.push({id:d.id,...d.data()}));
+    // Render
+    const total   = td.total || 0;
+    const hourly  = td.hourly || new Array(24).fill(0);
+    const sources = td.sources || {};
+    const counts  = days.map(function(d){ return d.total; });
+    const week    = days.slice(0,7).reduce(function(a,d){ return a+d.total; },0);
+    const best    = counts.length ? Math.max.apply(null,counts) : 0;
+    const avg     = counts.length ? Math.round(counts.reduce(function(a,b){ return a+b; },0)/counts.length) : 0;
 
-    render(td, allDays, today);
+    document.getElementById('bigNum').textContent    = total.toLocaleString();
+    document.getElementById('dateStr').textContent   = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+    document.getElementById('wk').textContent        = week.toLocaleString();
+    document.getElementById('best').textContent      = best.toLocaleString();
+    document.getElementById('avg').textContent       = avg.toLocaleString();
+    document.getElementById('notif').textContent     = (sources.notif||0).toLocaleString();
+    document.getElementById('fb').textContent        = (sources.fb||0).toLocaleString();
+    document.getElementById('notifSrc').textContent  = (sources.notif||0).toLocaleString();
+    document.getElementById('wa').textContent        = (sources.wa||0).toLocaleString();
+    document.getElementById('direct').textContent    = (sources.direct||0).toLocaleString();
 
-    document.getElementById('loadingDiv').style.display = 'none';
-    document.getElementById('mainDiv').style.display    = 'block';
+    // Bars
+    var maxH = Math.max.apply(null, hourly.concat([1]));
+    var curHr = new Date().getHours();
+    var bHtml = '';
+    for(var i=0;i<24;i++){
+      var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
+      var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
+      bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
+    }
+    document.getElementById('barsDiv').innerHTML = bHtml;
 
-  } catch(e){
+    // History
+    var maxC = best || 1;
+    var hHtml = '';
+    var show = days.slice(0,7);
+    if(!show.length){
+      hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
+    } else {
+      for(var j=0;j<show.length;j++){
+        var d = show[j];
+        var pct = Math.round((d.total/maxC)*100);
+        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div></div><div class="rv">'+d.total.toLocaleString()+'</div></div>';
+      }
+    }
+    document.getElementById('histDiv').innerHTML = hHtml;
+
+    document.getElementById('loadDiv').style.display = 'none';
+    document.getElementById('mainDiv').style.display = 'block';
+
+  } catch(e) {
     console.error(e);
-    document.getElementById('loadingDiv').style.display = 'none';
-    const eb = document.getElementById('errorBox');
+    document.getElementById('loadDiv').style.display = 'none';
+    var eb = document.getElementById('errBox');
     eb.style.display = 'block';
-    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
+    eb.innerHTML = '❌ Error: ' + e.message;
   }
 }
 
-function render(td, allDays, todayKey){
-  const total   = td.total || 0;
-  const hourly  = td.hourly || new Array(24).fill(0);
-  const sources = td.sources || {};
-
-  // Big number
-  document.getElementById('todayNum').textContent  = total.toLocaleString();
-  document.getElementById('todayDate').textContent = todayLabel();
-
-  // Stats
-  const counts  = allDays.map(d=>d.total||0);
-  const week    = allDays.slice(0,7).reduce((a,d)=>a+(d.total||0),0);
-  const best    = Math.max(...counts,0);
-  const avg     = counts.length ? Math.round(counts.reduce((a,b)=>a+b,0)/counts.length) : 0;
-
-  document.getElementById('weekNum').textContent   = week.toLocaleString();
-  document.getElementById('bestNum').textContent   = best.toLocaleString();
-  document.getElementById('avgNum').textContent    = avg.toLocaleString();
-  document.getElementById('notifNum').textContent  = (sources.notif||0).toLocaleString();
-
-  // Sources
-  document.getElementById('srcFb').textContent     = (sources.fb||0).toLocaleString();
-  document.getElementById('srcNotif').textContent  = (sources.notif||0).toLocaleString();
-  document.getElementById('srcWa').textContent     = (sources.wa||0).toLocaleString();
-  document.getElementById('srcDirect').textContent = (sources.direct||0).toLocaleString();
-
-  // Hourly bars
-  const maxH  = Math.max(...hourly,1);
-  const curHr = new Date().getHours();
-  document.getElementById('barsDiv').innerHTML = hourly.map((v,i)=>{
-    const h   = Math.max((v/maxH)*74, v>0?4:2);
-    const lbl = i%4===0 ? String(i).padStart(2,'0') : '';
-    return `<div class="bar-wrap"><div class="bar${i===curHr?' cur':''}" style="height:${h}px" title="${v} visits"></div><div class="bar-lbl">${lbl}</div></div>`;
-  }).join('');
-
-  // History
-  const maxC = Math.max(...allDays.map(d=>d.total||0),1);
-  const histEl = document.getElementById('histDiv');
-  if(!allDays.length){
-    histEl.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
-  } else {
-    histEl.innerHTML = allDays.slice(0,7).map(d=>`
-      <div class="row">
-        <div style="flex:1;margin-right:16px;">
-          <div class="row-label">${d.id}</div>
-          <div class="row-bar"><div class="row-bar-fill" style="width:${Math.round(((d.total||0)/maxC)*100)}%"></div></div>
-        </div>
-        <div class="row-val">${(d.total||0).toLocaleString()}</div>
-      </div>`).join('');
-  }
-}
-
-// ── COUNTDOWN ────────────────────────────────────────────────
 function tick(){
-  const now = new Date(), mid = new Date();
+  var now = new Date(), mid = new Date();
   mid.setHours(24,0,0,0);
-  const diff = mid - now;
-  const h = String(Math.floor(diff/3600000)).padStart(2,'0');
-  const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  document.getElementById('resetTimer').textContent = `${h}:${m}:${s}`;
-  document.getElementById('dateLabel').textContent  = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
+  var diff = mid - now;
+  var h = String(Math.floor(diff/3600000)).padStart(2,'0');
+  var m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  var s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  document.getElementById('timer').textContent = h+':'+m+':'+s;
+  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 
-// ── START ────────────────────────────────────────────────────
-loadData();
-setInterval(loadData, 30000);
+load();
+setInterval(load, 30000);
 setInterval(tick, 1000);
 tick();
 </script>
