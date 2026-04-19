@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Tipsters — Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060a0f;
+    --card:#0d1520;
+    --card2:#111b2a;
+    --border:#1a2d42;
+    --green:#0f766e;
+    --mint:#10b981;
+    --gold:#f59e0b;
+    --red:#f43f5e;
+    --blue:#38bdf8;
+    --text:#e2f0ff;
+    --muted:#5a7a96;
+    --mono:'Space Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+  /* GRID BG */
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.25;pointer-events:none;}
+
+  .wrap{max-width:540px;margin:0 auto;padding:24px 16px 80px;position:relative;}
+
+  /* HEADER */
+  .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--green),var(--mint));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .brand-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:.5px;}
+  .brand-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+  .live-pill{background:#0c1f0e;border:1px solid var(--mint);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:var(--mint);display:flex;align-items:center;gap:6px;}
+  .live-dot{width:6px;height:6px;background:var(--mint);border-radius:50%;animation:blink 1.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+  /* RESET TIMER */
+  .reset-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
+  .reset-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+  .reset-timer{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--gold);}
+  .reset-info{font-size:10px;color:var(--muted);margin-top:2px;}
+
+  /* BIG COUNTER */
+  .hero-card{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid var(--mint);border-radius:20px;padding:28px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;}
+  .hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%);}
+  .hero-card::after{content:'';position:absolute;bottom:-50px;left:-30px;width:140px;height:140px;background:radial-gradient(circle,rgba(16,185,129,.08),transparent 70%);}
+  .hero-label{font-size:11px;font-weight:700;color:var(--mint);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;}
+  .hero-num{font-family:'Syne',sans-serif;font-size:72px;font-weight:800;color:#fff;line-height:1;position:relative;}
+  .hero-num span{color:var(--mint);}
+  .hero-sub{font-size:12px;color:var(--muted);margin-top:8px;}
+  .hero-date{font-family:var(--mono);font-size:11px;color:var(--mint);margin-top:6px;opacity:.7;}
+
+  /* STATS GRID */
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 14px;}
+  .stat-card.blue{border-color:#1a3a4a;}
+  .stat-card.gold{border-color:#3a2a0a;}
+  .stat-card.red{border-color:#3a0f1a;}
+  .stat-icon{font-size:20px;margin-bottom:8px;}
+  .stat-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
+  .stat-val.blue{color:var(--blue);}
+  .stat-val.gold{color:var(--gold);}
+  .stat-val.red{color:var(--red);}
+  .stat-val.mint{color:var(--mint);}
+  .stat-label{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;}
+
+  /* HOURLY CHART */
+  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+  .chart-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;}
+  .bars{display:flex;align-items:flex-end;gap:4px;height:80px;}
+  .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+  .bar{width:100%;background:linear-gradient(180deg,var(--mint),var(--green));border-radius:4px 4px 0 0;min-height:3px;transition:height .5s ease;}
+  .bar.current{background:linear-gradient(180deg,var(--gold),#d97706);box-shadow:0 0 10px rgba(245,158,11,.4);}
+  .bar-hour{font-size:9px;color:var(--muted);font-family:var(--mono);}
+
+  /* HISTORY */
+  .history-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+  .history-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+  .history-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+  .history-row:last-child{border-bottom:none;}
+  .history-date{font-size:13px;color:var(--text);font-weight:600;}
+  .history-count{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--mint);}
+  .history-bar{height:4px;background:var(--border);border-radius:4px;margin-top:4px;overflow:hidden;}
+  .history-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--mint));border-radius:4px;transition:width .8s ease;}
+  .history-left{flex:1;}
+
+  /* BUTTONS */
+  .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+  .btn{padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:none;font-family:'Poppins',sans-serif;transition:opacity .2s;}
+  .btn:hover{opacity:.85;}
+  .btn-mint{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;}
+  .btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--text);}
+  .btn-red{background:#1a0a0e;border:1.5px solid var(--red);color:var(--red);}
+
+  /* TRACKING LINK */
+  .link-card{background:var(--card2);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+  .link-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;}
+  .link-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--blue);word-break:break-all;margin-bottom:8px;cursor:pointer;}
+  .link-hint{font-size:11px;color:var(--muted);}
+  .link-hint strong{color:var(--gold);}
+
+  /* PULSE ANIM ON COUNT UPDATE */
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+  .popping{animation:pop .3s ease;}
+
+  /* FOOTER */
+  .footer{text-align:center;font-size:11px;color:var(--muted);margin-top:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-icon">⚽</div>
+      <div>
+        <div class="brand-name">PRO TIPSTERS</div>
+        <div class="brand-sub">Analytics Dashboard</div>
+      </div>
+    </div>
+    <div class="live-pill"><span class="live-dot"></span> LIVE</div>
+  </div>
+
+  <!-- RESET COUNTDOWN -->
+  <div class="reset-bar">
+    <div>
+      <div class="reset-label">⏱ Resets at Midnight</div>
+      <div class="reset-info">Counter resets every day at 12:00 AM</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="reset-timer" id="resetTimer">--:--:--</div>
+      <div class="reset-info" id="todayDate">Today</div>
+    </div>
+  </div>
+
+  <!-- BIG COUNTER -->
+  <div class="hero-card">
+    <div class="hero-label">👥 Visitors Today</div>
+    <div class="hero-num" id="todayCount">0</div>
+    <div class="hero-sub">people visited your site today</div>
+    <div class="hero-date" id="heroDate">--</div>
+  </div>
+
+  <!-- STATS GRID -->
+  <div class="stats-grid">
+    <div class="stat-card blue">
+      <div class="stat-icon">📅</div>
+      <div class="stat-val blue" id="weekTotal">0</div>
+      <div class="stat-label">This Week</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-val gold" id="bestDay">0</div>
+      <div class="stat-label">Best Day Ever</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📊</div>
+      <div class="stat-val mint" id="avgDay">0</div>
+      <div class="stat-label">Daily Average</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-val red" id="peakHour">--</div>
+      <div class="stat-label">Peak Hour Today</div>
+    </div>
+  </div>
+
+  <!-- HOURLY CHART -->
+  <div class="chart-card">
+    <div class="chart-title">📈 Hourly Visits Today</div>
+    <div class="bars" id="hourlyBars"></div>
+  </div>
+
+  <!-- 7-DAY HISTORY -->
+  <div class="history-card">
+    <div class="history-title">📆 Last 7 Days</div>
+    <div id="historyRows"></div>
+  </div>
+
+  <!-- TRACKING LINK -->
+  <div class="link-card">
+    <div class="link-title">🔗 Your Tracking Link</div>
+    <p style="font-size:12.5px;color:var(--muted);margin-bottom:10px;">Add <strong style="color:var(--mint);">?ref=notif</strong> to your site URL when sending notifications — so you can see exactly how many people came from each notification.</p>
+    <div class="link-box" id="trackLink" onclick="copyLink()">loading...</div>
+    <div class="link-hint">👆 Tap to copy • Use this link in your notifications • <strong>?ref=notif</strong> visits are counted separately</div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="btn-row">
+    <button class="btn btn-mint" onclick="simulateVisit()">➕ Simulate Visit</button>
+    <button class="btn btn-ghost" onclick="exportData()">📤 Export CSV</button>
+  </div>
+  <button class="btn btn-red" style="width:100%;margin-bottom:16px;" onclick="confirmReset()">🗑 Reset All Data</button>
+
+  <div class="footer">Pro Tipsters Analytics • Data stored locally on this device • Resets midnight daily</div>
+
+</div>
+
+<script>
+// ── STORAGE KEYS ──────────────────────────────────────────────
+const KEY_TODAY   = 'pt_today_count';
+const KEY_DATE    = 'pt_today_date';
+const KEY_HOURLY  = 'pt_hourly';
+const KEY_HISTORY = 'pt_history_days';
+const KEY_NOTIF   = 'pt_notif_count';
+
+// ── DATE HELPERS ─────────────────────────────────────────────
+function todayStr(){
+  return new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+function todayFull(){
+  return new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+}
+
+// ── MIDNIGHT RESET ────────────────────────────────────────────
+function checkReset(){
+  const saved = localStorage.getItem(KEY_DATE);
+  const today = todayStr();
+  if(saved && saved !== today){
+    // Save yesterday to history before reset
+    const count = parseInt(localStorage.getItem(KEY_TODAY)||'0');
+    const history = JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]');
+    history.unshift({date: saved, count});
+    if(history.length > 30) history.pop();
+    localStorage.setItem(KEY_HISTORY, JSON.stringify(history));
+    // Reset
+    localStorage.setItem(KEY_TODAY, '0');
+    localStorage.setItem(KEY_HOURLY, JSON.stringify(new Array(24).fill(0)));
+    localStorage.setItem(KEY_NOTIF, '0');
+  }
+  localStorage.setItem(KEY_DATE, today);
+}
+
+// ── COUNT VISIT ───────────────────────────────────────────────
+function countVisit(){
+  checkReset();
+  const count = parseInt(localStorage.getItem(KEY_TODAY)||'0') + 1;
+  localStorage.setItem(KEY_TODAY, count);
+  // Update hourly
+  const hourly = JSON.parse(localStorage.getItem(KEY_HOURLY)||JSON.stringify(new Array(24).fill(0)));
+  const hr = new Date().getHours();
+  hourly[hr]++;
+  localStorage.setItem(KEY_HOURLY, JSON.stringify(hourly));
+  // Check if from notification
+  if(new URLSearchParams(location.search).get('ref')==='notif'){
+    const n = parseInt(localStorage.getItem(KEY_NOTIF)||'0') + 1;
+    localStorage.setItem(KEY_NOTIF, n);
+  }
+  render();
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function render(){
+  checkReset();
+  const today  = parseInt(localStorage.getItem(KEY_TODAY)||'0');
+  const hourly = JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]');
+  const history= JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]');
+  const hours  = JSON.parse(localStorage.getItem(KEY_HOURLY)||JSON.stringify(new Array(24).fill(0)));
+
+  // Big number
+  const el = document.getElementById('todayCount');
+  el.textContent = today.toLocaleString();
+  el.classList.remove('popping');
+  void el.offsetWidth;
+  el.classList.add('popping');
+
+  document.getElementById('heroDate').textContent = todayFull();
+  document.getElementById('todayDate').textContent = todayStr();
+
+  // Week total
+  const weekDays = history.slice(0,6);
+  const weekTotal = weekDays.reduce((a,d)=>a+d.count,0) + today;
+  document.getElementById('weekTotal').textContent = weekTotal.toLocaleString();
+
+  // Best day
+  const allCounts = [...history.map(d=>d.count), today];
+  const best = Math.max(...allCounts, 0);
+  document.getElementById('bestDay').textContent = best.toLocaleString();
+
+  // Average
+  const avg = allCounts.length > 0 ? Math.round(allCounts.reduce((a,b)=>a+b,0)/allCounts.length) : 0;
+  document.getElementById('avgDay').textContent = avg.toLocaleString();
+
+  // Peak hour
+  const maxHr = hours.indexOf(Math.max(...hours));
+  document.getElementById('peakHour').textContent = hours[maxHr]>0 ? `${String(maxHr).padStart(2,'0')}:00` : '--';
+
+  // Hourly bars
+  const maxVal = Math.max(...hours, 1);
+  const curHr  = new Date().getHours();
+  const barsEl = document.getElementById('hourlyBars');
+  barsEl.innerHTML = hours.map((v,i)=>{
+    const h = Math.max((v/maxVal)*76, v>0?4:2);
+    const isCur = i===curHr;
+    // Show every 3rd hour label
+    const label = i%3===0 ? String(i).padStart(2,'0') : '';
+    return `<div class="bar-wrap">
+      <div class="bar${isCur?' current':''}" style="height:${h}px;" title="${v} visits at ${String(i).padStart(2,'0')}:00"></div>
+      <div class="bar-hour">${label}</div>
+    </div>`;
+  }).join('');
+
+  // History rows
+  const maxCount = Math.max(...history.map(d=>d.count), today, 1);
+  const histEl = document.getElementById('historyRows');
+  if(history.length === 0){
+    histEl.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px 0;">No previous days yet — come back tomorrow!</div>';
+  } else {
+    histEl.innerHTML = history.slice(0,7).map(d=>`
+      <div class="history-row">
+        <div class="history-left">
+          <div class="history-date">${d.date}</div>
+          <div class="history-bar"><div class="history-bar-fill" style="width:${Math.round((d.count/maxCount)*100)}%"></div></div>
+        </div>
+        <div class="history-count">${d.count.toLocaleString()}</div>
+      </div>
+    `).join('');
+  }
+
+  // Tracking link
+  const base = location.href.replace('admin-sender.html','').replace('analytics.html','');
+  const siteUrl = base.replace(/\/$/, '') + '/index.html?ref=notif';
+  document.getElementById('trackLink').textContent = siteUrl;
+}
+
+// ── COUNTDOWN ────────────────────────────────────────────────
+function updateCountdown(){
+  const now = new Date();
+  const midnight = new Date();
+  midnight.setHours(24,0,0,0);
+  const diff = midnight - now;
+  const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+  const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  document.getElementById('resetTimer').textContent = `${h}:${m}:${s}`;
+}
+
+// ── ACTIONS ──────────────────────────────────────────────────
+function simulateVisit(){
+  checkReset();
+  const count = parseInt(localStorage.getItem(KEY_TODAY)||'0') + 1;
+  localStorage.setItem(KEY_TODAY, count);
+  const hours = JSON.parse(localStorage.getItem(KEY_HOURLY)||JSON.stringify(new Array(24).fill(0)));
+  hours[new Date().getHours()]++;
+  localStorage.setItem(KEY_HOURLY, JSON.stringify(hours));
+  render();
+}
+
+function copyLink(){
+  const link = document.getElementById('trackLink').textContent;
+  navigator.clipboard.writeText(link).then(()=>{
+    const el = document.getElementById('trackLink');
+    const orig = el.textContent;
+    el.textContent = '✅ Copied!';
+    el.style.color = 'var(--mint)';
+    setTimeout(()=>{el.textContent=orig;el.style.color='';},2000);
+  }).catch(()=>alert('Copy: '+link));
+}
+
+function exportData(){
+  const history = JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]');
+  const today = {date: todayStr(), count: parseInt(localStorage.getItem(KEY_TODAY)||'0')};
+  const all = [today, ...history];
+  const csv = 'Date,Visitors\n' + all.map(d=>`${d.date},${d.count}`).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'protipsters-analytics.csv';
+  a.click();
+}
+
+function confirmReset(){
+  if(confirm('Reset ALL analytics data? This cannot be undone.')){
+    [KEY_TODAY,KEY_DATE,KEY_HOURLY,KEY_HISTORY,KEY_NOTIF].forEach(k=>localStorage.removeItem(k));
+    render();
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+// Count this page load as a visit only if coming from main site
+if(document.referrer.includes(location.hostname) || new URLSearchParams(location.search).get('track')==='1'){
+  countVisit();
+} else {
+  checkReset();
+}
+
+render();
+setInterval(render, 30000);         // refresh every 30s
+setInterval(updateCountdown, 1000); // countdown every 1s
+updateCountdown();
+
+// Auto-reset check every minute
+setInterval(()=>{ checkReset(); render(); }, 60000);
+</script>
+</body>
+</html>
