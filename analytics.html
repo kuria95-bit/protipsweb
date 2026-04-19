@@ -160,10 +160,9 @@ async function loadData(){
     const td = todaySnap.exists ? todaySnap.data() : {total:0,hourly:new Array(24).fill(0),sources:{}};
 
     // Get last 30 days
-    const allSnap = await db.collection('analytics').limit(30).get();
+    const allSnap = await db.collection('analytics').orderBy(firebase.firestore.FieldPath.documentId(),'desc').limit(30).get();
     const allDays = [];
     allSnap.forEach(d => allDays.push({id:d.id,...d.data()}));
-    allDays.sort((a,b)=>b.id.localeCompare(a.id));
 
     render(td, allDays, today);
 
