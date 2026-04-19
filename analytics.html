@@ -125,12 +125,34 @@ const db = firebase.firestore();
 
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
+// FIX: Safely convert hourly field whether it's an array or object from Firestore
+function safeHourly(raw) {
+  if (!raw) return new Array(24).fill(0);
+  // If it's already a proper array, use it
+  if (Array.isArray(raw)) {
+    var arr = raw.slice();
+    while (arr.length < 24) arr.push(0);
+    return arr;
+  }
+  // If Firestore returned it as an object/map {0: 3, 1: 5, ...}, convert it
+  if (typeof raw === 'object') {
+    var result = new Array(24).fill(0);
+    Object.keys(raw).forEach(function(k) {
+      var idx = parseInt(k, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < 24) result[idx] = raw[k] || 0;
+    });
+    return result;
+  }
+  return new Array(24).fill(0);
+}
+
 async function load(){
   document.getElementById('loadDiv').style.display='block';
   document.getElementById('mainDiv').style.display='none';
   document.getElementById('errBox').style.display='none';
   try {
     const today = todayKey();
+
     // Get today's data
     const snap = await db.collection('analytics').doc(today).get();
     const td = snap.exists ? snap.data() : {total:0, hourly:new Array(24).fill(0), sources:{}};
@@ -143,7 +165,7 @@ async function load(){
 
     // Render
     const total   = td.total || 0;
-    const hourly  = td.hourly || new Array(24).fill(0);
+    const hourly  = safeHourly(td.hourly);  // FIX: use safe conversion
     const sources = td.sources || {};
     const counts  = days.map(function(d){ return d.total; });
     const week    = days.slice(0,7).reduce(function(a,d){ return a+d.total; },0);
@@ -195,7 +217,7 @@ async function load(){
     document.getElementById('loadDiv').style.display = 'none';
     var eb = document.getElementById('errBox');
     eb.style.display = 'block';
-    eb.innerHTML = '❌ Error: ' + e.message;
+    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
   }
 }
 
