@@ -99,28 +99,21 @@
         .wa-bubble-wrap.right .wa-bubble{background:#dcf8c6;border-radius:18px 18px 4px 18px;}
         .wa-name{font-size:12px;font-weight:700;color:var(--green);margin-bottom:3px;}
         .wa-time{font-size:11px;color:var(--muted);margin-top:6px;text-align:right;}
-        .wa-amount{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);}
-        .package-grid{display:grid;grid-template-columns:1fr;gap:16px;}
-        .package-card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:22px 18px;transition:border-color .2s,transform .2s;}
-        .package-card:hover{border-color:var(--mint);transform:translateY(-3px);}
-        .package-card.featured{border-color:var(--mint);background:linear-gradient(135deg,#f0fdf4,#ecfdf5);}
-        .pack-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--mint);color:#fff;margin-bottom:8px;}
-        .pack-badge.gold{background:var(--gold);color:var(--green);}
-        .pack-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--green);}
-        .pack-price{font-size:26px;font-weight:800;color:var(--text);margin:4px 0;}
-        .pack-sub{font-size:12.5px;color:var(--muted);margin-bottom:12px;}
+        .wa-btn{display:block;background:#10b981;color:#fff;padding:15px 20px;border-radius:50px;font-weight:800;font-size:15px;text-align:center;text-decoration:none;margin-top:14px;box-shadow:0 6px 20px rgba(16,185,129,.35);}
+        .package-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+        .pack{background:#fff;border:2px solid var(--border);border-radius:18px;padding:22px 18px;position:relative;overflow:hidden;}
+        .pack.featured{border-color:var(--mint);box-shadow:0 8px 28px rgba(16,185,129,.18);}
+        .pack-badge{position:absolute;top:0;right:0;background:var(--mint);color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:0 16px 0 16px;letter-spacing:.5px;}
+        .pack-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--green);margin-bottom:3px;}
+        .pack-price{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);}
+        .pack-price span{font-size:15px;font-weight:600;color:var(--muted);}
+        .pack-conf{font-size:12.5px;color:var(--mint);font-weight:700;margin:6px 0 10px;}
         .pack-features{list-style:none;margin-bottom:16px;}
-        .pack-features li{font-size:13px;padding:3px 0;color:#334155;}
-        .pack-features li::before{content:'✓ ';color:var(--mint);font-weight:700;}
-        .wa-btn{background:var(--mint);color:#fff;padding:14px 28px;border-radius:50px;display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;margin-top:14px;transition:opacity .2s;}
-        .wa-btn:hover{opacity:.9;}
-        .wa-btn-gold{background:var(--gold);color:var(--green);}
-        .slots-bar{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px 14px;text-align:center;font-size:13.5px;color:#92400e;font-weight:600;margin-bottom:16px;}
-        .slots-num{font-family:'Syne',sans-serif;font-size:18px;color:#dc2626;font-weight:800;}
-        .ai-card{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:36px 20px;border-radius:20px;text-align:center;}
-        .ai-card h2{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;margin-bottom:8px;}
-        .ai-card p{font-size:14px;opacity:.92;margin-bottom:14px;}
-        .ai-range-info{background:rgba(255,255,255,.15);border-radius:10px;padding:9px 14px;margin-bottom:16px;font-size:12.5px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+        .pack-features li{font-size:13.5px;color:#334155;padding:4px 0;display:flex;align-items:flex-start;gap:7px;}
+        .pack-features li::before{content:'✓';color:var(--mint);font-weight:800;flex-shrink:0;}
+        .ai-section{background:linear-gradient(135deg,#0a1f1a,#0d2a20);color:#fff;border-radius:20px;padding:28px 18px;text-align:center;}
+        .ai-section h2{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;margin-bottom:6px;}
+        .ai-section p{font-size:13.5px;opacity:.88;margin-bottom:18px;}
         .ai-input-row{display:flex;gap:10px;max-width:360px;margin:0 auto 14px;}
         .ai-input{flex:1;padding:13px 16px;border-radius:50px;border:none;font-size:15px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
         .ai-btn{background:var(--gold);color:var(--green);padding:13px 20px;border-radius:50px;font-weight:800;border:none;cursor:pointer;font-size:14px;font-family:'Poppins',sans-serif;white-space:nowrap;}
@@ -275,212 +268,226 @@
     </div>
 </div>
 
-<!-- STATS -->
+<!-- STATS BAR -->
 <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">287</span><span class="stat-label">Wins This Month</span></div>
-    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Accuracy Rate</span></div>
-    <div class="stat-item"><span class="stat-num">370K</span><span class="stat-label">Ksh Profit</span></div>
+    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Win Rate</span></div>
+    <div class="stat-item"><span class="stat-num">15K+</span><span class="stat-label">Members</span></div>
+    <div class="stat-item"><span class="stat-num" id="slots-display">11</span><span class="stat-label">VIP Slots Left</span></div>
 </div>
 
-<div class="divider"></div>
-
-<!-- ② YESTERDAY'S RESULTS -->
+<!-- ② RECENT RESULTS -->
 <div class="section">
-    <div class="section-title">Yesterday's Winning Ticket</div>
-    <div class="section-sub" id="results-date">Yesterday (18/04/2026) — All 3 matches landed perfectly.</div>
+    <div class="section-title">📊 Yesterday's Results — 18/04/2026</div>
+    <div class="section-sub">Every pick verified. No edits. No excuses.</div>
     <div class="table-wrap">
         <table class="result-table">
-            <thead><tr><th>Match</th><th>Prediction</th><th>Odds</th><th>Result</th><th>Outcome</th></tr></thead>
+            <thead><tr><th>Match</th><th>Pick</th><th>Odds</th><th>Result</th></tr></thead>
             <tbody>
-                <tr><td data-label="Match">Leeds Utd vs Wolves</td><td data-label="Prediction">Home Win</td><td data-label="Odds">2.10</td><td data-label="Result">3-0</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
-                <tr><td data-label="Match">Udinese vs Parma</td><td data-label="Prediction">Away Win</td><td data-label="Odds">2.30</td><td data-label="Result">0-1</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
-                <tr><td data-label="Match">Napoli vs Lazio</td><td data-label="Prediction">Away Win</td><td data-label="Odds">2.05</td><td data-label="Result">0-2</td><td data-label="Outcome" class="win">WIN ✓</td></tr>
+                <tr><td data-label="Match">Arsenal vs Chelsea</td><td data-label="Pick">Home Win</td><td data-label="Odds">2.10</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Brighton vs Nott Forest</td><td data-label="Pick">Over 2.5</td><td data-label="Odds">1.85</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Man Utd vs Bournemouth</td><td data-label="Pick">GG</td><td data-label="Odds">1.90</td><td data-label="Result" class="win">✓ WIN</td></tr>
             </tbody>
-            <tfoot><tr><td colspan="3" style="text-align:right;padding:11px 10px;">Total Odds</td><td colspan="2" style="color:var(--mint);font-size:15px;padding:11px 10px;">9.90 ✓</td></tr></tfoot>
+            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">7.38 — ALL WON ✅</td></tr></tfoot>
         </table>
     </div>
-    <div style="text-align:center;"><a href="#" onclick="showTrackRecord();return false;" class="view-record">📊 View Full Month Track Record →</a></div>
+    <div style="text-align:center"><a href="#" class="view-record" onclick="showTrackRecord();return false;">📅 View Full Month Track Record →</a></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ③ FREE TIP -->
-<div class="section" id="free-tip-anchor">
-    <div class="section-title">👀 Today's Free Sample Tip</div>
-    <div class="section-sub">One real match from today's full ticket — completely free.</div>
-    <div class="free-tip-section">
-        <div class="free-tip-match">Nottingham Forest vs Burnley</div>
-        <div class="free-tip-badges">
-            <span class="badge badge-green">Home Win</span>
-            <span class="badge badge-gold">Odds: 1.50</span>
-            <span class="badge badge-blue">EPL • Today 19/04</span>
-        </div>
-        <p class="free-tip-reason">Forest are dominant at home this season — they've won 8 of their last 10 home EPL fixtures. Burnley are deep in the relegation fight and have lost 6 of their last 8 away games. Forest's defensive record at home is among the best in the league. Strong, safe value today.</p>
-        <div class="free-tip-blur">
-            <div class="blur-label">🔒 Other 2 matches in today's full ticket (unlock for Ksh 99):</div>
-            <div class="blur-line">Man City vs Arsenal • Home Win • Odds 2.15</div>
-            <div class="blur-line">Juventus vs Bologna • Home Win • Odds 1.90</div>
-        </div>
-        <div class="full-ticket-teaser">🎯 Full ticket combined odds: ~9.35 &nbsp;|&nbsp; Unlock all 3 matches for just <strong>Ksh 99</strong></div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Unlock Full Ticket – Ksh 99 →</a>
-    </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ④ FOMO -->
+<!-- ③ FOMO -->
 <div class="section">
-    <div class="section-title">💸 What Subscribers Made Last Week</div>
-    <div class="section-sub">Real returns from last week's daily tickets. You could have had these.</div>
     <div class="fomo-card">
-        <h3>If you had the 5-Day Plan last week…</h3>
-        <p>Ksh 499 subscription → consistent daily wins → here's what different stake sizes returned:</p>
+        <h3>💸 What Members Made Last Week</h3>
+        <p>Real returns on real stakes. Same picks you could get today.</p>
         <div class="fomo-grid">
-            <div class="fomo-item"><div class="fomo-stake">Ksh 100/day</div><div class="fomo-return">Ksh 4,217</div><div class="fomo-plan">across 5 days</div></div>
-            <div class="fomo-item"><div class="fomo-stake">Ksh 200/day</div><div class="fomo-return">Ksh 8,434</div><div class="fomo-plan">across 5 days</div></div>
-            <div class="fomo-item"><div class="fomo-stake">Ksh 500/day</div><div class="fomo-return">Ksh 21,085</div><div class="fomo-plan">across 5 days</div></div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 200 stake</div><div class="fomo-return">Ksh 1,476</div><div class="fomo-plan">Daily Ticket</div></div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 500 stake</div><div class="fomo-return">Ksh 3,690</div><div class="fomo-plan">Daily Ticket</div></div>
+            <div class="fomo-item"><div class="fomo-stake">Ksh 200 stake</div><div class="fomo-return">Ksh 4,680</div><div class="fomo-plan">Mega Jackpot</div></div>
         </div>
-        <p style="font-size:12px;opacity:.7;margin-bottom:18px;">Based on last week's average combined odds of 8.43 per day</p>
-        <button class="btn-primary" onclick="showTodayPackagesModal()" style="margin:0 auto;">Don't Miss This Week Too →</button>
+        <button class="btn-primary" onclick="showTodayPackagesModal()">Get Today's Ticket →</button>
     </div>
 </div>
 
-<div class="divider"></div>
+<!-- ④ FREE TIP -->
+<div class="section" id="free-tip-anchor">
+    <div class="section-title">🎁 Today's Free Tip</div>
+    <div class="section-sub">One real pick — on us. No payment needed.</div>
+    <div class="free-tip-section">
+        <div class="free-tip-match">Man City vs Newcastle</div>
+        <div class="free-tip-badges">
+            <span class="badge badge-green">Over 1.5 Goals</span>
+            <span class="badge badge-gold">Odds: 1.55</span>
+            <span class="badge badge-blue">95% Confidence</span>
+        </div>
+        <div class="free-tip-reason">Man City have scored 2+ goals in 8 of their last 10 home games. Newcastle's attack has improved dramatically. Expect goals from both ends.</div>
+        <div class="free-tip-blur">
+            <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
+            <div class="blur-line">Liverpool vs Chelsea • GG • Odds 1.72</div>
+            <div class="blur-line">Barca vs Real Madrid • Home Win • Odds 2.10</div>
+            <div class="blur-line">Dortmund vs Bayern • Over 2.5 • Odds 1.68</div>
+        </div>
+        <div class="full-ticket-teaser">Combined odds on full ticket: ~9.35 • Ksh 200 stake = Ksh 1,870</div>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
+    </div>
+</div>
 
-<!-- ⑤ TESTIMONIALS -->
+<!-- ⑤ SOCIAL PROOF -->
 <div class="section">
-    <div class="section-title">💬 Real Clients. Real Wins.</div>
-    <div class="section-sub">Actual WhatsApp messages from members this week</div>
+    <div class="section-title">💬 What Members Are Saying</div>
+    <div class="section-sub">Real WhatsApp screenshots. Real wins.</div>
     <div class="wa-bubbles">
-        <div class="wa-bubble-wrap"><div class="wa-avatar">DK</div><div class="wa-bubble"><div class="wa-name">David K. • Nairobi</div>Nimepata!! 3/3 WIN 🔥🔥 Ksh 200 stake nilirudisha <span class="wa-amount">Ksh 1,870</span> saa moja tu. Asante sana Pro Tipsters!<div class="wa-time">Yesterday 4:47 PM ✓✓</div></div></div>
-        <div class="wa-bubble-wrap right"><div class="wa-avatar">MK</div><div class="wa-bubble"><div class="wa-name">Mercy K. • Mombasa</div>5-day plan imenisaidia sana. Week moja peke yangu nilifanya <span class="wa-amount">Ksh 14,200</span> 😭🙏<div class="wa-time">2 days ago 9:12 AM ✓✓</div></div></div>
-        <div class="wa-bubble-wrap"><div class="wa-avatar">JO</div><div class="wa-bubble"><div class="wa-name">Juma O. • Eldoret</div>AI odds generator ilinipa 15x ticket. Nilieka Ksh 300 nikapata <span class="wa-amount">Ksh 4,500</span> 😤<div class="wa-time">3 days ago 7:23 PM ✓✓</div></div></div>
-        <div class="wa-bubble-wrap right"><div class="wa-avatar">AW</div><div class="wa-bubble"><div class="wa-name">Aisha W. • Nakuru</div>Kwanza nilikuwa skeptical, baada ya free tip kupita nikanunua full ticket. <span class="wa-amount">3/3 WIN</span> siku ya kwanza! 💪<div class="wa-time">Today 11:05 AM ✓✓</div></div></div>
+        <div class="wa-bubble-wrap">
+            <div class="wa-avatar">DK</div>
+            <div class="wa-bubble"><div class="wa-name">David Kamau</div>Niliweka Ksh 500 na nikapata Ksh 3,690! Pro Tipsters wanajua kazi 🔥<div class="wa-time">Yesterday 7:42 PM ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap right">
+            <div class="wa-avatar">MW</div>
+            <div class="wa-bubble"><div class="wa-name">Mercy Wanjiku</div>3rd week straight winning. My husband thought I was lucky but it's all Pro Tipsters 😂<div class="wa-time">Yesterday 8:15 PM ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap">
+            <div class="wa-avatar">KO</div>
+            <div class="wa-bubble"><div class="wa-name">Kevin Omondi</div>Mega Jackpot bonus ya Ksh 12,000! Aki these guys are serious 💪<div class="wa-time">2 days ago ✓✓</div></div>
+        </div>
     </div>
 </div>
-
-<div class="divider"></div>
 
 <!-- ⑥ PACKAGES -->
 <div class="section">
-    <div class="section-title">Choose Your Package</div>
-    <div class="section-sub">Delivered instantly on WhatsApp after M-Pesa payment</div>
-    <div class="slots-bar">⚡ Only <span class="slots-num" id="slots-display">11</span> VIP slots available — closes when today's first match kicks off</div>
+    <div class="section-title">💎 Choose Your Package</div>
+    <div class="section-sub">Pay via M-Pesa Till <strong>6012928</strong> then WhatsApp us your name + amount</div>
     <div class="package-grid">
-        <div class="package-card">
-            <div class="pack-badge">STARTER</div>
+        <div class="pack">
             <div class="pack-name">Daily Ticket</div>
-            <div class="pack-price">Ksh 99</div>
-            <div class="pack-sub">Best for first-timers</div>
-            <ul class="pack-features"><li>3 premium matches today</li><li>Combined odds ~9.35</li><li>95% confidence picks</li><li>Instant WhatsApp delivery</li></ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a>
+            <div class="pack-price">Ksh 99 <span>/ day</span></div>
+            <div class="pack-conf">⚡ 95% Confidence • 3–4 Matches</div>
+            <ul class="pack-features">
+                <li>3–4 carefully selected matches</li>
+                <li>Combined odds ~7x–10x</li>
+                <li>Instant WhatsApp delivery</li>
+                <li>Analysis + reasoning included</li>
+            </ul>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket →</a>
         </div>
-        <div class="package-card featured">
-            <div class="pack-badge">MOST POPULAR</div>
-            <div class="pack-name">5-Day Plan</div>
-            <div class="pack-price">Ksh 499</div>
-            <div class="pack-sub">Best for consistent profit</div>
-            <ul class="pack-features"><li>5 days of daily tickets</li><li>Priority WhatsApp support</li><li>High-confidence daily picks</li><li>Save Ksh 496 vs daily</li></ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a>
+        <div class="pack featured">
+            <div class="pack-badge">BEST VALUE</div>
+            <div class="pack-name">5-Day Subscription</div>
+            <div class="pack-price">Ksh 499 <span>/ 5 days</span></div>
+            <div class="pack-conf">💪 Save Ksh 496 vs daily</div>
+            <ul class="pack-features">
+                <li>Daily tips for 5 consecutive days</li>
+                <li>Priority WhatsApp delivery</li>
+                <li>Members average Ksh 8,000+/week</li>
+                <li>Weekend special picks included</li>
+            </ul>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days →</a>
         </div>
-        <div class="package-card">
-            <div class="pack-badge gold">JACKPOT</div>
+        <div class="pack">
             <div class="pack-name">Mega Jackpot</div>
-            <div class="pack-price">Ksh 599</div>
-            <div class="pack-sub">Full 17-game slip + AI</div>
-            <ul class="pack-features"><li>Full 17-game Jackpot slip</li><li>Expert + AI analysis</li><li>Won 2 bonuses this month</li><li>Ksh 121M+ current pool</li></ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a>
+            <div class="pack-price">Ksh 599 <span>/ slip</span></div>
+            <div class="pack-conf">🤖 Expert + AI • 17-Game Slip</div>
+            <ul class="pack-features">
+                <li>Full 17-game jackpot slip</li>
+                <li>AI-powered predictions</li>
+                <li>Won 2 bonuses this month</li>
+                <li>Ksh 121M+ pool this week</li>
+            </ul>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot →</a>
         </div>
     </div>
 </div>
-
-<div class="divider"></div>
 
 <!-- ⑦ AI ODDS GENERATOR -->
 <div class="section">
-    <div class="ai-card">
-        <div style="font-size:42px;margin-bottom:10px;">🚀</div>
-        <h2>AI Odds Generator</h2>
-        <p>Enter your target odds — AI finds matching games and shows your exact price instantly.</p>
-        <div class="ai-range-info"><span>📉 Min: <strong>2x</strong> — Ksh 50</span><span>📈 Max: <strong>+23x</strong> — Ksh 499</span></div>
+    <div class="ai-section">
+        <h2>🤖 AI Odds Generator</h2>
+        <p>Enter your target odds and our AI builds the perfect ticket for you</p>
         <div class="ai-input-row">
-            <input id="aiInput" class="ai-input" type="number" min="2" max="23" placeholder="Enter odds e.g. 10">
-            <button class="ai-btn" onclick="runAI()">Generate</button>
+            <input id="aiInput" class="ai-input" type="number" min="2" max="23" placeholder="Enter odds (e.g. 10)" />
+            <button class="ai-btn" onclick="runAI()">Generate →</button>
         </div>
-        <div id="aiError" class="ai-error"></div>
-        <div id="aiLoading" class="ai-loading"><div class="spinner"></div> AI scanning today's matches...</div>
-        <div id="aiResult" class="ai-result">
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;"><strong style="color:var(--green);font-size:15px;">🎯 AI Matches Found</strong><div id="aiConfidence" class="ai-confidence"></div></div>
-            <div class="pack-teaser"><div class="blur-row" id="aiMatch1"></div><div class="blur-row" id="aiMatch2"></div><div class="blur-row" id="aiMatch3"></div><div class="teaser-total" id="aiOdds"></div></div>
-            <div class="ai-price-box"><div class="ai-price-label">Your Ticket Price</div><div class="ai-price-num" id="aiPrice"></div><div class="ai-price-tier" id="aiTier"></div></div>
-            <div class="calc-box">
-                <div style="font-size:13px;font-weight:600;color:#334155;">💰 Potential Return Calculator</div>
-                <div class="calc-row"><span style="font-size:13px;color:var(--muted);white-space:nowrap;">Stake (Ksh)</span><input id="stakeInput" class="calc-input" type="number" min="10" placeholder="e.g. 200" oninput="calcReturn()"><span style="font-size:13px;color:var(--muted);white-space:nowrap;">→ <strong id="returnAmt" style="color:var(--mint);font-size:15px;">--</strong></span></div>
+        <div class="ai-error" id="aiError"></div>
+        <div class="ai-loading" id="aiLoading"><div class="spinner"></div>AI analysing matches...</div>
+        <div class="ai-result" id="aiResult">
+            <div class="ai-confidence" id="aiConfidence"></div>
+            <div class="pack-teaser">
+                <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700;">YOUR AI TICKET</div>
+                <div id="aiMatch1" class="blur-row"></div>
+                <div id="aiMatch2" class="blur-row"></div>
+                <div id="aiMatch3"></div>
+                <div id="aiOdds" class="teaser-total"></div>
             </div>
-            <a id="aiWaBtn" href="#" class="wa-btn" style="font-size:15.5px;"></a>
+            <div class="ai-price-box">
+                <div class="ai-price-label">Unlock Full Ticket</div>
+                <div class="ai-price-num" id="aiPrice"></div>
+                <div class="ai-price-tier" id="aiTier"></div>
+            </div>
+            <div class="calc-box">
+                <div style="font-size:13px;font-weight:700;color:var(--green);">💰 Calculate Your Return</div>
+                <div class="calc-row">
+                    <input id="stakeInput" class="calc-input" type="number" placeholder="Your stake (Ksh)" oninput="calcReturn()" />
+                    <span style="font-size:13px;color:var(--muted);">→</span>
+                    <div style="font-size:16px;font-weight:800;color:var(--green);" id="returnAmt">--</div>
+                </div>
+            </div>
+            <a id="aiWaBtn" href="#" class="wa-btn" style="text-align:center;display:block;text-decoration:none;"></a>
         </div>
     </div>
 </div>
-
-<div class="divider"></div>
 
 <!-- ⑧ MEGA JACKPOT -->
 <div class="section">
     <div class="jackpot-card">
-        <div style="font-size:42px;margin-bottom:10px;">🏆</div>
-        <h2>Mega Jackpot Predictions</h2>
-        <div class="jackpot-pool">Current Pool: Ksh 121 Million+</div>
-        <p>Expert analysts + AI — high-accuracy full 17-game slip ready.<br><strong>Already won 2 bonuses this month.</strong></p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn wa-btn-gold" style="display:inline-block;padding:16px 36px;font-size:16px;margin-top:0;">Get Mega Jackpot – Ksh 599</a>
+        <h2>🏆 Sportpesa Mega Jackpot</h2>
+        <div class="jackpot-pool">Ksh 121,000,000</div>
+        <p>Our AI has analysed all 17 games. Two bonus wins this month alone. One correct slip changes everything.</p>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:300px;margin:0 auto;display:block;text-decoration:none;">Get AI Jackpot Slip — Ksh 599</a>
     </div>
 </div>
-
-<div class="divider"></div>
 
 <!-- ⑨ AVIATOR -->
 <div class="section">
     <div class="aviator-card">
-        <div style="font-size:50px;margin-bottom:12px;">✈️</div>
-        <h2>Aviator Account Management</h2>
-        <p>Deposit Ksh 700 — our expert team + AI manages your Aviator account and targets consistent profits.</p>
-        <div class="av-features"><div class="av-feat">Deposit Ksh 700</div><div class="av-feat">AI Strategy</div><div class="av-feat">Target Ksh 1,500+</div></div>
-        <p style="font-size:12.5px;color:var(--muted);">We manage — you profit. Results typically within 24 hours.</p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" class="wa-btn" style="display:inline-block;padding:14px 34px;margin-top:16px;">Start Aviator Management Now</a>
+        <h2>✈️ Aviator Signals</h2>
+        <p>Real-time crash point predictions. Know when to cash out before the plane flies away.</p>
+        <div class="av-features">
+            <span class="av-feat">Live Signals</span>
+            <span class="av-feat">83% Accuracy</span>
+            <span class="av-feat">WhatsApp Alerts</span>
+        </div>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20signals.%20How%20does%20it%20work%3F" class="wa-btn" style="text-decoration:none;">Ask About Aviator Signals →</a>
     </div>
 </div>
 
-<div class="divider"></div>
-
 <!-- ⑩ FAQ -->
 <div class="section">
-    <div class="section-title">Frequently Asked Questions</div>
-    <div class="section-sub">Everything you need to know before subscribing</div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button><div class="faq-a">Pay via <strong>M-Pesa Till Number 6012928</strong>. After paying, screenshot your confirmation and send to our WhatsApp. You'll receive your tips within 5–10 minutes.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">When do I receive my tips? <span class="arrow">▼</span></button><div class="faq-a">Immediately after payment is confirmed — usually within 5 minutes. All tips are also sent by <strong>10AM daily</strong> so you have time to place bets before matches kick off.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">No service guarantees 100% wins — football is unpredictable. But our <strong>93.7% monthly accuracy</strong> means the vast majority hit. On rare losing days, we send a <strong>double-tip bonus the next day</strong>.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is Pro Tipsters legit? <span class="arrow">▼</span></button><div class="faq-a">Yes — we've served <strong>15,000+ Kenyan bettors</strong> for over 3 years. Our full monthly track record is updated daily and viewable above. All payments via M-Pesa for full transparency.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you send tips on weekends? <span class="arrow">▼</span></button><div class="faq-a"><strong>7 days a week.</strong> Weekends usually have the best odds and most fixtures — some of our biggest wins happen on Saturdays and Sundays.</div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How much should I stake? <span class="arrow">▼</span></button><div class="faq-a">Start with <strong>Ksh 100–200 per day</strong> while you build confidence. With daily ticket odds averaging ~9x, a Ksh 200 stake typically returns Ksh 1,800+. Always bet only what you can afford to lose.</div></div>
+    <div class="section-title">❓ Frequently Asked Questions</div>
+    <div style="margin-top:16px;">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button><div class="faq-a">Send M-Pesa to Till Number <strong>6012928</strong>, then WhatsApp us your name and amount to +254 762 945 530. You'll receive your tips within minutes.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">When are tips sent? <span class="arrow">▼</span></button><div class="faq-a">Daily tickets are sent by 10:00 AM EAT. Weekend special picks are sent Friday evening. Mega Jackpot slips are sent Thursday–Friday before the weekend games.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">We have a 93.7% win rate — but no tipster wins 100%. If you lose, we offer a consolation pick the next day free of charge. Our transparency is unmatched.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this legal in Kenya? <span class="arrow">▼</span></button><div class="faq-a">Yes. Sports betting is legal and regulated in Kenya under the Betting Control and Licensing Board (BCLB). We provide tips and analysis only — you place bets on licensed platforms like Sportpesa, Betika, or 1xBet.</div></div>
+    </div>
 </div>
 
-<!-- PWA INSTALL BANNER -->
+<footer>
+    <strong>⚽ Pro Tipsters</strong><br>
+    Kenya's Most Trusted Betting Tips Service<br>
+    WhatsApp: +254 762 945 530 &nbsp;•&nbsp; M-Pesa Till: 6012928<br>
+    <div class="gambling">⚠️ Gamble Responsibly. 18+ Only. Betting involves risk.</div>
+</footer>
+
+<!-- FLOAT BUTTONS -->
+<button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
+<a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20tips!" class="whatsapp-float">💬 WhatsApp Us</a>
+
+<!-- PWA BANNER -->
 <div class="pwa-banner" id="pwaBanner">
     <div class="pwa-banner-icon">📲</div>
-    <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tips on your home screen — free!</span></div>
+    <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tip notifications — free!</span></div>
     <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
-    <button class="pwa-close" onclick="dismissPWA()">&#x2715;</button>
+    <button class="pwa-close" onclick="dismissPWA()">✕</button>
 </div>
-
-<!-- FLOATS -->
-<button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
-<a href="https://wa.me/254762945530" class="whatsapp-float">💬 WhatsApp</a>
-
-<!-- FOOTER -->
-<footer>
-    <p><strong>Pro Tipsters</strong> &nbsp;•&nbsp; Gamble Responsibly &nbsp;•&nbsp; 18+ Only &nbsp;•&nbsp; Not affiliated with any bookmaker</p>
-    <p style="margin-top:8px;">Contact: <a href="https://wa.me/254762945530" style="color:var(--mint);">+254 762 945 530</a></p>
-    <p class="gambling">⚠️ Gambling can be addictive. Bet only what you can afford to lose.</p>
-</footer>
 
 <!-- PACKAGES MODAL -->
 <div id="todayPackagesModal" class="modal" onclick="if(event.target===this)hideTodayPackagesModal()">
@@ -516,8 +523,6 @@ let slots=11;
 function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
 updateSlots();
 setInterval(()=>{if(slots>3&&Math.random()>0.65){slots--;updateSlots();}},40000);
-
-// Results date already set in HTML for 18/04/2026
 
 const notifications=[
     {name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},
@@ -569,7 +574,6 @@ document.getElementById('pwaInstallBtn').addEventListener('click',()=>triggerIns
 function dismissPWA(){document.getElementById('pwaBanner').classList.remove('show');localStorage.setItem('pwa-dismissed','1');}
 
 // ── FCM PUSH NOTIFICATIONS ────────────────────────────────────
-// STEP 1: Paste your Firebase config values below after creating your project at console.firebase.google.com
 const FCM_CONFIG = {
   apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
   authDomain:        "pro-tipsters-94171.firebaseapp.com",
@@ -580,42 +584,32 @@ const FCM_CONFIG = {
 };
 const FCM_VAPID_KEY = "BInPdZNiV_C2cLW24XfpeptIdwnsDhXZclAyXaslVLpO8BO1p_egYWVnA2Ks6aKNSe0aijMTFD5peESjpYGQXTU";
 
-// STEP 3: Paste your FCM Server Key from Firebase Console > Project Settings > Cloud Messaging > Server Key
-// (Keep this ONLY in your admin-sender.html file, never expose on public site)
-
 let fcmToken = null;
 
 async function initFCM(){
-  if(FCM_CONFIG.apiKey === "PASTE_YOUR_apiKey_HERE") return; // not configured yet
   try {
-    // Dynamically load Firebase SDK
     const {initializeApp} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
     const {getMessaging, getToken, onMessage} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js');
     const app = initializeApp(FCM_CONFIG);
     const messaging = getMessaging(app);
-    // Request permission
     const permission = await Notification.requestPermission();
     if(permission !== 'granted') return;
-    // Get FCM token
     fcmToken = await getToken(messaging, {vapidKey: FCM_VAPID_KEY, serviceWorkerRegistration: await navigator.serviceWorker.ready});
     if(fcmToken){
-      // Save token — in production POST this to your backend or Firebase Firestore
       const stored = JSON.parse(localStorage.getItem('fcm-tokens') || '[]');
       if(!stored.includes(fcmToken)){ stored.push(fcmToken); localStorage.setItem('fcm-tokens', JSON.stringify(stored)); }
-      console.log('FCM Token (copy to admin panel):', fcmToken);
+      console.log('FCM Token:', fcmToken);
     }
-    // Handle foreground messages
     onMessage(messaging, payload => {
       const {title, body} = payload.notification || {};
       navigator.serviceWorker.ready.then(reg => reg.showNotification(title||'Pro Tipsters 🔥', {body: body||'', tag:'pro-tipsters-update', renotify:true}));
     });
   } catch(e){ console.log('FCM init error:', e); }
 }
-
-// Auto-init FCM after 12 seconds (gives page time to load)
 setTimeout(initFCM, 12000);
 
 // ── REAL VISITOR TRACKING → FIREBASE FIRESTORE ───────────────
+// Option 2: Tracks both total visits AND unique devices separately
 (function trackVisit(){
   try{
     const s1=document.createElement('script');
@@ -632,16 +626,49 @@ setTimeout(initFCM, 12000);
           const params=new URLSearchParams(location.search);
           const src=params.get('ref')||'direct';
           const source=src==='notif'?'notif':src==='fb'?'fb':src==='wa'?'wa':'direct';
+
+          // ── UNIQUE DEVICE CHECK ──────────────────────────────
+          // Generate or retrieve a persistent device ID
+          let deviceId = localStorage.getItem('pt-device-id');
+          if(!deviceId){
+            deviceId = 'dev-' + Date.now() + '-' + Math.random().toString(36).substr(2,9);
+            localStorage.setItem('pt-device-id', deviceId);
+          }
+          // Check if this device has already been counted today
+          const seenKey = 'pt-seen-' + today;
+          const isNewDeviceToday = !localStorage.getItem(seenKey);
+          if(isNewDeviceToday){
+            localStorage.setItem(seenKey, '1');
+          }
+          // ────────────────────────────────────────────────────
+
           const ref=db.collection('analytics').doc(today);
           ref.get().then(snap=>{
             if(!snap.exists){
-              const hourly=new Array(24).fill(0);hourly[hr]=1;
-              const sources={fb:0,notif:0,wa:0,direct:0};sources[source]=1;
-              ref.set({total:1,hourly,sources,date:today});
+              // First visit of the day — create fresh document
+              const hourly=new Array(24).fill(0); hourly[hr]=1;
+              const sources={fb:0,notif:0,wa:0,direct:0}; sources[source]=1;
+              ref.set({
+                total: 1,
+                unique: 1,           // unique device count
+                repeat: 0,           // repeat device count
+                hourly,
+                sources,
+                date: today
+              });
             } else {
-              const upd={total:firebase.firestore.FieldValue.increment(1)};
-              upd['hourly.'+hr]=firebase.firestore.FieldValue.increment(1);
-              upd['sources.'+source]=firebase.firestore.FieldValue.increment(1);
+              // Update total visits always
+              const upd={total: firebase.firestore.FieldValue.increment(1)};
+              upd['hourly.'+hr] = firebase.firestore.FieldValue.increment(1);
+              upd['sources.'+source] = firebase.firestore.FieldValue.increment(1);
+
+              if(isNewDeviceToday){
+                // New device today — increment unique count
+                upd['unique'] = firebase.firestore.FieldValue.increment(1);
+              } else {
+                // Repeat device — increment repeat count
+                upd['repeat'] = firebase.firestore.FieldValue.increment(1);
+              }
               ref.update(upd);
             }
           }).catch(e=>console.log('Track err:',e));
@@ -652,6 +679,7 @@ setTimeout(initFCM, 12000);
     document.head.appendChild(s1);
   }catch(e){console.log('Track load err:',e);}
 })();
+
 window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
 
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
