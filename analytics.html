@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Tipsters — Live Analytics</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <style>
-  :root{--bg:#060a0f;--card:#0d1520;--card2:#111b2a;--border:#1a2d42;--green:#0f766e;--mint:#10b981;--gold:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--text:#e2f0ff;--muted:#5a7a96;--mono:'Space Mono',monospace;}
+  :root{--bg:#060a0f;--card:#0d1520;--border:#1a2d42;--green:#0f766e;--mint:#10b981;--gold:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--text:#e2f0ff;--muted:#5a7a96;}
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.2;pointer-events:none;}
@@ -21,55 +24,37 @@
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
   .reset-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
   .reset-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
-  .reset-timer{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--gold);}
+  .reset-timer{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:var(--gold);}
   .reset-info{font-size:10px;color:var(--muted);margin-top:2px;}
   .hero-card{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid var(--mint);border-radius:20px;padding:28px 24px;margin-bottom:16px;text-align:center;position:relative;overflow:hidden;}
-  .hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%);}
   .hero-label{font-size:11px;font-weight:700;color:var(--mint);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;}
   .hero-num{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
   .hero-sub{font-size:12px;color:var(--muted);margin-top:8px;}
-  .hero-date{font-family:var(--mono);font-size:11px;color:var(--mint);margin-top:6px;opacity:.7;}
+  .hero-date{font-family:'Space Mono',monospace;font-size:11px;color:var(--mint);margin-top:6px;opacity:.7;}
   .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
   .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 14px;}
   .stat-icon{font-size:20px;margin-bottom:8px;}
   .stat-val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
-  .stat-val.blue{color:var(--blue);}
-  .stat-val.gold{color:var(--gold);}
-  .stat-val.red{color:var(--red);}
-  .stat-val.mint{color:var(--mint);}
+  .blue{color:var(--blue);} .gold{color:var(--gold);} .red{color:var(--red);} .mint{color:var(--mint);}
   .stat-label{font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;}
-  .chart-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-  .chart-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+  .card-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
   .bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
   .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-  .bar{width:100%;background:linear-gradient(180deg,var(--mint),var(--green));border-radius:3px 3px 0 0;min-height:2px;transition:height .5s ease;}
-  .bar.current{background:linear-gradient(180deg,var(--gold),#d97706);box-shadow:0 0 10px rgba(245,158,11,.4);}
-  .bar-hour{font-size:8px;color:var(--muted);font-family:var(--mono);}
-  .history-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-  .history-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
-  .history-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
-  .history-row:last-child{border-bottom:none;}
-  .history-date{font-size:13px;color:var(--text);font-weight:600;}
-  .history-count{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--mint);}
-  .history-bar{height:4px;background:var(--border);border-radius:4px;margin-top:4px;overflow:hidden;width:100%;}
-  .history-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--mint));border-radius:4px;}
-  .history-left{flex:1;margin-right:16px;}
-  .source-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-  .source-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
-  .source-row:last-child{border-bottom:none;}
-  .source-name{font-size:13px;color:var(--text);font-weight:600;}
-  .source-count{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--blue);}
-  .loading{text-align:center;padding:40px;color:var(--muted);font-size:14px;}
-  .spinner-wrap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
-  .spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite;}
+  .bar{width:100%;background:linear-gradient(180deg,var(--mint),var(--green));border-radius:3px 3px 0 0;min-height:2px;}
+  .bar.cur{background:linear-gradient(180deg,var(--gold),#d97706);box-shadow:0 0 8px rgba(245,158,11,.4);}
+  .bar-lbl{font-size:8px;color:var(--muted);font-family:'Space Mono',monospace;}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+  .row:last-child{border-bottom:none;}
+  .row-label{font-size:13px;color:var(--text);font-weight:600;flex:1;}
+  .row-val{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--mint);}
+  .row-bar{height:4px;background:var(--border);border-radius:4px;margin-top:4px;}
+  .row-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--mint));border-radius:4px;}
+  .loading{text-align:center;padding:50px 20px;color:var(--muted);}
+  .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .btn{padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:none;font-family:'Poppins',sans-serif;transition:opacity .2s;width:100%;margin-bottom:10px;}
-  .btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--text);}
-  .btn:hover{opacity:.85;}
-  .alert{border-radius:10px;padding:12px 14px;font-size:13px;margin-bottom:14px;line-height:1.6;}
-  .alert-gold{background:#1c1206;border:1px solid var(--gold);color:#d4a847;}
-  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-  .popping{animation:pop .3s ease;}
+  .btn{width:100%;padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--text);font-family:'Poppins',sans-serif;margin-bottom:10px;}
+  .error-box{background:#1c0a06;border:1px solid var(--red);border-radius:12px;padding:16px;color:#f87171;font-size:13px;line-height:1.6;margin-bottom:16px;display:none;}
 </style>
 </head>
 <body>
@@ -89,86 +74,62 @@
   <div class="reset-bar">
     <div>
       <div class="reset-label">⏱ Resets at Midnight</div>
-      <div class="reset-info" id="todayDateLabel">Today</div>
+      <div class="reset-info" id="dateLabel">--</div>
     </div>
     <div style="text-align:right;">
       <div class="reset-timer" id="resetTimer">--:--:--</div>
-      <div class="reset-info">until daily reset</div>
+      <div class="reset-info">until reset</div>
     </div>
   </div>
 
-  <!-- LOADING STATE -->
-  <div id="loadingState" class="loading">
-    <div class="spinner-wrap"><div class="spinner"></div> Loading live data...</div>
-    <div>Connecting to Firebase...</div>
+  <div id="errorBox" class="error-box"></div>
+
+  <div id="loadingDiv" class="loading">
+    <div class="spinner"></div>
+    Connecting to Firebase...
   </div>
 
-  <!-- MAIN CONTENT (hidden until loaded) -->
-  <div id="mainContent" style="display:none;">
+  <div id="mainDiv" style="display:none;">
 
     <div class="hero-card">
       <div class="hero-label">👥 Total Visitors Today</div>
-      <div class="hero-num" id="todayCount">0</div>
+      <div class="hero-num" id="todayNum">0</div>
       <div class="hero-sub">real people visited your site today</div>
-      <div class="hero-date" id="heroDate">--</div>
+      <div class="hero-date" id="todayDate">--</div>
     </div>
 
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">📅</div>
-        <div class="stat-val blue" id="weekTotal">0</div>
-        <div class="stat-label">This Week</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-val gold" id="bestDay">0</div>
-        <div class="stat-label">Best Day Ever</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">📊</div>
-        <div class="stat-val mint" id="avgDay">0</div>
-        <div class="stat-label">Daily Average</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🔔</div>
-        <div class="stat-val red" id="notifVisits">0</div>
-        <div class="stat-label">From Notifications</div>
-      </div>
+      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-val blue" id="weekNum">0</div><div class="stat-label">This Week</div></div>
+      <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-val gold" id="bestNum">0</div><div class="stat-label">Best Day Ever</div></div>
+      <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-val mint" id="avgNum">0</div><div class="stat-label">Daily Average</div></div>
+      <div class="stat-card"><div class="stat-icon">🔔</div><div class="stat-val red" id="notifNum">0</div><div class="stat-label">From Notifs</div></div>
     </div>
 
-    <div class="chart-card">
-      <div class="chart-title">📈 Hourly Visits Today</div>
-      <div class="bars" id="hourlyBars"></div>
+    <div class="card">
+      <div class="card-title">📈 Hourly Visits Today</div>
+      <div class="bars" id="barsDiv"></div>
     </div>
 
-    <div class="source-card">
-      <div class="chart-title">🔗 Traffic Sources</div>
-      <div class="source-row"><div class="source-name">📘 Facebook</div><div class="source-count" id="srcFb">0</div></div>
-      <div class="source-row"><div class="source-name">🔔 Notifications</div><div class="source-count" id="srcNotif">0</div></div>
-      <div class="source-row"><div class="source-name">💬 WhatsApp</div><div class="source-count" id="srcWa">0</div></div>
-      <div class="source-row"><div class="source-name">🌐 Direct</div><div class="source-count" id="srcDirect">0</div></div>
+    <div class="card">
+      <div class="card-title">🔗 Traffic Sources Today</div>
+      <div class="row"><div class="row-label">📘 Facebook</div><div class="row-val" id="srcFb">0</div></div>
+      <div class="row"><div class="row-label">🔔 Notifications</div><div class="row-val" id="srcNotif">0</div></div>
+      <div class="row"><div class="row-label">💬 WhatsApp</div><div class="row-val" id="srcWa">0</div></div>
+      <div class="row"><div class="row-label">🌐 Direct</div><div class="row-val" id="srcDirect">0</div></div>
     </div>
 
-    <div class="history-card">
-      <div class="history-title">📆 Last 7 Days</div>
-      <div id="historyRows"><div style="color:var(--muted);font-size:13px;text-align:center;padding:10px;">Loading history...</div></div>
+    <div class="card">
+      <div class="card-title">📆 Last 7 Days</div>
+      <div id="histDiv"><div style="color:var(--muted);font-size:13px;text-align:center;">No history yet</div></div>
     </div>
 
-    <button class="btn btn-ghost" onclick="refreshData()">🔄 Refresh Now</button>
+    <button class="btn" onclick="loadData()">🔄 Refresh</button>
 
   </div>
-
-  <div id="errorState" style="display:none;" class="alert alert-gold">
-    ⚠️ Could not connect to Firebase. Check your internet connection and try refreshing.
-  </div>
-
 </div>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-// ── FIREBASE CONFIG ───────────────────────────────────────────
+<script>
+// ── FIREBASE INIT ─────────────────────────────────────────────
 const firebaseConfig = {
   apiKey: "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
   authDomain: "pro-tipsters-94171.firebaseapp.com",
@@ -178,117 +139,114 @@ const firebaseConfig = {
   appId: "1:737923794509:web:921f6a558c11786beebe04"
 };
 
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 // ── HELPERS ───────────────────────────────────────────────────
-function todayStr(){ return new Date().toISOString().split('T')[0]; }
+function todayKey(){ return new Date().toISOString().split('T')[0]; }
 function todayLabel(){ return new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}); }
 
 // ── LOAD DATA ─────────────────────────────────────────────────
 async function loadData(){
   try {
-    const today = todayStr();
-    // Get today's doc
-    const todayRef = doc(db, 'analytics', today);
-    const todaySnap = await getDoc(todayRef);
-    const todayData = todaySnap.exists() ? todaySnap.data() : {total:0, hourly:new Array(24).fill(0), sources:{fb:0,notif:0,wa:0,direct:0}};
+    document.getElementById('loadingDiv').style.display = 'block';
+    document.getElementById('mainDiv').style.display    = 'none';
+    document.getElementById('errorBox').style.display   = 'none';
+
+    const today = todayKey();
+
+    // Get today
+    const todaySnap = await db.collection('analytics').doc(today).get();
+    const td = todaySnap.exists ? todaySnap.data() : {total:0,hourly:new Array(24).fill(0),sources:{}};
 
     // Get last 30 days
-    const colRef = collection(db, 'analytics');
-    const q = query(colRef, orderBy('__name__', 'desc'), limit(30));
-    const snap = await getDocs(q);
+    const allSnap = await db.collection('analytics').orderBy(firebase.firestore.FieldPath.documentId(),'desc').limit(30).get();
     const allDays = [];
-    snap.forEach(d => allDays.push({date: d.id, ...d.data()}));
+    allSnap.forEach(d => allDays.push({id:d.id,...d.data()}));
 
-    // RENDER
-    renderDashboard(todayData, allDays, today);
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('mainContent').style.display  = 'block';
+    render(td, allDays, today);
+
+    document.getElementById('loadingDiv').style.display = 'none';
+    document.getElementById('mainDiv').style.display    = 'block';
 
   } catch(e){
-    console.error('Firebase error:', e);
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('errorState').style.display   = 'block';
+    console.error(e);
+    document.getElementById('loadingDiv').style.display = 'none';
+    const eb = document.getElementById('errorBox');
+    eb.style.display = 'block';
+    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
   }
 }
 
-function renderDashboard(todayData, allDays, todayKey){
+function render(td, allDays, todayKey){
+  const total   = td.total || 0;
+  const hourly  = td.hourly || new Array(24).fill(0);
+  const sources = td.sources || {};
+
   // Big number
-  const total = todayData.total || 0;
-  const el = document.getElementById('todayCount');
-  el.textContent = total.toLocaleString();
-  el.classList.remove('popping'); void el.offsetWidth; el.classList.add('popping');
-  document.getElementById('heroDate').textContent = todayLabel();
+  document.getElementById('todayNum').textContent  = total.toLocaleString();
+  document.getElementById('todayDate').textContent = todayLabel();
 
   // Stats
-  const otherDays = allDays.filter(d => d.date !== todayKey);
-  const weekDays  = allDays.slice(0, 7);
-  const weekTotal = weekDays.reduce((a,d)=>a+(d.total||0),0);
-  const allCounts = allDays.map(d=>d.total||0);
-  const best      = Math.max(...allCounts, 0);
-  const avg       = allCounts.length ? Math.round(allCounts.reduce((a,b)=>a+b,0)/allCounts.length) : 0;
-  const notifV    = todayData.sources?.notif || 0;
+  const counts  = allDays.map(d=>d.total||0);
+  const week    = allDays.slice(0,7).reduce((a,d)=>a+(d.total||0),0);
+  const best    = Math.max(...counts,0);
+  const avg     = counts.length ? Math.round(counts.reduce((a,b)=>a+b,0)/counts.length) : 0;
 
-  document.getElementById('weekTotal').textContent  = weekTotal.toLocaleString();
-  document.getElementById('bestDay').textContent    = best.toLocaleString();
-  document.getElementById('avgDay').textContent     = avg.toLocaleString();
-  document.getElementById('notifVisits').textContent= notifV.toLocaleString();
+  document.getElementById('weekNum').textContent   = week.toLocaleString();
+  document.getElementById('bestNum').textContent   = best.toLocaleString();
+  document.getElementById('avgNum').textContent    = avg.toLocaleString();
+  document.getElementById('notifNum').textContent  = (sources.notif||0).toLocaleString();
 
   // Sources
-  const src = todayData.sources || {};
-  document.getElementById('srcFb').textContent     = (src.fb||0).toLocaleString();
-  document.getElementById('srcNotif').textContent  = (src.notif||0).toLocaleString();
-  document.getElementById('srcWa').textContent     = (src.wa||0).toLocaleString();
-  document.getElementById('srcDirect').textContent = (src.direct||0).toLocaleString();
+  document.getElementById('srcFb').textContent     = (sources.fb||0).toLocaleString();
+  document.getElementById('srcNotif').textContent  = (sources.notif||0).toLocaleString();
+  document.getElementById('srcWa').textContent     = (sources.wa||0).toLocaleString();
+  document.getElementById('srcDirect').textContent = (sources.direct||0).toLocaleString();
 
-  // Hourly chart
-  const hourly  = todayData.hourly || new Array(24).fill(0);
-  const maxVal  = Math.max(...hourly, 1);
-  const curHr   = new Date().getHours();
-  document.getElementById('hourlyBars').innerHTML = hourly.map((v,i)=>{
-    const h   = Math.max((v/maxVal)*74, v>0?4:2);
-    const isCur = i===curHr;
-    const label = i%4===0 ? String(i).padStart(2,'0') : '';
-    return `<div class="bar-wrap"><div class="bar${isCur?' current':''}" style="height:${h}px;" title="${v} visits at ${String(i).padStart(2,'0')}:00"></div><div class="bar-hour">${label}</div></div>`;
+  // Hourly bars
+  const maxH  = Math.max(...hourly,1);
+  const curHr = new Date().getHours();
+  document.getElementById('barsDiv').innerHTML = hourly.map((v,i)=>{
+    const h   = Math.max((v/maxH)*74, v>0?4:2);
+    const lbl = i%4===0 ? String(i).padStart(2,'0') : '';
+    return `<div class="bar-wrap"><div class="bar${i===curHr?' cur':''}" style="height:${h}px" title="${v} visits"></div><div class="bar-lbl">${lbl}</div></div>`;
   }).join('');
 
   // History
-  const maxCount = Math.max(...allDays.map(d=>d.total||0), 1);
-  const histEl   = document.getElementById('historyRows');
+  const maxC = Math.max(...allDays.map(d=>d.total||0),1);
+  const histEl = document.getElementById('histDiv');
   if(!allDays.length){
-    histEl.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px 0;">No history yet — data will appear tomorrow!</div>';
+    histEl.innerHTML = '<div style="color:var(--muted);font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
   } else {
     histEl.innerHTML = allDays.slice(0,7).map(d=>`
-      <div class="history-row">
-        <div class="history-left">
-          <div class="history-date">${d.date}</div>
-          <div class="history-bar"><div class="history-bar-fill" style="width:${Math.round(((d.total||0)/maxCount)*100)}%"></div></div>
+      <div class="row">
+        <div style="flex:1;margin-right:16px;">
+          <div class="row-label">${d.id}</div>
+          <div class="row-bar"><div class="row-bar-fill" style="width:${Math.round(((d.total||0)/maxC)*100)}%"></div></div>
         </div>
-        <div class="history-count">${(d.total||0).toLocaleString()}</div>
+        <div class="row-val">${(d.total||0).toLocaleString()}</div>
       </div>`).join('');
   }
 }
 
 // ── COUNTDOWN ────────────────────────────────────────────────
-function updateCountdown(){
-  const now = new Date(), midnight = new Date();
-  midnight.setHours(24,0,0,0);
-  const diff = midnight - now;
+function tick(){
+  const now = new Date(), mid = new Date();
+  mid.setHours(24,0,0,0);
+  const diff = mid - now;
   const h = String(Math.floor(diff/3600000)).padStart(2,'0');
   const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
   const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
   document.getElementById('resetTimer').textContent = `${h}:${m}:${s}`;
-  document.getElementById('todayDateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
+  document.getElementById('dateLabel').textContent  = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 
-window.refreshData = loadData;
-
-// ── INIT ─────────────────────────────────────────────────────
+// ── START ────────────────────────────────────────────────────
 loadData();
 setInterval(loadData, 30000);
-setInterval(updateCountdown, 1000);
-updateCountdown();
+setInterval(tick, 1000);
+tick();
 </script>
 </body>
 </html>
