@@ -227,33 +227,64 @@
     </style>
 </head>
 <body>
+
+<!-- HEADER -->
 <div class="header">
     <div class="header-title">⚽ PRO TIPSTERS</div>
-    <div class="live-counter"><span class="live-dot"></span><span id="live-counter">2,347 online</span></div>
+    <div class="live-counter">
+        <span class="live-dot"></span>
+        <span id="live-counter">2,347 online</span>
+    </div>
 </div>
-<div class="urgency-bar">⏰ Today's tips close in: <span id="countdown">--:--:--</span> &nbsp;|&nbsp; Only <span id="slots-urgency">11</span> VIP slots left</div>
-<div class="trust-bar">Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>93.7%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong></div>
-<div id="live-notification" class="live-notification"><div style="font-size:20px;flex-shrink:0;">✅</div><div class="notif-text" id="notification-content"></div></div>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+    ⏰ Today's tips close in: <span id="countdown">--:--:--</span> &nbsp;|&nbsp; Only <span id="slots-urgency">11</span> VIP slots left
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+    Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>93.7%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong>
+</div>
+
+<!-- NOTIFICATION -->
+<div id="live-notification" class="live-notification">
+    <div style="font-size:20px;flex-shrink:0;">✅</div>
+    <div class="notif-text" id="notification-content"></div>
+</div>
+
+<!-- ① HERO -->
 <div class="hero">
     <div class="hero-badge">🏆 Kenya's #1 Betting Tips — Since 2022</div>
     <h1>Tired of Losing?<br><em>15,000 Kenyans</em> Switched.<br>Here's Why They Stay.</h1>
     <p class="hero-sub">Proven daily tickets • Mega Jackpot AI slips • Instant WhatsApp delivery</p>
-    <div class="hero-money">💰 A <strong>Ksh 200 stake</strong> on last Friday's daily ticket returned <strong>Ksh 1,870</strong></div>
+    <div class="hero-money">
+        💰 A <strong>Ksh 200 stake</strong> on last Friday's daily ticket returned <strong>Ksh 1,870</strong>
+    </div>
     <div class="hero-btns">
         <button class="btn-primary" onclick="showTodayPackagesModal()">Get Today's Winning Ticket →</button>
         <button class="btn-secondary" onclick="scrollToFreeTip()">👀 See Today's Free Tip First</button>
     </div>
     <div style="margin-top:20px;">
-        <button id="heroInstallBtn" onclick="triggerInstall()" style="background:var(--gold);color:#fff;border:3px solid #fff;padding:16px 34px;border-radius:50px;font-weight:800;font-size:17px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 0 0 0 rgba(245,158,11,.7);display:inline-flex;align-items:center;gap:10px;animation:installPulse 2s infinite;letter-spacing:.3px;">📲 Install App — FREE</button>
-        <div id="iosHint" style="display:none;margin-top:10px;font-size:12.5px;opacity:.9;background:rgba(255,255,255,.15);border-radius:10px;padding:8px 14px;">Tap <strong>Share ⬆️</strong> then <strong>"Add to Home Screen"</strong></div>
+        <button id="heroInstallBtn" onclick="triggerInstall()" style="background:var(--gold);color:#fff;border:3px solid #fff;padding:16px 34px;border-radius:50px;font-weight:800;font-size:17px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 0 0 0 rgba(245,158,11,.7);display:inline-flex;align-items:center;gap:10px;animation:installPulse 2s infinite;letter-spacing:.3px;">
+            📲 Install App — FREE
+        </button>
+        <div id="iosHint" style="display:none;margin-top:10px;font-size:12.5px;opacity:.9;background:rgba(255,255,255,.15);border-radius:10px;padding:8px 14px;">
+            Tap <strong>Share ⬆️</strong> then <strong>"Add to Home Screen"</strong>
+        </div>
     </div>
 </div>
+
+<!-- STATS -->
 <div class="stats-bar">
     <div class="stat-item"><span class="stat-num">287</span><span class="stat-label">Wins This Month</span></div>
     <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Accuracy Rate</span></div>
     <div class="stat-item"><span class="stat-num">370K</span><span class="stat-label">Ksh Profit</span></div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ② YESTERDAY'S RESULTS -->
 <div class="section">
     <div class="section-title">Yesterday's Winning Ticket</div>
     <div class="section-sub" id="results-date">Yesterday (18/04/2026) — All 3 matches landed perfectly.</div>
@@ -270,7 +301,10 @@
     </div>
     <div style="text-align:center;"><a href="#" onclick="showTrackRecord();return false;" class="view-record">📊 View Full Month Track Record →</a></div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ③ FREE TIP -->
 <div class="section" id="free-tip-anchor">
     <div class="section-title">👀 Today's Free Sample Tip</div>
     <div class="section-sub">One real match from today's full ticket — completely free.</div>
@@ -291,7 +325,10 @@
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20saw%20the%20free%20tip%20and%20want%20the%20full%20daily%20ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Unlock Full Ticket – Ksh 99 →</a>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ④ FOMO -->
 <div class="section">
     <div class="section-title">💸 What Subscribers Made Last Week</div>
     <div class="section-sub">Real returns from last week's daily tickets. You could have had these.</div>
@@ -307,7 +344,10 @@
         <button class="btn-primary" onclick="showTodayPackagesModal()" style="margin:0 auto;">Don't Miss This Week Too →</button>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑤ TESTIMONIALS -->
 <div class="section">
     <div class="section-title">💬 Real Clients. Real Wins.</div>
     <div class="section-sub">Actual WhatsApp messages from members this week</div>
@@ -318,7 +358,10 @@
         <div class="wa-bubble-wrap right"><div class="wa-avatar">AW</div><div class="wa-bubble"><div class="wa-name">Aisha W. • Nakuru</div>Kwanza nilikuwa skeptical, baada ya free tip kupita nikanunua full ticket. <span class="wa-amount">3/3 WIN</span> siku ya kwanza! 💪<div class="wa-time">Today 11:05 AM ✓✓</div></div></div>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑥ PACKAGES -->
 <div class="section">
     <div class="section-title">Choose Your Package</div>
     <div class="section-sub">Delivered instantly on WhatsApp after M-Pesa payment</div>
@@ -350,7 +393,10 @@
         </div>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑦ AI ODDS GENERATOR -->
 <div class="section">
     <div class="ai-card">
         <div style="font-size:42px;margin-bottom:10px;">🚀</div>
@@ -375,7 +421,10 @@
         </div>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑧ MEGA JACKPOT -->
 <div class="section">
     <div class="jackpot-card">
         <div style="font-size:42px;margin-bottom:10px;">🏆</div>
@@ -385,7 +434,10 @@
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Mega%20Jackpot%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn wa-btn-gold" style="display:inline-block;padding:16px 36px;font-size:16px;margin-top:0;">Get Mega Jackpot – Ksh 599</a>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑨ AVIATOR -->
 <div class="section">
     <div class="aviator-card">
         <div style="font-size:50px;margin-bottom:12px;">✈️</div>
@@ -396,7 +448,10 @@
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20account%20management.%20How%20do%20I%20start%3F" class="wa-btn" style="display:inline-block;padding:14px 34px;margin-top:16px;">Start Aviator Management Now</a>
     </div>
 </div>
+
 <div class="divider"></div>
+
+<!-- ⑩ FAQ -->
 <div class="section">
     <div class="section-title">Frequently Asked Questions</div>
     <div class="section-sub">Everything you need to know before subscribing</div>
@@ -407,19 +462,27 @@
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you send tips on weekends? <span class="arrow">▼</span></button><div class="faq-a"><strong>7 days a week.</strong> Weekends usually have the best odds and most fixtures — some of our biggest wins happen on Saturdays and Sundays.</div></div>
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How much should I stake? <span class="arrow">▼</span></button><div class="faq-a">Start with <strong>Ksh 100–200 per day</strong> while you build confidence. With daily ticket odds averaging ~9x, a Ksh 200 stake typically returns Ksh 1,800+. Always bet only what you can afford to lose.</div></div>
 </div>
+
+<!-- PWA INSTALL BANNER -->
 <div class="pwa-banner" id="pwaBanner">
     <div class="pwa-banner-icon">📲</div>
     <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tips on your home screen — free!</span></div>
     <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
     <button class="pwa-close" onclick="dismissPWA()">&#x2715;</button>
 </div>
+
+<!-- FLOATS -->
 <button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
 <a href="https://wa.me/254762945530" class="whatsapp-float">💬 WhatsApp</a>
+
+<!-- FOOTER -->
 <footer>
     <p><strong>Pro Tipsters</strong> &nbsp;•&nbsp; Gamble Responsibly &nbsp;•&nbsp; 18+ Only &nbsp;•&nbsp; Not affiliated with any bookmaker</p>
     <p style="margin-top:8px;">Contact: <a href="https://wa.me/254762945530" style="color:var(--mint);">+254 762 945 530</a></p>
     <p class="gambling">⚠️ Gambling can be addictive. Bet only what you can afford to lose.</p>
 </footer>
+
+<!-- PACKAGES MODAL -->
 <div id="todayPackagesModal" class="modal" onclick="if(event.target===this)hideTodayPackagesModal()">
     <div class="modal-content">
         <div class="modal-handle"></div>
@@ -430,6 +493,8 @@
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
 </div>
+
+<!-- TRACK RECORD MODAL -->
 <div id="trackRecordModal" class="modal" onclick="if(event.target===this)hideTrackRecord()">
     <div class="modal-content" style="max-width:480px;">
         <div class="modal-handle"></div>
@@ -439,47 +504,147 @@
         <button class="modal-back" onclick="hideTrackRecord()" style="margin-top:12px;">Close</button>
     </div>
 </div>
+
 <script>
 let viewers=2147;
 setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';},3200);
+
 function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
 updateCountdown();setInterval(updateCountdown,1000);
+
 let slots=11;
 function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
 updateSlots();
 setInterval(()=>{if(slots>3&&Math.random()>0.65){slots--;updateSlots();}},40000);
+
 // Results date already set in HTML for 18/04/2026
-const notifications=[{name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},{name:'Mercy Wanjiku',number:'0712••••',pkg:'5-Day Plan'},{name:'Kevin Omondi',number:'0756••••',pkg:'Mega Jackpot'},{name:'Aisha Mohammed',number:'0789••••',pkg:'Daily Ticket'},{name:'John Mwangi',number:'0723••••',pkg:'5-Day Plan'},{name:'Esther Njeri',number:'0771••••',pkg:'Mega Jackpot'},{name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},{name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'}];
+
+const notifications=[
+    {name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},
+    {name:'Mercy Wanjiku',number:'0712••••',pkg:'5-Day Plan'},
+    {name:'Kevin Omondi',number:'0756••••',pkg:'Mega Jackpot'},
+    {name:'Aisha Mohammed',number:'0789••••',pkg:'Daily Ticket'},
+    {name:'John Mwangi',number:'0723••••',pkg:'5-Day Plan'},
+    {name:'Esther Njeri',number:'0771••••',pkg:'Mega Jackpot'},
+    {name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},
+    {name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'},
+];
 function playBeep(){try{const ctx=new(window.AudioContext||window.webkitAudioContext)();const osc=ctx.createOscillator(),g=ctx.createGain();osc.connect(g);g.connect(ctx.destination);osc.frequency.value=680;g.gain.value=0.22;osc.start();setTimeout(()=>osc.stop(),160);}catch(e){}}
 function showLiveNotification(){const notif=notifications[Math.floor(Math.random()*notifications.length)];const container=document.getElementById('live-notification');const el=document.getElementById('notification-content');el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;container.classList.remove('slide-out');container.style.display='flex';container.classList.add('slide-in');playBeep();setTimeout(()=>{container.classList.remove('slide-in');container.classList.add('slide-out');setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);},6500);}
 setTimeout(()=>{showLiveNotification();setInterval(()=>{if(Math.random()>0.3)showLiveNotification();},42000);},4000);
-const aiTiers=[{min:2,max:4,price:50,label:'Entry Odds (2x–4x)',conf:'93%',odds:'~3.45',matches:['Arsenal vs Wolves • Home Win','Brighton vs Nott Forest • Over 1.5','Man Utd vs Bournemouth • GG']},{min:5,max:9,price:99,label:'Standard Odds (5x–9x)',conf:'89%',odds:'~7.80',matches:['Man City vs Newcastle • Over 2.5','Liverpool vs Chelsea • GG','Barca vs Real Madrid • Home Win']},{min:10,max:14,price:199,label:'High Odds (10x–14x)',conf:'85%',odds:'~12.40',matches:['Dortmund vs Bayern • Over 3.5','PSG vs Monaco • Home Win & Over 2.5','Inter vs Napoli • GG']},{min:15,max:19,price:299,label:'Premium Odds (15x–19x)',conf:'81%',odds:'~17.60',matches:['Atletico vs Sevilla • Away Win','Ajax vs PSV • GG & Over 2.5','Celtic vs Rangers • Correct Score 2-1']},{min:20,max:23,price:499,label:'Elite Odds (20x–23x)',conf:'76%',odds:'~22.80',matches:['Betis vs Braga • Correct Score 2-1','Udinese vs Lecce • Home Win & Over 2.5','Lazio vs Fiorentina • GG & Over 3.5']}];
+
+const aiTiers=[
+    {min:2,max:4,price:50,label:'Entry Odds (2x–4x)',conf:'93%',odds:'~3.45',matches:['Arsenal vs Wolves • Home Win','Brighton vs Nott Forest • Over 1.5','Man Utd vs Bournemouth • GG']},
+    {min:5,max:9,price:99,label:'Standard Odds (5x–9x)',conf:'89%',odds:'~7.80',matches:['Man City vs Newcastle • Over 2.5','Liverpool vs Chelsea • GG','Barca vs Real Madrid • Home Win']},
+    {min:10,max:14,price:199,label:'High Odds (10x–14x)',conf:'85%',odds:'~12.40',matches:['Dortmund vs Bayern • Over 3.5','PSG vs Monaco • Home Win & Over 2.5','Inter vs Napoli • GG']},
+    {min:15,max:19,price:299,label:'Premium Odds (15x–19x)',conf:'81%',odds:'~17.60',matches:['Atletico vs Sevilla • Away Win','Ajax vs PSV • GG & Over 2.5','Celtic vs Rangers • Correct Score 2-1']},
+    {min:20,max:23,price:499,label:'Elite Odds (20x–23x)',conf:'76%',odds:'~22.80',matches:['Betis vs Braga • Correct Score 2-1','Udinese vs Lecce • Home Win & Over 2.5','Lazio vs Fiorentina • GG & Over 3.5']},
+];
 let currentOddsVal=0;
 function calcReturn(){const stake=parseFloat(document.getElementById('stakeInput').value);const el=document.getElementById('returnAmt');if(!stake||stake<1||currentOddsVal<2){el.textContent='--';return;}el.textContent='Ksh '+Number((stake*currentOddsVal).toFixed(0)).toLocaleString();}
 function runAI(){const rawVal=document.getElementById('aiInput').value.trim();const errEl=document.getElementById('aiError');const loading=document.getElementById('aiLoading');const result=document.getElementById('aiResult');errEl.style.display='none';result.style.display='none';const val=parseFloat(rawVal);if(!rawVal||isNaN(val)){errEl.textContent='⚠️ Please enter a number between 2 and 23.';errEl.style.display='block';return;}if(val<2){errEl.textContent='📉 Minimum odds are 2x. Please enter 2 or higher.';errEl.style.display='block';return;}if(val>23){errEl.textContent='📈 Our AI maximum is +23x odds. Please enter 23 or lower.';errEl.style.display='block';return;}const tier=aiTiers.find(t=>Math.floor(val)>=t.min&&Math.floor(val)<=t.max);if(!tier){errEl.textContent='⚠️ Enter odds between 2 and 23.';errEl.style.display='block';return;}loading.style.display='flex';setTimeout(()=>{loading.style.display='none';currentOddsVal=parseFloat(tier.odds.replace('~',''));document.getElementById('aiMatch1').textContent=tier.matches[0];document.getElementById('aiMatch2').textContent=tier.matches[1];document.getElementById('aiMatch3').textContent=tier.matches[2];document.getElementById('aiOdds').textContent='Combined Odds: '+tier.odds;document.getElementById('aiConfidence').textContent=tier.conf+' AI Confidence';document.getElementById('aiPrice').textContent='Ksh '+tier.price;document.getElementById('aiTier').textContent=tier.label;const waText=encodeURIComponent('Hello Pro Tipsters, I used the AI Odds Generator and want a '+tier.odds+' odds ticket for Ksh '+tier.price+'. How do I pay?');const btn=document.getElementById('aiWaBtn');btn.href='https://wa.me/254762945530?text='+waText;btn.textContent='Get Ticket for Ksh '+tier.price+' →';document.getElementById('stakeInput').value='';document.getElementById('returnAmt').textContent='--';result.style.display='block';},1800);}
 document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')runAI();});
+
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
 function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],['02/04','3','3'],['01/04','3','3']];data.forEach(([date,tips,wins])=>{const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;tbody.appendChild(tr);});document.getElementById('trackRecordModal').style.display='flex';}
 function hideTrackRecord(){document.getElementById('trackRecordModal').style.display='none';}
 function scrollToFreeTip(){document.getElementById('free-tip-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
+
+// ── PWA ──────────────────────────────────────────────────────
 const manifest={name:'Pro Tipsters',short_name:'ProTipsters',description:"Kenya's #1 Betting Tips",start_url:'.',display:'standalone',background_color:'#0f766e',theme_color:'#0f766e',icons:[{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="32" fill="%230f766e"/><text y="145" x="20" font-size="150">%E2%9A%BD</text></svg>',sizes:'192x192',type:'image/svg+xml'},{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="%230f766e"/><text y="390" x="40" font-size="400">%E2%9A%BD</text></svg>',sizes:'512x512',type:'image/svg+xml'}]};
 const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
 document.getElementById('pwa-manifest').setAttribute('href',URL.createObjectURL(blob));
+
 const swCode=`self.addEventListener('install',e=>{e.waitUntil(caches.open('pro-tipsters-v2').then(cache=>cache.addAll([location.href])));self.skipWaiting();});self.addEventListener('activate',e=>{self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});self.addEventListener('push',e=>{const data=e.data?e.data.json():{};e.waitUntil(self.registration.showNotification(data.title||'Pro Tipsters \uD83D\uDD25',{body:data.body||'New tip available! Check now.',icon:data.icon||'',badge:data.icon||'',tag:'pro-tipsters-update',renotify:true,data:{url:data.url||'/'}}));});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow(e.notification.data&&e.notification.data.url?e.notification.data.url:'/'));});`;
 if('serviceWorker' in navigator){const swBlob=new Blob([swCode],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(swBlob),{scope:'/'}).catch(()=>{});}
+
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem('pwa-dismissed')){setTimeout(()=>document.getElementById('pwaBanner').classList.add('show'),8000);}});
+
 async function triggerInstall(){if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('pwaBanner').classList.remove('show');if(outcome==='accepted'){document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;}}else{const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);if(isIOS){document.getElementById('iosHint').style.display='block';}else{document.getElementById('heroInstallBtn').textContent='✅ Already Installed / Open in Browser';}}}
+
 document.getElementById('pwaInstallBtn').addEventListener('click',()=>triggerInstall());
 function dismissPWA(){document.getElementById('pwaBanner').classList.remove('show');localStorage.setItem('pwa-dismissed','1');}
-const FCM_CONFIG={apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",authDomain:"pro-tipsters-94171.firebaseapp.com",projectId:"pro-tipsters-94171",storageBucket:"pro-tipsters-94171.firebasestorage.app",messagingSenderId:"737923794509",appId:"1:737923794509:web:921f6a558c11786beebe04"};
-const FCM_VAPID_KEY="BInPdZNiV_C2cLW24XfpeptIdwnsDhXZclAyXaslVLpO8BO1p_egYWVnA2Ks6aKNSe0aijMTFD5peESjpYGQXTU";
-let fcmToken=null;
-async function initFCM(){try{const{initializeApp}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');const{getMessaging,getToken,onMessage}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js');const app=initializeApp(FCM_CONFIG);const messaging=getMessaging(app);const permission=await Notification.requestPermission();if(permission!=='granted')return;fcmToken=await getToken(messaging,{vapidKey:FCM_VAPID_KEY,serviceWorkerRegistration:await navigator.serviceWorker.ready});if(fcmToken){const stored=JSON.parse(localStorage.getItem('fcm-tokens')||'[]');if(!stored.includes(fcmToken)){stored.push(fcmToken);localStorage.setItem('fcm-tokens',JSON.stringify(stored));}console.log('FCM Token:',fcmToken);}onMessage(messaging,payload=>{const{title,body}=payload.notification||{};navigator.serviceWorker.ready.then(reg=>reg.showNotification(title||'Pro Tipsters 🔥',{body:body||'',tag:'pro-tipsters-update',renotify:true}));});}catch(e){console.log('FCM init error:',e);}}
-setTimeout(initFCM,12000);
+
+// ── FCM PUSH NOTIFICATIONS ────────────────────────────────────
+// STEP 1: Paste your Firebase config values below after creating your project at console.firebase.google.com
+const FCM_CONFIG = {
+  apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+  authDomain:        "pro-tipsters-94171.firebaseapp.com",
+  projectId:         "pro-tipsters-94171",
+  storageBucket:     "pro-tipsters-94171.firebasestorage.app",
+  messagingSenderId: "737923794509",
+  appId:             "1:737923794509:web:921f6a558c11786beebe04"
+};
+const FCM_VAPID_KEY = "BInPdZNiV_C2cLW24XfpeptIdwnsDhXZclAyXaslVLpO8BO1p_egYWVnA2Ks6aKNSe0aijMTFD5peESjpYGQXTU";
+
+// STEP 3: Paste your FCM Server Key from Firebase Console > Project Settings > Cloud Messaging > Server Key
+// (Keep this ONLY in your admin-sender.html file, never expose on public site)
+
+let fcmToken = null;
+
+async function initFCM(){
+  if(FCM_CONFIG.apiKey === "PASTE_YOUR_apiKey_HERE") return; // not configured yet
+  try {
+    // Dynamically load Firebase SDK
+    const {initializeApp} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const {getMessaging, getToken, onMessage} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js');
+    const app = initializeApp(FCM_CONFIG);
+    const messaging = getMessaging(app);
+    // Request permission
+    const permission = await Notification.requestPermission();
+    if(permission !== 'granted') return;
+    // Get FCM token
+    fcmToken = await getToken(messaging, {vapidKey: FCM_VAPID_KEY, serviceWorkerRegistration: await navigator.serviceWorker.ready});
+    if(fcmToken){
+      // Save token — in production POST this to your backend or Firebase Firestore
+      const stored = JSON.parse(localStorage.getItem('fcm-tokens') || '[]');
+      if(!stored.includes(fcmToken)){ stored.push(fcmToken); localStorage.setItem('fcm-tokens', JSON.stringify(stored)); }
+      console.log('FCM Token (copy to admin panel):', fcmToken);
+    }
+    // Handle foreground messages
+    onMessage(messaging, payload => {
+      const {title, body} = payload.notification || {};
+      navigator.serviceWorker.ready.then(reg => reg.showNotification(title||'Pro Tipsters 🔥', {body: body||'', tag:'pro-tipsters-update', renotify:true}));
+    });
+  } catch(e){ console.log('FCM init error:', e); }
+}
+
+// Auto-init FCM after 12 seconds (gives page time to load)
+setTimeout(initFCM, 12000);
+
+// ── VISITOR TRACKING ──────────────────────────────────────────
+(function trackVisit(){
+  const KEY_TODAY='pt_today_count', KEY_DATE='pt_today_date';
+  const KEY_HOURLY='pt_hourly', KEY_HISTORY='pt_history_days';
+  const KEY_NOTIF='pt_notif_count';
+  function todayStr(){return new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});}
+  const saved=localStorage.getItem(KEY_DATE), today=todayStr();
+  if(saved && saved!==today){
+    const count=parseInt(localStorage.getItem(KEY_TODAY)||'0');
+    const history=JSON.parse(localStorage.getItem(KEY_HISTORY)||'[]');
+    history.unshift({date:saved,count});
+    if(history.length>30)history.pop();
+    localStorage.setItem(KEY_HISTORY,JSON.stringify(history));
+    localStorage.setItem(KEY_TODAY,'0');
+    localStorage.setItem(KEY_HOURLY,JSON.stringify(new Array(24).fill(0)));
+    localStorage.setItem(KEY_NOTIF,'0');
+  }
+  localStorage.setItem(KEY_DATE,today);
+  const count=parseInt(localStorage.getItem(KEY_TODAY)||'0')+1;
+  localStorage.setItem(KEY_TODAY,count);
+  const hours=JSON.parse(localStorage.getItem(KEY_HOURLY)||JSON.stringify(new Array(24).fill(0)));
+  hours[new Date().getHours()]++;
+  localStorage.setItem(KEY_HOURLY,JSON.stringify(hours));
+  if(new URLSearchParams(location.search).get('ref')==='notif'){
+    const n=parseInt(localStorage.getItem(KEY_NOTIF)||'0')+1;
+    localStorage.setItem(KEY_NOTIF,n);
+  }
+})();
 window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
+
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
 if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
