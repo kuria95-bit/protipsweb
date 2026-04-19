@@ -616,33 +616,41 @@ async function initFCM(){
 setTimeout(initFCM, 12000);
 
 // ── REAL VISITOR TRACKING → FIREBASE FIRESTORE ───────────────
-(async function trackVisit(){
+(function trackVisit(){
   try{
-    const {initializeApp,getApps}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-    const {getFirestore,doc,setDoc,updateDoc,increment,getDoc}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
-    const app = getApps().length ? getApps()[0] : initializeApp(FCM_CONFIG);
-    const db  = getFirestore(app);
-    const today = new Date().toISOString().split('T')[0];
-    const hr    = new Date().getHours();
-    const ref   = doc(db,'analytics',today);
-    const snap  = await getDoc(ref);
-    // Detect source
-    const params = new URLSearchParams(location.search);
-    const ref_src = params.get('ref')||'direct';
-    const source  = ref_src==='notif'?'notif':ref_src==='fb'?'fb':ref_src==='wa'?'wa':'direct';
-    const hourlyUpdate = {};
-    hourlyUpdate[`hourly.${hr}`] = increment(1);
-    const sourceUpdate = {};
-    sourceUpdate[`sources.${source}`] = increment(1);
-    if(!snap.exists()){
-      // First visit of the day — create doc
-      const hourly = new Array(24).fill(0);
-      hourly[hr] = 1;
-      await setDoc(ref,{total:1, hourly, sources:{fb:0,notif:0,wa:0,direct:0,[source]:1}, date:today});
-    } else {
-      await updateDoc(ref,{total:increment(1), ...hourlyUpdate, ...sourceUpdate});
-    }
-  }catch(e){ console.log('Tracking error:',e); }
+    const s1=document.createElement('script');
+    s1.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
+    s1.onload=function(){
+      const s2=document.createElement('script');
+      s2.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js';
+      s2.onload=function(){
+        try{
+          const app=firebase.apps.length?firebase.apps[0]:firebase.initializeApp(FCM_CONFIG);
+          const db=firebase.firestore();
+          const today=new Date().toISOString().split('T')[0];
+          const hr=new Date().getHours();
+          const params=new URLSearchParams(location.search);
+          const src=params.get('ref')||'direct';
+          const source=src==='notif'?'notif':src==='fb'?'fb':src==='wa'?'wa':'direct';
+          const ref=db.collection('analytics').doc(today);
+          ref.get().then(snap=>{
+            if(!snap.exists){
+              const hourly=new Array(24).fill(0);hourly[hr]=1;
+              const sources={fb:0,notif:0,wa:0,direct:0};sources[source]=1;
+              ref.set({total:1,hourly,sources,date:today});
+            } else {
+              const upd={total:firebase.firestore.FieldValue.increment(1)};
+              upd['hourly.'+hr]=firebase.firestore.FieldValue.increment(1);
+              upd['sources.'+source]=firebase.firestore.FieldValue.increment(1);
+              ref.update(upd);
+            }
+          }).catch(e=>console.log('Track err:',e));
+        }catch(e){console.log('FB err:',e);}
+      };
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s1);
+  }catch(e){console.log('Track load err:',e);}
 })();
 window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
 
