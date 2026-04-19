@@ -29,12 +29,27 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .hn{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
 .hs{font-size:12px;color:#5a7a96;margin-top:6px;}
 .hd{font-size:11px;color:#10b981;margin-top:4px;font-family:monospace;}
+.repeat-badge{display:inline-flex;align-items:center;gap:8px;background:#1a2d42;border:1px solid #2a4060;border-radius:20px;padding:7px 16px;margin-top:12px;flex-wrap:wrap;justify-content:center;}
+.rb-val{font-weight:800;font-family:'Syne',sans-serif;font-size:15px;}
+.rb-label{color:#5a7a96;font-size:11px;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .sc{background:#0d1520;border:1px solid #1a2d42;border-radius:14px;padding:16px;}
 .si{font-size:20px;margin-bottom:8px;}
 .sv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
 .mint{color:#10b981;} .blue{color:#38bdf8;} .gold{color:#f59e0b;} .red{color:#f43f5e;}
 .sl{font-size:11px;color:#5a7a96;margin-top:4px;font-weight:600;}
+.sl-sub{font-size:10px;color:#3a5a76;margin-top:2px;}
+.breakdown{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+.bt{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.brow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
+.brow:last-child{border-bottom:none;}
+.brn{font-size:13px;color:#e2f0ff;font-weight:600;}
+.brv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+.brl{flex:1;margin-right:14px;}
+.brb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
+.brbf-u{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;transition:width .6s ease;}
+.brbf-r{height:100%;background:linear-gradient(90deg,#9f1239,#f43f5e);border-radius:4px;transition:width .6s ease;}
+.brbf-t{height:100%;background:linear-gradient(90deg,#92400e,#f59e0b);border-radius:4px;}
 .card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
 .ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
 .bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
@@ -72,29 +87,66 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   </div>
 
   <div class="err" id="errBox"></div>
-
   <div class="loading" id="loadDiv"><div class="sp"></div>Connecting to Firebase...</div>
 
   <div id="mainDiv" style="display:none">
+
+    <!-- HERO: Unique visitors as main number -->
     <div class="hero">
-      <div class="hl">👥 Total Visitors Today</div>
+      <div class="hl">👥 Unique Devices Today</div>
       <div class="hn" id="bigNum">0</div>
-      <div class="hs">real people visited your site today</div>
+      <div class="hs">unique devices visited your site today</div>
       <div class="hd" id="dateStr">--</div>
+      <div class="repeat-badge">
+        <span class="rb-label">Total clicks</span>
+        <span class="rb-val gold" id="totalBadge">0</span>
+        <span style="color:#2a4060;">|</span>
+        <span class="rb-label">Repeat visits</span>
+        <span class="rb-val red" id="repeatBadge">0</span>
+      </div>
     </div>
 
+    <!-- STATS GRID -->
     <div class="grid">
-      <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div></div>
-      <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div></div>
-      <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div></div>
+      <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div><div class="sl-sub">unique devices</div></div>
+      <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div><div class="sl-sub">unique devices</div></div>
+      <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div><div class="sl-sub">unique devices</div></div>
       <div class="sc"><div class="si">🔔</div><div class="sv red" id="notif">0</div><div class="sl">From Notifs</div></div>
     </div>
 
+    <!-- UNIQUE vs REPEAT BREAKDOWN -->
+    <div class="breakdown">
+      <div class="bt">📱 Today's Visitor Breakdown</div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">✅ Unique Devices</div>
+          <div class="brb"><div class="brbf-u" id="uniqueBar" style="width:0%"></div></div>
+        </div>
+        <div class="brv mint" id="uniqueVal">0</div>
+      </div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">🔁 Repeat Visits</div>
+          <div class="brb"><div class="brbf-r" id="repeatBar" style="width:0%"></div></div>
+        </div>
+        <div class="brv red" id="repeatVal">0</div>
+      </div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">📊 Total Clicks</div>
+          <div class="brb"><div class="brbf-t" style="width:100%"></div></div>
+        </div>
+        <div class="brv gold" id="totalVal">0</div>
+      </div>
+    </div>
+
+    <!-- HOURLY CHART -->
     <div class="card">
       <div class="ct">📈 Hourly Visits Today</div>
       <div class="bars" id="barsDiv"></div>
     </div>
 
+    <!-- TRAFFIC SOURCES -->
     <div class="card">
       <div class="ct">🔗 Traffic Sources</div>
       <div class="row"><div class="rn">📘 Facebook</div><div class="rv" id="fb">0</div></div>
@@ -103,8 +155,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="row"><div class="rn">🌐 Direct</div><div class="rv" id="direct">0</div></div>
     </div>
 
+    <!-- LAST 7 DAYS -->
     <div class="card">
-      <div class="ct">📆 Last 7 Days</div>
+      <div class="ct">📆 Last 7 Days <span style="font-size:10px;color:#3a5a76;font-weight:400;">(unique devices)</span></div>
       <div id="histDiv"></div>
     </div>
 
@@ -125,16 +178,13 @@ const db = firebase.firestore();
 
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
-// FIX: Safely convert hourly field whether it's an array or object from Firestore
 function safeHourly(raw) {
   if (!raw) return new Array(24).fill(0);
-  // If it's already a proper array, use it
   if (Array.isArray(raw)) {
     var arr = raw.slice();
     while (arr.length < 24) arr.push(0);
     return arr;
   }
-  // If Firestore returned it as an object/map {0: 3, 1: 5, ...}, convert it
   if (typeof raw === 'object') {
     var result = new Array(24).fill(0);
     Object.keys(raw).forEach(function(k) {
@@ -152,38 +202,52 @@ async function load(){
   document.getElementById('errBox').style.display='none';
   try {
     const today = todayKey();
-
-    // Get today's data
     const snap = await db.collection('analytics').doc(today).get();
-    const td = snap.exists ? snap.data() : {total:0, hourly:new Array(24).fill(0), sources:{}};
+    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
 
-    // Get all days
     const col = await db.collection('analytics').get();
     const days = [];
-    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0}); });
+    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
     days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
 
-    // Render
-    const total   = td.total || 0;
-    const hourly  = safeHourly(td.hourly);  // FIX: use safe conversion
+    const total   = td.total  || 0;
+    const unique  = td.unique || 0;
+    const repeat  = td.repeat || 0;
+    const hourly  = safeHourly(td.hourly);
     const sources = td.sources || {};
-    const counts  = days.map(function(d){ return d.total; });
-    const week    = days.slice(0,7).reduce(function(a,d){ return a+d.total; },0);
-    const best    = counts.length ? Math.max.apply(null,counts) : 0;
-    const avg     = counts.length ? Math.round(counts.reduce(function(a,b){ return a+b; },0)/counts.length) : 0;
 
-    document.getElementById('bigNum').textContent    = total.toLocaleString();
-    document.getElementById('dateStr').textContent   = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
-    document.getElementById('wk').textContent        = week.toLocaleString();
-    document.getElementById('best').textContent      = best.toLocaleString();
-    document.getElementById('avg').textContent       = avg.toLocaleString();
-    document.getElementById('notif').textContent     = (sources.notif||0).toLocaleString();
-    document.getElementById('fb').textContent        = (sources.fb||0).toLocaleString();
-    document.getElementById('notifSrc').textContent  = (sources.notif||0).toLocaleString();
-    document.getElementById('wa').textContent        = (sources.wa||0).toLocaleString();
-    document.getElementById('direct').textContent    = (sources.direct||0).toLocaleString();
+    const uniqueCounts = days.map(function(d){ return d.unique || 0; });
+    const week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
+    const best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
+    const avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
 
-    // Bars
+    // Hero
+    document.getElementById('bigNum').textContent      = unique.toLocaleString();
+    document.getElementById('totalBadge').textContent  = total.toLocaleString();
+    document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
+    document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+
+    // Grid
+    document.getElementById('wk').textContent    = week.toLocaleString();
+    document.getElementById('best').textContent  = best.toLocaleString();
+    document.getElementById('avg').textContent   = avg.toLocaleString();
+    document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
+
+    // Breakdown
+    var maxB = total || 1;
+    document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
+    document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
+    document.getElementById('totalVal').textContent   = total.toLocaleString();
+    document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
+    document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
+
+    // Sources
+    document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
+    document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
+    document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
+    document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
+
+    // Hourly bars
     var maxH = Math.max.apply(null, hourly.concat([1]));
     var curHr = new Date().getHours();
     var bHtml = '';
@@ -203,8 +267,10 @@ async function load(){
     } else {
       for(var j=0;j<show.length;j++){
         var d = show[j];
-        var pct = Math.round((d.total/maxC)*100);
-        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div></div><div class="rv">'+d.total.toLocaleString()+'</div></div>';
+        var u = d.unique || 0;
+        var t = d.total  || 0;
+        var pct = Math.round((u/maxC)*100);
+        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
       }
     }
     document.getElementById('histDiv').innerHTML = hHtml;
