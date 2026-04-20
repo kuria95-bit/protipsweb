@@ -248,15 +248,15 @@
 
 <!-- ① HERO -->
 <div class="hero">
-    <div class="hero-badge">🏆 Kenya's #1 Betting Tips — Since 2022</div>
-    <h1>Tired of Losing?<br><em>15,000 Kenyans</em> Switched.<br>Here's Why They Stay.</h1>
-    <p class="hero-sub">Proven daily tickets • Mega Jackpot AI slips • Instant WhatsApp delivery</p>
+    <div class="hero-badge">🏆 Kenya's #1 Jackpot Predictions — Since 2022</div>
+    <h1><em>Ksh 126 Million</em> Jackpot.<br>We Hit <em>13/17</em> Last Weekend.<br>Your Slip is Ready.</h1>
+    <p class="hero-sub">Mega Jackpot • Midweek Jackpot • Daily Tickets — Instant WhatsApp delivery</p>
     <div class="hero-money">
-        💰 A <strong>Ksh 200 stake</strong> on last Friday's daily ticket returned <strong>Ksh 1,870</strong>
+        🏆 Last weekend: <strong>13/17 Mega JP</strong> correct &nbsp;•&nbsp; Midweek: <strong>9/13</strong> correct
     </div>
     <div class="hero-btns">
-        <button class="btn-primary" onclick="showTodayPackagesModal()">Get Today's Winning Ticket →</button>
-        <button class="btn-secondary" onclick="scrollToFreeTip()">👀 See Today's Free Tip First</button>
+        <button class="btn-primary" onclick="scrollToJackpot()">🎯 Get This Week's Jackpot Slip →</button>
+        <button class="btn-secondary" onclick="showTodayPackagesModal()">📋 View Daily Packages</button>
     </div>
     <div style="margin-top:20px;">
         <button id="heroInstallBtn" onclick="triggerInstall()" style="background:var(--gold);color:#fff;border:3px solid #fff;padding:16px 34px;border-radius:50px;font-weight:800;font-size:17px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 0 0 0 rgba(245,158,11,.7);display:inline-flex;align-items:center;gap:10px;animation:installPulse 2s infinite;letter-spacing:.3px;">
@@ -270,12 +270,95 @@
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Win Rate</span></div>
-    <div class="stat-item"><span class="stat-num">15K+</span><span class="stat-label">Members</span></div>
-    <div class="stat-item"><span class="stat-num" id="slots-display">11</span><span class="stat-label">VIP Slots Left</span></div>
+    <div class="stat-item"><span class="stat-num">126M+</span><span class="stat-label">JP Prize Pool</span></div>
+    <div class="stat-item"><span class="stat-num">13/17</span><span class="stat-label">Mega JP Last Wknd</span></div>
+    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Daily Win Rate</span></div>
 </div>
 
-<!-- ② RECENT RESULTS -->
+<!-- ② JACKPOT HERO — MAIN PRODUCT -->
+<div id="jackpot-anchor" class="section" style="padding-top:28px;padding-bottom:0;">
+    <div style="background:linear-gradient(145deg,#060d1a,#0f1f3a,#0f4f42);border-radius:24px;padding:34px 20px 30px;text-align:center;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.35);">
+        <!-- Decorative orbs -->
+        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(245,158,11,.18),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        <div style="position:absolute;bottom:-50px;left:-30px;width:200px;height:200px;background:radial-gradient(circle,rgba(16,185,129,.12),transparent 70%);border-radius:50%;pointer-events:none;"></div>
+
+        <!-- Label -->
+        <div style="display:inline-flex;align-items:center;gap:7px;background:linear-gradient(90deg,#b45309,var(--gold),#fbbf24);color:#000;font-size:11px;font-weight:900;padding:5px 18px;border-radius:30px;letter-spacing:1.2px;margin-bottom:16px;text-transform:uppercase;">🔥 Kenya's Biggest Money Opportunity</div>
+
+        <!-- Prize pool -->
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Current Prize Pool</div>
+        <div style="font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--gold);line-height:1;margin-bottom:4px;text-shadow:0 0 30px rgba(245,158,11,.4);">Ksh 126M+</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:20px;">SportPesa Mega Jackpot • This Weekend</div>
+
+        <!-- Score cards -->
+        <div style="display:flex;gap:12px;justify-content:center;margin-bottom:22px;flex-wrap:wrap;">
+            <div style="background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.35);border-radius:16px;padding:16px 22px;min-width:130px;">
+                <div style="font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;">Mega Jackpot</div>
+                <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1;">13<span style="font-size:16px;opacity:.6;">/17</span></div>
+                <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:4px;">Last Weekend ✓</div>
+            </div>
+            <div style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:16px 22px;min-width:130px;">
+                <div style="font-size:11px;color:var(--mint);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px;">Midweek JP</div>
+                <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#fff;line-height:1;">9<span style="font-size:16px;opacity:.6;">/13</span></div>
+                <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:4px;">Last Friday ✓</div>
+            </div>
+        </div>
+
+        <!-- Proof text -->
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 16px;margin-bottom:22px;font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;">
+            💬 <em>"Nilibet Ksh 99 na nikashinda bonus ya <strong style="color:var(--gold);">Ksh 43,697</strong> — 13/17 correct!"</em><br>
+            <span style="font-size:11px;color:rgba(255,255,255,.5);">— James M., Nairobi • April 13, 2026</span>
+        </div>
+
+        <!-- Slip reveal buttons -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;">
+            <button onclick="toggleSlip('megaSlip')" style="background:rgba(245,158,11,.2);color:var(--gold);border:1.5px solid var(--gold);padding:11px 20px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Poppins',sans-serif;">📋 See Last Mega JP Slip</button>
+            <button onclick="toggleSlip('midweekSlip')" style="background:rgba(16,185,129,.15);color:var(--mint);border:1.5px solid var(--mint);padding:11px 20px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Poppins',sans-serif;">📋 See Last Midweek Slip</button>
+        </div>
+
+        <!-- MEGA JACKPOT SLIP -->
+        <div id="megaSlip" style="display:none;background:#fff;border-radius:16px;padding:18px 14px;margin-bottom:16px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+                <div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);">🏆 Mega Jackpot Slip</div><div style="font-size:12px;color:var(--muted);">Weekend 12–13 Apr 2026 • 16 Games</div></div>
+                <div style="background:#ecfdf5;color:var(--mint);font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px;">13/16 WON ✓</div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:360px;">
+                    <thead><tr style="background:#f1f5f9;"><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">#</th><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">Match</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Pick</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Result</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Status</th></tr></thead>
+                    <tbody id="megaSlipBody"></tbody>
+                </table>
+            </div>
+            <div style="text-align:center;margin-top:14px;"><button onclick="toggleSlip('megaSlip')" style="background:#e2e8f0;border:none;padding:9px 24px;border-radius:30px;font-weight:600;cursor:pointer;font-size:13px;font-family:'Poppins',sans-serif;">✕ Close</button></div>
+        </div>
+
+        <!-- MIDWEEK JACKPOT SLIP -->
+        <div id="midweekSlip" style="display:none;background:#fff;border-radius:16px;padding:18px 14px;margin-bottom:16px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+                <div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);">⚡ Midweek Jackpot Slip</div><div style="font-size:12px;color:var(--muted);">Friday 17 Apr 2026 • 13 Games</div></div>
+                <div style="background:#ecfdf5;color:var(--mint);font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px;">9/13 WON ✓</div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:360px;">
+                    <thead><tr style="background:#f1f5f9;"><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">#</th><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">Match</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Pick</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Result</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Status</th></tr></thead>
+                    <tbody id="midweekSlipBody"></tbody>
+                </table>
+            </div>
+            <div style="text-align:center;margin-top:14px;"><button onclick="toggleSlip('midweekSlip')" style="background:#e2e8f0;border:none;padding:9px 24px;border-radius:30px;font-weight:600;cursor:pointer;font-size:13px;font-family:'Poppins',sans-serif;">✕ Close</button></div>
+        </div>
+
+        <!-- PRIMARY CTA -->
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20book%20this%20week%27s%20Jackpot%20slip%20(Mega%20%2B%20Midweek).%20How%20do%20I%20pay%3F" style="background:linear-gradient(90deg,#d97706,var(--gold),#fbbf24);color:#0a0a0a;padding:18px 32px;border-radius:50px;font-weight:900;font-size:16.5px;text-decoration:none;display:inline-block;box-shadow:0 10px 32px rgba(245,158,11,.55);letter-spacing:.3px;animation:installPulse 2s infinite;">🎯 Book This Week's Jackpot Slip — Ksh 599</a>
+        <div style="margin-top:12px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+            <span style="font-size:11.5px;color:rgba(255,255,255,.5);">✓ Mega + Midweek included</span>
+            <span style="font-size:11.5px;color:rgba(255,255,255,.5);">✓ Delivered on WhatsApp</span>
+            <span style="font-size:11.5px;color:rgba(255,255,255,.5);">✓ Bonuses hit 13+ correct</span>
+        </div>
+    </div>
+</div>
+
+<div class="divider" style="margin-top:28px;"></div>
+
+<!-- ③ RECENT RESULTS -->
 <div class="section">
     <div class="section-title">📊 Yesterday's Results — 19/04/2026</div>
     <div class="section-sub">Every pick verified. No edits. No excuses.</div>
@@ -397,66 +480,6 @@
     </div>
 </div>
 
-<!-- ⑦ JACKPOT HYPE -->
-<div class="section">
-    <!-- JACKPOT HERO BANNER -->
-    <div style="background:linear-gradient(135deg,#0a0a0a,#1a0a2e,#0f766e);border-radius:22px;padding:32px 20px;text-align:center;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:rgba(245,158,11,.12);border-radius:50%;"></div>
-        <div style="position:absolute;bottom:-40px;left:-20px;width:160px;height:160px;background:rgba(16,185,129,.08);border-radius:50%;"></div>
-        <div style="font-size:48px;margin-bottom:10px;">🏆</div>
-        <div style="display:inline-block;background:linear-gradient(90deg,var(--gold),#fbbf24);color:#000;font-size:11px;font-weight:800;padding:4px 16px;border-radius:20px;letter-spacing:1px;margin-bottom:14px;">WHERE MILLIONAIRES ARE MADE</div>
-        <h2 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;">Ksh 126M+ Mega Jackpot</h2>
-        <p style="font-size:13.5px;color:rgba(255,255,255,.85);margin-bottom:6px;">+ Ksh 12M Midweek Jackpot — Every Week</p>
-        <div style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.4);border-radius:12px;padding:12px 16px;margin:16px 0;">
-            <div style="color:var(--gold);font-family:'Syne',sans-serif;font-size:22px;font-weight:800;">Our Record Speaks 🔥</div>
-            <div style="display:flex;justify-content:center;gap:20px;margin-top:10px;flex-wrap:wrap;">
-                <div style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;">13<span style="font-size:14px;opacity:.7;">/17</span></div><div style="font-size:11px;color:rgba(255,255,255,.7);font-weight:600;">MEGA JACKPOT</div><div style="font-size:10px;color:var(--gold);">Last Weekend ✓</div></div>
-                <div style="width:1px;background:rgba(255,255,255,.15);"></div>
-                <div style="text-align:center;"><div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;">9<span style="font-size:14px;opacity:.7;">/13</span></div><div style="font-size:11px;color:rgba(255,255,255,.7);font-weight:600;">MIDWEEK JP</div><div style="font-size:10px;color:var(--gold);">Last Week ✓</div></div>
-            </div>
-        </div>
-        <p style="font-size:12.5px;color:rgba(255,255,255,.75);margin-bottom:20px;">One correct slip can transform Ksh 99 into <strong style="color:var(--gold);">Ksh 126 Million</strong>. Our clients hit bonuses every single week.</p>
-        <!-- SLIP VIEW BUTTONS -->
-        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;">
-            <button onclick="toggleSlip('megaSlip')" style="background:var(--gold);color:#0a0a0a;border:none;padding:13px 22px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:7px;">🏆 View Mega Jackpot Slip</button>
-            <button onclick="toggleSlip('midweekSlip')" style="background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);padding:13px 22px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:7px;">⚡ View Midweek JP Slip</button>
-        </div>
-        <!-- MEGA JACKPOT SLIP -->
-        <div id="megaSlip" style="display:none;background:#fff;border-radius:16px;padding:18px 14px;margin-bottom:14px;text-align:left;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-                <div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);">🏆 Mega Jackpot Slip</div><div style="font-size:12px;color:var(--muted);">Weekend of 18–19 April 2026 • 17 Games</div></div>
-                <div style="background:#ecfdf5;color:var(--mint);font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px;">13/16 WON ✓</div>
-            </div>
-            <div style="overflow-x:auto;">
-            <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:360px;">
-                <thead><tr style="background:#f1f5f9;"><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">#</th><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">Match</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Pick</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Result</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Status</th></tr></thead>
-                <tbody id="megaSlipBody"></tbody>
-            </table>
-            </div>
-            <div style="text-align:center;margin-top:14px;"><button onclick="toggleSlip('megaSlip')" style="background:#e2e8f0;border:none;padding:9px 24px;border-radius:30px;font-weight:600;cursor:pointer;font-size:13px;font-family:'Poppins',sans-serif;">✕ Close Slip</button></div>
-        </div>
-        <!-- MIDWEEK JACKPOT SLIP -->
-        <div id="midweekSlip" style="display:none;background:#fff;border-radius:16px;padding:18px 14px;margin-bottom:14px;text-align:left;">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-                <div><div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);">⚡ Midweek Jackpot Slip</div><div style="font-size:12px;color:var(--muted);">Friday 17 April 2026 • 13 Games</div></div>
-                <div style="background:#ecfdf5;color:var(--mint);font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px;">9/13 WON ✓</div>
-            </div>
-            <div style="overflow-x:auto;">
-            <table style="width:100%;border-collapse:collapse;font-size:12.5px;min-width:360px;">
-                <thead><tr style="background:#f1f5f9;"><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">#</th><th style="padding:8px 6px;text-align:left;color:var(--green);font-weight:700;">Match</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Pick</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Result</th><th style="padding:8px 6px;text-align:center;color:var(--green);font-weight:700;">Status</th></tr></thead>
-                <tbody id="midweekSlipBody"></tbody>
-            </table>
-            </div>
-            <div style="text-align:center;margin-top:14px;"><button onclick="toggleSlip('midweekSlip')" style="background:#e2e8f0;border:none;padding:9px 24px;border-radius:30px;font-weight:600;cursor:pointer;font-size:13px;font-family:'Poppins',sans-serif;">✕ Close Slip</button></div>
-        </div>
-        <!-- BOOK THIS WEEK BUTTON -->
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20book%20the%20Jackpot%20slip%20for%20this%20week%20(Mega%20%2B%20Midweek).%20How%20do%20I%20pay%3F" style="background:linear-gradient(90deg,var(--gold),#fbbf24);color:#0a0a0a;padding:17px 30px;border-radius:50px;font-weight:800;font-size:16px;text-decoration:none;display:inline-block;box-shadow:0 8px 28px rgba(245,158,11,.5);letter-spacing:.3px;animation:installPulse 2s infinite;">🎯 Book This Week's JP Slip — Ksh 599</a>
-        <p style="font-size:11.5px;color:rgba(255,255,255,.6);margin-top:12px;">Delivered on WhatsApp before kick-off • Bonuses guaranteed at 13+ correct</p>
-    </div>
-</div>
-
-<div class="divider"></div>
-
 <!-- ⑦ AI ODDS GENERATOR -->
 <div class="section">
     <div class="ai-section">
@@ -492,16 +515,6 @@
             </div>
             <a id="aiWaBtn" href="#" class="wa-btn" style="text-align:center;display:block;text-decoration:none;"></a>
         </div>
-    </div>
-</div>
-
-<!-- ⑧ MEGA JACKPOT -->
-<div class="section">
-    <div class="jackpot-card">
-        <h2>🏆 Sportpesa Mega Jackpot</h2>
-        <div class="jackpot-pool">Ksh 121,000,000</div>
-        <p>Our AI has analysed all 17 games. Two bonus wins this month alone. One correct slip changes everything.</p>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:300px;margin:0 auto;display:block;text-decoration:none;">Get AI Jackpot Slip — Ksh 599</a>
     </div>
 </div>
 
@@ -674,6 +687,7 @@ function showTodayPackagesModal(){document.getElementById('todayPackagesModal').
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
 function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[['19/04','3','3'],['18/04','3','3'],['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],['02/04','3','3'],['01/04','3','3']];data.forEach(([date,tips,wins])=>{const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;tbody.appendChild(tr);});document.getElementById('trackRecordModal').style.display='flex';}
 function hideTrackRecord(){document.getElementById('trackRecordModal').style.display='none';}
+function scrollToJackpot(){document.getElementById('jackpot-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function scrollToFreeTip(){document.getElementById('free-tip-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
 
