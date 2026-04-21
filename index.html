@@ -58,7 +58,6 @@
         .hero-jp-lbl{font-size:11px;opacity:.85;margin-top:3px;line-height:1.4;}
         .hero-jp-lbl small{font-size:10px;opacity:.7;}
         .hero-jp-divider{width:1px;height:44px;background:rgba(255,255,255,.2);flex-shrink:0;margin:0 6px;}
-        .hero-btns{display:flex;flex-direction:column;gap:12px;align-items:center;}
         .btn-primary{background:var(--gold);color:var(--green);padding:16px 36px;border-radius:50px;font-weight:800;font-size:16px;border:none;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 25px rgba(0,0,0,.2);width:100%;max-width:340px;transition:transform .2s;}
         .btn-primary:hover{transform:translateY(-2px);}
         .btn-secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:13px 30px;border-radius:50px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;max-width:340px;transition:background .2s;}
@@ -262,6 +261,92 @@
         .slip-header-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:12px;}
         .slip-result-bar{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:10px;padding:10px 14px;margin-top:10px;font-size:13px;}
         .slip-result-score{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);}
+
+        /* HERO SPLIT CTA BUTTONS */
+        .hero-btns{display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;}
+        .hero-cta-jp,.hero-cta-daily{display:flex;align-items:center;gap:14px;width:100%;max-width:360px;padding:14px 20px;border-radius:16px;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+        .hero-cta-jp{background:linear-gradient(135deg,#b45309,var(--gold));box-shadow:0 8px 28px rgba(245,158,11,.45);border:1px solid rgba(255,255,255,.2);}
+        .hero-cta-daily{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.5);backdrop-filter:blur(6px);}
+        .hero-cta-jp:hover,.hero-cta-daily:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.25);}
+        .hero-cta-icon{font-size:26px;flex-shrink:0;line-height:1;}
+        .hero-cta-content{display:flex;flex-direction:column;text-align:left;}
+        .hero-cta-label{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1.2;}
+        .hero-cta-sub{font-size:11.5px;color:rgba(255,255,255,.82);margin-top:2px;font-weight:500;}
+        .hero-cta-jp .hero-cta-label{color:#fff;}
+        .hero-cta-jp .hero-cta-sub{color:rgba(255,255,255,.88);}
+        @media(min-width:480px){
+            .hero-btns{flex-direction:row;justify-content:center;}
+            .hero-cta-jp,.hero-cta-daily{max-width:220px;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:16px 14px;}
+            .hero-cta-content{text-align:center;}
+            .hero-cta-icon{font-size:30px;}
+            .hero-cta-label{font-size:15px;}
+        }
+
+        /* JP HYPE ADDITIONS */
+
+        /* 1. JP URGENCY TICKER — below trust bar */
+        .jp-ticker{background:linear-gradient(90deg,#0a1a0e 0%,#0f3d2e 40%,#1a5c3a 60%,#0a1a0e 100%);color:#fff;padding:10px 18px;display:flex;align-items:center;justify-content:center;gap:14px;overflow:hidden;position:relative;}
+        .jp-ticker::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(245,158,11,.04) 60px,rgba(245,158,11,.04) 61px);}
+        .jp-ticker-crown{font-size:20px;animation:crownPop 2s ease-in-out infinite alternate;flex-shrink:0;}
+        @keyframes crownPop{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.15) rotate(3deg)}}
+        .jp-ticker-text{font-size:13px;font-weight:700;text-align:center;line-height:1.4;}
+        .jp-ticker-text strong{color:var(--gold);font-family:'Syne',sans-serif;font-size:15px;}
+        .jp-ticker-text em{font-style:normal;color:#86efac;}
+        .jp-ticker-btn{background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;border:none;padding:8px 16px;border-radius:30px;font-weight:800;font-size:12px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 12px rgba(245,158,11,.4);}
+
+        /* 2. HERO JP MEGA PILL — animated gold badge in hero */
+        .hero-jp-mega-pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(245,158,11,.22),rgba(249,115,22,.18));border:1px solid rgba(245,158,11,.5);border-radius:50px;padding:8px 18px;margin-bottom:14px;animation:pillGlow 2.5s ease-in-out infinite alternate;}
+        @keyframes pillGlow{from{box-shadow:0 0 0 0 rgba(245,158,11,.3)}to{box-shadow:0 0 18px 4px rgba(245,158,11,.25)}}
+        .hero-jp-mega-pill span{font-size:12.5px;font-weight:700;color:#fde68a;}
+        .hero-jp-mega-pill strong{font-family:'Syne',sans-serif;font-size:14px;color:var(--gold);}
+
+        /* 3. JP INTERSTITIAL — between FOMO and Free Tip */
+        .jp-interstitial{background:linear-gradient(145deg,#050d08 0%,#0c2b1d 50%,#050d08 100%);padding:28px 18px;position:relative;overflow:hidden;}
+        .jp-interstitial::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(245,158,11,.14) 0%,transparent 65%);pointer-events:none;}
+        .jp-interstitial::after{content:'';position:absolute;bottom:-60px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(16,185,129,.1) 0%,transparent 65%);pointer-events:none;}
+        .jp-int-inner{max-width:480px;margin:0 auto;text-align:center;color:#fff;position:relative;z-index:1;}
+        .jp-int-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#86efac;font-weight:700;margin-bottom:8px;}
+        .jp-int-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.2;margin-bottom:10px;}
+        .jp-int-title .gold{color:var(--gold);}
+        .jp-int-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
+        .jp-int-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:600;}
+        .jp-int-pill.hot{border-color:rgba(245,158,11,.4);color:var(--gold);}
+        .jp-int-scorebar{display:flex;gap:12px;justify-content:center;margin-bottom:16px;}
+        .jp-int-score{background:rgba(255,255,255,.06);border:1px solid rgba(16,185,129,.25);border-radius:14px;padding:12px 20px;text-align:center;flex:1;max-width:130px;}
+        .jp-int-score-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);line-height:1;}
+        .jp-int-score-num sup{font-size:14px;opacity:.7;}
+        .jp-int-score-lbl{font-size:11px;color:#a7f3d0;margin-top:4px;}
+        .jp-int-pool{font-size:13px;color:#d1fae5;margin-bottom:18px;opacity:.9;}
+        .jp-int-pool strong{color:var(--gold);font-family:'Syne',sans-serif;font-size:17px;}
+        .jp-int-cta{display:inline-block;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 8px 28px rgba(245,158,11,.45);letter-spacing:.3px;border:none;cursor:pointer;font-family:'Poppins',sans-serif;}
+        .jp-int-sub{font-size:11.5px;color:#6ee7b7;margin-top:10px;opacity:.8;}
+        .jp-int-proof{background:rgba(255,255,255,.05);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 14px;font-size:12.5px;font-style:italic;margin:16px 0 0;text-align:left;color:#d1fae5;line-height:1.5;}
+
+        /* 4. ENHANCED JP HYPE CARD – floating money counter */
+        .jp-live-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);border-radius:30px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--gold);margin-bottom:14px;}
+        .jp-live-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 1.4s infinite;}
+        .jp-urgency-strip{background:rgba(220,38,38,.18);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;color:#fca5a5;margin:14px 0 0;text-align:center;}
+
+        /* 5. FLOAT JP BUTTON */
+        .jp-float-btn{position:fixed;bottom:84px;left:14px;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:12px 16px;border-radius:50px;font-weight:800;font-size:12.5px;box-shadow:0 6px 22px rgba(245,158,11,.5);z-index:997;cursor:pointer;border:none;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:6px;animation:jpFloat 3s ease-in-out infinite;}
+        @keyframes jpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+        .jp-float-btn .jp-float-badge{background:rgba(0,0,0,.2);border-radius:20px;padding:2px 7px;font-size:10px;}
+
+        /* 6. PACKAGES MODAL - JP card mega highlight */
+        .modal-pkg-jp{background:linear-gradient(145deg,#0a1a0e,#0f3d2e);border:2px solid var(--gold);border-radius:16px;padding:18px;margin-bottom:12px;position:relative;overflow:hidden;}
+        .modal-pkg-jp::before{content:'⭐ TOP PICK';position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;font-size:10px;font-weight:800;padding:4px 14px;border-radius:0 14px 0 14px;letter-spacing:1px;}
+        .modal-pkg-jp strong{font-size:16px;color:var(--gold);display:block;margin-bottom:3px;font-family:'Syne',sans-serif;}
+        .modal-pkg-jp .conf{color:#86efac;font-size:12.5px;font-weight:600;margin-bottom:10px;}
+        .modal-pkg-jp .jp-modal-pool{background:rgba(245,158,11,.12);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px;color:#fde68a;font-weight:700;text-align:center;}
+        .modal-pkg-jp .jp-modal-proof{font-size:12px;color:#86efac;margin-bottom:10px;font-style:italic;}
+
+        @media(max-width:600px){
+            .jp-ticker{gap:10px;padding:9px 14px;}
+            .jp-ticker-text{font-size:12px;}
+            .jp-ticker-text strong{font-size:13.5px;}
+            .jp-int-title{font-size:22px;}
+            .jp-int-score-num{font-size:24px;}
+        }
     </style>
 </head>
 <body>
@@ -282,7 +367,16 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-    Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>93.7%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong>
+    Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>91.2%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong>
+</div>
+
+<!-- JP URGENCY TICKER -->
+<div class="jp-ticker">
+    <div class="jp-ticker-crown">🏆</div>
+    <div class="jp-ticker-text">
+        <strong>Ksh 121,000,000 MEGA JACKPOT</strong> — Slip closes soon! &nbsp;<em>Last week: 13/17 ✅ BONUS WON</em>
+    </div>
+    <button class="jp-ticker-btn" onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})">Get Slip →</button>
 </div>
 
 <!-- NOTIFICATION -->
@@ -296,6 +390,14 @@
     <!-- JP WIN FLASH BANNER -->
     <div class="hero-jp-flash">
         🔥 <strong>LAST WEEK:</strong> Mega JP <span class="hero-jp-score">13/17</span> &nbsp;•&nbsp; Midweek JP <span class="hero-jp-score">9/13</span> &nbsp;•&nbsp; <strong>BONUSES WON! 🏆</strong>
+    </div>
+
+    <!-- MEGA JACKPOT PILL — high-value anchor -->
+    <div class="hero-jp-mega-pill">
+        <span>🏆</span>
+        <span>This Week's Pool:</span>
+        <strong>Ksh 121,000,000</strong>
+        <span>— Slip Ready</span>
     </div>
 
     <div class="hero-badge">⚽ Kenya's Most Trusted Tips Since 2022</div>
@@ -323,8 +425,20 @@
     </div>
 
     <div class="hero-btns">
-        <button class="btn-primary" onclick="showTodayPackagesModal()">🎯 Get Today's Winning Ticket</button>
-        <button class="btn-secondary" onclick="scrollToFreeTip()">👀 See Today's Free Tip</button>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="hero-cta-jp">
+            <span class="hero-cta-icon">🏆</span>
+            <span class="hero-cta-content">
+                <span class="hero-cta-label">Get Today's Jackpot</span>
+                <span class="hero-cta-sub">Ksh 121M Pool · Ksh 599</span>
+            </span>
+        </a>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="hero-cta-daily">
+            <span class="hero-cta-icon">⚽</span>
+            <span class="hero-cta-content">
+                <span class="hero-cta-label">Get Today's Daily Ticket</span>
+                <span class="hero-cta-sub">3–4 Picks · 95% Confidence · Ksh 99</span>
+            </span>
+        </a>
     </div>
 
     <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
@@ -339,24 +453,24 @@
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">93.7%</span><span class="stat-label">Win Rate</span></div>
+    <div class="stat-item"><span class="stat-num">91.2%</span><span class="stat-label">Win Rate</span></div>
     <div class="stat-item"><span class="stat-num">15K+</span><span class="stat-label">Members</span></div>
     <div class="stat-item"><span class="stat-num" id="slots-display">11</span><span class="stat-label">VIP Slots Left</span></div>
 </div>
 
 <!-- ② RECENT RESULTS -->
 <div class="section">
-    <div class="section-title">📊 Yesterday's Results — 19/04/2026</div>
+    <div class="section-title">📊 Yesterday's Results — 20/04/2026</div>
     <div class="section-sub">Every pick verified. No edits. No excuses.</div>
     <div class="table-wrap">
         <table class="result-table">
-            <thead><tr><th>Match</th><th>Pick</th><th>Odds</th><th>Result</th></tr></thead>
+            <thead><tr><th>Match</th><th>Pick</th><th>Score</th><th>Odds</th><th>Result</th></tr></thead>
             <tbody>
-                <tr><td data-label="Match">Aston Villa vs Sunderland</td><td data-label="Pick">Home Win</td><td data-label="Odds">2.10</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Everton vs Liverpool</td><td data-label="Pick">Away Win</td><td data-label="Odds">2.00</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Nott Forest vs Burnley</td><td data-label="Pick">Over 2.5</td><td data-label="Odds">1.90</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Lecce vs Fiorentina</td><td data-label="Pick">GG (Both Score)</td><td data-label="Score" style="font-weight:700;color:var(--green);">1 - 1</td><td data-label="Odds">1.85</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Den Bosch vs Jong Utrecht</td><td data-label="Pick">Under 2.5</td><td data-label="Score" style="font-weight:700;color:var(--green);">1 - 1</td><td data-label="Odds">1.75</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Crystal Palace vs West Ham</td><td data-label="Pick">No GG (Clean Sheet)</td><td data-label="Score" style="font-weight:700;color:var(--green);">0 - 0</td><td data-label="Odds">1.72</td><td data-label="Result" class="win">✓ WIN</td></tr>
             </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">7.98 — ALL WON ✅</td></tr></tfoot>
+            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">5.57 — ALL WON ✅</td></tr></tfoot>
         </table>
     </div>
     <div style="text-align:center;margin-top:16px;">
@@ -382,25 +496,71 @@
     </div>
 </div>
 
+<!-- ③b MEGA JACKPOT HYPE — moved here after FOMO -->
+<div class="section" id="jp-interstitial-section" style="padding-top:0;">
+    <div class="jp-hype-card">
+        <div class="jp-live-counter">
+            <span class="jp-live-dot"></span>
+            <span id="jp-buyers-live">847 people</span> viewing this slip right now
+        </div>
+        <div class="jp-fire-row">🔥🔥🔥</div>
+        <div class="jp-badge-top">JACKPOT KINGS</div>
+        <h2 class="jp-title">We Don't Guess.<br>We <span class="jp-gold">DELIVER.</span></h2>
+        <p class="jp-sub">Last week our analysts were LOCKED IN. The results speak for themselves.</p>
+
+        <div class="jp-score-row">
+            <div class="jp-score-box">
+                <div class="jp-score-num">13<span>/17</span></div>
+                <div class="jp-score-label">🏆 Mega Jackpot</div>
+                <div class="jp-score-date">Weekend • Apr 18</div>
+            </div>
+            <div class="jp-score-divider">VS</div>
+            <div class="jp-score-box">
+                <div class="jp-score-num">9<span>/13</span></div>
+                <div class="jp-score-label">⚡ Midweek JP</div>
+                <div class="jp-score-date">Midweek • Apr 17</div>
+            </div>
+        </div>
+
+        <div class="jp-quote">"Niliweka Ksh 99 peke yangu — nikapata bonus ya Ksh 970! Sikuamini. Pro Tipsters ndio wazuri zaidi! 🙌" — <strong>Peter M., Kisumu</strong></div>
+
+        <p class="jp-cta-text">📊 See the actual slips below — every pick, every result, no hiding.</p>
+
+        <div class="jp-btn-row">
+            <button class="jp-btn-mega" onclick="showMegaJP()">🏆 View Mega Jackpot Slip</button>
+            <button class="jp-btn-mid" onclick="showMidweekJP()">⚡ View Midweek JP Slip</button>
+        </div>
+
+        <div class="jp-pool-box">
+            <div class="jp-pool-label">THIS WEEK'S POOL</div>
+            <div class="jp-pool-num">Ksh 121,000,000</div>
+            <div class="jp-pool-sub">Sportpesa Mega Jackpot · Closing Soon</div>
+        </div>
+        <div class="jp-urgency-strip">⏳ Slip deadline: <span id="jp-deadline-timer">--:--:--</span> &nbsp;|&nbsp; Don't miss this week's slip!</div>
+
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:320px;margin:0 auto;display:block;text-decoration:none;font-size:15px;">🎯 Get This Week's Slip — Ksh 599</a>
+    </div>
+</div>
+
 <!-- ④ FREE TIP -->
 <div class="section" id="free-tip-anchor">
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">One real pick — on us. No payment needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Crystal Palace vs West Ham</div>
+        <div class="free-tip-match">Real Madrid vs Deportivo Alavés</div>
         <div class="free-tip-badges">
-            <span class="badge badge-green">Both Teams To Score</span>
+            <span class="badge badge-green">Real Madrid Win & Over 2.5</span>
             <span class="badge badge-gold">Odds: 1.72</span>
-            <span class="badge badge-blue">92% Confidence</span>
+            <span class="badge badge-blue">La Liga • Tonight 21:30 CEST</span>
         </div>
-        <div class="free-tip-reason">Crystal Palace have scored in 7 of their last 10 home games. West Ham are struggling to keep clean sheets — they've conceded in 8 of their last 10 away fixtures. Both sides need points and will attack. BTTS is the standout play in tonight's London derby.</div>
+        <div class="free-tip-reason">Real Madrid host relegation-threatened Alavés at the Santiago Bernabéu tonight. Madrid have won all 8 of their last H2H meetings and average 2.6 goals per game against this opponent. Alavés arrive with just 1 win in their last 10 matches and have conceded 46 goals this season — worst defensive record in their half of the table. Madrid's Mbappé (23 goals in 26 La Liga games) is in predatory form, and with Real desperate to bounce back after their Champions League exit to Bayern, expect them to come out firing. BTTS has landed in 5 straight Real Madrid games. Over 2.5 goals has hit in 62% of Real's home games. This is a strong, high-confidence play.</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
-            <div class="blur-line">Liverpool vs Chelsea • GG • Odds 1.72</div>
-            <div class="blur-line">Barca vs Real Madrid • Home Win • Odds 2.10</div>
-            <div class="blur-line">Dortmund vs Bayern • Over 2.5 • Odds 1.68</div>
+            <div class="blur-line">Lens vs Toulouse • Home Win • Odds 2.10</div>
+            <div class="blur-line">Leicester vs Hull City • Over 2.5 • Odds 1.85</div>
+            <div class="blur-line">West Brom vs Watford • GG • Odds 1.75</div>
         </div>
-        <div class="full-ticket-teaser">Combined odds on full ticket: ~9.35 • Ksh 200 stake = Ksh 1,870</div>
+        <div class="full-ticket-teaser">Combined odds on full ticket: ~11.60 • Ksh 200 stake = Ksh 2,320</div>
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
     </div>
 </div>
@@ -508,48 +668,6 @@
     </div>
 </div>
 
-<!-- ⑧ MEGA JACKPOT HYPE -->
-<div class="section" style="padding-top:0;">
-    <div class="jp-hype-card">
-        <div class="jp-fire-row">🔥🔥🔥</div>
-        <div class="jp-badge-top">JACKPOT KINGS</div>
-        <h2 class="jp-title">We Don't Guess.<br>We <span class="jp-gold">DELIVER.</span></h2>
-        <p class="jp-sub">Last week our analysts were LOCKED IN. The results speak for themselves.</p>
-
-        <div class="jp-score-row">
-            <div class="jp-score-box">
-                <div class="jp-score-num">13<span>/17</span></div>
-                <div class="jp-score-label">🏆 Mega Jackpot</div>
-                <div class="jp-score-date">Weekend • Apr 18</div>
-            </div>
-            <div class="jp-score-divider">VS</div>
-            <div class="jp-score-box">
-                <div class="jp-score-num">9<span>/13</span></div>
-                <div class="jp-score-label">⚡ Midweek JP</div>
-                <div class="jp-score-date">Midweek • Apr 17</div>
-            </div>
-        </div>
-
-        <div class="jp-quote">"Niliweka 200 bob nikavuna Ksh 4,500 kutoka bonus ya 13/17. Pro Tipsters wanajua kazi! 🙌" — <strong>James K., Nairobi</strong></div>
-
-        <p class="jp-cta-text">📊 See the actual slips below — every pick, every result, no hiding.</p>
-
-        <div class="jp-btn-row">
-            <button class="jp-btn-mega" onclick="showMegaJP()">🏆 View Mega Jackpot Slip</button>
-            <button class="jp-btn-mid" onclick="showMidweekJP()">⚡ View Midweek JP Slip</button>
-        </div>
-
-        <div class="jp-pool-box">
-            <div class="jp-pool-label">THIS WEEK'S POOL</div>
-            <div class="jp-pool-num">Ksh 121,000,000</div>
-            <div class="jp-pool-sub">Sportpesa Mega Jackpot · Closing Soon</div>
-        </div>
-
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:320px;margin:0 auto;display:block;text-decoration:none;font-size:15px;">🎯 Get This Week's Slip — Ksh 599</a>
-    </div>
-</div>
-
-
 <!-- ⑨ AVIATOR -->
 <div class="section">
     <div class="aviator-card">
@@ -570,7 +688,7 @@
     <div style="margin-top:16px;">
         <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button><div class="faq-a">Send M-Pesa to Till Number <strong>6012928</strong>, then WhatsApp us your name and amount to +254 762 945 530. You'll receive your tips within minutes.</div></div>
         <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">When are tips sent? <span class="arrow">▼</span></button><div class="faq-a">Daily tickets are sent by 10:00 AM EAT. Weekend special picks are sent Friday evening. Mega Jackpot slips are sent Thursday–Friday before the weekend games.</div></div>
-        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">We have a 93.7% win rate — but no tipster wins 100%. If you lose, we offer a consolation pick the next day free of charge. Our transparency is unmatched.</div></div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">We have a 91.2% win rate — but no tipster wins 100%. If you lose, we offer a consolation pick the next day free of charge. Our transparency is unmatched.</div></div>
         <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this legal in Kenya? <span class="arrow">▼</span></button><div class="faq-a">Yes. Sports betting is legal and regulated in Kenya under the Betting Control and Licensing Board (BCLB). We provide tips and analysis only — you place bets on licensed platforms like Sportpesa, Betika, or 1xBet.</div></div>
     </div>
 </div>
@@ -583,6 +701,9 @@
 </footer>
 
 <!-- FLOAT BUTTONS -->
+<button class="jp-float-btn" onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})">
+    🏆 Mega JP <span class="jp-float-badge">Ksh 121M</span>
+</button>
 <button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
 <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20tips!" class="whatsapp-float">💬 WhatsApp Us</a>
 
@@ -598,10 +719,17 @@
 <div id="todayPackagesModal" class="modal" onclick="if(event.target===this)hideTodayPackagesModal()">
     <div class="modal-content">
         <div class="modal-handle"></div>
-        <div class="modal-title">Get Today's Package</div>
+        <div class="modal-title">🏆 Choose Your Package</div>
+        <div class="modal-pkg-jp">
+            <strong>🏆 Mega Jackpot — Ksh 599</strong>
+            <div class="conf">🤖 Expert + AI · 17-Game Slip · 2 Bonuses Won This Month</div>
+            <div class="jp-modal-pool">💰 This Week's Pool: <span style="font-size:17px;">Ksh 121,000,000</span></div>
+            <div class="jp-modal-proof">"Niliweka 200 bob nikavuna Ksh 4,500 — James K., Nairobi 🙌"</div>
+            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px;color:#d1fae5;">Full 17-game slip built by AI + expert analysts. One win can change everything. Last week: <strong style="color:var(--gold);">13/17 BONUS</strong> ✅</div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);">🏆 Get Mega Jackpot — Ksh 599</a>
+        </div>
         <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div><div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div></div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
         <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a></div>
-        <div class="modal-pkg"><strong>Mega Jackpot – Ksh 599</strong><div class="conf">🤖 Expert + AI • 17-Game Slip • Ksh 121M+ Pool</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Full 17-game slip — won 2 bonuses this month. One win can change everything.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot – Ksh 599</a></div>
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
 </div>
@@ -707,6 +835,28 @@ setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.ran
 function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
 updateCountdown();setInterval(updateCountdown,1000);
 
+// ── MEGA JACKPOT DEADLINE COUNTDOWN (counts to next Friday 18:00 EAT) ──
+function updateJPDeadline(){
+  const now=new Date();
+  const day=now.getDay(); // 0=Sun,5=Fri
+  const daysToFri=day<=5?(5-day):(7-(day-5));
+  const target=new Date(now);
+  target.setDate(now.getDate()+daysToFri);
+  target.setHours(18,0,0,0);
+  if(now>=target){target.setDate(target.getDate()+7);}
+  const diff=target-now;
+  const h=String(Math.floor(diff/3600000)).padStart(2,'0');
+  const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  const el=document.getElementById('jp-deadline-timer');
+  if(el)el.textContent=`${h}h ${m}m ${s}s`;
+}
+updateJPDeadline();setInterval(updateJPDeadline,1000);
+
+// ── JP LIVE VIEWERS COUNTER ──
+let jpViewers=847;
+setInterval(()=>{jpViewers=Math.max(600,Math.min(1100,jpViewers+Math.floor(Math.random()*60)-25));const el=document.getElementById('jp-buyers-live');if(el)el.textContent=jpViewers.toLocaleString()+' people';},4800);
+
 let slots=11;
 function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
 updateSlots();
@@ -721,6 +871,9 @@ const notifications=[
     {name:'Esther Njeri',number:'0771••••',pkg:'Mega Jackpot'},
     {name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},
     {name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'},
+    {name:'Samuel Kipchoge',number:'0712••••',pkg:'Mega Jackpot'},
+    {name:'Faith Wambui',number:'0790••••',pkg:'Mega Jackpot'},
+    {name:'Dennis Mutua',number:'0733••••',pkg:'Mega Jackpot'},
 ];
 function playBeep(){}
 function showLiveNotification(){const notif=notifications[Math.floor(Math.random()*notifications.length)];const container=document.getElementById('live-notification');const el=document.getElementById('notification-content');el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;container.classList.remove('slide-out');container.style.display='flex';container.classList.add('slide-in');playBeep();setTimeout(()=>{container.classList.remove('slide-in');container.classList.add('slide-out');setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);},6500);}
@@ -741,6 +894,7 @@ document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='En
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
 function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[
+['20/04','Lecce vs Fiorentina • Den Bosch vs Jong Utrecht • Crystal Palace vs West Ham','3','3'],
 ['19/04','AVL vs Sunderland • Everton vs LFC • NFO vs Burnley','3','3'],
 ['18/04','Brentford vs Fulham • Leeds vs Wolves • Chelsea vs Man Utd','3','2'],
 ['17/04','St.Pauli vs Cologne • Inter vs Cagliari • Sassuolo vs Como','3','3'],
@@ -758,8 +912,7 @@ function showTrackRecord(){const tbody=document.getElementById('trackRecordBody'
 ['05/04','Mallorca vs Real Madrid • Osasuna vs Barca • Villarreal vs Bilbao','3','3'],
 ['04/04','Man City vs Chelsea • Liverpool vs Fulham • Juventus vs Napoli','3','3'],
 ['03/04','Brentford vs Brighton • Everton vs Wolves • Lazio vs Fiorentina','3','2'],
-['02/04','Arsenal vs Tottenham • Bayern vs Leverkusen • Inter vs Milan','3','3'],
-['01/04','Real Madrid vs Atletico • Dortmund vs Stuttgart • Roma vs Napoli','3','3']
+['02/04','Arsenal vs Tottenham • Bayern vs Leverkusen • Inter vs Milan','3','3']
 ];
 let totalTips=0,totalWins=0;
 data.forEach(([date,matches,tips,wins])=>{totalTips+=parseInt(tips);totalWins+=parseInt(wins);const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}</td><td style="font-size:11px;text-align:left;max-width:160px;line-height:1.4;">${matches}</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'✗ LOSS':'✓ WIN'}</td>`;tbody.appendChild(tr);});
