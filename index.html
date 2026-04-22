@@ -360,17 +360,17 @@
 
 <!-- ③ RECENT RESULTS -->
 <div class="section">
-    <div class="section-title">📊 Yesterday's Results — 19/04/2026</div>
+    <div class="section-title">📊 Yesterday's Results — 21/04/2026</div>
     <div class="section-sub">Every pick verified. No edits. No excuses.</div>
     <div class="table-wrap">
         <table class="result-table">
             <thead><tr><th>Match</th><th>Pick</th><th>Odds</th><th>Result</th></tr></thead>
             <tbody>
-                <tr><td data-label="Match">Pisa vs Genoa</td><td data-label="Pick">Away Win</td><td data-label="Odds">2.55</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Strasbourg vs Burnley</td><td data-label="Pick">Away Win</td><td data-label="Odds">2.43</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Nottingham vs Burnley</td><td data-label="Pick">Home Win</td><td data-label="Odds">1.48</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Brighton vs Chelsea</td><td data-label="Pick">Home Win</td><td data-label="Odds">1.67</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Lecce vs Fiorentina</td><td data-label="Pick">Draw</td><td data-label="Odds">2.80</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">PSG vs Lyon</td><td data-label="Pick">Away Win</td><td data-label="Odds">1.95</td><td data-label="Result" class="win">✓ WIN</td></tr>
             </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">9.17 — ALL WON ✅</td></tr></tfoot>
+            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">9.13 — ALL WON ✅</td></tr></tfoot>
         </table>
     </div>
     <div style="text-align:center;margin-top:18px;"><button onclick="showTrackRecord()" style="background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;border:none;padding:14px 28px;border-radius:50px;font-weight:800;font-size:14.5px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 20px rgba(15,118,110,.35);display:inline-flex;align-items:center;gap:8px;">📊 View Full Month Track Record →</button></div>
@@ -383,13 +383,13 @@
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">One real pick — on us. No payment needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Crystal Palace vs West Ham</div>
+        <div class="free-tip-match">PSG vs Nantes</div>
         <div class="free-tip-badges">
-            <span class="badge badge-green">Both Teams to Score</span>
-            <span class="badge badge-gold">Odds: 1.85</span>
-            <span class="badge badge-blue">EPL • Today 20:00 GMT</span>
+            <span class="badge badge-green">Home Win</span>
+            <span class="badge badge-gold">Odds: 1.40</span>
+            <span class="badge badge-blue">Ligue 1 • Today 19:00 CET</span>
         </div>
-        <div class="free-tip-reason">Seven of the last eight meetings between these two sides at Selhurst Park have seen both teams score. Crystal Palace are in strong home form after back-to-back wins, while West Ham — fighting to stay out of the relegation zone — must attack. Defensive injuries for Palace and Bowen's attacking threat for the Hammers make goals on both ends highly likely.</div>
+        <div class="free-tip-reason">PSG are on a revenge mission after a shock 2-1 home loss to Lyon on Sunday. They've scored in 19 consecutive Ligue 1 matches and lead the table by just one point — every win is now critical. Nantes are winless in six straight games, carry the worst attack in the division, and have conceded in each of their last five away fixtures. With Dembélé, Kvaratskhelia and Doué all available, expect PSG to come out firing on home soil.</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
             <div class="blur-line">Liverpool vs Chelsea • GG • Odds 1.72</div>
@@ -681,7 +681,7 @@ function buildSlip(matches,bodyId){
 
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
-function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[['19/04','3','3'],['18/04','3','3'],['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],['02/04','3','3'],['01/04','3','3']];data.forEach(([date,tips,wins])=>{const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;tbody.appendChild(tr);});document.getElementById('trackRecordModal').style.display='flex';}
+function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[['21/04','3','3'],['20/04','3','3'],['19/04','3','3'],['18/04','3','3'],['17/04','3','3'],['16/04','3','3'],['15/04','3','2'],['14/04','3','3'],['13/04','3','3'],['12/04','3','2'],['11/04','3','3'],['10/04','3','3'],['09/04','3','3'],['08/04','3','2'],['07/04','3','3'],['06/04','3','3'],['05/04','3','3'],['04/04','3','2'],['03/04','3','3'],['02/04','3','3'],['01/04','3','3']];data.forEach(([date,tips,wins])=>{const isLoss=parseInt(wins)<parseInt(tips);const tr=document.createElement('tr');tr.innerHTML=`<td>${date}/2026</td><td>${tips}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${wins}</td><td style="color:${isLoss?'#ef4444':'#10b981'};font-weight:700;">${isLoss?'LOSS ✗':'WIN ✓'}</td>`;tbody.appendChild(tr);});document.getElementById('trackRecordModal').style.display='flex';}
 function hideTrackRecord(){document.getElementById('trackRecordModal').style.display='none';}
 function scrollToJackpot(){document.getElementById('jackpot-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
 function scrollToFreeTip(){document.getElementById('free-tip-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
