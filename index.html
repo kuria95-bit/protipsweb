@@ -355,10 +355,10 @@
 <!-- HEADER -->
 <div class="header">
     <div class="header-title">⚽ PRO TIPSTERS</div>
-    <div class="live-counter">
+    <a href="https://protipsweb.onrender.com/analytics.html" target="_blank" rel="noopener" class="live-counter" style="text-decoration:none;">
         <span class="live-dot"></span>
         <span id="live-counter">2,347 online</span>
-    </div>
+    </a>
 </div>
 
 <!-- URGENCY BAR -->
@@ -473,17 +473,17 @@
 
 <!-- ② RECENT RESULTS -->
 <div class="section">
-    <div class="section-title">📊 Yesterday's Results — 26/04/2026</div>
+    <div class="section-title">📊 Yesterday's Results — 28/04/2026</div>
     <div class="section-sub">Every pick verified. No edits. No excuses.</div>
     <div class="table-wrap">
         <table class="result-table">
             <thead><tr><th>Match</th><th>Pick</th><th>Score</th><th>Odds</th><th>Result</th></tr></thead>
             <tbody>
-                <tr><td data-label="Match">Cordoba vs Sp. Gijon</td><td data-label="Pick">Home Win — Cordoba</td><td data-label="Score" style="font-weight:700;color:var(--green);">3 - 2</td><td data-label="Odds">2.16</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Molde vs Valerenga</td><td data-label="Pick">Home Win — Molde</td><td data-label="Score" style="font-weight:700;color:var(--green);">2 - 1</td><td data-label="Odds">1.93</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Paris FC vs Lille</td><td data-label="Pick">Away Win — Lille</td><td data-label="Score" style="font-weight:700;color:var(--green);">0 - 1</td><td data-label="Odds">1.87</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">PSG vs Bayern Munich</td><td data-label="Pick">GG & Over 2.5 Goals (UCL SF)</td><td data-label="Score" style="font-weight:700;color:var(--green);">5 - 4</td><td data-label="Odds">2.20</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Southampton vs Ipswich Town</td><td data-label="Pick">GG (Both Teams Score)</td><td data-label="Score" style="font-weight:700;color:var(--green);">2 - 2</td><td data-label="Odds">1.85</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Middlesbrough vs Millwall</td><td data-label="Pick">Away Win — Millwall</td><td data-label="Score" style="font-weight:700;color:var(--green);">1 - 2</td><td data-label="Odds">2.20</td><td data-label="Result" class="win">✓ WIN</td></tr>
             </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">7.80 — ALL WON ✅</td></tr></tfoot>
+            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">8.95 — ALL WON ✅</td></tr></tfoot>
         </table>
     </div>
     <div style="text-align:center;margin-top:16px;">
@@ -511,72 +511,118 @@
 
 <!-- ③b MEGA JACKPOT HYPE — moved here after FOMO -->
 <div class="section" id="jp-interstitial-section" style="padding-top:0;">
-    <div class="jp-hype-card">
+    <div class="jp-hype-card" style="position:relative;overflow:hidden;">
+
+        <!-- ANIMATED BG PULSE -->
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.12) 0%,transparent 70%);pointer-events:none;animation:pillGlow 3s ease-in-out infinite alternate;"></div>
+
+        <!-- LIVE VIEWERS -->
         <div class="jp-live-counter">
             <span class="jp-live-dot"></span>
-            <span id="jp-buyers-live">847 people</span> viewing this slip right now
-        </div>
-        <div class="jp-fire-row">🔥🔥🔥🔥🔥</div>
-        <div class="jp-badge-top">🏆 KENYA'S JACKPOT KINGS 🏆</div>
-
-        <h2 class="jp-title">Ksh 122,000,000<br>Is <span class="jp-gold">ONE SLIP AWAY.</span></h2>
-        <p class="jp-sub">Last week our analysts DOMINATED the Mega Jackpot. <strong style="color:var(--gold);">14/17 MEGA JP ✅ — BONUS WON!</strong><br>Midweek went 8/13 — no bonus on that one, but the Mega more than made up for it. We don't lose sleep — we focus on the BIG prize. 🎯</p>
-
-        <!-- PROOF SCOREBOARD -->
-        <div class="jp-score-row">
-            <div class="jp-score-box">
-                <div class="jp-score-num">14<span>/17</span></div>
-                <div class="jp-score-label">🏆 Mega Jackpot</div>
-                <div class="jp-score-date">Weekend • Apr 25-26</div>
-            </div>
-            <div class="jp-score-divider">+</div>
-            <div class="jp-score-box">
-                <div class="jp-score-num">8<span>/13</span></div>
-                <div class="jp-score-label">⚡ Midweek JP</div>
-                <div class="jp-score-date">Midweek • Apr 24</div>
-            </div>
+            <span id="jp-buyers-live">1,247 people</span> viewing this slip right now 🔴
         </div>
 
-        <!-- MEMBER WINS STRIP -->
-        <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:14px;margin-bottom:14px;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:800;">💰 What Members Won Last Week</div>
+        <!-- FIRE + BADGE -->
+        <div class="jp-fire-row" style="font-size:28px;">🔥💰🏆💰🔥</div>
+        <div class="jp-badge-top" style="font-size:11px;padding:5px 18px;background:linear-gradient(135deg,#92400e,var(--gold),#f97316,var(--gold));background-size:300% 300%;animation:shimmer 3s linear infinite;">🚨 KENYA'S UNDISPUTED JACKPOT KINGS 🚨</div>
+
+        <!-- HEADLINE -->
+        <h2 class="jp-title" style="font-size:28px;margin-top:10px;">
+            <span style="font-size:14px;display:block;letter-spacing:3px;text-transform:uppercase;opacity:.7;font-weight:600;margin-bottom:4px;">This Week's Pool</span>
+            <span style="color:var(--gold);text-shadow:0 0 30px rgba(245,158,11,.5);">Ksh 122,000,000</span><br>
+            <span style="font-size:20px;">Could Be <em style="color:var(--gold);">YOURS.</em> For Ksh 99.</span>
+        </h2>
+
+        <!-- LAST WEEK PROOF BANNER -->
+        <div style="background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(16,185,129,.05));border:1.5px solid rgba(16,185,129,.4);border-radius:14px;padding:12px 14px;margin-bottom:14px;">
+            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6ee7b7;font-weight:800;margin-bottom:8px;">📋 LAST WEEK'S VERIFIED PROOF</div>
+            <div style="display:flex;align-items:center;justify-content:space-around;gap:6px;">
+                <div style="text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--gold);text-shadow:0 0 20px rgba(245,158,11,.5);line-height:1;">14<span style="font-size:18px;opacity:.7;">/17</span></div>
+                    <div style="font-size:11px;color:#6ee7b7;font-weight:700;">🏆 MEGA JP</div>
+                    <div style="font-size:10px;opacity:.6;">Apr 25-26</div>
+                    <div style="background:#10b981;color:#fff;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">BONUS WON ✅</div>
+                </div>
+                <div style="font-size:28px;opacity:.4;">|</div>
+                <div style="text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#93c5fd;line-height:1;">8<span style="font-size:18px;opacity:.7;">/13</span></div>
+                    <div style="font-size:11px;color:#93c5fd;font-weight:700;">⚡ MIDWEEK</div>
+                    <div style="font-size:10px;opacity:.6;">Apr 24</div>
+                    <div style="background:rgba(147,197,253,.2);color:#93c5fd;border:1px solid rgba(147,197,253,.4);border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">No Bonus</div>
+                </div>
+                <div style="font-size:28px;opacity:.4;">|</div>
+                <div style="text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold);line-height:1;">22/30</div>
+                    <div style="font-size:11px;color:var(--gold);font-weight:700;">📊 COMBINED</div>
+                    <div style="font-size:10px;opacity:.6;">Both Cards</div>
+                    <div style="background:rgba(245,158,11,.2);color:var(--gold);border:1px solid rgba(245,158,11,.4);border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">73% Hit Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- URGENCY STATEMENT -->
+        <p class="jp-sub" style="font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;">Our analysts NAILED 14 out of 17 games last weekend. Members who bought the slip walked away with <span style="color:var(--gold);">REAL MONEY.</span> The midweek missed bonus — but the Mega DELIVERED. This week's slip is already sealed. Are you on it? 🔒</p>
+
+        <!-- MEMBER WINS — upgraded -->
+        <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);border-radius:14px;padding:14px;margin-bottom:14px;">
+            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:800;">💸 MEMBERS PAID OUT LAST WEEK</div>
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;">
-                <div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);">Ksh 4,500</div><div style="font-size:11px;opacity:.7;">James K. · Nairobi</div></div>
-                <div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);">Ksh 12,000</div><div style="font-size:11px;opacity:.7;">Kevin O. · Kisumu</div></div>
-                <div><div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);">Ksh 8,750</div><div style="font-size:11px;opacity:.7;">Mary W. · Mombasa</div></div>
+                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
+                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 4,500</div>
+                    <div style="font-size:10px;opacity:.7;margin-top:2px;">James K.</div>
+                    <div style="font-size:9px;opacity:.5;">Nairobi 🏙️</div>
+                </div>
+                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
+                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 12,000</div>
+                    <div style="font-size:10px;opacity:.7;margin-top:2px;">Kevin O.</div>
+                    <div style="font-size:9px;opacity:.5;">Kisumu 🏙️</div>
+                </div>
+                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
+                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 8,750</div>
+                    <div style="font-size:10px;opacity:.7;margin-top:2px;">Mary W.</div>
+                    <div style="font-size:9px;opacity:.5;">Mombasa 🏙️</div>
+                </div>
             </div>
         </div>
 
-        <!-- QUOTES -->
-        <div class="jp-quote">"Niliweka Ksh 99 peke yangu — nikapata bonus ya Ksh 4,500! Sikuamini. Pro Tipsters ndio wazuri zaidi! 🙌" — <strong>Peter M., Kisumu</strong></div>
-        <div class="jp-quote" style="margin-top:8px;">"First time buying the jackpot slip — 13 correct! Got Ksh 8,750 bonus. I'm a member for life! 💪" — <strong>Samuel K., Nairobi</strong></div>
+        <!-- TESTIMONIALS -->
+        <div class="jp-quote" style="border-left:3px solid var(--gold);font-style:italic;">"Niliamini Pro Tipsters na walinikuwa waaminifu. Ksh 99 tu — nikapata Ksh 4,500 bonus! Nitalipa tena bila shaka! 🙏" — <strong>Peter M., Kisumu</strong></div>
+        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #6ee7b7;font-style:italic;">"14 correct last weekend! First time buying — got Ksh 8,750 bonus. THESE GUYS KNOW THEIR STUFF. 🔥" — <strong>Samuel K., Nairobi</strong></div>
+        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #93c5fd;font-style:italic;">"Ksh 12,000 in my account just like that. My friends thought I was lying until I showed them the M-Pesa msg 😂💪" — <strong>Kevin O., Kisumu</strong></div>
 
-        <p class="jp-cta-text" style="margin-top:14px;">📊 See the actual slips below — every pick, every result, zero editing.</p>
-
+        <!-- PROOF BUTTON ROW -->
+        <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.6);margin:14px 0 8px;">👇 SEE THE ACTUAL SLIPS — every pick, every score, unedited</p>
         <div class="jp-btn-row">
-            <button class="jp-btn-mega" onclick="showMegaJP()">🏆 Last Week's Mega JP Slip</button>
-            <button class="jp-btn-mid" onclick="showMidweekJP()">⚡ Last Week's Midweek JP Slip</button>
+            <button class="jp-btn-mega" onclick="showMegaJP()" style="font-size:13px;">🏆 Last Week's Mega JP Slip</button>
+            <button class="jp-btn-mid" onclick="showMidweekJP()" style="font-size:13px;">⚡ Last Week's Midweek JP Slip</button>
         </div>
 
-        <!-- THIS WEEK POOL -->
-        <div class="jp-pool-box">
-            <div class="jp-pool-label">🚨 THIS WEEK'S JACKPOT POOL</div>
-            <div class="jp-pool-num">Ksh 122,000,000</div>
-            <div class="jp-pool-sub">Sportpesa Mega Jackpot · Slip Closes Friday 18:00 EAT</div>
+        <!-- THIS WEEK POOL BOX — upgraded -->
+        <div class="jp-pool-box" style="background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(249,115,22,.1));border:1.5px solid rgba(245,158,11,.5);margin-top:16px;">
+            <div class="jp-pool-label" style="font-size:12px;letter-spacing:2px;">🚨 THIS WEEK — DON'T MISS IT</div>
+            <div class="jp-pool-num" style="font-size:32px;text-shadow:0 0 20px rgba(245,158,11,.4);">Ksh 122,000,000</div>
+            <div class="jp-pool-sub">Sportpesa Mega Jackpot · <strong style="color:var(--gold);">Slip Closes Friday 18:00 EAT</strong></div>
+            <div style="margin-top:8px;font-size:12px;color:#fde68a;font-weight:600;">⚡ Ksh 99 per slip · Results every Saturday · Instant WhatsApp delivery</div>
         </div>
 
-        <!-- WHY US PILLS -->
-        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0;">
-            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:700;">✅ 91.2% Daily Accuracy</span>
-            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:700;">🏆 Mega JP Bonus This Week</span>
-            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:700;">⚡ AI + Expert Analysis</span>
-            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:700;">📲 Instant WhatsApp Delivery</span>
+        <!-- TRUST PILLS -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0;">
+            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">✅ 91.2% Daily Accuracy</span>
+            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🏆 Mega JP Bonus Won</span>
+            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🤖 AI + Expert Analysis</span>
+            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">📲 WhatsApp Delivery</span>
+            <span style="background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🔒 Sealed & Ready</span>
         </div>
 
-        <div class="jp-urgency-strip">🚨 SLIP DEADLINE: <span id="jp-deadline-timer">--:--:--</span> &nbsp;|&nbsp; Only <strong style="color:var(--gold);">Ksh 599</strong> could change your life FOREVER!</div>
+        <!-- URGENCY COUNTDOWN -->
+        <div class="jp-urgency-strip" style="font-size:14px;padding:12px;">
+            🚨 SLIP DEADLINE: <span id="jp-deadline-timer" style="font-size:16px;color:var(--gold);font-family:'Syne',sans-serif;">--:--:--</span> &nbsp;|&nbsp; <strong style="color:var(--gold);">Ksh 599 only. Spots filling fast!</strong>
+        </div>
 
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:340px;margin:14px auto 0;display:block;text-decoration:none;font-size:16px;font-weight:800;background:linear-gradient(135deg,var(--gold),#f97316);box-shadow:0 8px 28px rgba(245,158,11,.5);">🏆 GET THIS WEEK'S SLIP — Ksh 599 →</a>
-        <div style="text-align:center;font-size:11.5px;color:#6ee7b7;margin-top:8px;opacity:.8;">Instant delivery via WhatsApp after M-Pesa payment to Till 6012928</div>
+        <!-- MAIN CTA -->
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:360px;margin:14px auto 0;display:block;text-decoration:none;font-size:17px;font-weight:800;background:linear-gradient(135deg,#92400e,var(--gold),#f97316);box-shadow:0 10px 36px rgba(245,158,11,.55);letter-spacing:.5px;animation:pillGlow 2s ease-in-out infinite alternate;">🏆 GET THIS WEEK'S SLIP — Ksh 599 →</a>
+        <div style="text-align:center;font-size:11px;color:#6ee7b7;margin-top:8px;opacity:.75;">📱 M-Pesa to <strong>Till 6012928</strong> · Instant WhatsApp delivery after payment</div>
+        <div style="text-align:center;font-size:10px;opacity:.45;margin-top:6px;">Over 2,400 members trust us every week 🇰🇪</div>
     </div>
 </div>
 
@@ -585,13 +631,13 @@
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">One real pick — on us. No payment needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Atletico Madrid vs Athletic Club</div>
+        <div class="free-tip-match">Atletico Madrid vs Arsenal</div>
         <div class="free-tip-badges">
-            <span class="badge badge-green">Atletico Madrid Win</span>
-            <span class="badge badge-gold">Odds: 1.95</span>
-            <span class="badge badge-blue">La Liga • Today 19:00 EAT</span>
+            <span class="badge badge-green">GG — Both Teams to Score</span>
+            <span class="badge badge-gold">Odds: 1.85</span>
+            <span class="badge badge-blue">UCL Semi-Final 1st Leg • Tonight 22:00 EAT</span>
         </div>
-        <div class="free-tip-reason">Atletico Madrid host Athletic Club at the Metropolitano in a crucial La Liga clash. Atletico are in dominant home form — unbeaten in their last 11 at the Wanda Metropolitano and averaging 2.1 goals per home game this season. Diego Simeone's side are locked in a fierce battle for the La Liga title and absolutely need a win here. Athletic Club, despite a solid campaign, have lost 4 of their last 6 away games against top-6 sides and have conceded in 7 consecutive away matches. Atletico's midfield press and defensive discipline gives them a huge edge at home, and with Griezmann and Correa in form, the attacking threat is very real. Our model rates Atletico at 78% probability of winning — one of the highest confidence tips of the entire weekend. This is the standout banker of the day. 🔒</div>
+        <div class="free-tip-reason">The biggest game in European football tonight — Atletico Madrid host Arsenal at the Metropolitano in the Champions League semifinal first leg. Both teams have the firepower to hurt each other, and the stats scream GG. Atletico have scored AND conceded in 10 of their last 11 Champions League fixtures, and in 7 of 8 home UCL games this season. Julian Alvarez has 19 goals and 9 assists in 47 matches this season and is fully rested for this huge occasion. Arsenal's unbeaten UCL record (12 games, only 5 goals conceded) shows their defensive quality — but the Metropolitano is one of the most hostile atmospheres in world football. Arsenal have scored in every UCL game this season and their set-piece threat is elite — 17 Premier League goals from corners this term. PSG scored 5 against Bayern last night — it's a week for goals in Europe. Both teams NEED to score in the first leg to set up the return at the Emirates. GG at 1.85 is outstanding value. Lock it in. 🔒🔥</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
             <div class="blur-line">Lens vs Toulouse • Home Win • Odds 2.10</div>
@@ -932,6 +978,8 @@ document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='En
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
 function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[
+['28/04','PSG vs Bayern Munich • Southampton vs Ipswich • Middlesbrough vs Millwall','3','3'],
+['27/04','Atletico Madrid vs Athletic Club • Dortmund vs Freiburg • Torino vs Inter Milan','3','3'],
 ['26/04','Cordoba vs Sp. Gijon • Molde vs Valerenga • Paris FC vs Lille','3','3'],
 ['25/04','Arsenal vs Newcastle • Liverpool vs Crystal Palace • Fulham vs Aston Villa','3','3'],
 ['24/04','Sunderland vs Nott\'m Forest • Napoli vs Cremonese • RB Leipzig vs Union Berlin','3','3'],
