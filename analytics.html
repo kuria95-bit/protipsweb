@@ -1,1150 +1,307 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Tipsters • Win Today | Kenya's #1 Betting Tips</title>
-    <meta name="description" content="Kenya's most accurate betting tips — 93.7% win rate. Daily tickets from Ksh 99. AI-powered Mega Jackpot slips. Trusted by 15,000+ Kenyan bettors.">
-    <meta property="og:title" content="Pro Tipsters • Win Today">
-    <meta property="og:description" content="93.7% accurate tips. Ksh 99 daily ticket. Mega Jackpot slips powered by AI.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f766e'/><text y='.9em' font-size='80'>⚽</text></svg>">
-    <link rel="manifest" href="#" id="pwa-manifest">
-    <meta name="theme-color" content="#0f766e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Pro Tipsters">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --green:#0f766e; --mint:#10b981; --gold:#f59e0b;
-            --light:#f8fafc; --white:#ffffff; --text:#1e2937;
-            --muted:#64748b; --border:#e2e8f0; --red:#ef4444;
-        }
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--text);line-height:1.6;font-size:16px;overflow-x:hidden;}
-        .header{background:linear-gradient(135deg,var(--green),var(--mint));padding:13px 18px;position:sticky;top:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
-        .header-title{font-family:'Syne',sans-serif;font-size:20px;color:#fff;font-weight:800;letter-spacing:.5px;}
-        .live-counter{background:#fff;color:var(--green);padding:5px 13px;border-radius:30px;font-weight:700;font-size:12px;display:flex;align-items:center;gap:6px;}
-        .live-dot{width:7px;height:7px;background:var(--mint);border-radius:50%;animation:pulse 1.8s infinite;}
-        .urgency-bar{background:#dc2626;color:#fff;text-align:center;padding:8px 18px;font-size:13px;font-weight:600;}
-        .urgency-bar span{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;}
-        .trust-bar{background:#fff;padding:9px 18px;text-align:center;font-size:12.5px;color:#334155;border-bottom:1px solid var(--border);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
-        .trust-bar strong{color:var(--mint);}
-        .live-notification{position:fixed;top:60px;left:10px;right:10px;background:#fff;border-left:5px solid var(--mint);border-radius:10px;padding:11px 14px;box-shadow:0 6px 22px rgba(0,0,0,0.16);z-index:9999;display:none;align-items:center;gap:10px;max-width:440px;margin:0 auto;font-size:13.5px;}
-        .notif-text strong{color:var(--green);}
-        .notif-text small{color:var(--muted);font-size:11.5px;display:block;}
-        .slide-in{animation:slideIn .38s ease forwards;}
-        .slide-out{animation:slideOut .35s ease forwards;}
-        @keyframes slideIn{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes slideOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-18px)}}
-        .hero{background:linear-gradient(135deg,var(--green),var(--mint));padding:30px 18px 26px;text-align:center;color:#fff;position:relative;overflow:hidden;}
-        .hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(255,255,255,.06);border-radius:50%;}
-        .hero::after{content:'';position:absolute;bottom:-70px;left:-40px;width:260px;height:260px;background:rgba(255,255,255,.04);border-radius:50%;}
-        .hero-badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);padding:5px 15px;border-radius:30px;font-size:12.5px;font-weight:600;margin-bottom:14px;}
-        .hero h1{font-family:'Syne',sans-serif;font-size:28px;line-height:1.2;margin-bottom:12px;font-weight:800;}
-        .hero h1 em{font-style:normal;color:var(--gold);}
-        .hero-sub{font-size:14.5px;opacity:.92;margin-bottom:10px;}
-        .hero-money{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:8px 14px;font-size:13px;margin:10px auto 16px;max-width:380px;}
-        .hero-money strong{color:var(--gold);font-size:15px;}
-        .hero-jp-flash{background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.4);border-radius:30px;padding:7px 14px;font-size:12px;margin-bottom:12px;display:inline-block;}
-        .hero-jp-score{color:var(--gold);font-weight:800;font-size:13px;}
-        .hero-jp-card{display:flex;align-items:center;justify-content:center;gap:0;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:12px 8px;margin:14px auto 18px;max-width:340px;}
-        .hero-jp-item{flex:1;text-align:center;}
-        .hero-jp-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold);line-height:1.1;}
-        .hero-jp-num span{font-size:14px;opacity:.75;}
-        .hero-jp-lbl{font-size:11px;opacity:.85;margin-top:3px;line-height:1.4;}
-        .hero-jp-lbl small{font-size:10px;opacity:.7;}
-        .hero-jp-divider{width:1px;height:44px;background:rgba(255,255,255,.2);flex-shrink:0;margin:0 6px;}
-        .btn-primary{background:var(--gold);color:var(--green);padding:16px 36px;border-radius:50px;font-weight:800;font-size:16px;border:none;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 25px rgba(0,0,0,.2);width:100%;max-width:340px;transition:transform .2s;}
-        .btn-primary:hover{transform:translateY(-2px);}
-        .btn-secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:13px 30px;border-radius:50px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;max-width:340px;transition:background .2s;}
-        .btn-secondary:hover{background:rgba(255,255,255,.1);}
-        .stats-bar{background:#fff;display:grid;grid-template-columns:repeat(3,1fr);border-bottom:4px solid var(--mint);}
-        .stat-item{padding:13px 8px;text-align:center;border-right:1px solid var(--border);}
-        .stat-item:last-child{border-right:none;}
-        .stat-num{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--green);display:block;}
-        .stat-label{font-size:11px;color:var(--muted);}
-        .section{padding:22px 18px;max-width:1100px;margin:0 auto;}
-        .section-title{font-family:'Syne',sans-serif;color:var(--green);font-size:21px;font-weight:800;text-align:center;margin-bottom:4px;}
-        .section-sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:14px;}
-        .table-wrap{overflow-x:auto;border-radius:14px;box-shadow:0 6px 22px rgba(0,0,0,.08);}
-        .result-table{width:100%;border-collapse:collapse;background:#fff;min-width:380px;}
-        .result-table th,.result-table td{padding:11px 10px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;}
-        .result-table th{background:#f1f5f9;color:var(--green);font-weight:700;}
-        .result-table tbody tr:last-child td{border-bottom:none;}
-        .result-table tfoot td{background:#f1f5f9;font-weight:700;}
-        .win{color:var(--mint);font-weight:700;text-transform:uppercase;}
-        .view-record{display:inline-block;margin-top:14px;font-size:13px;color:var(--mint);font-weight:600;text-decoration:none;border-bottom:1px solid var(--mint);}
-        .fomo-card{background:linear-gradient(135deg,#1e2937,#0f766e);color:#fff;border-radius:18px;padding:20px 16px;text-align:center;}
-        .fomo-card h3{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;margin-bottom:8px;}
-        .fomo-card p{font-size:13.5px;opacity:.9;margin-bottom:16px;}
-        .fomo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
-        .fomo-item{background:rgba(255,255,255,.1);border-radius:12px;padding:14px 8px;}
-        .fomo-stake{font-size:11.5px;opacity:.8;}
-        .fomo-return{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);}
-        .fomo-plan{font-size:11px;margin-top:3px;opacity:.7;}
-        .free-tip-section{background:#fff;border:2px solid var(--mint);border-radius:18px;padding:20px 16px;position:relative;overflow:hidden;}
-        .free-tip-section::before{content:'FREE';position:absolute;top:14px;right:-22px;background:var(--mint);color:#fff;font-size:11px;font-weight:800;padding:4px 30px;transform:rotate(45deg);letter-spacing:1px;}
-        .free-tip-match{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--green);margin-bottom:6px;}
-        .free-tip-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
-        .badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12.5px;font-weight:700;}
-        .badge-green{background:#ecfdf5;color:var(--mint);}
-        .badge-gold{background:#fef3c7;color:#92400e;}
-        .badge-blue{background:#eff6ff;color:#1d4ed8;}
-        .free-tip-reason{font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.55;}
-        .free-tip-blur{background:#f1f5f9;border-radius:10px;padding:14px;margin-bottom:14px;}
-        .blur-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
-        .blur-line{filter:blur(4px);user-select:none;font-size:13.5px;color:var(--text);padding:3px 0;}
-        .full-ticket-teaser{background:var(--mint);color:#fff;border-radius:10px;padding:12px 14px;font-size:13.5px;font-weight:600;text-align:center;margin-bottom:16px;}
-        .wa-bubbles{display:grid;grid-template-columns:1fr;gap:14px;}
-        .wa-bubble-wrap{display:flex;align-items:flex-end;gap:10px;}
-        .wa-bubble-wrap.right{flex-direction:row-reverse;}
-        .wa-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--mint));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0;}
-        .wa-bubble{background:#fff;border-radius:18px 18px 18px 4px;padding:12px 15px;box-shadow:0 2px 10px rgba(0,0,0,.08);max-width:85%;font-size:13.5px;color:var(--text);line-height:1.5;}
-        .wa-bubble-wrap.right .wa-bubble{background:#dcf8c6;border-radius:18px 18px 4px 18px;}
-        .wa-name{font-size:12px;font-weight:700;color:var(--green);margin-bottom:3px;}
-        .wa-time{font-size:11px;color:var(--muted);margin-top:6px;text-align:right;}
-        .wa-btn{display:block;background:#10b981;color:#fff;padding:15px 20px;border-radius:50px;font-weight:800;font-size:15px;text-align:center;text-decoration:none;margin-top:14px;box-shadow:0 6px 20px rgba(16,185,129,.35);}
-        .package-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-        .pack{background:#fff;border:2px solid var(--border);border-radius:18px;padding:16px 14px;position:relative;overflow:hidden;}
-        .pack.featured{border-color:var(--mint);box-shadow:0 8px 28px rgba(16,185,129,.18);}
-        .pack-badge{position:absolute;top:0;right:0;background:var(--mint);color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:0 16px 0 16px;letter-spacing:.5px;}
-        .pack-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--green);margin-bottom:3px;}
-        .pack-price{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);}
-        .pack-price span{font-size:15px;font-weight:600;color:var(--muted);}
-        .pack-conf{font-size:12.5px;color:var(--mint);font-weight:700;margin:6px 0 10px;}
-        .pack-features{list-style:none;margin-bottom:16px;}
-        .pack-features li{font-size:13.5px;color:#334155;padding:4px 0;display:flex;align-items:flex-start;gap:7px;}
-        .pack-features li::before{content:'✓';color:var(--mint);font-weight:800;flex-shrink:0;}
-        .ai-section{background:linear-gradient(135deg,#0a1f1a,#0d2a20);color:#fff;border-radius:20px;padding:22px 16px;text-align:center;}
-        .ai-section h2{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;margin-bottom:6px;}
-        .ai-section p{font-size:13.5px;opacity:.88;margin-bottom:18px;}
-        .ai-input-row{display:flex;gap:10px;max-width:360px;margin:0 auto 14px;}
-        .ai-input{flex:1;padding:13px 16px;border-radius:50px;border:none;font-size:15px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
-        .ai-btn{background:var(--gold);color:var(--green);padding:13px 20px;border-radius:50px;font-weight:800;border:none;cursor:pointer;font-size:14px;font-family:'Poppins',sans-serif;white-space:nowrap;}
-        .ai-error{display:none;background:rgba(239,68,68,.18);color:#fca5a5;border-radius:10px;padding:10px 14px;font-size:13.5px;margin-top:8px;}
-        .ai-loading{display:none;align-items:center;gap:12px;justify-content:center;padding:18px;background:#fff;color:var(--green);border-radius:14px;margin-top:14px;font-weight:600;font-size:14px;}
-        .spinner{width:20px;height:20px;border:3px solid #e2e8f0;border-top-color:var(--mint);border-radius:50%;animation:spin .8s linear infinite;}
-        @keyframes spin{to{transform:rotate(360deg)}}
-        .ai-result{background:#fff;color:var(--text);padding:20px;border-radius:14px;margin-top:14px;text-align:left;display:none;}
-        .ai-confidence{display:inline-block;background:#ecfdf5;color:var(--mint);font-weight:700;font-size:12.5px;padding:3px 11px;border-radius:20px;margin:6px 0 12px;}
-        .blur-row{filter:blur(4px);user-select:none;padding:5px 0;font-size:13.5px;}
-        .pack-teaser{background:#f1f5f9;border-radius:10px;padding:12px 14px;margin-bottom:12px;}
-        .teaser-total{font-weight:700;color:var(--mint);margin-top:8px;font-size:14px;}
-        .ai-price-box{background:#f0fdf4;border:2px solid var(--mint);border-radius:12px;padding:14px;margin:12px 0;text-align:center;}
-        .ai-price-label{font-size:11.5px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-        .ai-price-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--green);}
-        .ai-price-tier{font-size:12.5px;color:var(--mint);font-weight:600;}
-        .calc-box{background:#f8fafc;border-radius:10px;padding:12px 14px;margin-bottom:12px;}
-        .calc-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;}
-        .calc-input{flex:1;min-width:80px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
-        .jackpot-card{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:32px 20px;border-radius:20px;text-align:center;}
-        .jackpot-card h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px;}
-        .jackpot-pool{font-size:26px;font-weight:800;color:var(--gold);margin:12px 0 8px;font-family:'Syne',sans-serif;}
-        .jackpot-card p{font-size:14px;opacity:.92;margin-bottom:18px;}
-        .aviator-card{background:#fff;border:2px solid var(--mint);border-radius:20px;padding:22px 16px;text-align:center;}
-        .aviator-card h2{font-family:'Syne',sans-serif;color:var(--green);font-size:20px;font-weight:800;margin-bottom:8px;}
-        .aviator-card p{color:var(--muted);font-size:14px;margin-bottom:6px;}
-        .av-features{display:flex;justify-content:center;gap:10px;margin:16px 0;flex-wrap:wrap;}
-        .av-feat{background:#f0fdf4;color:var(--green);font-weight:700;font-size:12.5px;padding:7px 14px;border-radius:30px;}
-        .faq-item{background:#fff;border-radius:12px;margin-bottom:8px;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden;}
-        .faq-q{width:100%;text-align:left;padding:15px 16px;background:none;border:none;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
-        .faq-q .arrow{transition:transform .25s;font-size:12px;color:var(--mint);flex-shrink:0;margin-left:8px;}
-        .faq-a{display:none;padding:0 16px 14px;font-size:13.5px;color:#334155;line-height:1.6;}
-        .faq-item.open .arrow{transform:rotate(180deg);}
-        .faq-item.open .faq-a{display:block;}
-        .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:10000;align-items:flex-end;justify-content:center;}
-        .modal-content{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:26px 20px 36px;max-height:92vh;overflow-y:auto;}
-        .modal-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 20px;}
-        .modal-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--green);margin-bottom:18px;text-align:center;}
-        .modal-pkg{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;}
-        .modal-pkg strong{font-size:15px;color:var(--green);display:block;margin-bottom:3px;}
-        .modal-pkg .conf{color:var(--mint);font-size:12.5px;font-weight:600;margin-bottom:8px;}
-        .modal-back{background:#e2e8f0;color:var(--text);border:none;padding:12px 28px;border-radius:50px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'Poppins',sans-serif;font-size:14px;display:block;width:100%;}
-        .track-table{width:100%;border-collapse:collapse;background:#fff;min-width:280px;}
-        .track-table th,.track-table td{padding:10px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;}
-        .track-table th{background:#f1f5f9;color:var(--green);font-weight:700;}
-        .free-tip-float{position:fixed;bottom:84px;right:14px;background:var(--gold);color:#fff;padding:12px 18px;border-radius:50px;font-weight:700;font-size:13px;box-shadow:0 8px 22px rgba(245,158,11,.45);z-index:998;cursor:pointer;border:none;font-family:'Poppins',sans-serif;}
-        .whatsapp-float{position:fixed;bottom:16px;right:14px;background:var(--mint);color:#fff;padding:14px 20px;border-radius:50px;font-weight:700;font-size:14px;box-shadow:0 8px 25px rgba(16,185,129,.4);z-index:999;text-decoration:none;}
-        footer{background:#f1f5f9;padding:32px 18px 110px;font-size:12.5px;color:var(--muted);text-align:center;border-top:1px solid var(--border);}
-        .gambling{color:var(--red);font-weight:600;margin-top:12px;}
-        .divider{height:5px;background:linear-gradient(90deg,var(--green),var(--mint));}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-        @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
-        @keyframes installPulse{0%{box-shadow:0 0 0 0 rgba(245,158,11,.7),0 8px 25px rgba(0,0,0,.25);}70%{box-shadow:0 0 0 14px rgba(245,158,11,0),0 8px 25px rgba(0,0,0,.25);}100%{box-shadow:0 0 0 0 rgba(245,158,11,0),0 8px 25px rgba(0,0,0,.25);}}
-        .pwa-banner{display:none;position:fixed;bottom:110px;left:14px;right:14px;background:linear-gradient(135deg,#1e2937,#0f766e);color:#fff;border-radius:16px;padding:14px 16px;z-index:1000;box-shadow:0 8px 28px rgba(0,0,0,.3);align-items:center;gap:12px;max-width:460px;margin:0 auto;}
-        .pwa-banner.show{display:flex;}
-        .pwa-banner-icon{font-size:28px;flex-shrink:0;}
-        .pwa-banner-text{flex:1;}
-        .pwa-banner-text strong{display:block;font-size:14px;font-weight:700;}
-        .pwa-banner-text span{font-size:12px;opacity:.85;}
-        .pwa-install-btn{background:var(--gold);color:var(--green);border:none;padding:10px 16px;border-radius:30px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0;}
-        .pwa-close{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.7;padding:4px;flex-shrink:0;}
-        @media(min-width:640px){
-            .package-grid{grid-template-columns:repeat(3,1fr);}
-            .wa-bubbles{grid-template-columns:repeat(2,1fr);}
-            .hero h1{font-size:34px;}
-            .hero-btns{flex-direction:row;justify-content:center;}
-            .btn-primary,.btn-secondary{width:auto;}
-        }
-        @media(max-width:600px){
-            body{font-size:15px;}
-            .header{padding:11px 14px;}
-            .header-title{font-size:17px;}
-            .live-counter{font-size:11px;padding:5px 11px;}
-            .hero{padding:34px 16px 30px;}
-            .hero h1{font-size:22px;}
-            .hero-sub{font-size:13.5px;}
-            .hero-money{font-size:12.5px;}
-            .btn-primary{font-size:15px;padding:15px 28px;}
-            .btn-secondary{font-size:13.5px;padding:12px 24px;}
-            .stat-num{font-size:16px;}
-            .stat-label{font-size:10px;}
-            .stat-item{padding:11px 5px;}
-            .section{padding:26px 14px;}
-            .section-title{font-size:19px;}
-            .fomo-item{padding:10px 6px;}
-            .fomo-return{font-size:15px;}
-            .ai-input-row{flex-direction:column;gap:10px;max-width:100%;}
-            .ai-input,.ai-btn{border-radius:14px;width:100%;}
-            .ai-btn{padding:14px 20px;font-size:15px;}
-            .pack-price{font-size:22px;}
-            .wa-btn{font-size:14.5px;padding:14px 20px;}
-            .modal-content{border-radius:22px 22px 0 0;padding:22px 16px 32px;}
-            .result-table{display:block;min-width:0;}
-            .result-table thead{display:none;}
-            .result-table tbody,.result-table tfoot{display:block;}
-            .result-table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;}
-            .result-table td{display:flex;flex-direction:column;text-align:left;border:none;padding:0;font-size:12.5px;}
-            .result-table td::before{content:attr(data-label);font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:2px;}
-            .result-table td:last-child{grid-column:1/-1;}
-            .result-table tfoot tr{background:#f1f5f9;grid-template-columns:1fr auto;}
-            .result-table tfoot td{flex-direction:row;align-items:center;gap:6px;}
-            .result-table tfoot td::before{content:none;}
-            footer{padding:28px 16px 110px;}
-        }
-        /* JP HYPE */
-        .jp-hype-card{background:linear-gradient(160deg,#0a1a14 0%,#0f3d2e 50%,#0a1a14 100%);color:#fff;border-radius:20px;padding:28px 18px 24px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(16,185,129,.2);}
-        .jp-hype-card::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(245,158,11,.12) 0%,transparent 70%);border-radius:50%;}
-        .jp-fire-row{font-size:22px;margin-bottom:6px;animation:fireWiggle 1.2s ease-in-out infinite alternate;}
-        @keyframes fireWiggle{from{transform:scale(1)}to{transform:scale(1.08)}}
-        .jp-badge-top{display:inline-block;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;font-size:10px;font-weight:800;letter-spacing:2px;padding:4px 14px;border-radius:30px;margin-bottom:10px;text-transform:uppercase;}
-        .jp-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.2;margin-bottom:8px;}
-        .jp-gold{color:var(--gold);}
-        .jp-sub{font-size:13.5px;opacity:.85;margin-bottom:18px;}
-        .jp-score-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;}
-        .jp-score-box{background:rgba(255,255,255,.07);border:1px solid rgba(16,185,129,.3);border-radius:16px;padding:14px 18px;flex:1;max-width:140px;}
-        .jp-score-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--gold);line-height:1;}
-        .jp-score-num span{font-size:18px;opacity:.7;}
-        .jp-score-label{font-size:12px;font-weight:700;margin:4px 0 2px;}
-        .jp-score-date{font-size:10.5px;opacity:.6;}
-        .jp-score-divider{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;opacity:.5;flex-shrink:0;}
-        .jp-quote{background:rgba(255,255,255,.06);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 14px;font-size:12.5px;font-style:italic;margin:0 0 14px;text-align:left;line-height:1.5;}
-        .jp-cta-text{font-size:13px;opacity:.8;margin-bottom:14px;}
-        .jp-btn-row{display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;}
-        .jp-btn-mega{background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;border:none;padding:12px 20px;border-radius:50px;font-weight:800;font-size:13.5px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 4px 18px rgba(245,158,11,.4);flex:1;max-width:180px;}
-        .jp-btn-mid{background:rgba(16,185,129,.15);color:var(--mint);border:2px solid var(--mint);padding:12px 20px;border-radius:50px;font-weight:800;font-size:13.5px;cursor:pointer;font-family:'Poppins',sans-serif;flex:1;max-width:180px;}
-        .jp-pool-box{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);border-radius:14px;padding:12px;margin-bottom:16px;}
-        .jp-pool-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-bottom:4px;}
-        .jp-pool-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);}
-        .jp-pool-sub{font-size:11.5px;opacity:.65;}
-        /* JP SLIP MODAL */
-        .slip-table{width:100%;border-collapse:collapse;font-size:12.5px;}
-        .slip-table th{background:#f1f5f9;color:var(--green);font-weight:700;padding:8px 6px;text-align:center;font-size:11px;position:sticky;top:0;}
-        .slip-table td{padding:8px 6px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle;}
-        .slip-table td:nth-child(2){text-align:left;font-size:12px;font-weight:600;}
-        .slip-win{color:#10b981;font-weight:800;font-size:11px;}
-        .slip-loss{color:#ef4444;font-weight:800;font-size:11px;}
-        .slip-score{font-size:11px;color:#64748b;}
-        .slip-header-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:12px;}
-        .slip-result-bar{display:flex;justify-content:space-between;align-items:center;background:#f8fafc;border-radius:10px;padding:10px 14px;margin-top:10px;font-size:13px;}
-        .slip-result-score{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);}
-
-        /* HERO SPLIT CTA BUTTONS */
-        .hero-btns{display:flex;flex-direction:column;gap:12px;align-items:center;width:100%;}
-        .hero-cta-jp,.hero-cta-daily{display:flex;align-items:center;gap:14px;width:100%;max-width:360px;padding:14px 20px;border-radius:16px;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer;}
-        .hero-cta-jp{background:linear-gradient(135deg,#b45309,var(--gold));box-shadow:0 8px 28px rgba(245,158,11,.45);border:1px solid rgba(255,255,255,.2);}
-        .hero-cta-daily{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.5);backdrop-filter:blur(6px);}
-        .hero-cta-jp:hover,.hero-cta-daily:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.25);}
-        .hero-cta-icon{font-size:26px;flex-shrink:0;line-height:1;}
-        .hero-cta-content{display:flex;flex-direction:column;text-align:left;}
-        .hero-cta-label{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1.2;}
-        .hero-cta-sub{font-size:11.5px;color:rgba(255,255,255,.82);margin-top:2px;font-weight:500;}
-        .hero-cta-jp .hero-cta-label{color:#fff;}
-        .hero-cta-jp .hero-cta-sub{color:rgba(255,255,255,.88);}
-        @media(min-width:480px){
-            .hero-btns{flex-direction:row;justify-content:center;}
-            .hero-cta-jp,.hero-cta-daily{max-width:220px;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:16px 14px;}
-            .hero-cta-content{text-align:center;}
-            .hero-cta-icon{font-size:30px;}
-            .hero-cta-label{font-size:15px;}
-        }
-
-        /* JP HYPE ADDITIONS */
-
-        /* 1. JP URGENCY TICKER — below trust bar */
-        .jp-ticker{background:linear-gradient(90deg,#0a1a0e 0%,#0f3d2e 40%,#1a5c3a 60%,#0a1a0e 100%);color:#fff;padding:10px 18px;display:flex;align-items:center;justify-content:center;gap:14px;overflow:hidden;position:relative;}
-        .jp-ticker::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(245,158,11,.04) 60px,rgba(245,158,11,.04) 61px);}
-        .jp-ticker-crown{font-size:20px;animation:crownPop 2s ease-in-out infinite alternate;flex-shrink:0;}
-        @keyframes crownPop{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.15) rotate(3deg)}}
-        .jp-ticker-text{font-size:13px;font-weight:700;text-align:center;line-height:1.4;}
-        .jp-ticker-text strong{color:var(--gold);font-family:'Syne',sans-serif;font-size:15px;}
-        .jp-ticker-text em{font-style:normal;color:#86efac;}
-        .jp-ticker-btn{background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;border:none;padding:8px 16px;border-radius:30px;font-weight:800;font-size:12px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 12px rgba(245,158,11,.4);}
-
-        /* 2. HERO JP MEGA PILL — animated gold badge in hero */
-        .hero-jp-mega-pill{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(245,158,11,.22),rgba(249,115,22,.18));border:1px solid rgba(245,158,11,.5);border-radius:50px;padding:8px 18px;margin-bottom:14px;animation:pillGlow 2.5s ease-in-out infinite alternate;}
-        @keyframes pillGlow{from{box-shadow:0 0 0 0 rgba(245,158,11,.3)}to{box-shadow:0 0 18px 4px rgba(245,158,11,.25)}}
-        .hero-jp-mega-pill span{font-size:12.5px;font-weight:700;color:#fde68a;}
-        .hero-jp-mega-pill strong{font-family:'Syne',sans-serif;font-size:14px;color:var(--gold);}
-
-        /* 3. JP INTERSTITIAL — between FOMO and Free Tip */
-        .jp-interstitial{background:linear-gradient(145deg,#050d08 0%,#0c2b1d 50%,#050d08 100%);padding:28px 18px;position:relative;overflow:hidden;}
-        .jp-interstitial::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(245,158,11,.14) 0%,transparent 65%);pointer-events:none;}
-        .jp-interstitial::after{content:'';position:absolute;bottom:-60px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(16,185,129,.1) 0%,transparent 65%);pointer-events:none;}
-        .jp-int-inner{max-width:480px;margin:0 auto;text-align:center;color:#fff;position:relative;z-index:1;}
-        .jp-int-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#86efac;font-weight:700;margin-bottom:8px;}
-        .jp-int-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.2;margin-bottom:10px;}
-        .jp-int-title .gold{color:var(--gold);}
-        .jp-int-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;}
-        .jp-int-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:5px 13px;font-size:12px;font-weight:600;}
-        .jp-int-pill.hot{border-color:rgba(245,158,11,.4);color:var(--gold);}
-        .jp-int-scorebar{display:flex;gap:12px;justify-content:center;margin-bottom:16px;}
-        .jp-int-score{background:rgba(255,255,255,.06);border:1px solid rgba(16,185,129,.25);border-radius:14px;padding:12px 20px;text-align:center;flex:1;max-width:130px;}
-        .jp-int-score-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);line-height:1;}
-        .jp-int-score-num sup{font-size:14px;opacity:.7;}
-        .jp-int-score-lbl{font-size:11px;color:#a7f3d0;margin-top:4px;}
-        .jp-int-pool{font-size:13px;color:#d1fae5;margin-bottom:18px;opacity:.9;}
-        .jp-int-pool strong{color:var(--gold);font-family:'Syne',sans-serif;font-size:17px;}
-        .jp-int-cta{display:inline-block;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 8px 28px rgba(245,158,11,.45);letter-spacing:.3px;border:none;cursor:pointer;font-family:'Poppins',sans-serif;}
-        .jp-int-sub{font-size:11.5px;color:#6ee7b7;margin-top:10px;opacity:.8;}
-        .jp-int-proof{background:rgba(255,255,255,.05);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:10px 14px;font-size:12.5px;font-style:italic;margin:16px 0 0;text-align:left;color:#d1fae5;line-height:1.5;}
-
-        /* 4. ENHANCED JP HYPE CARD – floating money counter */
-        .jp-live-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);border-radius:30px;padding:6px 16px;font-size:12px;font-weight:700;color:var(--gold);margin-bottom:14px;}
-        .jp-live-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 1.4s infinite;}
-        .jp-urgency-strip{background:rgba(220,38,38,.18);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;color:#fca5a5;margin:14px 0 0;text-align:center;}
-
-        /* 5. FLOAT JP BUTTON */
-        .jp-float-btn{position:fixed;bottom:84px;left:14px;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:12px 16px;border-radius:50px;font-weight:800;font-size:12.5px;box-shadow:0 6px 22px rgba(245,158,11,.5);z-index:997;cursor:pointer;border:none;font-family:'Poppins',sans-serif;display:flex;align-items:center;gap:6px;animation:jpFloat 3s ease-in-out infinite;}
-        @keyframes jpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-        .jp-float-btn .jp-float-badge{background:rgba(0,0,0,.2);border-radius:20px;padding:2px 7px;font-size:10px;}
-
-        /* 6. PACKAGES MODAL - JP card mega highlight */
-        .modal-pkg-jp{background:linear-gradient(145deg,#0a1a0e,#0f3d2e);border:2px solid var(--gold);border-radius:16px;padding:18px;margin-bottom:12px;position:relative;overflow:hidden;}
-        .modal-pkg-jp::before{content:'⭐ TOP PICK';position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;font-size:10px;font-weight:800;padding:4px 14px;border-radius:0 14px 0 14px;letter-spacing:1px;}
-        .modal-pkg-jp strong{font-size:16px;color:var(--gold);display:block;margin-bottom:3px;font-family:'Syne',sans-serif;}
-        .modal-pkg-jp .conf{color:#86efac;font-size:12.5px;font-weight:600;margin-bottom:10px;}
-        .modal-pkg-jp .jp-modal-pool{background:rgba(245,158,11,.12);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px;color:#fde68a;font-weight:700;text-align:center;}
-        .modal-pkg-jp .jp-modal-proof{font-size:12px;color:#86efac;margin-bottom:10px;font-style:italic;}
-
-        @media(max-width:600px){
-            .jp-ticker{gap:10px;padding:9px 14px;}
-            .jp-ticker-text{font-size:12px;}
-            .jp-ticker-text strong{font-size:13.5px;}
-            .jp-int-title{font-size:22px;}
-            .jp-int-score-num{font-size:24px;}
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Tipsters — Live Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#060a0f;color:#e2f0ff;min-height:100vh;padding:20px 16px 60px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(#1a2d42 1px,transparent 1px),linear-gradient(90deg,#1a2d42 1px,transparent 1px);background-size:40px 40px;opacity:.2;pointer-events:none;}
+.wrap{max-width:500px;margin:0 auto;position:relative;}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,#0f766e,#10b981);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;}
+.logo-sub{font-size:10px;color:#5a7a96;}
+.live{background:#0c1f0e;border:1px solid #10b981;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#10b981;display:flex;align-items:center;gap:5px;}
+.dot{width:6px;height:6px;background:#10b981;border-radius:50%;animation:bl 1.4s infinite;}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
+.timer-bar{background:#0d1520;border:1px solid #1a2d42;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+.tl{font-size:11px;color:#5a7a96;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.td{font-size:10px;color:#5a7a96;margin-top:2px;}
+.tc{font-size:20px;font-weight:700;color:#f59e0b;font-family:monospace;}
+.hero{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid #10b981;border-radius:20px;padding:28px;margin-bottom:16px;text-align:center;}
+.hl{font-size:11px;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+.hn{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
+.hs{font-size:12px;color:#5a7a96;margin-top:6px;}
+.hd{font-size:11px;color:#10b981;margin-top:4px;font-family:monospace;}
+.repeat-badge{display:inline-flex;align-items:center;gap:8px;background:#1a2d42;border:1px solid #2a4060;border-radius:20px;padding:7px 16px;margin-top:12px;flex-wrap:wrap;justify-content:center;}
+.rb-val{font-weight:800;font-family:'Syne',sans-serif;font-size:15px;}
+.rb-label{color:#5a7a96;font-size:11px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.sc{background:#0d1520;border:1px solid #1a2d42;border-radius:14px;padding:16px;}
+.si{font-size:20px;margin-bottom:8px;}
+.sv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
+.mint{color:#10b981;} .blue{color:#38bdf8;} .gold{color:#f59e0b;} .red{color:#f43f5e;}
+.sl{font-size:11px;color:#5a7a96;margin-top:4px;font-weight:600;}
+.sl-sub{font-size:10px;color:#3a5a76;margin-top:2px;}
+.breakdown{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+.bt{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.brow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
+.brow:last-child{border-bottom:none;}
+.brn{font-size:13px;color:#e2f0ff;font-weight:600;}
+.brv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
+.brl{flex:1;margin-right:14px;}
+.brb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
+.brbf-u{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;transition:width .6s ease;}
+.brbf-r{height:100%;background:linear-gradient(90deg,#9f1239,#f43f5e);border-radius:4px;transition:width .6s ease;}
+.brbf-t{height:100%;background:linear-gradient(90deg,#92400e,#f59e0b);border-radius:4px;}
+.card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+.ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
+.bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
+.bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.b{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:linear-gradient(180deg,#10b981,#0f766e);}
+.b.now{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 0 8px rgba(245,158,11,.4);}
+.bl{font-size:8px;color:#5a7a96;font-family:monospace;}
+.row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
+.row:last-child{border-bottom:none;}
+.rn{font-size:13px;color:#e2f0ff;font-weight:600;}
+.rv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#10b981;}
+.rb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
+.rbf{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;}
+.rl{flex:1;margin-right:14px;}
+.loading{text-align:center;padding:50px 20px;color:#5a7a96;}
+.sp{width:32px;height:32px;border:3px solid #1a2d42;border-top-color:#10b981;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{background:#1c0a06;border:1px solid #f43f5e;border-radius:12px;padding:16px;color:#f87171;font-size:13px;line-height:1.6;margin-bottom:16px;display:none;}
+.btn{width:100%;padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:1.5px solid #1a2d42;background:transparent;color:#e2f0ff;font-family:'Poppins',sans-serif;margin-bottom:10px;}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <div class="top">
+    <div class="logo">
+      <div class="logo-icon">⚽</div>
+      <div><div class="logo-name">PRO TIPSTERS</div><div class="logo-sub">Live Analytics — All Visitors</div></div>
+    </div>
+    <div class="live"><span class="dot"></span>LIVE</div>
+  </div>
 
-<!-- HEADER -->
-<div class="header">
-    <div class="header-title">⚽ PRO TIPSTERS</div>
-    <a href="https://protipsweb.onrender.com/analytics.html" target="_blank" rel="noopener" class="live-counter" style="text-decoration:none;">
-        <span class="live-dot"></span>
-        <span id="live-counter">2,347 online</span>
-    </a>
+  <div class="timer-bar">
+    <div><div class="tl">⏱ Resets at Midnight</div><div class="td" id="dateLabel">--</div></div>
+    <div style="text-align:right"><div class="tc" id="timer">--:--:--</div><div class="td">until reset</div></div>
+  </div>
+
+  <div class="err" id="errBox"></div>
+  <div class="loading" id="loadDiv"><div class="sp"></div>Connecting to Firebase...</div>
+
+  <div id="mainDiv" style="display:none">
+
+    <!-- HERO: Unique visitors as main number -->
+    <div class="hero">
+      <div class="hl">👥 Unique Devices Today</div>
+      <div class="hn" id="bigNum">0</div>
+      <div class="hs">unique devices visited your site today</div>
+      <div class="hd" id="dateStr">--</div>
+      <div class="repeat-badge">
+        <span class="rb-label">Total clicks</span>
+        <span class="rb-val gold" id="totalBadge">0</span>
+        <span style="color:#2a4060;">|</span>
+        <span class="rb-label">Repeat visits</span>
+        <span class="rb-val red" id="repeatBadge">0</span>
+      </div>
+    </div>
+
+    <!-- STATS GRID -->
+    <div class="grid">
+      <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div><div class="sl-sub">unique devices</div></div>
+      <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div><div class="sl-sub">unique devices</div></div>
+      <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div><div class="sl-sub">unique devices</div></div>
+      <div class="sc"><div class="si">🔔</div><div class="sv red" id="notif">0</div><div class="sl">From Notifs</div></div>
+    </div>
+
+    <!-- UNIQUE vs REPEAT BREAKDOWN -->
+    <div class="breakdown">
+      <div class="bt">📱 Today's Visitor Breakdown</div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">✅ Unique Devices</div>
+          <div class="brb"><div class="brbf-u" id="uniqueBar" style="width:0%"></div></div>
+        </div>
+        <div class="brv mint" id="uniqueVal">0</div>
+      </div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">🔁 Repeat Visits</div>
+          <div class="brb"><div class="brbf-r" id="repeatBar" style="width:0%"></div></div>
+        </div>
+        <div class="brv red" id="repeatVal">0</div>
+      </div>
+      <div class="brow">
+        <div class="brl">
+          <div class="brn">📊 Total Clicks</div>
+          <div class="brb"><div class="brbf-t" style="width:100%"></div></div>
+        </div>
+        <div class="brv gold" id="totalVal">0</div>
+      </div>
+    </div>
+
+    <!-- HOURLY CHART -->
+    <div class="card">
+      <div class="ct">📈 Hourly Visits Today</div>
+      <div class="bars" id="barsDiv"></div>
+    </div>
+
+    <!-- TRAFFIC SOURCES -->
+    <div class="card">
+      <div class="ct">🔗 Traffic Sources</div>
+      <div class="row"><div class="rn">📘 Facebook</div><div class="rv" id="fb">0</div></div>
+      <div class="row"><div class="rn">🔔 Notifications</div><div class="rv" id="notifSrc">0</div></div>
+      <div class="row"><div class="rn">💬 WhatsApp</div><div class="rv" id="wa">0</div></div>
+      <div class="row"><div class="rn">🌐 Direct</div><div class="rv" id="direct">0</div></div>
+    </div>
+
+    <!-- LAST 7 DAYS -->
+    <div class="card">
+      <div class="ct">📆 Last 7 Days <span style="font-size:10px;color:#3a5a76;font-weight:400;">(unique devices)</span></div>
+      <div id="histDiv"></div>
+    </div>
+
+    <button class="btn" onclick="load()">🔄 Refresh</button>
+  </div>
 </div>
-
-<!-- URGENCY BAR -->
-<div class="urgency-bar">
-    ⏰ Today's tips close in: <span id="countdown">--:--:--</span> &nbsp;|&nbsp; Only <span id="slots-urgency">11</span> VIP slots left
-</div>
-
-<!-- TRUST BAR -->
-<div class="trust-bar">
-    Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>91.2%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong>
-</div>
-
-<!-- JP URGENCY TICKER -->
-<div class="jp-ticker">
-    <div class="jp-ticker-crown">🏆</div>
-    <div class="jp-ticker-text">
-        <strong>Ksh 122,000,000 MEGA JACKPOT</strong> — Slip closes Friday! &nbsp;<em>Last week: 14/17 ✅ BONUS WON 🔥</em>
-    </div>
-    <button class="jp-ticker-btn" onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})">Get Slip →</button>
-</div>
-
-<!-- NOTIFICATION -->
-<div id="live-notification" class="live-notification">
-    <div style="font-size:20px;flex-shrink:0;">✅</div>
-    <div class="notif-text" id="notification-content"></div>
-</div>
-
-<!-- ① HERO -->
-<div class="hero">
-    <!-- JP WIN FLASH BANNER — vibrant redesign -->
-    <div class="hero-jp-flash" style="background:linear-gradient(135deg,rgba(245,158,11,.25),rgba(249,115,22,.2));border:1px solid rgba(245,158,11,.6);padding:9px 18px;border-radius:30px;animation:pillGlow 2s ease-in-out infinite alternate;">
-        🔥 <strong>LAST WEEK:</strong> Mega JP <span class="hero-jp-score">14/17 ✅</span> &nbsp;•&nbsp; Midweek JP <span class="hero-jp-score">8/13</span> &nbsp;•&nbsp; <strong>MEGA BONUS WON! 🏆</strong>
-    </div>
-
-    <!-- MEGA JACKPOT PILL -->
-    <div class="hero-jp-mega-pill">
-        <span>🚨</span>
-        <span>THIS WEEK'S POOL:</span>
-        <strong>Ksh 122,000,000</strong>
-        <span>— Slip Ready 🔥</span>
-    </div>
-
-    <div class="hero-badge">⚽ Kenya's Most Trusted Tips Since 2022</div>
-
-    <h1>14 Out Of 17.<br>BONUS CASHED.<br><em>You In This Week?</em></h1>
-
-    <p class="hero-sub">Our analysts nailed <strong>14/17</strong> in the Mega Jackpot last weekend — members got paid. <br>This week's slip is sealed & ready. One Ksh 99 slip could be life-changing. 💰</p>
-
-    <!-- JP MINI SCORECARD — vibrant redesign -->
-    <div class="hero-jp-card" style="background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(245,158,11,.08));border:1px solid rgba(245,158,11,.4);box-shadow:0 8px 28px rgba(245,158,11,.15);">
-        <div class="hero-jp-item">
-            <div class="hero-jp-num" style="color:#fde68a;text-shadow:0 0 20px rgba(245,158,11,.6);">14<span>/17</span></div>
-            <div class="hero-jp-lbl">🏆 Mega JP<br><small style="color:#86efac;font-weight:700;">✅ BONUS WON · Apr 25-26</small></div>
-        </div>
-        <div class="hero-jp-divider"></div>
-        <div class="hero-jp-item">
-            <div class="hero-jp-num" style="color:#93c5fd;">8<span>/13</span></div>
-            <div class="hero-jp-lbl">⚡ Midweek JP<br><small style="color:#fca5a5;">No Bonus · Apr 24</small></div>
-        </div>
-        <div class="hero-jp-divider"></div>
-        <div class="hero-jp-item">
-            <div class="hero-jp-num" style="font-size:17px;color:var(--gold);">122M</div>
-            <div class="hero-jp-lbl">💰 This Week<br><small style="color:#86efac;font-weight:700;">Ksh Pool 🔥</small></div>
-        </div>
-    </div>
-
-    <!-- JP HERO TEASER CARD — more vibrant -->
-    <div onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;background:linear-gradient(135deg,rgba(180,83,9,.3),rgba(245,158,11,.15));border:1.5px solid rgba(245,158,11,.65);border-radius:14px;padding:12px 16px;margin:0 auto 16px;max-width:360px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;box-shadow:0 6px 24px rgba(245,158,11,.2);">
-        <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(245,158,11,.1),transparent);animation:shimmer 2.4s infinite;"></div>
-        <div style="font-size:28px;flex-shrink:0;animation:fireWiggle 1.2s ease-in-out infinite alternate;">🏆</div>
-        <div style="flex:1;text-align:left;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);font-weight:700;">This Week · Ksh 99 Only</div>
-            <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--gold);line-height:1.1;text-shadow:0 0 14px rgba(245,158,11,.4);">Ksh 122,000,000</div>
-            <div style="font-size:11px;color:#86efac;margin-top:2px;font-weight:600;">Our slip is sealed 🔒 Tap to see proof 👇</div>
-        </div>
-        <div style="background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;border-radius:30px;padding:8px 14px;font-size:12px;font-weight:800;white-space:nowrap;flex-shrink:0;box-shadow:0 4px 16px rgba(245,158,11,.6);">See Slip →</div>
-    </div>
-
-    <div class="hero-btns">
-        <a onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;" class="hero-cta-jp">
-            <span class="hero-cta-icon">🏆</span>
-            <span class="hero-cta-content">
-                <span class="hero-cta-label">Get This Week's Jackpot</span>
-                <span class="hero-cta-sub">Ksh 122M Pool · See Our Slip 👇</span>
-            </span>
-        </a>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="hero-cta-daily">
-            <span class="hero-cta-icon">⚽</span>
-            <span class="hero-cta-content">
-                <span class="hero-cta-label">Get Today's Daily Ticket</span>
-                <span class="hero-cta-sub">3–4 Picks · 95% Confidence · Ksh 99</span>
-            </span>
-        </a>
-    </div>
-
-    <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button id="heroInstallBtn" onclick="triggerInstall()" style="background:var(--gold);color:#fff;border:none;padding:12px 24px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 0 0 0 rgba(245,158,11,.7);display:inline-flex;align-items:center;gap:8px;animation:installPulse 2s infinite;">
-            📲 Install App — FREE
-        </button>
-    </div>
-    <div id="iosHint" style="display:none;margin-top:10px;font-size:12px;opacity:.9;background:rgba(255,255,255,.15);border-radius:10px;padding:8px 14px;">
-        Tap <strong>Share ⬆️</strong> then <strong>"Add to Home Screen"</strong>
-    </div>
-</div>
-
-<!-- STATS BAR -->
-<div class="stats-bar">
-    <div class="stat-item"><span class="stat-num">91.2%</span><span class="stat-label">Win Rate</span></div>
-    <div class="stat-item"><span class="stat-num">15K+</span><span class="stat-label">Members</span></div>
-    <div class="stat-item"><span class="stat-num" id="slots-display">11</span><span class="stat-label">VIP Slots Left</span></div>
-</div>
-
-<!-- ② RECENT RESULTS -->
-<div class="section">
-    <div class="section-title">📊 Yesterday's Results — 28/04/2026</div>
-    <div class="section-sub">Every pick verified. No edits. No excuses.</div>
-    <div class="table-wrap">
-        <table class="result-table">
-            <thead><tr><th>Match</th><th>Pick</th><th>Score</th><th>Odds</th><th>Result</th></tr></thead>
-            <tbody>
-                <tr><td data-label="Match">PSG vs Bayern Munich (UCL SF)</td><td data-label="Pick">Over 2.5 Goals</td><td data-label="Score" style="font-weight:700;color:var(--green);">5 - 4</td><td data-label="Odds">1.65</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Southampton vs Ipswich Town</td><td data-label="Pick">GG — Both Teams Score</td><td data-label="Score" style="font-weight:700;color:var(--green);">2 - 2</td><td data-label="Odds">1.80</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Atletico Madrid vs Athletic Club</td><td data-label="Pick">Home Win</td><td data-label="Score" style="font-weight:700;color:var(--green);">3 - 2</td><td data-label="Odds">1.75</td><td data-label="Result" class="win">✓ WIN</td></tr>
-            </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">5.18 — ALL WON ✅</td></tr></tfoot>
-        </table>
-    </div>
-    <div style="text-align:center;margin-top:16px;">
-        <button onclick="showTrackRecord()" style="background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;border:none;padding:13px 28px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 20px rgba(15,118,110,0.4);display:inline-flex;align-items:center;gap:8px;letter-spacing:.3px;">
-            📅 View Full Month Record →
-        </button>
-    </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- ③ FOMO -->
-<div class="section">
-    <div class="fomo-card">
-        <h3>💸 What Members Made Last Week</h3>
-        <p>Real returns on real stakes. Same picks you could get today.</p>
-        <div class="fomo-grid">
-            <div class="fomo-item"><div class="fomo-stake">Ksh 200 stake</div><div class="fomo-return">Ksh 1,476</div><div class="fomo-plan">Daily Ticket</div></div>
-            <div class="fomo-item"><div class="fomo-stake">Ksh 500 stake</div><div class="fomo-return">Ksh 3,690</div><div class="fomo-plan">Daily Ticket</div></div>
-            <div class="fomo-item"><div class="fomo-stake">Ksh 200 stake</div><div class="fomo-return">Ksh 4,680</div><div class="fomo-plan">Mega Jackpot</div></div>
-        </div>
-        <button class="btn-primary" onclick="showTodayPackagesModal()">Get Today's Ticket →</button>
-    </div>
-</div>
-
-<!-- ③b MEGA JACKPOT HYPE — moved here after FOMO -->
-<div class="section" id="jp-interstitial-section" style="padding-top:0;">
-    <div class="jp-hype-card" style="position:relative;overflow:hidden;">
-
-        <!-- ANIMATED BG PULSE -->
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.12) 0%,transparent 70%);pointer-events:none;animation:pillGlow 3s ease-in-out infinite alternate;"></div>
-
-        <!-- LIVE VIEWERS -->
-        <div class="jp-live-counter">
-            <span class="jp-live-dot"></span>
-            <span id="jp-buyers-live">1,247 people</span> viewing this slip right now 🔴
-        </div>
-
-        <!-- FIRE + BADGE -->
-        <div class="jp-fire-row" style="font-size:28px;">🔥💰🏆💰🔥</div>
-        <div class="jp-badge-top" style="font-size:11px;padding:5px 18px;background:linear-gradient(135deg,#92400e,var(--gold),#f97316,var(--gold));background-size:300% 300%;animation:shimmer 3s linear infinite;">🚨 KENYA'S UNDISPUTED JACKPOT KINGS 🚨</div>
-
-        <!-- HEADLINE -->
-        <h2 class="jp-title" style="font-size:28px;margin-top:10px;">
-            <span style="font-size:14px;display:block;letter-spacing:3px;text-transform:uppercase;opacity:.7;font-weight:600;margin-bottom:4px;">This Week's Pool</span>
-            <span style="color:var(--gold);text-shadow:0 0 30px rgba(245,158,11,.5);">Ksh 122,000,000</span><br>
-            <span style="font-size:20px;">Could Be <em style="color:var(--gold);">YOURS.</em> For Ksh 99.</span>
-        </h2>
-
-        <!-- LAST WEEK PROOF BANNER -->
-        <div style="background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(16,185,129,.05));border:1.5px solid rgba(16,185,129,.4);border-radius:14px;padding:12px 14px;margin-bottom:14px;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6ee7b7;font-weight:800;margin-bottom:8px;">📋 LAST WEEK'S VERIFIED PROOF</div>
-            <div style="display:flex;align-items:center;justify-content:space-around;gap:6px;">
-                <div style="text-align:center;">
-                    <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--gold);text-shadow:0 0 20px rgba(245,158,11,.5);line-height:1;">14<span style="font-size:18px;opacity:.7;">/17</span></div>
-                    <div style="font-size:11px;color:#6ee7b7;font-weight:700;">🏆 MEGA JP</div>
-                    <div style="font-size:10px;opacity:.6;">Apr 25-26</div>
-                    <div style="background:#10b981;color:#fff;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">BONUS WON ✅</div>
-                </div>
-                <div style="font-size:28px;opacity:.4;">|</div>
-                <div style="text-align:center;">
-                    <div style="font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:#93c5fd;line-height:1;">8<span style="font-size:18px;opacity:.7;">/13</span></div>
-                    <div style="font-size:11px;color:#93c5fd;font-weight:700;">⚡ MIDWEEK</div>
-                    <div style="font-size:10px;opacity:.6;">Apr 24</div>
-                    <div style="background:rgba(147,197,253,.2);color:#93c5fd;border:1px solid rgba(147,197,253,.4);border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">No Bonus</div>
-                </div>
-                <div style="font-size:28px;opacity:.4;">|</div>
-                <div style="text-align:center;">
-                    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold);line-height:1;">22/30</div>
-                    <div style="font-size:11px;color:var(--gold);font-weight:700;">📊 COMBINED</div>
-                    <div style="font-size:10px;opacity:.6;">Both Cards</div>
-                    <div style="background:rgba(245,158,11,.2);color:var(--gold);border:1px solid rgba(245,158,11,.4);border-radius:20px;padding:2px 8px;font-size:10px;font-weight:800;margin-top:4px;">73% Hit Rate</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- URGENCY STATEMENT -->
-        <p class="jp-sub" style="font-size:14px;font-weight:700;color:#fff;margin-bottom:12px;">Our analysts NAILED 14 out of 17 games last weekend. Members who bought the slip walked away with <span style="color:var(--gold);">REAL MONEY.</span> PSG just beat Bayern 5-4 last night — and we called it. This week's Mega Jackpot slip is already sealed. Are you on it or watching from the sidelines? 🔒🔥</p>
-
-        <!-- MEMBER WINS — upgraded -->
-        <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.35);border-radius:14px;padding:14px;margin-bottom:14px;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:800;">💸 MEMBERS PAID OUT LAST WEEK</div>
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;">
-                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
-                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 4,500</div>
-                    <div style="font-size:10px;opacity:.7;margin-top:2px;">James K.</div>
-                    <div style="font-size:9px;opacity:.5;">Nairobi 🏙️</div>
-                </div>
-                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
-                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 12,000</div>
-                    <div style="font-size:10px;opacity:.7;margin-top:2px;">Kevin O.</div>
-                    <div style="font-size:9px;opacity:.5;">Kisumu 🏙️</div>
-                </div>
-                <div style="background:rgba(0,0,0,.2);border-radius:10px;padding:8px 4px;">
-                    <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gold);">Ksh 8,750</div>
-                    <div style="font-size:10px;opacity:.7;margin-top:2px;">Mary W.</div>
-                    <div style="font-size:9px;opacity:.5;">Mombasa 🏙️</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TESTIMONIALS -->
-        <div class="jp-quote" style="border-left:3px solid var(--gold);font-style:italic;">"Niliamini Pro Tipsters na walinikuwa waaminifu. Ksh 99 tu — nikapata Ksh 4,500 bonus! Nitalipa tena bila shaka! 🙏" — <strong>Peter M., Kisumu</strong></div>
-        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #6ee7b7;font-style:italic;">"14 correct last weekend! First time buying — got Ksh 8,750 bonus. THESE GUYS KNOW THEIR STUFF. 🔥" — <strong>Samuel K., Nairobi</strong></div>
-        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #93c5fd;font-style:italic;">"Ksh 12,000 in my account just like that. My friends thought I was lying until I showed them the M-Pesa msg 😂💪" — <strong>Kevin O., Kisumu</strong></div>
-
-        <!-- PROOF BUTTON ROW -->
-        <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.6);margin:14px 0 8px;">👇 SEE THE ACTUAL SLIPS — every pick, every score, unedited</p>
-        <div class="jp-btn-row">
-            <button class="jp-btn-mega" onclick="showMegaJP()" style="font-size:13px;">🏆 Last Week's Mega JP Slip</button>
-            <button class="jp-btn-mid" onclick="showMidweekJP()" style="font-size:13px;">⚡ Last Week's Midweek JP Slip</button>
-        </div>
-
-        <!-- THIS WEEK POOL BOX — upgraded -->
-        <div class="jp-pool-box" style="background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(249,115,22,.1));border:1.5px solid rgba(245,158,11,.5);margin-top:16px;">
-            <div class="jp-pool-label" style="font-size:12px;letter-spacing:2px;">🚨 THIS WEEK — DON'T MISS IT</div>
-            <div class="jp-pool-num" style="font-size:32px;text-shadow:0 0 20px rgba(245,158,11,.4);">Ksh 122,000,000</div>
-            <div class="jp-pool-sub">Sportpesa Mega Jackpot · <strong style="color:var(--gold);">Slip Closes Friday 18:00 EAT</strong></div>
-            <div style="margin-top:8px;font-size:12px;color:#fde68a;font-weight:600;">⚡ Ksh 99 per slip · Results every Saturday · Instant WhatsApp delivery</div>
-        </div>
-
-        <!-- TRUST PILLS -->
-        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:12px 0;">
-            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">✅ 91.2% Daily Accuracy</span>
-            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🏆 Mega JP Bonus Won</span>
-            <span style="background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🤖 AI + Expert Analysis</span>
-            <span style="background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">📲 WhatsApp Delivery</span>
-            <span style="background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3);border-radius:30px;padding:5px 12px;font-size:11px;font-weight:700;">🔒 Sealed & Ready</span>
-        </div>
-
-        <!-- URGENCY COUNTDOWN -->
-        <div class="jp-urgency-strip" style="font-size:14px;padding:12px;">
-            🚨 SLIP DEADLINE: <span id="jp-deadline-timer" style="font-size:16px;color:var(--gold);font-family:'Syne',sans-serif;">--:--:--</span> &nbsp;|&nbsp; <strong style="color:var(--gold);">Ksh 599 only. Spots filling fast!</strong>
-        </div>
-
-        <!-- MAIN CTA -->
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:360px;margin:14px auto 0;display:block;text-decoration:none;font-size:17px;font-weight:800;background:linear-gradient(135deg,#92400e,var(--gold),#f97316);box-shadow:0 10px 36px rgba(245,158,11,.55);letter-spacing:.5px;animation:pillGlow 2s ease-in-out infinite alternate;">🏆 GET THIS WEEK'S SLIP — Ksh 599 →</a>
-        <div style="text-align:center;font-size:11px;color:#6ee7b7;margin-top:8px;opacity:.75;">📱 M-Pesa to <strong>Till 6012928</strong> · Instant WhatsApp delivery after payment</div>
-        <div style="text-align:center;font-size:10px;opacity:.45;margin-top:6px;">Over 2,400 members trust us every week 🇰🇪</div>
-    </div>
-</div>
-
-<!-- ④ FREE TIP -->
-<div class="section" id="free-tip-anchor">
-    <div class="section-title">🎁 Today's Free Tip</div>
-    <div class="section-sub">One real pick — on us. No payment needed.</div>
-    <div class="free-tip-section">
-        <div class="free-tip-match">Atletico Madrid vs Arsenal</div>
-        <div class="free-tip-badges">
-            <span class="badge badge-green">GG — Both Teams to Score</span>
-            <span class="badge badge-gold">Odds: 1.80</span>
-            <span class="badge badge-blue">UCL Semi-Final 1st Leg • Tonight 22:00 EAT</span>
-        </div>
-        <div class="free-tip-reason">Tonight's UCL semifinal at the Metropolitano is a must-watch — and GG is our strongest play. Here's why:<br><br><strong>Atletico will score:</strong> Julian Alvarez (19 goals, 9 assists in 47 games) is fully rested after sitting out the weekend. Sorloth bagged a brace in Saturday's 3-2 win over Athletic Club. Atletico have scored AND conceded in 10 of their last 11 UCL games, and in 7 of 8 home UCL matches this season.<br><br><strong>Arsenal will score:</strong> The Gunners have scored in every UCL game this season across 12 unbeaten matches. Viktor Gyokeres, Saka, and Martinelli carry real danger, and Arsenal's set-piece delivery is elite — 17 PL goals from corners this term.<br><br><strong>The mood is goals:</strong> PSG beat Bayern 5-4 last night in the most insane UCL semifinal ever — it's a week for goals in Europe. Arsenal thrashed Atletico 4-0 at the Emirates in the group stage and will not sit back. GG at 1.80 is top value. 🔒🔥</div>
-        <div class="free-tip-blur">
-            <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
-            <div class="blur-line">Lens vs Toulouse • Home Win • Odds 2.10</div>
-            <div class="blur-line">Leicester vs Hull City • Over 2.5 • Odds 1.85</div>
-            <div class="blur-line">West Brom vs Watford • GG • Odds 1.75</div>
-        </div>
-        <div class="full-ticket-teaser">Combined odds on full ticket: ~11.60 • Ksh 200 stake = Ksh 2,320</div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
-    </div>
-</div>
-
-<!-- ⑤ SOCIAL PROOF -->
-<div class="section">
-    <div class="section-title">💬 What Members Are Saying</div>
-    <div class="section-sub">Real WhatsApp screenshots. Real wins.</div>
-    <div class="wa-bubbles">
-        <div class="wa-bubble-wrap">
-            <div class="wa-avatar">DK</div>
-            <div class="wa-bubble"><div class="wa-name">David Kamau</div>Niliweka Ksh 500 na nikapata Ksh 3,690! Pro Tipsters wanajua kazi 🔥<div class="wa-time">Yesterday 7:42 PM ✓✓</div></div>
-        </div>
-        <div class="wa-bubble-wrap right">
-            <div class="wa-avatar">MW</div>
-            <div class="wa-bubble"><div class="wa-name">Mercy Wanjiku</div>3rd week straight winning. My husband thought I was lucky but it's all Pro Tipsters 😂<div class="wa-time">Yesterday 8:15 PM ✓✓</div></div>
-        </div>
-        <div class="wa-bubble-wrap">
-            <div class="wa-avatar">KO</div>
-            <div class="wa-bubble"><div class="wa-name">Kevin Omondi</div>Mega Jackpot bonus ya Ksh 12,000! Aki these guys are serious 💪<div class="wa-time">2 days ago ✓✓</div></div>
-        </div>
-    </div>
-</div>
-
-<!-- ⑥ PACKAGES -->
-<div class="section">
-    <div class="section-title">💎 Choose Your Package</div>
-    <div class="section-sub">Pay via M-Pesa Till <strong>6012928</strong> then WhatsApp us your name + amount</div>
-    <div class="package-grid">
-        <div class="pack">
-            <div class="pack-name">Daily Ticket</div>
-            <div class="pack-price">Ksh 99 <span>/ day</span></div>
-            <div class="pack-conf">⚡ 95% Confidence • 3–4 Matches</div>
-            <ul class="pack-features">
-                <li>3–4 carefully selected matches</li>
-                <li>Combined odds ~7x–10x</li>
-                <li>Instant WhatsApp delivery</li>
-                <li>Analysis + reasoning included</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket →</a>
-        </div>
-        <div class="pack featured">
-            <div class="pack-badge">BEST VALUE</div>
-            <div class="pack-name">5-Day Subscription</div>
-            <div class="pack-price">Ksh 499 <span>/ 5 days</span></div>
-            <div class="pack-conf">💪 Save Ksh 496 vs daily</div>
-            <ul class="pack-features">
-                <li>Daily tips for 5 consecutive days</li>
-                <li>Priority WhatsApp delivery</li>
-                <li>Members average Ksh 8,000+/week</li>
-                <li>Weekend special picks included</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days →</a>
-        </div>
-        <div class="pack">
-            <div class="pack-name">Mega Jackpot</div>
-            <div class="pack-price">Ksh 599 <span>/ slip</span></div>
-            <div class="pack-conf">🤖 Expert + AI • 17-Game Slip</div>
-            <ul class="pack-features">
-                <li>Full 17-game jackpot slip</li>
-                <li>AI-powered predictions</li>
-                <li>Won 2 bonuses this month</li>
-                <li>Ksh 122M+ pool this week</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot →</a>
-        </div>
-    </div>
-</div>
-
-<!-- ⑦ AI ODDS GENERATOR -->
-<div class="section">
-    <div class="ai-section">
-        <h2>🤖 AI Odds Generator</h2>
-        <p>Enter your target odds and our AI builds the perfect ticket for you</p>
-        <div class="ai-input-row">
-            <input id="aiInput" class="ai-input" type="number" min="2" max="23" placeholder="Enter odds (e.g. 10)" />
-            <button class="ai-btn" onclick="runAI()">Generate →</button>
-        </div>
-        <div class="ai-error" id="aiError"></div>
-        <div class="ai-loading" id="aiLoading"><div class="spinner"></div>AI analysing matches...</div>
-        <div class="ai-result" id="aiResult">
-            <div class="ai-confidence" id="aiConfidence"></div>
-            <div class="pack-teaser">
-                <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700;">YOUR AI TICKET</div>
-                <div id="aiMatch1" class="blur-row"></div>
-                <div id="aiMatch2" class="blur-row"></div>
-                <div id="aiMatch3"></div>
-                <div id="aiOdds" class="teaser-total"></div>
-            </div>
-            <div class="ai-price-box">
-                <div class="ai-price-label">Unlock Full Ticket</div>
-                <div class="ai-price-num" id="aiPrice"></div>
-                <div class="ai-price-tier" id="aiTier"></div>
-            </div>
-            <div class="calc-box">
-                <div style="font-size:13px;font-weight:700;color:var(--green);">💰 Calculate Your Return</div>
-                <div class="calc-row">
-                    <input id="stakeInput" class="calc-input" type="number" placeholder="Your stake (Ksh)" oninput="calcReturn()" />
-                    <span style="font-size:13px;color:var(--muted);">→</span>
-                    <div style="font-size:16px;font-weight:800;color:var(--green);" id="returnAmt">--</div>
-                </div>
-            </div>
-            <a id="aiWaBtn" href="#" class="wa-btn" style="text-align:center;display:block;text-decoration:none;"></a>
-        </div>
-    </div>
-</div>
-
-<!-- ⑨ AVIATOR -->
-<div class="section">
-    <div class="aviator-card">
-        <h2>✈️ Aviator Signals</h2>
-        <p>Real-time crash point predictions. Know when to cash out before the plane flies away.</p>
-        <div class="av-features">
-            <span class="av-feat">Live Signals</span>
-            <span class="av-feat">83% Accuracy</span>
-            <span class="av-feat">WhatsApp Alerts</span>
-        </div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20signals.%20How%20does%20it%20work%3F" class="wa-btn" style="text-decoration:none;">Ask About Aviator Signals →</a>
-    </div>
-</div>
-
-<!-- ⑩ FAQ -->
-<div class="section">
-    <div class="section-title">❓ Frequently Asked Questions</div>
-    <div style="margin-top:16px;">
-        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I pay? <span class="arrow">▼</span></button><div class="faq-a">Send M-Pesa to Till Number <strong>6012928</strong>, then WhatsApp us your name and amount to +254 762 945 530. You'll receive your tips within minutes.</div></div>
-        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">When are tips sent? <span class="arrow">▼</span></button><div class="faq-a">Daily tickets are sent by 10:00 AM EAT. Weekend special picks are sent Friday evening. Mega Jackpot slips are sent Thursday–Friday before the weekend games.</div></div>
-        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a tip loses? <span class="arrow">▼</span></button><div class="faq-a">We have a 91.2% win rate — but no tipster wins 100%. If you lose, we offer a consolation pick the next day free of charge. Our transparency is unmatched.</div></div>
-        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this legal in Kenya? <span class="arrow">▼</span></button><div class="faq-a">Yes. Sports betting is legal and regulated in Kenya under the Betting Control and Licensing Board (BCLB). We provide tips and analysis only — you place bets on licensed platforms like Sportpesa, Betika, or 1xBet.</div></div>
-    </div>
-</div>
-
-<footer>
-    <strong>⚽ Pro Tipsters</strong><br>
-    Kenya's Most Trusted Betting Tips Service<br>
-    WhatsApp: +254 762 945 530 &nbsp;•&nbsp; M-Pesa Till: 6012928<br>
-    <div class="gambling">⚠️ Gamble Responsibly. 18+ Only. Betting involves risk.</div>
-</footer>
-
-<!-- FLOAT BUTTONS -->
-<button class="jp-float-btn" onclick="document.getElementById('jp-interstitial-section').scrollIntoView({behavior:'smooth'})">
-    🏆 Mega JP <span class="jp-float-badge">Ksh 122M</span>
-</button>
-<button class="free-tip-float" onclick="scrollToFreeTip()">🎁 Free Tip</button>
-<a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20tips!" class="whatsapp-float">💬 WhatsApp Us</a>
-
-<!-- PWA BANNER -->
-<div class="pwa-banner" id="pwaBanner">
-    <div class="pwa-banner-icon">📲</div>
-    <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tip notifications — free!</span></div>
-    <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
-    <button class="pwa-close" onclick="dismissPWA()">✕</button>
-</div>
-
-<!-- PACKAGES MODAL -->
-<div id="todayPackagesModal" class="modal" onclick="if(event.target===this)hideTodayPackagesModal()">
-    <div class="modal-content">
-        <div class="modal-handle"></div>
-        <div class="modal-title">🏆 Choose Your Package</div>
-        <div class="modal-pkg-jp">
-            <strong>🏆 Mega Jackpot — Ksh 599</strong>
-            <div class="conf">🤖 Expert + AI · 17-Game Slip · 2 Bonuses Won This Month</div>
-            <div class="jp-modal-pool">💰 This Week's Pool: <span style="font-size:17px;">Ksh 122,000,000</span></div>
-            <div class="jp-modal-proof">"Niliweka 200 bob nikavuna Ksh 4,500 — James K., Nairobi 🙌"</div>
-            <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px;color:#d1fae5;">Full 17-game slip built by AI + expert analysts. One win can change everything. Last week: <strong style="color:var(--gold);">13/17 BONUS</strong> ✅</div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);">🏆 Get Mega Jackpot — Ksh 599</a>
-        </div>
-        <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div><div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div></div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
-        <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a></div>
-        <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
-    </div>
-</div>
-
-<!-- TRACK RECORD MODAL -->
-<div id="trackRecordModal" class="modal" onclick="if(event.target===this)hideTrackRecord()">
-    <div class="modal-content" style="max-width:480px;">
-        <div class="modal-handle"></div>
-        <div class="modal-title">📊 This Month's Track Record</div>
-        <div class="table-wrap"><table class="track-table"><thead><tr><th>Date</th><th style="text-align:left;">Matches</th><th>Tips</th><th>Wins</th><th>Result</th></tr></thead><tbody id="trackRecordBody"></tbody></table></div>
-        <div style="text-align:center;margin-top:14px;font-size:13.5px;" id="trackSummary"></div>
-        <button class="modal-back" onclick="hideTrackRecord()" style="margin-top:12px;">Close</button>
-    </div>
-</div>
-
-<!-- MEGA JACKPOT SLIP MODAL -->
-<div id="megaJPModal" class="modal" onclick="if(event.target===this)document.getElementById('megaJPModal').style.display='none'">
-    <div class="modal-content" style="max-width:500px;">
-        <div class="modal-handle"></div>
-        <div class="modal-title">🏆 Mega Jackpot Slip — Apr 25-26, 2026</div>
-        <div style="text-align:center;margin-bottom:10px;">
-            <span class="slip-header-badge" style="background:#ecfdf5;color:#10b981;">14/17 Correct ✅</span>
-            <span class="slip-header-badge" style="background:#fef3c7;color:#92400e;margin-left:6px;">BONUS WIN 🎉</span>
-        </div>
-        <div class="table-wrap">
-        <table class="slip-table">
-            <thead><tr><th>#</th><th style="text-align:left;">Match</th><th>Pick</th><th>Score</th><th>Result</th></tr></thead>
-            <tbody>
-                <tr><td>1</td><td>West Ham vs Everton</td><td>1</td><td class="slip-score">2-1</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>2</td><td>Bologna vs AS Roma</td><td>1</td><td class="slip-score">0-2</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>3</td><td>Hellas Verona vs Lecce</td><td>2</td><td class="slip-score">0-0</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>4</td><td>Atletico Madrid vs Athletic Club</td><td>1</td><td class="slip-score">3-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>5</td><td>Lorient vs Strasbourg</td><td>1</td><td class="slip-score">2-1</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>6</td><td>Oviedo vs Elche</td><td>1</td><td class="slip-score">1-0</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>7</td><td>Granada CF vs Almeria</td><td>2</td><td class="slip-score">1-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>8</td><td>Sturm Graz vs Austria Vienna</td><td>1</td><td class="slip-score">2-0</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>9</td><td>Hibernian vs Heart Of Midlothian</td><td>2</td><td class="slip-score">1-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>10</td><td>Apollon Limassol vs Omonia Nicosia</td><td>2</td><td class="slip-score">0-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>11</td><td>Huesca vs Zaragoza</td><td>2</td><td class="slip-score">0-1</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>12</td><td>Leganes vs FC Andorra</td><td>2</td><td class="slip-score">2-2</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>13</td><td>Osasuna vs Sevilla</td><td>1</td><td class="slip-score">2-0</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>14</td><td>Galatasaray vs Fenerbahçe</td><td>1</td><td class="slip-score">2-1</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>15</td><td>Dinamo Bucuresti vs Rapid</td><td>2</td><td class="slip-score">0-1</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>16</td><td>AGF Aarhus vs Midtjylland</td><td>2</td><td class="slip-score">1-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>17</td><td>AC Milan vs Juventus</td><td>2</td><td class="slip-score">1-2</td><td class="slip-win">✓ WIN</td></tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="slip-result-bar">
-            <span style="font-size:13px;color:#334155;">Correct Predictions:</span>
-            <span class="slip-result-score">14 / 17 🏆</span>
-        </div>
-        <div style="background:#ecfdf5;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;color:#065f46;font-weight:600;text-align:center;">🎉 MEGA BONUS WIN! Members received Ksh 8,750+ payouts this week!</div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599" class="wa-btn" style="text-decoration:none;display:block;margin-top:12px;text-align:center;">Get This Week's Slip — Ksh 599 →</a>
-        <button class="modal-back" onclick="document.getElementById('megaJPModal').style.display='none'" style="margin-top:10px;">Close</button>
-    </div>
-</div>
-
-<!-- MIDWEEK JACKPOT SLIP MODAL -->
-<div id="midweekJPModal" class="modal" onclick="if(event.target===this)document.getElementById('midweekJPModal').style.display='none'">
-    <div class="modal-content" style="max-width:500px;">
-        <div class="modal-handle"></div>
-        <div class="modal-title">⚡ Midweek JP Slip — Apr 24, 2026</div>
-        <div style="text-align:center;margin-bottom:10px;">
-            <span class="slip-header-badge" style="background:#eff6ff;color:#1d4ed8;">8/13 Correct ✅</span>
-            <span class="slip-header-badge" style="background:#f0fdf4;color:#166534;margin-left:6px;">BONUS WIN 🎉</span>
-        </div>
-        <div class="table-wrap">
-        <table class="slip-table">
-            <thead><tr><th>#</th><th style="text-align:left;">Match</th><th>Pick</th><th>Score</th><th>Result</th></tr></thead>
-            <tbody>
-                <tr><td>1</td><td>MVV vs FC OSS</td><td>2</td><td class="slip-score">0-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>2</td><td>Dordrecht vs Willem II</td><td>2</td><td class="slip-score">1-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>3</td><td>Laval vs Rodez</td><td>1</td><td class="slip-score">0-0</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>4</td><td>VVV Venlo vs Almere City</td><td>2</td><td class="slip-score">3-1</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>5</td><td>Clermont Foot vs Bastia</td><td>2</td><td class="slip-score">1-1</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>6</td><td>Jong Ajax vs Jong Utrecht</td><td>2</td><td class="slip-score">0-2</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>7</td><td>Albacete vs Eibar</td><td>2</td><td class="slip-score">0-3</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>8</td><td>Treaty United vs UCD</td><td>2</td><td class="slip-score">0-3</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>9</td><td>Wexford vs Cobh Ramblers</td><td>1</td><td class="slip-score">2-0</td><td class="slip-win">✓ WIN</td></tr>
-                <tr><td>10</td><td>Sunderland vs Nottingham Forest</td><td>1</td><td class="slip-score">0-5</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>11</td><td>Leicester vs Millwall</td><td>2</td><td class="slip-score">1-1</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>12</td><td>Derry City vs Shamrock Rovers</td><td>2</td><td class="slip-score">1-0</td><td class="slip-loss">✗ LOSS</td></tr>
-                <tr><td>13</td><td>Alverca vs Arouca</td><td>2</td><td class="slip-score">2-1</td><td class="slip-loss">✗ LOSS</td></tr>
-            </tbody>
-        </table>
-        </div>
-        <div class="slip-result-bar">
-            <span style="font-size:13px;color:#334155;">Correct Predictions:</span>
-            <span class="slip-result-score">8 / 13 ⚡</span>
-        </div>
-        <div style="background:#eff6ff;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;color:#1e40af;font-weight:600;text-align:center;">⚡ Midweek Bonus Secured! 8 out of 13 — members paid out!</div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Midweek%20Jackpot%20slip" class="wa-btn" style="text-decoration:none;display:block;margin-top:12px;text-align:center;">Get Next Midweek Slip →</a>
-        <button class="modal-back" onclick="document.getElementById('midweekJPModal').style.display='none'" style="margin-top:10px;">Close</button>
-    </div>
-</div>
-
 
 <script>
-let viewers=2147;
-setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';},3200);
+firebase.initializeApp({
+  apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+  authDomain:"pro-tipsters-94171.firebaseapp.com",
+  projectId:"pro-tipsters-94171",
+  storageBucket:"pro-tipsters-94171.firebasestorage.app",
+  messagingSenderId:"737923794509",
+  appId:"1:737923794509:web:921f6a558c11786beebe04"
+});
+const db = firebase.firestore();
 
-function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
-updateCountdown();setInterval(updateCountdown,1000);
+function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
-// ── MEGA JACKPOT DEADLINE COUNTDOWN (counts to next Friday 18:00 EAT) ──
-function updateJPDeadline(){
-  const now=new Date();
-  const day=now.getDay(); // 0=Sun,5=Fri
-  const daysToFri=day<=5?(5-day):(7-(day-5));
-  const target=new Date(now);
-  target.setDate(now.getDate()+daysToFri);
-  target.setHours(18,0,0,0);
-  if(now>=target){target.setDate(target.getDate()+7);}
-  const diff=target-now;
-  const h=String(Math.floor(diff/3600000)).padStart(2,'0');
-  const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  const el=document.getElementById('jp-deadline-timer');
-  if(el)el.textContent=`${h}h ${m}m ${s}s`;
-}
-updateJPDeadline();setInterval(updateJPDeadline,1000);
-
-// ── JP LIVE VIEWERS COUNTER ──
-let jpViewers=847;
-setInterval(()=>{jpViewers=Math.max(600,Math.min(1100,jpViewers+Math.floor(Math.random()*60)-25));const el=document.getElementById('jp-buyers-live');if(el)el.textContent=jpViewers.toLocaleString()+' people';},4800);
-
-let slots=11;
-function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
-updateSlots();
-setInterval(()=>{if(slots>3&&Math.random()>0.65){slots--;updateSlots();}},40000);
-
-const notifications=[
-    {name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},
-    {name:'Mercy Wanjiku',number:'0712••••',pkg:'5-Day Plan'},
-    {name:'Kevin Omondi',number:'0756••••',pkg:'Mega Jackpot'},
-    {name:'Aisha Mohammed',number:'0789••••',pkg:'Daily Ticket'},
-    {name:'John Mwangi',number:'0723••••',pkg:'5-Day Plan'},
-    {name:'Esther Njeri',number:'0771••••',pkg:'Mega Jackpot'},
-    {name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},
-    {name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'},
-    {name:'Samuel Kipchoge',number:'0712••••',pkg:'Mega Jackpot'},
-    {name:'Faith Wambui',number:'0790••••',pkg:'Mega Jackpot'},
-    {name:'Dennis Mutua',number:'0733••••',pkg:'Mega Jackpot'},
-];
-function playBeep(){}
-function showLiveNotification(){const notif=notifications[Math.floor(Math.random()*notifications.length)];const container=document.getElementById('live-notification');const el=document.getElementById('notification-content');el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;container.classList.remove('slide-out');container.style.display='flex';container.classList.add('slide-in');playBeep();setTimeout(()=>{container.classList.remove('slide-in');container.classList.add('slide-out');setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);},6500);}
-setTimeout(()=>{showLiveNotification();setInterval(()=>{if(Math.random()>0.3)showLiveNotification();},42000);},4000);
-
-const aiTiers=[
-    {min:2,max:4,price:50,label:'Entry Odds (2x–4x)',conf:'93%',odds:'~3.45',matches:['Arsenal vs Wolves • Home Win','Brighton vs Nott Forest • Over 1.5','Man Utd vs Bournemouth • GG']},
-    {min:5,max:9,price:99,label:'Standard Odds (5x–9x)',conf:'89%',odds:'~7.80',matches:['Man City vs Newcastle • Over 2.5','Liverpool vs Chelsea • GG','Barca vs Real Madrid • Home Win']},
-    {min:10,max:14,price:199,label:'High Odds (10x–14x)',conf:'85%',odds:'~12.40',matches:['Dortmund vs Bayern • Over 3.5','PSG vs Monaco • Home Win & Over 2.5','Inter vs Napoli • GG']},
-    {min:15,max:19,price:299,label:'Premium Odds (15x–19x)',conf:'81%',odds:'~17.60',matches:['Atletico vs Sevilla • Away Win','Ajax vs PSV • GG & Over 2.5','Celtic vs Rangers • Correct Score 2-1']},
-    {min:20,max:23,price:499,label:'Elite Odds (20x–23x)',conf:'76%',odds:'~22.80',matches:['Betis vs Braga • Correct Score 2-1','Udinese vs Lecce • Home Win & Over 2.5','Lazio vs Fiorentina • GG & Over 3.5']},
-];
-let currentOddsVal=0;
-function calcReturn(){const stake=parseFloat(document.getElementById('stakeInput').value);const el=document.getElementById('returnAmt');if(!stake||stake<1||currentOddsVal<2){el.textContent='--';return;}el.textContent='Ksh '+Number((stake*currentOddsVal).toFixed(0)).toLocaleString();}
-function runAI(){const rawVal=document.getElementById('aiInput').value.trim();const errEl=document.getElementById('aiError');const loading=document.getElementById('aiLoading');const result=document.getElementById('aiResult');errEl.style.display='none';result.style.display='none';const val=parseFloat(rawVal);if(!rawVal||isNaN(val)){errEl.textContent='⚠️ Please enter a number between 2 and 23.';errEl.style.display='block';return;}if(val<2){errEl.textContent='📉 Minimum odds are 2x. Please enter 2 or higher.';errEl.style.display='block';return;}if(val>23){errEl.textContent='📈 Our AI maximum is +23x odds. Please enter 23 or lower.';errEl.style.display='block';return;}const tier=aiTiers.find(t=>Math.floor(val)>=t.min&&Math.floor(val)<=t.max);if(!tier){errEl.textContent='⚠️ Enter odds between 2 and 23.';errEl.style.display='block';return;}loading.style.display='flex';setTimeout(()=>{loading.style.display='none';currentOddsVal=parseFloat(tier.odds.replace('~',''));document.getElementById('aiMatch1').textContent=tier.matches[0];document.getElementById('aiMatch2').textContent=tier.matches[1];document.getElementById('aiMatch3').textContent=tier.matches[2];document.getElementById('aiOdds').textContent='Combined Odds: '+tier.odds;document.getElementById('aiConfidence').textContent=tier.conf+' AI Confidence';document.getElementById('aiPrice').textContent='Ksh '+tier.price;document.getElementById('aiTier').textContent=tier.label;const waText=encodeURIComponent('Hello Pro Tipsters, I used the AI Odds Generator and want a '+tier.odds+' odds ticket for Ksh '+tier.price+'. How do I pay?');const btn=document.getElementById('aiWaBtn');btn.href='https://wa.me/254762945530?text='+waText;btn.textContent='Get Ticket for Ksh '+tier.price+' →';document.getElementById('stakeInput').value='';document.getElementById('returnAmt').textContent='--';result.style.display='block';},1800);}
-document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='Enter')runAI();});
-
-function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
-function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
-function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[
-['28/04','PSG vs Bayern Munich • Southampton vs Ipswich • Middlesbrough vs Millwall','3','3'],
-['27/04','Atletico Madrid vs Athletic Club • Dortmund vs Freiburg • Torino vs Inter Milan','3','3'],
-['26/04','Cordoba vs Sp. Gijon • Molde vs Valerenga • Paris FC vs Lille','3','3'],
-['25/04','Arsenal vs Newcastle • Liverpool vs Crystal Palace • Fulham vs Aston Villa','3','3'],
-['24/04','Sunderland vs Nott\'m Forest • Napoli vs Cremonese • RB Leipzig vs Union Berlin','3','3'],
-['23/04','Levante vs Sevilla • Beşiktaş vs Alanyaspor • Real Oviedo vs Villarreal','3','3'],
-['22/04','Spartak Moscow vs Krasnodar • Stuttgart vs Freiburg • Casa Pia vs Braga','3','3'],
-['21/04','Brighton vs Chelsea • Coventry vs Portsmouth • West Brom vs Watford','3','3'],
-['20/04','Lecce vs Fiorentina • Den Bosch vs Jong Utrecht • Crystal Palace vs West Ham','3','3'],
-['19/04','AVL vs Sunderland • Everton vs LFC • NFO vs Burnley','3','3'],
-['18/04','Brentford vs Fulham • Leeds vs Wolves • Chelsea vs Man Utd','3','2'],
-['17/04','St.Pauli vs Cologne • Inter vs Cagliari • Sassuolo vs Como','3','3'],
-['16/04','Bayern vs Dortmund • Napoli vs Roma • Sevilla vs Atletico','3','3'],
-['15/04','Arsenal vs Sporting • Bayern vs Real Madrid • Inter vs Juve','3','2'],
-['14/04','Liverpool vs PSG • Atletico vs Barca • Man Utd vs Leeds','3','3'],
-['13/04','Fiorentina vs Lazio • Levante vs Getafe • Tottenham vs Man City','3','3'],
-['12/04','Barca vs Espanyol • Mallorca vs Rayo • Osasuna vs Betis','3','3'],
-['11/04','Real Sociedad vs Alaves • Elche vs Valencia • Athletic vs Villarreal','3','2'],
-['10/04','Real Madrid vs Girona • Leverkusen vs Augsburg • Werder vs HSV','3','3'],
-['09/04','Man City vs Arsenal • Everton vs Brighton • Chelsea vs Wolves','3','3'],
-['08/04','PSG vs Liverpool • Barca vs Atletico • Roma vs Atalanta','3','3'],
-['07/04','Real Madrid vs Bayern • Sporting vs Arsenal • Dortmund vs Leverkusen','3','2'],
-['06/04','Leeds vs Newcastle • Tottenham vs Brentford • Inter vs Sassuolo','3','3'],
-['05/04','Mallorca vs Real Madrid • Osasuna vs Barca • Villarreal vs Bilbao','3','3'],
-['04/04','Man City vs Chelsea • Liverpool vs Fulham • Juventus vs Napoli','3','3'],
-['03/04','Brentford vs Brighton • Everton vs Wolves • Lazio vs Fiorentina','3','2'],
-['02/04','Arsenal vs Tottenham • Bayern vs Leverkusen • Inter vs Milan','3','3']
-];
-let totalTips=0,totalWins=0;
-data.forEach(([date,matches,tips,wins])=>{const isPending=wins==='—';if(!isPending){totalTips+=parseInt(tips);totalWins+=parseInt(wins);}const isLoss=!isPending&&parseInt(wins)<parseInt(tips);const statusColor=isPending?'#f59e0b':isLoss?'#ef4444':'#10b981';const statusText=isPending?'⏳ LIVE':'${isLoss?\'✗ LOSS\':\'✓ WIN\'}';const tr=document.createElement('tr');tr.innerHTML=`<td>${date}</td><td style="font-size:11px;text-align:left;max-width:160px;line-height:1.4;">${matches}</td><td>${tips}</td><td style="color:${statusColor};font-weight:700;">${isPending?'—':wins}</td><td style="color:${statusColor};font-weight:700;">${isPending?'⏳ PENDING':isLoss?'✗ LOSS':'✓ WIN'}</td>`;tbody.appendChild(tr);});
-const acc=((totalWins/totalTips)*100).toFixed(1);
-document.getElementById('trackSummary').innerHTML=`${totalTips} Tips &nbsp;•&nbsp; ${totalWins} Wins &nbsp;•&nbsp; <span style="color:var(--mint);">${acc}% Accuracy</span>`;
-document.getElementById('trackRecordModal').style.display='flex';}
-function hideTrackRecord(){document.getElementById('trackRecordModal').style.display='none';}
-function showMegaJP(){document.getElementById('megaJPModal').style.display='flex';}
-function showMidweekJP(){document.getElementById('midweekJPModal').style.display='flex';}
-function scrollToFreeTip(){document.getElementById('free-tip-anchor').scrollIntoView({behavior:'smooth',block:'start'});}
-function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
-
-// ── PWA ──────────────────────────────────────────────────────
-const manifest={name:'Pro Tipsters',short_name:'ProTipsters',description:"Kenya's #1 Betting Tips",start_url:'.',display:'standalone',background_color:'#0f766e',theme_color:'#0f766e',icons:[{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="32" fill="%230f766e"/><text y="145" x="20" font-size="150">%E2%9A%BD</text></svg>',sizes:'192x192',type:'image/svg+xml'},{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="80" fill="%230f766e"/><text y="390" x="40" font-size="400">%E2%9A%BD</text></svg>',sizes:'512x512',type:'image/svg+xml'}]};
-const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-document.getElementById('pwa-manifest').setAttribute('href',URL.createObjectURL(blob));
-
-const swCode=`self.addEventListener('install',e=>{e.waitUntil(caches.open('pro-tipsters-v2').then(cache=>cache.addAll([location.href])));self.skipWaiting();});self.addEventListener('activate',e=>{self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});self.addEventListener('push',e=>{const data=e.data?e.data.json():{};e.waitUntil(self.registration.showNotification(data.title||'Pro Tipsters \uD83D\uDD25',{body:data.body||'New tip available! Check now.',icon:data.icon||'',badge:data.icon||'',tag:'pro-tipsters-update',renotify:true,data:{url:data.url||'/'}}));});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow(e.notification.data&&e.notification.data.url?e.notification.data.url:'/'));});`;
-if('serviceWorker' in navigator){const swBlob=new Blob([swCode],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(swBlob),{scope:'/'}).catch(()=>{});}
-
-let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem('pwa-dismissed')){setTimeout(()=>document.getElementById('pwaBanner').classList.add('show'),8000);}});
-
-async function triggerInstall(){if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('pwaBanner').classList.remove('show');if(outcome==='accepted'){document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;}}else{const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);if(isIOS){document.getElementById('iosHint').style.display='block';}else{document.getElementById('heroInstallBtn').textContent='✅ Already Installed / Open in Browser';}}}
-
-document.getElementById('pwaInstallBtn').addEventListener('click',()=>triggerInstall());
-function dismissPWA(){document.getElementById('pwaBanner').classList.remove('show');localStorage.setItem('pwa-dismissed','1');}
-
-// ── FCM PUSH NOTIFICATIONS ────────────────────────────────────
-const FCM_CONFIG = {
-  apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
-  authDomain:        "pro-tipsters-94171.firebaseapp.com",
-  projectId:         "pro-tipsters-94171",
-  storageBucket:     "pro-tipsters-94171.firebasestorage.app",
-  messagingSenderId: "737923794509",
-  appId:             "1:737923794509:web:921f6a558c11786beebe04"
-};
-const FCM_VAPID_KEY = "BInPdZNiV_C2cLW24XfpeptIdwnsDhXZclAyXaslVLpO8BO1p_egYWVnA2Ks6aKNSe0aijMTFD5peESjpYGQXTU";
-
-let fcmToken = null;
-
-async function initFCM(){
-  try {
-    const {initializeApp} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-    const {getMessaging, getToken, onMessage} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js');
-    const app = initializeApp(FCM_CONFIG);
-    const messaging = getMessaging(app);
-    const permission = await Notification.requestPermission();
-    if(permission !== 'granted') return;
-    fcmToken = await getToken(messaging, {vapidKey: FCM_VAPID_KEY, serviceWorkerRegistration: await navigator.serviceWorker.ready});
-    if(fcmToken){
-      const stored = JSON.parse(localStorage.getItem('fcm-tokens') || '[]');
-      if(!stored.includes(fcmToken)){ stored.push(fcmToken); localStorage.setItem('fcm-tokens', JSON.stringify(stored)); }
-      console.log('FCM Token:', fcmToken);
-    }
-    onMessage(messaging, payload => {
-      const {title, body} = payload.notification || {};
-      navigator.serviceWorker.ready.then(reg => reg.showNotification(title||'Pro Tipsters 🔥', {body: body||'', tag:'pro-tipsters-update', renotify:true}));
+function safeHourly(raw) {
+  if (!raw) return new Array(24).fill(0);
+  if (Array.isArray(raw)) {
+    var arr = raw.slice();
+    while (arr.length < 24) arr.push(0);
+    return arr;
+  }
+  if (typeof raw === 'object') {
+    var result = new Array(24).fill(0);
+    Object.keys(raw).forEach(function(k) {
+      var idx = parseInt(k, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < 24) result[idx] = raw[k] || 0;
     });
-  } catch(e){ console.log('FCM init error:', e); }
+    return result;
+  }
+  return new Array(24).fill(0);
 }
-setTimeout(initFCM, 12000);
 
-// ── REAL VISITOR TRACKING → FIREBASE FIRESTORE ───────────────
-// Option 2: Tracks both total visits AND unique devices separately
-(function trackVisit(){
-  try{
-    const s1=document.createElement('script');
-    s1.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js';
-    s1.onload=function(){
-      const s2=document.createElement('script');
-      s2.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js';
-      s2.onload=function(){
-        try{
-          const app=firebase.apps.length?firebase.apps[0]:firebase.initializeApp(FCM_CONFIG);
-          const db=firebase.firestore();
-          const today=new Date().toISOString().split('T')[0];
-          const hr=new Date().getHours();
-          const params=new URLSearchParams(location.search);
-          const src=params.get('ref')||'direct';
-          const source=src==='notif'?'notif':src==='fb'?'fb':src==='wa'?'wa':'direct';
+async function load(){
+  document.getElementById('loadDiv').style.display='block';
+  document.getElementById('mainDiv').style.display='none';
+  document.getElementById('errBox').style.display='none';
+  try {
+    const today = todayKey();
+    const snap = await db.collection('analytics').doc(today).get();
+    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
 
-          // ── UNIQUE DEVICE CHECK ──────────────────────────────
-          // Generate or retrieve a persistent device ID
-          let deviceId = localStorage.getItem('pt-device-id');
-          if(!deviceId){
-            deviceId = 'dev-' + Date.now() + '-' + Math.random().toString(36).substr(2,9);
-            localStorage.setItem('pt-device-id', deviceId);
-          }
-          // Check if this device has already been counted today
-          const seenKey = 'pt-seen-' + today;
-          const isNewDeviceToday = !localStorage.getItem(seenKey);
-          if(isNewDeviceToday){
-            localStorage.setItem(seenKey, '1');
-          }
-          // ────────────────────────────────────────────────────
+    const col = await db.collection('analytics').get();
+    const days = [];
+    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
+    days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
 
-          const ref=db.collection('analytics').doc(today);
-          ref.get().then(snap=>{
-            if(!snap.exists){
-              // First visit of the day — create fresh document
-              const hourly=new Array(24).fill(0); hourly[hr]=1;
-              const sources={fb:0,notif:0,wa:0,direct:0}; sources[source]=1;
-              ref.set({
-                total: 1,
-                unique: 1,           // unique device count
-                repeat: 0,           // repeat device count
-                hourly,
-                sources,
-                date: today
-              });
-            } else {
-              // Update total visits always
-              const upd={total: firebase.firestore.FieldValue.increment(1)};
-              upd['hourly.'+hr] = firebase.firestore.FieldValue.increment(1);
-              upd['sources.'+source] = firebase.firestore.FieldValue.increment(1);
+    const total   = td.total  || 0;
+    const unique  = td.unique || 0;
+    const repeat  = td.repeat || 0;
+    const hourly  = safeHourly(td.hourly);
+    const sources = td.sources || {};
 
-              if(isNewDeviceToday){
-                // New device today — increment unique count
-                upd['unique'] = firebase.firestore.FieldValue.increment(1);
-              } else {
-                // Repeat device — increment repeat count
-                upd['repeat'] = firebase.firestore.FieldValue.increment(1);
-              }
-              ref.update(upd);
-            }
-          }).catch(e=>console.log('Track err:',e));
-        }catch(e){console.log('FB err:',e);}
-      };
-      document.head.appendChild(s2);
-    };
-    document.head.appendChild(s1);
-  }catch(e){console.log('Track load err:',e);}
-})();
+    const uniqueCounts = days.map(function(d){ return d.unique || 0; });
+    const week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
+    const best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
+    const avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
 
-window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
+    // Hero
+    document.getElementById('bigNum').textContent      = unique.toLocaleString();
+    document.getElementById('totalBadge').textContent  = total.toLocaleString();
+    document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
+    document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
 
-const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
-if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
+    // Grid
+    document.getElementById('wk').textContent    = week.toLocaleString();
+    document.getElementById('best').textContent  = best.toLocaleString();
+    document.getElementById('avg').textContent   = avg.toLocaleString();
+    document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
+
+    // Breakdown
+    var maxB = total || 1;
+    document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
+    document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
+    document.getElementById('totalVal').textContent   = total.toLocaleString();
+    document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
+    document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
+
+    // Sources
+    document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
+    document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
+    document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
+    document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
+
+    // Hourly bars
+    var maxH = Math.max.apply(null, hourly.concat([1]));
+    var curHr = new Date().getHours();
+    var bHtml = '';
+    for(var i=0;i<24;i++){
+      var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
+      var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
+      bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
+    }
+    document.getElementById('barsDiv').innerHTML = bHtml;
+
+    // History
+    var maxC = best || 1;
+    var hHtml = '';
+    var show = days.slice(0,7);
+    if(!show.length){
+      hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
+    } else {
+      for(var j=0;j<show.length;j++){
+        var d = show[j];
+        var u = d.unique || 0;
+        var t = d.total  || 0;
+        var pct = Math.round((u/maxC)*100);
+        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
+      }
+    }
+    document.getElementById('histDiv').innerHTML = hHtml;
+
+    document.getElementById('loadDiv').style.display = 'none';
+    document.getElementById('mainDiv').style.display = 'block';
+
+  } catch(e) {
+    console.error(e);
+    document.getElementById('loadDiv').style.display = 'none';
+    var eb = document.getElementById('errBox');
+    eb.style.display = 'block';
+    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
+  }
+}
+
+function tick(){
+  var now = new Date(), mid = new Date();
+  mid.setHours(24,0,0,0);
+  var diff = mid - now;
+  var h = String(Math.floor(diff/3600000)).padStart(2,'0');
+  var m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  var s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  document.getElementById('timer').textContent = h+':'+m+':'+s;
+  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+
+load();
+setInterval(load, 30000);
+setInterval(tick, 1000);
+tick();
 </script>
 </body>
 </html>
