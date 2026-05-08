@@ -1048,6 +1048,51 @@ window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner')
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
 if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
+
+// ── WA LINK CLICK TRACKING ────────────────────────────────────
+// Fires every time any WhatsApp button is clicked — increments wa_clicks in Firestore
+(function attachWAClickTracking(){
+  function trackWAClick(label){
+    try{
+      Promise.all([
+        import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'),
+        import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js')
+      ]).then(([{initializeApp,getApps},{getFirestore,doc,getDoc,setDoc,updateDoc,increment}])=>{
+        try{
+          const app=getApps().length?getApps()[0]:initializeApp(FCM_CONFIG);
+          const db=getFirestore(app);
+          const today=new Date().toISOString().split('T')[0];
+          const ref=doc(db,'analytics',today);
+          getDoc(ref).then(snap=>{
+            if(!snap.exists()){
+              setDoc(ref,{total:1,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{fb:0,notif:0,wa:0,direct:0},wa_clicks:1,wa_labels:{[label]:1},date:today});
+            } else {
+              updateDoc(ref,{wa_clicks:increment(1),['wa_labels.'+label]:increment(1)});
+            }
+          }).catch(e=>console.log('WA track err:',e));
+        }catch(e){console.log('WA FB err:',e);}
+      }).catch(e=>console.log('WA import err:',e));
+    }catch(e){console.log('WA click err:',e);}
+  }
+
+  // Attach to all WA links on page load and after dynamic content changes
+  function attachToLinks(){
+    document.querySelectorAll('a[href*="wa.me"]').forEach(link=>{
+      if(link.dataset.waTracked) return; // don't double-attach
+      link.dataset.waTracked = '1';
+      const label = (link.textContent||'').trim().substring(0,40) || 'wa-link';
+      link.addEventListener('click', ()=>trackWAClick(label));
+    });
+  }
+
+  // Run on load, and again after a short delay to catch dynamically rendered buttons
+  document.addEventListener('DOMContentLoaded', ()=>{
+    attachToLinks();
+    setTimeout(attachToLinks, 2000);
+  });
+  // Also run immediately in case DOM is already ready
+  if(document.readyState !== 'loading') attachToLinks();
+})();
 </script>
 </body>
 </html>
