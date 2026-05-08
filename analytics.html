@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Tipsters — Live Analytics</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif;background:#060a0f;color:#e2f0ff;min-height:100vh;padding:20px 16px 60px;}
@@ -161,20 +159,27 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div id="histDiv"></div>
     </div>
 
-    <button class="btn" onclick="load()">🔄 Refresh</button>
+    <button class="btn" onclick="window._analyticsLoad && window._analyticsLoad()">🔄 Refresh</button>
   </div>
 </div>
 
-<script>
-firebase.initializeApp({
+<script type="module">
+// ── FIX: Use modular v10 SDK (same as main page) to avoid duplicate app conflicts ──
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, doc, getDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const FCM_CONFIG = {
   apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
   authDomain:"pro-tipsters-94171.firebaseapp.com",
   projectId:"pro-tipsters-94171",
   storageBucket:"pro-tipsters-94171.firebasestorage.app",
   messagingSenderId:"737923794509",
   appId:"1:737923794509:web:921f6a558c11786beebe04"
-});
-const db = firebase.firestore();
+};
+
+// ── FIX: Guard against duplicate app init ──
+const app = getApps().length ? getApps()[0] : initializeApp(FCM_CONFIG);
+const db = getFirestore(app);
 
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
@@ -202,10 +207,12 @@ async function load(){
   document.getElementById('errBox').style.display='none';
   try {
     const today = todayKey();
-    const snap = await db.collection('analytics').doc(today).get();
-    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
 
-    const col = await db.collection('analytics').get();
+    // ── FIX: Use modular v10 API (getDoc/getDocs instead of .get()) ──
+    const snap = await getDoc(doc(db, 'analytics', today));
+    const td = snap.exists() ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
+
+    const col = await getDocs(collection(db, 'analytics'));
     const days = [];
     col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
     days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
@@ -241,7 +248,7 @@ async function load(){
     document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
     document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
 
-    // Sources
+    // ── FIX: id="wa" now exists in HTML so this no longer throws an error ──
     document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
     document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
     document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
@@ -297,6 +304,9 @@ function tick(){
   document.getElementById('timer').textContent = h+':'+m+':'+s;
   document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
+
+// Expose load() for the Refresh button (module scope isn't global)
+window._analyticsLoad = load;
 
 load();
 setInterval(load, 30000);
