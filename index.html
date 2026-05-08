@@ -932,7 +932,7 @@ function showTrackRecord(){const tbody=document.getElementById('trackRecordBody'
 ['07/04','Real Madrid vs Bayern • Sporting vs Arsenal • Dortmund vs Leverkusen','3','2'],
 ['06/04','Leeds vs Newcastle • Tottenham vs Brentford • Inter vs Sassuolo','3','3'],
 ['05/04','Mallorca vs Real Madrid • Osasuna vs Barca • Villarreal vs Bilbao','3','3'],
-['04/05','Man City vs Chelsea • Liverpool vs Fulham • Juventus vs Napoli','3','3'],,
+['04/05','Man City vs Chelsea • Liverpool vs Fulham • Juventus vs Napoli','3','3'],
 ['03/04','Brentford vs Brighton • Everton vs Wolves • Lazio vs Fiorentina','3','2'],
 ['02/04','Arsenal vs Tottenham • Bayern vs Leverkusen • Inter vs Milan','3','3']
 ];
@@ -978,9 +978,9 @@ let fcmToken = null;
 
 async function initFCM(){
   try {
-    const {initializeApp} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const {initializeApp, getApps} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
     const {getMessaging, getToken, onMessage} = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging.js');
-    const app = initializeApp(FCM_CONFIG);
+    const app = getApps().length ? getApps()[0] : initializeApp(FCM_CONFIG);
     const messaging = getMessaging(app);
     const permission = await Notification.requestPermission();
     if(permission !== 'granted') return;
