@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pro Tipsters — Live Analytics</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif;background:#060a0f;color:#e2f0ff;min-height:100vh;padding:20px 16px 60px;}
@@ -27,33 +29,16 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .hn{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
 .hs{font-size:12px;color:#5a7a96;margin-top:6px;}
 .hd{font-size:11px;color:#10b981;margin-top:4px;font-family:monospace;}
-.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
-.badge{background:#1a2d42;border:1px solid #2a4060;border-radius:12px;padding:10px 16px;text-align:center;min-width:80px;}
-.badge-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;line-height:1;}
-.badge-lbl{font-size:10px;color:#5a7a96;margin-top:3px;}
-.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
-.src-card{border-radius:12px;padding:14px 12px;text-align:center;}
-.src-fb{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);}
-.src-wa{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);}
-.src-notif{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);}
-.src-direct{background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.2);}
-.src-icon{font-size:22px;margin-bottom:6px;}
-.src-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;line-height:1;}
-.src-fb .src-num{color:#60a5fa;}
-.src-wa .src-num{color:#10b981;}
-.src-notif .src-num{color:#f59e0b;}
-.src-direct .src-num{color:#94a3b8;}
-.src-lbl{font-size:11px;margin-top:4px;font-weight:600;opacity:.8;}
-.src-pct{font-size:10px;opacity:.5;margin-top:2px;}
+.repeat-badge{display:inline-flex;align-items:center;gap:8px;background:#1a2d42;border:1px solid #2a4060;border-radius:20px;padding:7px 16px;margin-top:12px;flex-wrap:wrap;justify-content:center;}
+.rb-val{font-weight:800;font-family:'Syne',sans-serif;font-size:15px;}
+.rb-label{color:#5a7a96;font-size:11px;}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .sc{background:#0d1520;border:1px solid #1a2d42;border-radius:14px;padding:16px;}
 .si{font-size:20px;margin-bottom:8px;}
 .sv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
-.mint{color:#10b981;}.blue{color:#38bdf8;}.gold{color:#f59e0b;}.red{color:#f43f5e;}
+.mint{color:#10b981;} .blue{color:#38bdf8;} .gold{color:#f59e0b;} .red{color:#f43f5e;}
 .sl{font-size:11px;color:#5a7a96;margin-top:4px;font-weight:600;}
 .sl-sub{font-size:10px;color:#3a5a76;margin-top:2px;}
-.card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-.ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
 .breakdown{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
 .bt{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
 .brow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
@@ -65,6 +50,8 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .brbf-u{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;transition:width .6s ease;}
 .brbf-r{height:100%;background:linear-gradient(90deg,#9f1239,#f43f5e);border-radius:4px;transition:width .6s ease;}
 .brbf-t{height:100%;background:linear-gradient(90deg,#92400e,#f59e0b);border-radius:4px;}
+.card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
+.ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
 .bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
 .bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
 .b{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:linear-gradient(180deg,#10b981,#0f766e);}
@@ -86,11 +73,10 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 </head>
 <body>
 <div class="wrap">
-
   <div class="top">
     <div class="logo">
       <div class="logo-icon">⚽</div>
-      <div><div class="logo-name">PRO TIPSTERS</div><div class="logo-sub">Live Analytics Dashboard</div></div>
+      <div><div class="logo-name">PRO TIPSTERS</div><div class="logo-sub">Live Analytics — All Visitors</div></div>
     </div>
     <div class="live"><span class="dot"></span>LIVE</div>
   </div>
@@ -105,56 +91,18 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 
   <div id="mainDiv" style="display:none">
 
-    <!-- HERO -->
+    <!-- HERO: Unique visitors as main number -->
     <div class="hero">
       <div class="hl">👥 Unique Devices Today</div>
       <div class="hn" id="bigNum">0</div>
       <div class="hs">unique devices visited your site today</div>
       <div class="hd" id="dateStr">--</div>
-      <div class="badge-row">
-        <div class="badge">
-          <div class="badge-val gold" id="totalBadge">0</div>
-          <div class="badge-lbl">Total Visits</div>
-        </div>
-        <div class="badge">
-          <div class="badge-val mint" id="uniqueBadge">0</div>
-          <div class="badge-lbl">Unique</div>
-        </div>
-        <div class="badge">
-          <div class="badge-val red" id="repeatBadge">0</div>
-          <div class="badge-lbl">Repeat</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TRAFFIC SOURCES — big cards -->
-    <div class="card">
-      <div class="ct">🔗 Visits by Source Today</div>
-      <div class="src-grid">
-        <div class="src-card src-fb">
-          <div class="src-icon">📘</div>
-          <div class="src-num" id="srcFb">0</div>
-          <div class="src-lbl">Facebook</div>
-          <div class="src-pct" id="pctFb">0%</div>
-        </div>
-        <div class="src-card src-wa">
-          <div class="src-icon">💬</div>
-          <div class="src-num" id="srcWa">0</div>
-          <div class="src-lbl">WhatsApp</div>
-          <div class="src-pct" id="pctWa">0%</div>
-        </div>
-        <div class="src-card src-notif">
-          <div class="src-icon">🔔</div>
-          <div class="src-num" id="srcNotif">0</div>
-          <div class="src-lbl">Notifications</div>
-          <div class="src-pct" id="pctNotif">0%</div>
-        </div>
-        <div class="src-card src-direct">
-          <div class="src-icon">🌐</div>
-          <div class="src-num" id="srcDirect">0</div>
-          <div class="src-lbl">Direct</div>
-          <div class="src-pct" id="pctDirect">0%</div>
-        </div>
+      <div class="repeat-badge">
+        <span class="rb-label">Total clicks</span>
+        <span class="rb-val gold" id="totalBadge">0</span>
+        <span style="color:#2a4060;">|</span>
+        <span class="rb-label">Repeat visits</span>
+        <span class="rb-val red" id="repeatBadge">0</span>
       </div>
     </div>
 
@@ -163,7 +111,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div><div class="sl-sub">unique devices</div></div>
       <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div><div class="sl-sub">unique devices</div></div>
       <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div><div class="sl-sub">unique devices</div></div>
-      <div class="sc"><div class="si">🔔</div><div class="sv red" id="notifGrid">0</div><div class="sl">From Notifs</div><div class="sl-sub">today</div></div>
+      <div class="sc"><div class="si">🔔</div><div class="sv red" id="notif">0</div><div class="sl">From Notifs</div></div>
     </div>
 
     <!-- UNIQUE vs REPEAT BREAKDOWN -->
@@ -185,7 +133,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       </div>
       <div class="brow">
         <div class="brl">
-          <div class="brn">📊 Total Visits</div>
+          <div class="brn">📊 Total Clicks</div>
           <div class="brb"><div class="brbf-t" style="width:100%"></div></div>
         </div>
         <div class="brv gold" id="totalVal">0</div>
@@ -198,151 +146,161 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       <div class="bars" id="barsDiv"></div>
     </div>
 
+    <!-- TRAFFIC SOURCES -->
+    <div class="card">
+      <div class="ct">🔗 Traffic Sources</div>
+      <div class="row"><div class="rn">📘 Facebook</div><div class="rv" id="fb">0</div></div>
+      <div class="row"><div class="rn">🔔 Notifications</div><div class="rv" id="notifSrc">0</div></div>
+      <div class="row"><div class="rn">💬 WhatsApp</div><div class="rv" id="wa">0</div></div>
+      <div class="row"><div class="rn">🌐 Direct</div><div class="rv" id="direct">0</div></div>
+    </div>
+
     <!-- LAST 7 DAYS -->
     <div class="card">
       <div class="ct">📆 Last 7 Days <span style="font-size:10px;color:#3a5a76;font-weight:400;">(unique devices)</span></div>
       <div id="histDiv"></div>
     </div>
 
-    <button class="btn" onclick="window._analyticsLoad && window._analyticsLoad()">🔄 Refresh</button>
+    <button class="btn" onclick="load()">🔄 Refresh</button>
   </div>
 </div>
 
-<script type="module">
-import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, doc, getDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-const FCM_CONFIG = {
+<script>
+firebase.initializeApp({
   apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
   authDomain:"pro-tipsters-94171.firebaseapp.com",
   projectId:"pro-tipsters-94171",
   storageBucket:"pro-tipsters-94171.firebasestorage.app",
   messagingSenderId:"737923794509",
   appId:"1:737923794509:web:921f6a558c11786beebe04"
-};
-const app = getApps().length ? getApps()[0] : initializeApp(FCM_CONFIG);
-const db  = getFirestore(app);
+});
+const db = firebase.firestore();
 
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
-function safeHourly(raw){
-  if(!raw) return new Array(24).fill(0);
-  if(Array.isArray(raw)){ var a=raw.slice(); while(a.length<24)a.push(0); return a; }
-  if(typeof raw==='object'){
-    var r=new Array(24).fill(0);
-    Object.keys(raw).forEach(k=>{ var i=parseInt(k,10); if(!isNaN(i)&&i>=0&&i<24)r[i]=raw[k]||0; });
-    return r;
+function safeHourly(raw) {
+  if (!raw) return new Array(24).fill(0);
+  if (Array.isArray(raw)) {
+    var arr = raw.slice();
+    while (arr.length < 24) arr.push(0);
+    return arr;
+  }
+  if (typeof raw === 'object') {
+    var result = new Array(24).fill(0);
+    Object.keys(raw).forEach(function(k) {
+      var idx = parseInt(k, 10);
+      if (!isNaN(idx) && idx >= 0 && idx < 24) result[idx] = raw[k] || 0;
+    });
+    return result;
   }
   return new Array(24).fill(0);
 }
 
-function pct(val,total){ return total?Math.round((val/total)*100)+'%':'0%'; }
-function set(id,val){ var el=document.getElementById(id); if(el)el.textContent=val; }
-
 async function load(){
-  set('loadDiv',''); document.getElementById('loadDiv').style.display='block';
+  document.getElementById('loadDiv').style.display='block';
   document.getElementById('mainDiv').style.display='none';
   document.getElementById('errBox').style.display='none';
-  try{
+  try {
     const today = todayKey();
-    const snap  = await getDoc(doc(db,'analytics',today));
-    const td    = snap.exists() ? snap.data() : {total:0,unique:0,repeat:0,hourly:[],sources:{}};
+    const snap = await db.collection('analytics').doc(today).get();
+    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
 
-    const col  = await getDocs(collection(db,'analytics'));
+    const col = await db.collection('analytics').get();
     const days = [];
-    col.forEach(d=>days.push({id:d.id,total:d.data().total||0,unique:d.data().unique||0}));
-    days.sort((a,b)=>b.id>a.id?1:-1);
+    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
+    days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
 
-    const total    = td.total  || 0;
-    const unique   = td.unique || 0;
-    const repeat   = td.repeat || 0;
-    const hourly   = safeHourly(td.hourly);
-    const sources  = td.sources || {};
-    const fb       = sources.fb    || 0;
-    const wa       = sources.wa    || 0;
-    const notifSrc = sources.notif || 0;
-    const direct   = sources.direct|| 0;
+    const total   = td.total  || 0;
+    const unique  = td.unique || 0;
+    const repeat  = td.repeat || 0;
+    const hourly  = safeHourly(td.hourly);
+    const sources = td.sources || {};
 
-    const uCounts = days.map(d=>d.unique||0);
-    const week    = days.slice(0,7).reduce((a,d)=>a+(d.unique||0),0);
-    const best    = uCounts.length ? Math.max(...uCounts) : 0;
-    const avg     = uCounts.length ? Math.round(uCounts.reduce((a,b)=>a+b,0)/uCounts.length) : 0;
+    const uniqueCounts = days.map(function(d){ return d.unique || 0; });
+    const week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
+    const best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
+    const avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
 
     // Hero
-    set('bigNum',    unique.toLocaleString());
-    set('totalBadge',total.toLocaleString());
-    set('uniqueBadge',unique.toLocaleString());
-    set('repeatBadge',repeat.toLocaleString());
-    set('dateStr',   new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}));
+    document.getElementById('bigNum').textContent      = unique.toLocaleString();
+    document.getElementById('totalBadge').textContent  = total.toLocaleString();
+    document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
+    document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
 
-    // Source big cards
-    set('srcFb',    fb.toLocaleString());
-    set('srcWa',    wa.toLocaleString());
-    set('srcNotif', notifSrc.toLocaleString());
-    set('srcDirect',direct.toLocaleString());
-    set('pctFb',    pct(fb,    total));
-    set('pctWa',    pct(wa,    total));
-    set('pctNotif', pct(notifSrc,total));
-    set('pctDirect',pct(direct,total));
-
-    // Stats grid
-    set('wk',       week.toLocaleString());
-    set('best',     best.toLocaleString());
-    set('avg',      avg.toLocaleString());
-    set('notifGrid',notifSrc.toLocaleString());
+    // Grid
+    document.getElementById('wk').textContent    = week.toLocaleString();
+    document.getElementById('best').textContent  = best.toLocaleString();
+    document.getElementById('avg').textContent   = avg.toLocaleString();
+    document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
 
     // Breakdown
-    var maxB=total||1;
-    set('uniqueVal', unique.toLocaleString());
-    set('repeatVal', repeat.toLocaleString());
-    set('totalVal',  total.toLocaleString());
-    document.getElementById('uniqueBar').style.width=Math.round((unique/maxB)*100)+'%';
-    document.getElementById('repeatBar').style.width=Math.round((repeat/maxB)*100)+'%';
+    var maxB = total || 1;
+    document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
+    document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
+    document.getElementById('totalVal').textContent   = total.toLocaleString();
+    document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
+    document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
+
+    // Sources
+    document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
+    document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
+    document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
+    document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
 
     // Hourly bars
-    var maxH=Math.max(...hourly,1), curHr=new Date().getHours(), bHtml='';
+    var maxH = Math.max.apply(null, hourly.concat([1]));
+    var curHr = new Date().getHours();
+    var bHtml = '';
     for(var i=0;i<24;i++){
-      var h=Math.max((hourly[i]/maxH)*74,hourly[i]>0?4:2);
-      var lbl=i%4===0?String(i).padStart(2,'0'):'';
-      bHtml+='<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
+      var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
+      var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
+      bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
     }
-    document.getElementById('barsDiv').innerHTML=bHtml;
+    document.getElementById('barsDiv').innerHTML = bHtml;
 
     // History
-    var maxC=best||1, hHtml='', show=days.slice(0,7);
+    var maxC = best || 1;
+    var hHtml = '';
+    var show = days.slice(0,7);
     if(!show.length){
-      hHtml='<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
+      hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
     } else {
-      show.forEach(d=>{
-        var u=d.unique||0,t=d.total||0;
-        hHtml+='<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+Math.round((u/maxC)*100)+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total visits</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
-      });
+      for(var j=0;j<show.length;j++){
+        var d = show[j];
+        var u = d.unique || 0;
+        var t = d.total  || 0;
+        var pct = Math.round((u/maxC)*100);
+        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
+      }
     }
-    document.getElementById('histDiv').innerHTML=hHtml;
+    document.getElementById('histDiv').innerHTML = hHtml;
 
-    document.getElementById('loadDiv').style.display='none';
-    document.getElementById('mainDiv').style.display='block';
+    document.getElementById('loadDiv').style.display = 'none';
+    document.getElementById('mainDiv').style.display = 'block';
 
-  } catch(e){
+  } catch(e) {
     console.error(e);
-    document.getElementById('loadDiv').style.display='none';
-    var eb=document.getElementById('errBox');
-    eb.style.display='block';
-    eb.innerHTML='❌ Firebase error: '+e.message+'<br><br>Check your Firestore rules allow read/write.';
+    document.getElementById('loadDiv').style.display = 'none';
+    var eb = document.getElementById('errBox');
+    eb.style.display = 'block';
+    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
   }
 }
 
 function tick(){
-  var now=new Date(),mid=new Date(); mid.setHours(24,0,0,0);
-  var diff=mid-now;
-  set('timer',String(Math.floor(diff/3600000)).padStart(2,'0')+':'+String(Math.floor((diff%3600000)/60000)).padStart(2,'0')+':'+String(Math.floor((diff%60000)/1000)).padStart(2,'0'));
-  set('dateLabel',new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'}));
+  var now = new Date(), mid = new Date();
+  mid.setHours(24,0,0,0);
+  var diff = mid - now;
+  var h = String(Math.floor(diff/3600000)).padStart(2,'0');
+  var m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  var s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  document.getElementById('timer').textContent = h+':'+m+':'+s;
+  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 
-window._analyticsLoad = load;
 load();
-setInterval(load,30000);
-setInterval(tick,1000);
+setInterval(load, 30000);
+setInterval(tick, 1000);
 tick();
 </script>
 </body>
