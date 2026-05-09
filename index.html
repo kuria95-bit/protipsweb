@@ -1081,8 +1081,11 @@ setTimeout(initFCM, 12000);
       s2.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js';
       s2.onload=function(){
         try{
-          const app=firebase.apps.length?firebase.apps[0]:firebase.initializeApp(FCM_CONFIG);
-          const db=firebase.firestore();
+          // Always use a named compat app to avoid conflict with modular FCM SDK
+          let trackApp;
+          try { trackApp = firebase.app('pt-track'); }
+          catch(e) { trackApp = firebase.initializeApp(FCM_CONFIG, 'pt-track'); }
+          const db = firebase.firestore(trackApp);
           const today = new Date().toISOString().split('T')[0];
           const hr = new Date().getHours();
           const params = new URLSearchParams(location.search);
