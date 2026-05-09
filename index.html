@@ -911,7 +911,7 @@
 let viewers=2147;
 setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';},3200);
 
-function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
+function updateCountdown(){const el=document.getElementById('countdown');if(!el)return;const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');el.textContent=`${h}:${m}:${s}`;}
 updateCountdown();setInterval(updateCountdown,1000);
 
 // ── MEGA JACKPOT DEADLINE COUNTDOWN (counts to next Friday 18:00 EAT) ──
