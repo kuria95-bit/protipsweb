@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Tipsters — Tracker Debug</title>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:monospace;background:#060a0f;color:#e2f0ff;padding:20px;font-size:14px;}
+h2{color:#10b981;margin-bottom:16px;font-family:sans-serif;}
+.step{background:#0d1520;border:1px solid #1a2d42;border-radius:10px;padding:14px;margin-bottom:12px;}
+.step-title{font-weight:700;margin-bottom:8px;font-size:13px;color:#38bdf8;}
+.ok{color:#10b981;} .fail{color:#f43f5e;} .warn{color:#f59e0b;} .info{color:#94a3b8;}
+.log{background:#020508;border-radius:6px;padding:10px;margin-top:8px;font-size:12px;line-height:1.8;white-space:pre-wrap;word-break:break-all;}
+button{background:#10b981;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;width:100%;margin-bottom:12px;}
+button:active{opacity:.8;}
+.big{font-size:28px;font-weight:800;color:#10b981;font-family:sans-serif;}
+</style>
+</head>
+<body>
+<h2>🔧 Pro Tipsters — Tracker Debugger</h2>
+<button onclick="runAllTests()">▶ RUN ALL TESTS NOW</button>
+
+<div class="step">
+  <div class="step-title">① Firebase Connection</div>
+  <div id="s1" class="log info">Not tested yet...</div>
+</div>
+
+<div class="step">
+  <div class="step-title">② Firestore Rules — Can We WRITE?</div>
+  <div id="s2" class="log info">Not tested yet...</div>
+</div>
+
+<div class="step">
+  <div class="step-title">③ Firestore Rules — Can We READ?</div>
+  <div id="s3" class="log info">Not tested yet...</div>
+</div>
+
+<div class="step">
+  <div class="step-title">④ LocalStorage — Device ID & Seen Key</div>
+  <div id="s4" class="log info">Not tested yet...</div>
+</div>
+
+<div class="step">
+  <div class="step-title">⑤ Simulate FULL Visitor Track</div>
+  <div id="s5" class="log info">Not tested yet...</div>
+</div>
+
+<div class="step">
+  <div class="step-title">⑥ Read Back Today's Firestore Data</div>
+  <div id="s6" class="log info">Not tested yet...</div>
+  <div id="s6live" style="margin-top:10px;display:none;">
+    <div class="big" id="liveTotal">—</div>
+    <div style="color:#94a3b8;font-size:12px;margin-top:4px;">total clicks in Firestore right now</div>
+  </div>
+</div>
+
+<script>
+var FB_CONFIG = {
+  apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+  authDomain:        "pro-tipsters-94171.firebaseapp.com",
+  projectId:         "pro-tipsters-94171",
+  storageBucket:     "pro-tipsters-94171.firebasestorage.app",
+  messagingSenderId: "737923794509",
+  appId:             "1:737923794509:web:921f6a558c11786beebe04"
+};
+
+function log(id, msg, cls) {
+  var el = document.getElementById(id);
+  el.className = 'log ' + (cls||'info');
+  el.textContent = msg;
+}
+
+function append(id, msg, cls) {
+  var el = document.getElementById(id);
+  el.textContent += '\n' + msg;
+  if(cls) el.className = 'log ' + cls;
+}
+
+async function runAllTests() {
+  // ── TEST 1: Firebase init ──
+  log('s1','Initializing Firebase...','info');
+  var app, db;
+  try {
+    try { app = firebase.app('pt-debug'); }
+    catch(e) { app = firebase.initializeApp(FB_CONFIG, 'pt-debug'); }
+    db = firebase.firestore(app);
+    log('s1','✅ Firebase initialized OK\nApp name: pt-debug\nProject: pro-tipsters-94171','ok');
+  } catch(e) {
+    log('s1','❌ Firebase FAILED to initialize\nError: ' + e.message + '\n\nFix: Check your Firebase config keys are correct.','fail');
+    return;
+  }
+
+  // ── TEST 2: Firestore WRITE ──
+  log('s2','Testing Firestore write...','info');
+  var today = new Date().toISOString().split('T')[0];
+  try {
+    var testRef = db.collection('_debug').doc('test');
+    await testRef.set({ ping: Date.now(), date: today });
+    log('s2','✅ Firestore WRITE works!\nWrote to: _debug/test\n\nYour Firestore rules are open correctly.','ok');
+  } catch(e) {
+    log('s2','❌ Firestore WRITE BLOCKED\nError: ' + e.message + '\n\n⚠️ YOUR FIRESTORE RULES ARE STILL BLOCKING WRITES!\nGo back to Firebase Console → Firestore → Rules\nand make sure you published the new rules correctly.\n\nThis is why your tracker is not working.','fail');
+    // Still continue to read test
+  }
+
+  // ── TEST 3: Firestore READ ──
+  log('s3','Testing Firestore read...','info');
+  try {
+    var snap = await db.collection('analytics').doc(today).get();
+    if(snap.exists) {
+      var d = snap.data();
+      log('s3','✅ Firestore READ works!\nToday\'s doc exists.\n\ntotal: ' + (d.total||0) + '\nunique: ' + (d.unique||0) + '\nrepeat: ' + (d.repeat||0),'ok');
+    } else {
+      log('s3','✅ Firestore READ works!\nBut today\'s analytics doc does NOT exist yet.\nThis means no visit has been tracked today yet.\n(That\'s the bug — the tracker in index.html is not writing)','warn');
+    }
+  } catch(e) {
+    log('s3','❌ Firestore READ BLOCKED\nError: ' + e.message + '\n\nSame fix: update your Firestore rules.','fail');
+  }
+
+  // ── TEST 4: LocalStorage ──
+  log('s4','Checking localStorage...','info');
+  try {
+    var deviceId = localStorage.getItem('pt-device-id');
+    var seenKey  = 'pt-seen-' + today;
+    var seenVal  = localStorage.getItem(seenKey);
+    var msg = '';
+    msg += 'Device ID: ' + (deviceId || '(none — will be created on first visit)') + '\n';
+    msg += 'Seen today (' + seenKey + '): ' + (seenVal ? 'YES — this device already counted today' : 'NO — this device is NEW today') + '\n';
+    if(seenVal) {
+      msg += '\n⚠️  Because this device is already marked as "seen",\nopening index.html again on THIS device will add to\nREPEAT count, not UNIQUE count. That is correct behaviour.\n\nTo test as a NEW visitor: clear this and try again.';
+      log('s4', msg, 'warn');
+    } else {
+      msg += '\n✅ This device will count as UNIQUE on next visit to index.html';
+      log('s4', msg, 'ok');
+    }
+  } catch(e) {
+    log('s4','❌ localStorage not available\nError: ' + e.message,'fail');
+  }
+
+  // ── TEST 5: Full tracker simulation ──
+  log('s5','Simulating full visitor track (same as index.html does)...','info');
+  try {
+    var deviceId2 = localStorage.getItem('pt-device-id');
+    if(!deviceId2) {
+      deviceId2 = 'dev-' + Date.now() + '-' + Math.random().toString(36).substr(2,9);
+      localStorage.setItem('pt-device-id', deviceId2);
+    }
+    var seenKey2 = 'pt-seen-' + today;
+    var isNew = !localStorage.getItem(seenKey2);
+    localStorage.setItem(seenKey2, '1');
+
+    var hr = new Date().getHours();
+    var ref = db.collection('analytics').doc(today);
+    var snap2 = await ref.get();
+
+    if(!snap2.exists) {
+      var hourly = new Array(24).fill(0); hourly[hr] = 1;
+      await ref.set({
+        total: 1,
+        unique: isNew ? 1 : 0,
+        repeat: isNew ? 0 : 1,
+        hourly: hourly,
+        sources: { direct: 1, fb: 0, notif: 0, wa: 0 },
+        date: today
+      });
+      log('s5','✅ Tracker simulation SUCCESS!\nCreated new doc for today.\ntotal: 1\nunique: ' + (isNew?1:0) + '\nrepeat: ' + (isNew?0:1) + '\nThis device was: ' + (isNew?'NEW (unique)':'RETURNING (repeat)'),'ok');
+    } else {
+      var upd = { total: firebase.firestore.FieldValue.increment(1) };
+      upd['hourly.' + hr] = firebase.firestore.FieldValue.increment(1);
+      upd['sources.direct'] = firebase.firestore.FieldValue.increment(1);
+      if(isNew) upd.unique = firebase.firestore.FieldValue.increment(1);
+      else upd.repeat = firebase.firestore.FieldValue.increment(1);
+      await ref.update(upd);
+      log('s5','✅ Tracker simulation SUCCESS!\nUpdated existing doc.\nIncremented total +1\nThis device was: ' + (isNew?'NEW (+1 unique)':'RETURNING (+1 repeat)'),'ok');
+    }
+  } catch(e) {
+    log('s5','❌ Tracker simulation FAILED\nError: ' + e.message + '\n\nThis is exactly why your index.html tracker is not working.\nFirestore is rejecting the write.','fail');
+  }
+
+  // ── TEST 6: Read back final state ──
+  log('s6','Reading back today\'s final data...','info');
+  try {
+    var final = await db.collection('analytics').doc(today).get();
+    if(final.exists) {
+      var fd = final.data();
+      log('s6','✅ Current Firestore data for today (' + today + '):\n\ntotal clicks : ' + (fd.total||0) + '\nunique devices: ' + (fd.unique||0) + '\nrepeat visits : ' + (fd.repeat||0) + '\nhour ' + new Date().getHours() + ' visits: ' + ((fd.hourly&&fd.hourly[new Date().getHours()])||0),'ok');
+      document.getElementById('s6live').style.display='block';
+      document.getElementById('liveTotal').textContent = (fd.total||0) + ' total clicks';
+    } else {
+      log('s6','⚠️ No data for today yet. Run test again.','warn');
+    }
+  } catch(e) {
+    log('s6','❌ Could not read final data\nError: ' + e.message,'fail');
+  }
+}
+</script>
+</body>
+</html>
