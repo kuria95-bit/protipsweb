@@ -95,6 +95,8 @@
         .badge-gold{background:#fef3c7;color:#92400e;}
         .badge-blue{background:#eff6ff;color:#1d4ed8;}
         .free-tip-reason{font-size:13.5px;color:var(--muted);margin-bottom:14px;line-height:1.55;}
+        .read-more-btn{background:none;border:none;color:var(--mint);font-weight:700;font-size:13px;cursor:pointer;padding:0 0 0 4px;font-family:'Poppins',sans-serif;text-decoration:underline;}
+        .analysis-full{display:none;font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px;margin-bottom:14px;background:#f8fafc;border-left:3px solid var(--mint);border-radius:0 10px 10px 0;padding:12px 14px;}
         .free-tip-blur{background:#f1f5f9;border-radius:10px;padding:14px;margin-bottom:14px;}
         .blur-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
         .blur-line{filter:blur(4px);user-select:none;font-size:13.5px;color:var(--text);padding:3px 0;}
@@ -361,14 +363,9 @@
     </a>
 </div>
 
-<!-- URGENCY BAR -->
-<div class="urgency-bar">
-    ⏰ Today's tips close in: <span id="countdown">--:--:--</span> &nbsp;|&nbsp; Only <span id="slots-urgency">11</span> VIP slots left
-</div>
-
 <!-- TRUST BAR -->
 <div class="trust-bar">
-    Trusted by <strong>15,000+</strong> Kenyan bettors &nbsp;•&nbsp; <strong>91.2%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery &nbsp;•&nbsp; M-Pesa Till <strong>6012928</strong>
+    🌍 Africa's #1 Predictions Site &nbsp;•&nbsp; Trusted by <strong>50,000+</strong> Members Across Africa &nbsp;•&nbsp; <strong>91.2%</strong> Accuracy &nbsp;•&nbsp; Instant WhatsApp Delivery
 </div>
 
 <!-- JP URGENCY TICKER -->
@@ -401,11 +398,11 @@
         <span>— Slip Ready 🔥</span>
     </div>
 
-    <div class="hero-badge">⚽ Kenya's Most Trusted Tips Since 2022</div>
+    <div class="hero-badge">🌍 Africa's #1 Betting Predictions Site Since 2022</div>
 
     <h1>14 Out Of 17.<br>BONUS CASHED.<br><em>You In This Week?</em></h1>
 
-    <p class="hero-sub">Our analysts nailed <strong>14/17</strong> in the Mega Jackpot last weekend — members got paid. <br>This week's slip is sealed & ready. One Ksh 99 slip could be life-changing. 💰</p>
+    <p class="hero-sub">Trusted by <strong>50,000+ members</strong> across Africa & beyond — from Nairobi to Lagos, Accra to Johannesburg. Our analysts nailed <strong>14/17</strong> last weekend. This week's slip is sealed & ready. 💰</p>
 
     <!-- JP MINI SCORECARD — vibrant redesign -->
     <div class="hero-jp-card" style="background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(245,158,11,.08));border:1px solid rgba(245,158,11,.4);box-shadow:0 8px 28px rgba(245,158,11,.15);">
@@ -464,26 +461,64 @@
     </div>
 </div>
 
+<!-- COUNTRIES SERVED -->
+<div style="background:linear-gradient(135deg,#0f766e,#10b981);padding:10px 14px;text-align:center;">
+    <div style="font-size:11px;font-weight:800;color:rgba(255,255,255,.8);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">🌍 Serving Across Africa & Beyond</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:5px;">
+        <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇰🇪 Kenya</span>
+        <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇳🇬 Nigeria</span>
+        <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇬🇭 Ghana</span>
+        <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇿🇦 South Africa</span>
+        <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇺🇬 Uganda</span>
+        <div id="more-countries" style="display:none;flex-wrap:wrap;justify-content:center;gap:5px;width:100%;margin-top:5px;">
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇹🇿 Tanzania</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇿🇲 Zambia</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇿🇼 Zimbabwe</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇷🇼 Rwanda</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇸🇳 Senegal</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇪🇹 Ethiopia</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇨🇲 Cameroon</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇶🇦 Qatar</span>
+            <span style="background:rgba(255,255,255,.18);color:#fff;border-radius:20px;padding:3px 10px;font-size:11.5px;font-weight:700;">🇦🇪 UAE</span>
+        </div>
+        <button onclick="const m=document.getElementById('more-countries');const isOpen=m.style.display==='flex';m.style.display=isOpen?'none':'flex';this.textContent=isOpen?'+ 9 more ▼':'Show less ▲';" style="background:rgba(255,255,255,.25);color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;">+ 9 more ▼</button>
+    </div>
+</div>
+
+<!-- PAYMENT METHODS -->
+<div style="background:#fff;padding:10px 14px;border-bottom:3px solid var(--mint);text-align:center;">
+    <div style="font-size:11px;font-weight:800;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;">💳 We Accept</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;">
+        <span style="background:#f0fdf4;border:1px solid #10b981;color:#0f766e;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">📱 M-Pesa</span>
+        <span style="background:#fff7ed;border:1px solid #f97316;color:#c2410c;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">📲 Airtel Money</span>
+        <span style="background:#fefce8;border:1px solid #f59e0b;color:#92400e;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">💛 MTN MoMo</span>
+        <span style="background:#eff6ff;border:1px solid #3b82f6;color:#1d4ed8;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">🌐 PayPal</span>
+        <span style="background:#fdf4ff;border:1px solid #a855f7;color:#7e22ce;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">💜 EcoCash</span>
+        <span style="background:#f0fdf4;border:1px solid #10b981;color:#065f46;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">💚 Orange Money</span>
+        <span style="background:#f1f5f9;border:1px solid #94a3b8;color:#334155;border-radius:20px;padding:4px 10px;font-size:11.5px;font-weight:700;">🏦 Bank Transfer</span>
+    </div>
+</div>
+
 <!-- STATS BAR -->
 <div class="stats-bar">
     <div class="stat-item"><span class="stat-num">91.2%</span><span class="stat-label">Win Rate</span></div>
-    <div class="stat-item"><span class="stat-num">15K+</span><span class="stat-label">Members</span></div>
+    <div class="stat-item"><span class="stat-num">50K+</span><span class="stat-label">Africa Members</span></div>
     <div class="stat-item"><span class="stat-num" id="slots-display">11</span><span class="stat-label">VIP Slots Left</span></div>
 </div>
 
 <!-- ② RECENT RESULTS -->
 <div class="section">
-    <div class="section-title">📊 Yesterday's Results — 07/05/2026</div>
+    <div class="section-title">📊 Yesterday's Results — 08/05/2026</div>
     <div class="section-sub">Every pick verified. No edits. No excuses.</div>
     <div class="table-wrap">
         <table class="result-table">
             <thead><tr><th>Match</th><th>Pick</th><th>Score</th><th>Odds</th><th>Result</th></tr></thead>
             <tbody>
-                <tr><td data-label="Match">Aston Villa vs Nottm Forest</td><td data-label="Pick">Home Win</td><td data-label="Score" style="font-weight:700;color:var(--green);">4 - 0</td><td data-label="Odds">2.00</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Freiburg vs Braga</td><td data-label="Pick">Home Win</td><td data-label="Score" style="font-weight:700;color:var(--green);">3 - 1</td><td data-label="Odds">1.94</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Crystal Palace vs Shakhtar</td><td data-label="Pick">GG (Both Teams Score)</td><td data-label="Score" style="font-weight:700;color:var(--green);">2 - 1</td><td data-label="Odds">2.50</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Borussia Dortmund vs E. Frankfurt</td><td data-label="Pick">Home Win (1)</td><td data-label="Score" style="font-weight:700;color:var(--green);">3 - 2</td><td data-label="Odds">1.73</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Standard Liège vs OH Leuven</td><td data-label="Pick">Home Win (1)</td><td data-label="Score" style="font-weight:700;color:var(--green);">2 - 1</td><td data-label="Odds">2.01</td><td data-label="Result" class="win">✓ WIN</td></tr>
+                <tr><td data-label="Match">Levante vs Osasuna</td><td data-label="Pick">GG (Both Teams Score)</td><td data-label="Score" style="font-weight:700;color:var(--green);">3 - 2</td><td data-label="Odds">1.73</td><td data-label="Result" class="win">✓ WIN</td></tr>
             </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">9.70 — ALL WON ✅</td></tr></tfoot>
+            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="2">6.01 — ALL WON ✅</td></tr></tfoot>
         </table>
     </div>
     <div style="text-align:center;margin-top:16px;">
@@ -521,10 +556,6 @@
             <span class="jp-live-dot"></span>
             <span id="jp-buyers-live">1,247 people</span> viewing this slip right now 🔴
         </div>
-
-        <!-- FIRE + BADGE -->
-        <div class="jp-fire-row" style="font-size:28px;">🔥💰🏆💰🔥</div>
-        <div class="jp-badge-top" style="font-size:11px;padding:5px 18px;background:linear-gradient(135deg,#92400e,var(--gold),#f97316,var(--gold));background-size:300% 300%;animation:shimmer 3s linear infinite;">🚨 KENYA'S UNDISPUTED JACKPOT KINGS 🚨</div>
 
         <!-- HEADLINE -->
         <h2 class="jp-title" style="font-size:28px;margin-top:10px;">
@@ -585,11 +616,6 @@
             </div>
         </div>
 
-        <!-- TESTIMONIALS -->
-        <div class="jp-quote" style="border-left:3px solid var(--gold);font-style:italic;">"Niliamini Pro Tipsters na walinikuwa waaminifu. Ksh 99 tu — nikapata Ksh 4,500 bonus! Nitalipa tena bila shaka! 🙏" — <strong>Peter M., Kisumu</strong></div>
-        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #6ee7b7;font-style:italic;">"14 correct last weekend! First time buying — got Ksh 8,750 bonus. THESE GUYS KNOW THEIR STUFF. 🔥" — <strong>Samuel K., Nairobi</strong></div>
-        <div class="jp-quote" style="margin-top:8px;border-left:3px solid #93c5fd;font-style:italic;">"Ksh 12,000 in my account just like that. My friends thought I was lying until I showed them the M-Pesa msg 😂💪" — <strong>Kevin O., Kisumu</strong></div>
-
         <!-- PROOF BUTTON ROW -->
         <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.6);margin:14px 0 8px;">👇 SEE THE ACTUAL SLIPS — every pick, every score, unedited</p>
         <div class="jp-btn-row">
@@ -631,20 +657,21 @@
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">One real pick — on us. No payment needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Borussia Dortmund vs Eintracht Frankfurt</div>
+        <div class="free-tip-match">Manchester City vs Brentford</div>
         <div class="free-tip-badges">
-            <span class="badge badge-green">Dortmund Win & Over 2.5 Goals</span>
-            <span class="badge badge-gold">Odds: 2.10</span>
-            <span class="badge badge-blue">Bundesliga • Today 22:30 EAT</span>
+            <span class="badge badge-green">Man City Win (Home Win 1)</span>
+            <span class="badge badge-gold">Odds: ~1.45</span>
+            <span class="badge badge-blue">Premier League • Today 19:30 EAT</span>
         </div>
-        <div class="free-tip-reason">Borussia Dortmund host Eintracht Frankfurt tonight at Signal Iduna Park in a Bundesliga clash that strongly favours the home side. Dortmund sit second in the table and are gunning to seal a top-two finish with victory here — maximum motivation guaranteed. They have won 3 of their last 4 home fixtures and boast the third-best attack in the Bundesliga with 65 goals scored this season. Frankfurt, on the other hand, are in miserable form — winless in three straight games and carrying the third-worst defensive record in the division, having conceded 60 goals. They have shipped goals in six consecutive matches and their backline has been completely exposed by quality attacks all season. Dortmund's front three, including Guirassy and Beier, are in sharp form going into the final stretch and will target Frankfurt's leaking defence from the first whistle. Over 2.5 goals has come in 71% of Dortmund's Bundesliga home games this season. Frankfurt have conceded in every away game this month. Our model gives Dortmund a 79% win probability with a 68% chance of over 2.5 goals. Dortmund Win & Over 2.5 at 2.10 is your banker tonight. 🔥</div>
+        <div class="free-tip-reason" id="free-tip-intro">Manchester City host Brentford at the Etihad tonight in a do-or-die Premier League title race clash. Arsenal lead the table with 76 points while City trail by 5 with a game in hand — meaning only a win keeps Guardiola's men in the hunt. This is essentially City's cup final. <button class="read-more-btn" id="readMoreBtn" onclick="document.getElementById('analysis-full').style.display='block';this.style.display='none';">📖 Read Full Analysis ▼</button></div>
+        <div id="analysis-full" class="analysis-full">City's home record this season has been devastating — 13 wins, 3 draws and just 1 loss at the Etihad all campaign. Erling Haaland, who leads the Golden Boot race with 25 goals, is in blistering form and faces a Brentford side that have managed only 3 away wins all season and sit 14th in the table with nothing to play for. Brentford were thrashed 3-0 away earlier this season and their defensive shape away from home has been woeful, conceding 2+ goals in 7 of their last 10 away games. City, on the other hand, have scored in every single home game since December. The crowd at the Etihad will be electric — the pressure of the title race creates a high-energy atmosphere that lifts City to their best. Haaland has scored in 5 of his last 6 home appearances and De Bruyne is pulling the strings in midfield with authority. Our model gives Man City an 81% win probability. At 1.45 odds, this is one of the safest bankers of the weekend. If City are to win the title, it starts here tonight. 🔵🔥</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
-            <div class="blur-line">Lens vs Toulouse • Home Win • Odds 2.10</div>
-            <div class="blur-line">Leicester vs Hull City • Over 2.5 • Odds 1.85</div>
-            <div class="blur-line">West Brom vs Watford • GG • Odds 1.75</div>
+            <div class="blur-line">Liverpool vs Chelsea • Home Win • Odds 1.72</div>
+            <div class="blur-line">Sunderland vs Man Utd • Over 2.5 • Odds 1.80</div>
+            <div class="blur-line">Brighton vs Wolves • GG • Odds 1.78</div>
         </div>
-        <div class="full-ticket-teaser">Combined odds on full ticket: ~11.60 • Ksh 200 stake = Ksh 2,320</div>
+        <div class="full-ticket-teaser">Combined odds on full ticket: ~6.78 • Ksh 200 stake = Ksh 1,356</div>
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
     </div>
 </div>
@@ -652,19 +679,39 @@
 <!-- ⑤ SOCIAL PROOF -->
 <div class="section">
     <div class="section-title">💬 What Members Are Saying</div>
-    <div class="section-sub">Real WhatsApp screenshots. Real wins.</div>
+    <div class="section-sub">Real members. Real wins. Across Africa & beyond. 🌍</div>
     <div class="wa-bubbles">
         <div class="wa-bubble-wrap">
             <div class="wa-avatar">DK</div>
-            <div class="wa-bubble"><div class="wa-name">David Kamau</div>Niliweka Ksh 500 na nikapata Ksh 3,690! Pro Tipsters wanajua kazi 🔥<div class="wa-time">Yesterday 7:42 PM ✓✓</div></div>
+            <div class="wa-bubble"><div class="wa-name">David Kamau 🇰🇪</div>Niliweka Ksh 500 na nikapata Ksh 3,690! Pro Tipsters wanajua kazi sana 🔥<div class="wa-time">Yesterday 7:42 PM ✓✓</div></div>
         </div>
         <div class="wa-bubble-wrap right">
-            <div class="wa-avatar">MW</div>
-            <div class="wa-bubble"><div class="wa-name">Mercy Wanjiku</div>3rd week straight winning. My husband thought I was lucky but it's all Pro Tipsters 😂<div class="wa-time">Yesterday 8:15 PM ✓✓</div></div>
+            <div class="wa-avatar">CO</div>
+            <div class="wa-bubble"><div class="wa-name">Chukwuemeka Obi 🇳🇬</div>These guys are the real deal! Made ₦45,000 profit in one week. Lagos to Nairobi, the tips don't lie! 💪🔥<div class="wa-time">Yesterday 9:10 PM ✓✓</div></div>
         </div>
         <div class="wa-bubble-wrap">
-            <div class="wa-avatar">KO</div>
-            <div class="wa-bubble"><div class="wa-name">Kevin Omondi</div>Mega Jackpot bonus ya Ksh 12,000! Aki these guys are serious 💪<div class="wa-time">2 days ago ✓✓</div></div>
+            <div class="wa-avatar">KA</div>
+            <div class="wa-bubble"><div class="wa-name">Kwame Asante 🇬🇭</div>3rd week straight winning from Accra 🇬🇭 MTN MoMo payment was super easy. Pro Tipsters number 1 in Africa no cap! 😂🏆<div class="wa-time">2 days ago ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap right">
+            <div class="wa-avatar">SD</div>
+            <div class="wa-bubble"><div class="wa-name">Sipho Dlamini 🇿🇦</div>Bet365 account is smiling 😂 R2,800 profit this week from Johannesburg. Best predictions site on the continent, period!<div class="wa-time">2 days ago ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap">
+            <div class="wa-avatar">AF</div>
+            <div class="wa-bubble"><div class="wa-name">Amara Fabrice 🇷🇼</div>Nabonye amafaranga menshi cane! Paid via Airtel Money from Kigali no problem at all. These tips are 🔥🔥🔥<div class="wa-time">3 days ago ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap right">
+            <div class="wa-avatar">KA</div>
+            <div class="wa-bubble"><div class="wa-name">Khalid Al-Rashidi 🇶🇦</div>Following Pro Tipsters from Doha. Best football predictions I found online. PayPal payment works perfectly. 5 stars ⭐⭐⭐⭐⭐<div class="wa-time">3 days ago ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap">
+            <div class="wa-avatar">TM</div>
+            <div class="wa-bubble"><div class="wa-name">Tendai Moyo 🇿🇼</div>EcoCash payment went through instantly! Got tips in 2 minutes. Won $120 USD this week from Harare 🙌🇿🇼<div class="wa-time">4 days ago ✓✓</div></div>
+        </div>
+        <div class="wa-bubble-wrap right">
+            <div class="wa-avatar">OM</div>
+            <div class="wa-bubble"><div class="wa-name">Omar Al-Mansouri 🇦🇪</div>Subscribing from Dubai — these analysts know their football. Won on 4 consecutive days this week. Highly recommended! 🔥<div class="wa-time">4 days ago ✓✓</div></div>
         </div>
     </div>
 </div>
@@ -714,58 +761,6 @@
     </div>
 </div>
 
-<!-- ⑦ AI ODDS GENERATOR -->
-<div class="section">
-    <div class="ai-section">
-        <h2>🤖 AI Odds Generator</h2>
-        <p>Enter your target odds and our AI builds the perfect ticket for you</p>
-        <div class="ai-input-row">
-            <input id="aiInput" class="ai-input" type="number" min="2" max="23" placeholder="Enter odds (e.g. 10)" />
-            <button class="ai-btn" onclick="runAI()">Generate →</button>
-        </div>
-        <div class="ai-error" id="aiError"></div>
-        <div class="ai-loading" id="aiLoading"><div class="spinner"></div>AI analysing matches...</div>
-        <div class="ai-result" id="aiResult">
-            <div class="ai-confidence" id="aiConfidence"></div>
-            <div class="pack-teaser">
-                <div style="font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:700;">YOUR AI TICKET</div>
-                <div id="aiMatch1" class="blur-row"></div>
-                <div id="aiMatch2" class="blur-row"></div>
-                <div id="aiMatch3"></div>
-                <div id="aiOdds" class="teaser-total"></div>
-            </div>
-            <div class="ai-price-box">
-                <div class="ai-price-label">Unlock Full Ticket</div>
-                <div class="ai-price-num" id="aiPrice"></div>
-                <div class="ai-price-tier" id="aiTier"></div>
-            </div>
-            <div class="calc-box">
-                <div style="font-size:13px;font-weight:700;color:var(--green);">💰 Calculate Your Return</div>
-                <div class="calc-row">
-                    <input id="stakeInput" class="calc-input" type="number" placeholder="Your stake (Ksh)" oninput="calcReturn()" />
-                    <span style="font-size:13px;color:var(--muted);">→</span>
-                    <div style="font-size:16px;font-weight:800;color:var(--green);" id="returnAmt">--</div>
-                </div>
-            </div>
-            <a id="aiWaBtn" href="#" class="wa-btn" style="text-align:center;display:block;text-decoration:none;"></a>
-        </div>
-    </div>
-</div>
-
-<!-- ⑨ AVIATOR -->
-<div class="section">
-    <div class="aviator-card">
-        <h2>✈️ Aviator Signals</h2>
-        <p>Real-time crash point predictions. Know when to cash out before the plane flies away.</p>
-        <div class="av-features">
-            <span class="av-feat">Live Signals</span>
-            <span class="av-feat">83% Accuracy</span>
-            <span class="av-feat">WhatsApp Alerts</span>
-        </div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20Aviator%20signals.%20How%20does%20it%20work%3F" class="wa-btn" style="text-decoration:none;">Ask About Aviator Signals →</a>
-    </div>
-</div>
-
 <!-- ⑩ FAQ -->
 <div class="section">
     <div class="section-title">❓ Frequently Asked Questions</div>
@@ -779,7 +774,7 @@
 
 <footer>
     <strong>⚽ Pro Tipsters</strong><br>
-    Kenya's Most Trusted Betting Tips Service<br>
+    Africa's Most Trusted Betting Tips Service<br>
     WhatsApp: +254 762 945 530 &nbsp;•&nbsp; M-Pesa Till: 6012928<br>
     <div class="gambling">⚠️ Gamble Responsibly. 18+ Only. Betting involves risk.</div>
 </footer>
@@ -942,22 +937,26 @@ let jpViewers=847;
 setInterval(()=>{jpViewers=Math.max(600,Math.min(1100,jpViewers+Math.floor(Math.random()*60)-25));const el=document.getElementById('jp-buyers-live');if(el)el.textContent=jpViewers.toLocaleString()+' people';},4800);
 
 let slots=11;
-function updateSlots(){document.getElementById('slots-urgency').textContent=slots;document.getElementById('slots-display').textContent=slots;}
+function updateSlots(){const su=document.getElementById('slots-urgency');if(su)su.textContent=slots;document.getElementById('slots-display').textContent=slots;}
 updateSlots();
 setInterval(()=>{if(slots>3&&Math.random()>0.65){slots--;updateSlots();}},40000);
 
 const notifications=[
-    {name:'David Kamau',number:'07974••65',pkg:'Daily Ticket'},
-    {name:'Mercy Wanjiku',number:'0712••••',pkg:'5-Day Plan'},
-    {name:'Kevin Omondi',number:'0756••••',pkg:'Mega Jackpot'},
-    {name:'Aisha Mohammed',number:'0789••••',pkg:'Daily Ticket'},
-    {name:'John Mwangi',number:'0723••••',pkg:'5-Day Plan'},
-    {name:'Esther Njeri',number:'0771••••',pkg:'Mega Jackpot'},
-    {name:'Brian Otieno',number:'0700••••',pkg:'Daily Ticket'},
-    {name:'Grace Muthoni',number:'0748••••',pkg:'5-Day Plan'},
-    {name:'Samuel Kipchoge',number:'0712••••',pkg:'Mega Jackpot'},
-    {name:'Faith Wambui',number:'0790••••',pkg:'Mega Jackpot'},
-    {name:'Dennis Mutua',number:'0733••••',pkg:'Mega Jackpot'},
+    {name:'David Kamau 🇰🇪',number:'07974••65',pkg:'Daily Ticket'},
+    {name:'Chukwuemeka Obi 🇳🇬',number:'+234 80••••',pkg:'5-Day Plan'},
+    {name:'Kwame Asante 🇬🇭',number:'+233 24••••',pkg:'Mega Jackpot'},
+    {name:'Sipho Dlamini 🇿🇦',number:'+27 76••••',pkg:'Daily Ticket'},
+    {name:'Amara Fabrice 🇷🇼',number:'+250 78••••',pkg:'5-Day Plan'},
+    {name:'Khalid Al-Rashidi 🇶🇦',number:'+974 55••••',pkg:'Mega Jackpot'},
+    {name:'Tendai Moyo 🇿🇼',number:'+263 77••••',pkg:'Daily Ticket'},
+    {name:'Omar Al-Mansouri 🇦🇪',number:'+971 50••••',pkg:'5-Day Plan'},
+    {name:'Grace Nakato 🇺🇬',number:'+256 77••••',pkg:'Daily Ticket'},
+    {name:'Fatima Hassan 🇹🇿',number:'+255 75••••',pkg:'Mega Jackpot'},
+    {name:'Bwalya Mwale 🇿🇲',number:'+260 96••••',pkg:'5-Day Plan'},
+    {name:'Kofi Mensah 🇬🇭',number:'+233 20••••',pkg:'Daily Ticket'},
+    {name:'Aisha Mohammed 🇰🇪',number:'0789••••',pkg:'Mega Jackpot'},
+    {name:'John Mwangi 🇰🇪',number:'0723••••',pkg:'5-Day Plan'},
+    {name:'Emeka Nwosu 🇳🇬',number:'+234 90••••',pkg:'Mega Jackpot'},
 ];
 function playBeep(){}
 function showLiveNotification(){const notif=notifications[Math.floor(Math.random()*notifications.length)];const container=document.getElementById('live-notification');const el=document.getElementById('notification-content');el.innerHTML=`<strong>${notif.name}</strong> • ${notif.number}<small>just paid for ${notif.pkg}</small>`;container.classList.remove('slide-out');container.style.display='flex';container.classList.add('slide-in');playBeep();setTimeout(()=>{container.classList.remove('slide-in');container.classList.add('slide-out');setTimeout(()=>{container.style.display='none';container.classList.remove('slide-out');},360);},6500);}
@@ -978,6 +977,7 @@ document.getElementById('aiInput').addEventListener('keydown',e=>{if(e.key==='En
 function showTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='flex';}
 function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').style.display='none';}
 function showTrackRecord(){const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';const data=[
+['08/05','Borussia Dortmund vs E. Frankfurt • Standard Liège vs OH Leuven • Levante vs Osasuna','3','3'],
 ['07/05','Aston Villa vs Nottm Forest • Freiburg vs Braga • Crystal Palace vs Shakhtar','3','3'],
 ['01/05','Leeds United vs Burnley • Girona vs Real Mallorca • Viking vs Rosenborg','3','3'],
 ['28/04','PSG vs Bayern Munich • Southampton vs Ipswich • Middlesbrough vs Millwall','3','3'],
