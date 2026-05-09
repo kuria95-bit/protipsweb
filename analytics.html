@@ -166,15 +166,22 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 </div>
 
 <script>
-firebase.initializeApp({
+// ── Safe Firebase init — won't crash if already initialized ──
+var fbConfig = {
   apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
   authDomain:"pro-tipsters-94171.firebaseapp.com",
   projectId:"pro-tipsters-94171",
   storageBucket:"pro-tipsters-94171.firebasestorage.app",
   messagingSenderId:"737923794509",
   appId:"1:737923794509:web:921f6a558c11786beebe04"
-});
-const db = firebase.firestore();
+};
+var fbApp;
+try {
+  fbApp = firebase.app('pt-analytics');
+} catch(e) {
+  fbApp = firebase.initializeApp(fbConfig, 'pt-analytics');
+}
+var db = firebase.firestore(fbApp);
 
 function todayKey(){ return new Date().toISOString().split('T')[0]; }
 
@@ -196,94 +203,134 @@ function safeHourly(raw) {
   return new Array(24).fill(0);
 }
 
+function renderData(td, days) {
+  var total   = td.total  || 0;
+  var unique  = td.unique || 0;
+  var repeat  = td.repeat || 0;
+  var hourly  = safeHourly(td.hourly);
+  var sources = td.sources || {};
+
+  var uniqueCounts = days.map(function(d){ return d.unique || 0; });
+  var week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
+  var best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
+  var avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
+
+  // Hero
+  document.getElementById('bigNum').textContent      = unique.toLocaleString();
+  document.getElementById('totalBadge').textContent  = total.toLocaleString();
+  document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
+  document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+
+  // Grid
+  document.getElementById('wk').textContent    = week.toLocaleString();
+  document.getElementById('best').textContent  = best.toLocaleString();
+  document.getElementById('avg').textContent   = avg.toLocaleString();
+  document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
+
+  // Breakdown
+  var maxB = total || 1;
+  document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
+  document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
+  document.getElementById('totalVal').textContent   = total.toLocaleString();
+  document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
+  document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
+
+  // Sources
+  document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
+  document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
+  document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
+  document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
+
+  // Hourly bars
+  var maxH = Math.max.apply(null, hourly.concat([1]));
+  var curHr = new Date().getHours();
+  var bHtml = '';
+  for(var i=0;i<24;i++){
+    var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
+    var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
+    bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits at '+i+':00"></div><div class="bl">'+lbl+'</div></div>';
+  }
+  document.getElementById('barsDiv').innerHTML = bHtml;
+
+  // History (last 7 days)
+  var maxC = best || 1;
+  var hHtml = '';
+  var show = days.slice(0,7);
+  if(!show.length){
+    hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — visit your site to generate data!</div>';
+  } else {
+    for(var j=0;j<show.length;j++){
+      var dy = show[j];
+      var u = dy.unique || 0;
+      var t = dy.total  || 0;
+      var pct = Math.round((u/maxC)*100);
+      hHtml += '<div class="row"><div class="rl"><div class="rn">'+dy.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
+    }
+  }
+  document.getElementById('histDiv').innerHTML = hHtml;
+
+  document.getElementById('loadDiv').style.display = 'none';
+  document.getElementById('mainDiv').style.display = 'block';
+}
+
+function showError(msg) {
+  document.getElementById('loadDiv').style.display = 'none';
+  var eb = document.getElementById('errBox');
+  eb.style.display = 'block';
+  eb.innerHTML = msg;
+}
+
+// ── Fetch history once, then use real-time listener for today ──
+var unsubscribe = null;
+
 async function load(){
   document.getElementById('loadDiv').style.display='block';
   document.getElementById('mainDiv').style.display='none';
   document.getElementById('errBox').style.display='none';
-  try {
-    const today = todayKey();
-    const snap = await db.collection('analytics').doc(today).get();
-    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
 
-    const col = await db.collection('analytics').get();
-    const days = [];
-    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
+  // Cancel any existing live listener
+  if(unsubscribe) { unsubscribe(); unsubscribe = null; }
+
+  try {
+    // Fetch all days for history/stats (once)
+    var col = await db.collection('analytics').get();
+    var days = [];
+    col.forEach(function(d){
+      days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0});
+    });
     days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
 
-    const total   = td.total  || 0;
-    const unique  = td.unique || 0;
-    const repeat  = td.repeat || 0;
-    const hourly  = safeHourly(td.hourly);
-    const sources = td.sources || {};
+    // ── Real-time listener for TODAY's document ──
+    var today = todayKey();
+    unsubscribe = db.collection('analytics').doc(today).onSnapshot(function(snap){
+      var td = snap.exists
+        ? snap.data()
+        : {total:0, unique:0, repeat:0, hourly:new Array(24).fill(0), sources:{}};
 
-    const uniqueCounts = days.map(function(d){ return d.unique || 0; });
-    const week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
-    const best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
-    const avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
+      // Update today's entry in days array for accurate stats
+      var todayIdx = days.findIndex(function(d){ return d.id === today; });
+      var todayEntry = {id:today, total:td.total||0, unique:td.unique||0};
+      if(todayIdx >= 0) days[todayIdx] = todayEntry;
+      else { days.unshift(todayEntry); days.sort(function(a,b){ return b.id > a.id ? 1 : -1; }); }
 
-    // Hero
-    document.getElementById('bigNum').textContent      = unique.toLocaleString();
-    document.getElementById('totalBadge').textContent  = total.toLocaleString();
-    document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
-    document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
-
-    // Grid
-    document.getElementById('wk').textContent    = week.toLocaleString();
-    document.getElementById('best').textContent  = best.toLocaleString();
-    document.getElementById('avg').textContent   = avg.toLocaleString();
-    document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
-
-    // Breakdown
-    var maxB = total || 1;
-    document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
-    document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
-    document.getElementById('totalVal').textContent   = total.toLocaleString();
-    document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
-    document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
-
-    // Sources
-    document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
-    document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
-    document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
-    document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
-
-    // Hourly bars
-    var maxH = Math.max.apply(null, hourly.concat([1]));
-    var curHr = new Date().getHours();
-    var bHtml = '';
-    for(var i=0;i<24;i++){
-      var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
-      var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
-      bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
-    }
-    document.getElementById('barsDiv').innerHTML = bHtml;
-
-    // History
-    var maxC = best || 1;
-    var hHtml = '';
-    var show = days.slice(0,7);
-    if(!show.length){
-      hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
-    } else {
-      for(var j=0;j<show.length;j++){
-        var d = show[j];
-        var u = d.unique || 0;
-        var t = d.total  || 0;
-        var pct = Math.round((u/maxC)*100);
-        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
-      }
-    }
-    document.getElementById('histDiv').innerHTML = hHtml;
-
-    document.getElementById('loadDiv').style.display = 'none';
-    document.getElementById('mainDiv').style.display = 'block';
+      renderData(td, days);
+    }, function(err){
+      showError('❌ Firestore read error: ' + err.message + '<br><br>'
+        + '⚠️ <strong>Most likely cause: Firestore security rules are blocking reads.</strong><br><br>'
+        + 'Go to <a href="https://console.firebase.google.com" target="_blank" style="color:#38bdf8;">Firebase Console</a> → Firestore → Rules, and set:<br>'
+        + '<pre style="background:#0a0f17;padding:10px;border-radius:8px;margin-top:8px;font-size:12px;overflow-x:auto;">'
+        + 'rules_version = \'2\';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /analytics/{doc} {\n      allow read, write: if true;\n    }\n  }\n}'
+        + '</pre>');
+    });
 
   } catch(e) {
     console.error(e);
-    document.getElementById('loadDiv').style.display = 'none';
-    var eb = document.getElementById('errBox');
-    eb.style.display = 'block';
-    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
+    showError('❌ Firebase connection error: ' + e.message + '<br><br>'
+      + '⚠️ <strong>Most likely cause: Firestore security rules are blocking access.</strong><br><br>'
+      + 'Go to <a href="https://console.firebase.google.com" target="_blank" style="color:#38bdf8;">Firebase Console</a> → Firestore → Rules, and set:<br>'
+      + '<pre style="background:#0a0f17;padding:10px;border-radius:8px;margin-top:8px;font-size:12px;overflow-x:auto;">'
+      + 'rules_version = \'2\';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /analytics/{doc} {\n      allow read, write: if true;\n    }\n  }\n}'
+      + '</pre>');
   }
 }
 
@@ -299,7 +346,6 @@ function tick(){
 }
 
 load();
-setInterval(load, 30000);
 setInterval(tick, 1000);
 tick();
 </script>
