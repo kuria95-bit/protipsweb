@@ -911,7 +911,7 @@
 let viewers=2147;
 setInterval(()=>{viewers=Math.max(1820,Math.min(2480,viewers+Math.floor(Math.random()*80)-35));document.getElementById('live-counter').textContent=viewers.toLocaleString()+' online';},3200);
 
-function updateCountdown(){const el=document.getElementById('countdown');if(!el)return;const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');el.textContent=`${h}:${m}:${s}`;}
+function updateCountdown(){const now=new Date(),midnight=new Date();midnight.setHours(23,59,59,0);const diff=midnight-now;const h=String(Math.floor(diff/3600000)).padStart(2,'0');const m=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');const s=String(Math.floor((diff%60000)/1000)).padStart(2,'0');document.getElementById('countdown').textContent=`${h}:${m}:${s}`;}
 updateCountdown();setInterval(updateCountdown,1000);
 
 // ── MEGA JACKPOT DEADLINE COUNTDOWN (counts to next Friday 18:00 EAT) ──
@@ -1071,7 +1071,7 @@ async function initFCM(){
 setTimeout(initFCM, 12000);
 
 // ── REAL VISITOR TRACKING → FIREBASE FIRESTORE ───────────────
-// Option 2: Tracks both total visits AND unique devices separately
+// Tracks total visits, unique devices, and repeat visitors per day
 (function trackVisit(){
   try{
     const s1=document.createElement('script');
@@ -1081,13 +1081,20 @@ setTimeout(initFCM, 12000);
       s2.src='https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js';
       s2.onload=function(){
         try{
-          const app=firebase.apps.length?firebase.apps[0]:firebase.initializeApp(FCM_CONFIG);
-          const db=firebase.firestore();
-          const today=new Date().toISOString().split('T')[0];
-          const hr=new Date().getHours();
-          const params=new URLSearchParams(location.search);
-          const src=params.get('ref')||'direct';
-          const source=src==='notif'?'notif':src==='fb'?'fb':src==='wa'?'wa':'direct';
+          // Use a separate named app for tracking to avoid conflict with modular FCM SDK
+          const TRACK_APP_NAME = 'pt-tracker';
+          let app;
+          try {
+            app = firebase.app(TRACK_APP_NAME);
+          } catch(e) {
+            app = firebase.initializeApp(FCM_CONFIG, TRACK_APP_NAME);
+          }
+          const db = firebase.firestore(app);
+          const today = new Date().toISOString().split('T')[0];
+          const hr = new Date().getHours();
+          const params = new URLSearchParams(location.search);
+          const src = params.get('ref') || 'direct';
+          const source = src==='notif'?'notif':src==='fb'?'fb':src==='wa'?'wa':'direct';
 
           // ── UNIQUE DEVICE CHECK ──────────────────────────────
           // Generate or retrieve a persistent device ID
@@ -1096,40 +1103,39 @@ setTimeout(initFCM, 12000);
             deviceId = 'dev-' + Date.now() + '-' + Math.random().toString(36).substr(2,9);
             localStorage.setItem('pt-device-id', deviceId);
           }
-          // Check if this device has already been counted today
+          // Check BEFORE marking seen — determines new vs repeat for THIS visit
           const seenKey = 'pt-seen-' + today;
           const isNewDeviceToday = !localStorage.getItem(seenKey);
-          if(isNewDeviceToday){
-            localStorage.setItem(seenKey, '1');
-          }
+          // Mark as seen NOW so future visits on same device today count as repeat
+          localStorage.setItem(seenKey, '1');
           // ────────────────────────────────────────────────────
 
-          const ref=db.collection('analytics').doc(today);
+          const ref = db.collection('analytics').doc(today);
           ref.get().then(snap=>{
             if(!snap.exists){
               // First visit of the day — create fresh document
-              const hourly=new Array(24).fill(0); hourly[hr]=1;
-              const sources={fb:0,notif:0,wa:0,direct:0}; sources[source]=1;
+              const hourly = new Array(24).fill(0); hourly[hr] = 1;
+              const sources = {fb:0, notif:0, wa:0, direct:0}; sources[source] = 1;
               ref.set({
                 total: 1,
-                unique: 1,           // unique device count
-                repeat: 0,           // repeat device count
+                unique: isNewDeviceToday ? 1 : 0,
+                repeat: isNewDeviceToday ? 0 : 1,
                 hourly,
                 sources,
                 date: today
               });
             } else {
               // Update total visits always
-              const upd={total: firebase.firestore.FieldValue.increment(1)};
-              upd['hourly.'+hr] = firebase.firestore.FieldValue.increment(1);
-              upd['sources.'+source] = firebase.firestore.FieldValue.increment(1);
+              const upd = {total: firebase.firestore.FieldValue.increment(1)};
+              upd['hourly.' + hr] = firebase.firestore.FieldValue.increment(1);
+              upd['sources.' + source] = firebase.firestore.FieldValue.increment(1);
 
               if(isNewDeviceToday){
                 // New device today — increment unique count
-                upd['unique'] = firebase.firestore.FieldValue.increment(1);
+                upd.unique = firebase.firestore.FieldValue.increment(1);
               } else {
-                // Repeat device — increment repeat count
-                upd['repeat'] = firebase.firestore.FieldValue.increment(1);
+                // Repeat visit from same device — increment repeat count
+                upd.repeat = firebase.firestore.FieldValue.increment(1);
               }
               ref.update(upd);
             }
