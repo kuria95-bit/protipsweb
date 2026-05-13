@@ -359,6 +359,41 @@
             .jp-int-title{font-size:22px;}
             .jp-int-score-num{font-size:24px;}
         }
+
+        /* ── MPESA PAYMENT MODAL ─────────────────────────────── */
+        #payModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:20000;align-items:flex-end;justify-content:center;}
+        #payModal.open{display:flex;}
+        .pay-sheet{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:28px 20px 40px;max-height:95vh;overflow-y:auto;}
+        .pay-handle{width:40px;height:4px;background:#e2e8f0;border-radius:4px;margin:0 auto 20px;}
+        .pay-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);text-align:center;margin-bottom:6px;}
+        .pay-subtitle{text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px;}
+        .pay-plans{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:20px;}
+        .pay-plan{border:2px solid var(--border);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all .2s;position:relative;}
+        .pay-plan:hover{border-color:var(--mint);}
+        .pay-plan.selected{border-color:var(--mint);background:#f0fdf4;box-shadow:0 4px 16px rgba(16,185,129,.18);}
+        .pay-plan-top{display:flex;justify-content:space-between;align-items:center;}
+        .pay-plan-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--green);}
+        .pay-plan-price{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--text);}
+        .pay-plan-desc{font-size:12.5px;color:var(--muted);margin-top:4px;}
+        .pay-plan-badge{position:absolute;top:-1px;right:12px;background:var(--mint);color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:0 0 8px 8px;letter-spacing:.5px;}
+        .pay-phone-label{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:8px;}
+        .pay-phone-input{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);margin-bottom:16px;transition:border-color .2s;}
+        .pay-phone-input:focus{border-color:var(--mint);}
+        .pay-btn{width:100%;background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;border:none;padding:16px;border-radius:50px;font-weight:800;font-size:16px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 8px 24px rgba(15,118,110,.35);transition:transform .2s;margin-bottom:12px;}
+        .pay-btn:hover{transform:translateY(-2px);}
+        .pay-btn:disabled{opacity:.6;transform:none;cursor:not-allowed;}
+        .pay-status{display:none;text-align:center;padding:14px;border-radius:12px;font-size:14px;font-weight:600;margin-bottom:12px;}
+        .pay-status.waiting{background:#fef3c7;color:#92400e;display:block;}
+        .pay-status.success{background:#ecfdf5;color:#065f46;display:block;}
+        .pay-status.error{background:#fef2f2;color:#991b1b;display:block;}
+        .pay-close{width:100%;background:#e2e8f0;color:var(--text);border:none;padding:13px;border-radius:50px;font-weight:600;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;}
+        .pay-security{text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px;}
+
+        /* ── ACCESS GATE OVERLAY ─────────────────────────────── */
+        .tips-gate{position:relative;}
+        .gate-overlay{position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,#fff 60%,transparent);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:16px;z-index:10;}
+        .gate-btn{background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;border:none;padding:14px 28px;border-radius:50px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 20px rgba(15,118,110,.35);}
+        .access-info{background:#ecfdf5;border:1px solid var(--mint);border-radius:10px;padding:10px 14px;font-size:13px;color:#065f46;font-weight:600;margin-bottom:12px;text-align:center;display:none;}
     </style>
 </head>
 <body>
@@ -451,7 +486,7 @@
                 <span class="hero-cta-sub">Ksh 122M Pool · See Our Slip 👇</span>
             </span>
         </a>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="hero-cta-daily">
+        <a onclick="openPayModal('daily')" style="cursor:pointer;" class="hero-cta-daily">
             <span class="hero-cta-icon">⚽</span>
             <span class="hero-cta-content">
                 <span class="hero-cta-label">Get Today's Daily Ticket</span>
@@ -655,7 +690,7 @@
         </div>
 
         <!-- MAIN CTA -->
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="max-width:360px;margin:14px auto 0;display:block;text-decoration:none;font-size:17px;font-weight:800;background:linear-gradient(135deg,#92400e,var(--gold),#f97316);box-shadow:0 10px 36px rgba(245,158,11,.55);letter-spacing:.5px;animation:pillGlow 2s ease-in-out infinite alternate;">🏆 GET THIS WEEK'S SLIP — Ksh 599 →</a>
+        <button onclick="openPayModal('jackpot')" class="wa-btn" style="max-width:360px;margin:14px auto 0;display:block;font-size:17px;font-weight:800;background:linear-gradient(135deg,#92400e,var(--gold),#f97316);box-shadow:0 10px 36px rgba(245,158,11,.55);letter-spacing:.5px;animation:pillGlow 2s ease-in-out infinite alternate;border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;">🏆 GET THIS WEEK'S SLIP — Ksh 599 →</button>
         <div style="text-align:center;font-size:11px;color:#6ee7b7;margin-top:8px;opacity:.75;">📱 M-Pesa to <strong>Till 6012928</strong> · Instant WhatsApp delivery after payment</div>
         <div style="text-align:center;font-size:10px;opacity:.45;margin-top:6px;">Over 2,400 members trust us every week 🇰🇪</div>
     </div>
@@ -681,7 +716,7 @@
             <div class="blur-line">Brighton vs Wolves • GG • Odds 1.78</div>
         </div>
         <div class="full-ticket-teaser">Combined odds on full ticket: ~6.78 • Ksh 200 stake = Ksh 1,356</div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
+        <div id="access-info-freetip" class="access-info"></div><button onclick="openPayModal('daily')" class="wa-btn" id="freetip-pay-btn">🔓 Unlock Full Ticket — Ksh 99</button>
     </div>
 </div>
 
@@ -740,7 +775,7 @@
                 <li>Instant WhatsApp delivery</li>
                 <li>Analysis + reasoning included</li>
             </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket →</a>
+            <button onclick="openPayModal('daily')" class="wa-btn" style="border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;">📱 Pay Ksh 99 via M-Pesa →</button>
         </div>
         <div class="pack featured">
             <div class="pack-badge">BEST VALUE</div>
@@ -753,7 +788,7 @@
                 <li>Members average Ksh 8,000+/week</li>
                 <li>Weekend special picks included</li>
             </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days →</a>
+            <button onclick="openPayModal('fiveday')" class="wa-btn" style="border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;">📱 Pay Ksh 499 via M-Pesa →</button>
         </div>
         <div class="pack">
             <div class="pack-name">Mega Jackpot</div>
@@ -765,7 +800,7 @@
                 <li>Won 2 bonuses this month</li>
                 <li>Ksh 122M+ pool this week</li>
             </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot →</a>
+            <button onclick="openPayModal('jackpot')" class="wa-btn" style="border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;">📱 Pay Ksh 599 via M-Pesa →</button>
         </div>
     </div>
 </div>
@@ -814,10 +849,10 @@
             <div class="jp-modal-pool">💰 This Week's Pool: <span style="font-size:17px;">Ksh 122,000,000</span></div>
             <div class="jp-modal-proof">"Niliweka 200 bob — last week 13/17 ilikuwa solid! — James K., Nairobi 🙌"</div>
             <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:13px;color:#d1fae5;">Full 17-game slip built by AI + expert analysts. Last week: <strong style="color:var(--gold);">13/17 ✅</strong> — This week we target <strong style="color:var(--gold);">15/17 🎯</strong></div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);">🏆 Get Mega Jackpot — Ksh 599</a>
+            <button onclick="hideTodayPackagesModal();openPayModal('jackpot')" class="wa-btn" style="display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);border:none;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;">🏆 Get Mega Jackpot — Ksh 599</button>
         </div>
-        <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div><div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div></div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
-        <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a></div>
+        <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3 Matches • Odds ~9.35</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Arsenal vs Chelsea • Home Win</div><div style="filter:blur(4px);user-select:none;">Brighton vs Nott Forest • Over 2.5</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~9.35</div></div><button onclick="hideTodayPackagesModal();openPayModal('daily')" class="wa-btn" style="border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;display:block;width:100%;">📱 Pay Ksh 99 via M-Pesa</button></div>
+        <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><button onclick="hideTodayPackagesModal();openPayModal('fiveday')" class="wa-btn" style="border:none;cursor:pointer;font-family:'Poppins',sans-serif;text-align:center;display:block;width:100%;">📱 Pay Ksh 499 via M-Pesa</button></div>
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
 </div>
@@ -871,9 +906,48 @@
             <span class="slip-result-score">13 / 17 🏆</span>
         </div>
         <div style="background:#ecfdf5;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:13px;color:#065f46;font-weight:600;text-align:center;">💪 Strong 13/17! We go again this week — targeting 15/17 🎯🔥</div>
-        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599" class="wa-btn" style="text-decoration:none;display:block;margin-top:12px;text-align:center;">Get This Week's Slip — Ksh 599 →</a>
+        <button onclick="document.getElementById('megaJPModal').style.display='none';openPayModal('jackpot')" class="wa-btn" style="display:block;margin-top:12px;text-align:center;border:none;cursor:pointer;font-family:'Poppins',sans-serif;width:100%;">📱 Get This Week's Slip — Ksh 599 →</button>
         <button class="modal-back" onclick="document.getElementById('megaJPModal').style.display='none'" style="margin-top:10px;">Close</button>
     </div>
+</div>
+
+<!-- ── MPESA PAYMENT MODAL ──────────────────────────────────── -->
+<div id="payModal" onclick="if(event.target===this)closePayModal()">
+  <div class="pay-sheet">
+    <div class="pay-handle"></div>
+    <div class="pay-title">📱 Pay via M-Pesa</div>
+    <div class="pay-subtitle">STK Push — prompt sent straight to your phone</div>
+    <div class="pay-plans">
+      <div class="pay-plan" id="plan-daily" onclick="selectPlan('daily')">
+        <div class="pay-plan-top">
+          <div class="pay-plan-name">Daily Ticket</div>
+          <div class="pay-plan-price">Ksh 99</div>
+        </div>
+        <div class="pay-plan-desc">⚡ 3–4 picks · 24hr access · 95% confidence</div>
+      </div>
+      <div class="pay-plan" id="plan-fiveday" onclick="selectPlan('fiveday')">
+        <div class="pay-plan-badge">BEST VALUE</div>
+        <div class="pay-plan-top">
+          <div class="pay-plan-name">5-Day Subscription</div>
+          <div class="pay-plan-price">Ksh 499</div>
+        </div>
+        <div class="pay-plan-desc">💪 Daily tips for 5 days · Save Ksh 496</div>
+      </div>
+      <div class="pay-plan" id="plan-jackpot" onclick="selectPlan('jackpot')">
+        <div class="pay-plan-top">
+          <div class="pay-plan-name">Mega Jackpot Slip</div>
+          <div class="pay-plan-price">Ksh 599</div>
+        </div>
+        <div class="pay-plan-desc">🏆 Full 17-game slip · AI + expert · 7-day access</div>
+      </div>
+    </div>
+    <div class="pay-phone-label">Your M-Pesa Phone Number</div>
+    <input type="tel" id="payPhone" class="pay-phone-input" placeholder="e.g. 0712345678" maxlength="13">
+    <div id="payStatus" class="pay-status"></div>
+    <button id="payNowBtn" class="pay-btn" onclick="initiatePayment()">📱 Send M-Pesa Prompt</button>
+    <button class="pay-close" onclick="closePayModal()">Cancel</button>
+    <div class="pay-security">🔒 Secure · Powered by PayHero · M-Pesa Till 6012928</div>
+  </div>
 </div>
 
 <!-- MIDWEEK JACKPOT SLIP MODAL -->
@@ -1101,6 +1175,145 @@ window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner')
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
 if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
+
+// ── MPESA PAYMENT SYSTEM ────────────────────────────────────
+const API_URL = 'https://pro-tipster-api.onrender.com';
+let selectedPlan = null;
+let pollInterval = null;
+
+function openPayModal(plan) {
+  selectedPlan = null;
+  document.getElementById('payModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('payStatus').className = 'pay-status';
+  document.getElementById('payStatus').textContent = '';
+  document.getElementById('payNowBtn').disabled = false;
+  document.getElementById('payNowBtn').textContent = '📱 Send M-Pesa Prompt';
+  document.getElementById('payPhone').value = '';
+  ['daily','fiveday','jackpot'].forEach(p => document.getElementById('plan-'+p).classList.remove('selected'));
+  if(plan) selectPlan(plan);
+}
+
+function closePayModal() {
+  document.getElementById('payModal').classList.remove('open');
+  document.body.style.overflow = '';
+  if(pollInterval) { clearInterval(pollInterval); pollInterval = null; }
+}
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  ['daily','fiveday','jackpot'].forEach(p => document.getElementById('plan-'+p).classList.remove('selected'));
+  document.getElementById('plan-'+plan).classList.add('selected');
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('payStatus');
+  el.textContent = msg;
+  el.className = 'pay-status ' + type;
+}
+
+async function initiatePayment() {
+  if(!selectedPlan) { setStatus('⚠️ Please select a plan first.', 'error'); return; }
+  const phone = document.getElementById('payPhone').value.trim();
+  if(!phone || phone.length < 9) { setStatus('⚠️ Please enter a valid M-Pesa phone number.', 'error'); return; }
+
+  const btn = document.getElementById('payNowBtn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Sending prompt...';
+  setStatus('📲 Sending M-Pesa prompt to your phone...', 'waiting');
+
+  try {
+    const res = await fetch(API_URL + '/initiate-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, plan: selectedPlan })
+    });
+    const data = await res.json();
+
+    if(res.ok && data.success) {
+      setStatus('✅ Prompt sent! Check your phone and enter your M-Pesa PIN. Waiting for confirmation...', 'waiting');
+      btn.textContent = '⏳ Waiting for payment...';
+      startPolling(phone);
+    } else {
+      setStatus('❌ Failed to send prompt. Please try again or use Till 6012928.', 'error');
+      btn.disabled = false;
+      btn.textContent = '📱 Send M-Pesa Prompt';
+    }
+  } catch(e) {
+    setStatus('❌ Network error. Please check your connection and try again.', 'error');
+    btn.disabled = false;
+    btn.textContent = '📱 Send M-Pesa Prompt';
+  }
+}
+
+function startPolling(phone) {
+  let attempts = 0;
+  const maxAttempts = 24; // 2 minutes
+  pollInterval = setInterval(async () => {
+    attempts++;
+    if(attempts > maxAttempts) {
+      clearInterval(pollInterval); pollInterval = null;
+      setStatus('⏰ Payment not confirmed yet. If you paid, your access will be activated within 1 minute. You can close this.', 'waiting');
+      document.getElementById('payNowBtn').textContent = 'Close';
+      document.getElementById('payNowBtn').disabled = false;
+      document.getElementById('payNowBtn').onclick = closePayModal;
+      return;
+    }
+    try {
+      const res = await fetch(API_URL + '/check-access?phone=' + encodeURIComponent(phone));
+      const data = await res.json();
+      if(data.access) {
+        clearInterval(pollInterval); pollInterval = null;
+        const planNames = { daily: 'Daily Ticket (24hrs)', fiveday: '5-Day Subscription', jackpot: 'Mega Jackpot Slip' };
+        setStatus('🎉 Payment confirmed! ' + planNames[data.plan] + ' unlocked. Access granted!', 'success');
+        localStorage.setItem('pt-phone', phone);
+        localStorage.setItem('pt-access', JSON.stringify({ access: true, plan: data.plan, expiresAt: data.expiresAt }));
+        document.getElementById('payNowBtn').textContent = '✅ Go to Tips';
+        document.getElementById('payNowBtn').disabled = false;
+        document.getElementById('payNowBtn').onclick = function(){ closePayModal(); unlockTipsSection(); scrollToFreeTip(); };
+        unlockTipsSection();
+      }
+    } catch(e) { /* keep polling */ }
+  }, 5000);
+}
+
+// ── ACCESS GATE ─────────────────────────────────────────────
+async function checkExistingAccess() {
+  const phone = localStorage.getItem('pt-phone');
+  if(!phone) return;
+  try {
+    const res = await fetch(API_URL + '/check-access?phone=' + encodeURIComponent(phone));
+    const data = await res.json();
+    if(data.access) {
+      localStorage.setItem('pt-access', JSON.stringify(data));
+      unlockTipsSection();
+    } else {
+      localStorage.removeItem('pt-access');
+    }
+  } catch(e) {}
+}
+
+function unlockTipsSection() {
+  const stored = localStorage.getItem('pt-access');
+  if(!stored) return;
+  try {
+    const data = JSON.parse(stored);
+    if(!data.access) return;
+    const planNames = { daily: 'Daily Ticket', fiveday: '5-Day Plan', jackpot: 'Jackpot Slip' };
+    const expiry = new Date(data.expiresAt);
+    const infoEl = document.getElementById('access-info-freetip');
+    const payBtn = document.getElementById('freetip-pay-btn');
+    if(infoEl) { infoEl.style.display = 'block'; infoEl.textContent = '✅ Access active: ' + (planNames[data.plan]||data.plan) + ' · Expires ' + expiry.toLocaleString('en-KE', {dateStyle:'short',timeStyle:'short'}); }
+    if(payBtn) { payBtn.textContent = '✅ Tips Unlocked — Access Active'; payBtn.style.background = 'var(--mint)'; payBtn.onclick = null; payBtn.style.cursor = 'default'; }
+    // Unblur the locked picks
+    document.querySelectorAll('.blur-line').forEach(el => el.style.filter = 'none');
+    document.querySelectorAll('.blur-row').forEach(el => el.style.filter = 'none');
+  } catch(e) {}
+}
+
+// Run access check on page load
+checkExistingAccess();
+// ── END MPESA PAYMENT SYSTEM ────────────────────────────────
 </script>
 </body>
 </html> 
