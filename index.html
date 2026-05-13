@@ -1113,7 +1113,7 @@ function showTrackRecord(){const tbody=document.getElementById('trackRecordBody'
 ['02/04','Arsenal vs Tottenham • Bayern vs Leverkusen • Inter vs Milan','3','3']
 ];
 let totalTips=0,totalWins=0;
-data.forEach(([date,matches,tips,wins])=>{const isPending=wins==='—';if(!isPending){totalTips+=parseInt(tips);totalWins+=parseInt(wins);}const isLoss=!isPending&&parseInt(wins)<parseInt(tips);const statusColor=isPending?'#f59e0b':isLoss?'#ef4444':'#10b981';const statusText=isPending?'⏳ LIVE':'${isLoss?\'✗ LOSS\':\'✓ WIN\'}';const tr=document.createElement('tr');tr.innerHTML=`<td>${date}</td><td style="font-size:11px;text-align:left;max-width:160px;line-height:1.4;">${matches}</td><td>${tips}</td><td style="color:${statusColor};font-weight:700;">${isPending?'—':wins}</td><td style="color:${statusColor};font-weight:700;">${isPending?'⏳ PENDING':isLoss?'✗ LOSS':'✓ WIN'}</td>`;tbody.appendChild(tr);});
+data.forEach(([date,matches,tips,wins])=>{const isPending=wins==='—';if(!isPending){totalTips+=parseInt(tips);totalWins+=parseInt(wins);}const isLoss=!isPending&&parseInt(wins)<parseInt(tips);const statusColor=isPending?'#f59e0b':isLoss?'#ef4444':'#10b981';const statusText=isPending?'⏳ LIVE':isLoss?'✗ LOSS':'✓ WIN';const tr=document.createElement('tr');tr.innerHTML=`<td>${date}</td><td style="font-size:11px;text-align:left;max-width:160px;line-height:1.4;">${matches}</td><td>${tips}</td><td style="color:${statusColor};font-weight:700;">${isPending?'—':wins}</td><td style="color:${statusColor};font-weight:700;">${isPending?'⏳ PENDING':isLoss?'✗ LOSS':'✓ WIN'}</td>`;tbody.appendChild(tr);});
 const acc=((totalWins/totalTips)*100).toFixed(1);
 document.getElementById('trackSummary').innerHTML=`${totalTips} Tips &nbsp;•&nbsp; ${totalWins} Wins &nbsp;•&nbsp; <span style="color:var(--mint);">${acc}% Accuracy</span>`;
 document.getElementById('trackRecordModal').style.display='flex';}
@@ -1183,146 +1183,145 @@ const isStandalone=window.matchMedia('(display-mode: standalone)').matches||wind
 if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
 
 // ── MPESA PAYMENT SYSTEM ────────────────────────────────────
-const API_URL = 'https://pro-tipster-api.onrender.com';
-let selectedPlan = null;
-let pollInterval = null;
+(function() {
+var PAY_API = 'https://pro-tipster-api.onrender.com';
+var _selectedPlan = null;
+var _pollInterval = null;
 
-function openPayModal(plan) {
-  selectedPlan = null;
+window.openPayModal = function(plan) {
+  _selectedPlan = null;
   var modal = document.getElementById('payModal');
+  if(!modal){ alert('Modal not found!'); return; }
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  document.getElementById('payStatus').className = 'pay-status';
-  document.getElementById('payStatus').textContent = '';
-  document.getElementById('payNowBtn').disabled = false;
-  document.getElementById('payNowBtn').textContent = '📱 Send M-Pesa Prompt';
-  document.getElementById('payNowBtn').onclick = initiatePayment;
-  document.getElementById('payPhone').value = '';
-  ['daily','fiveday','jackpot'].forEach(function(p){ document.getElementById('plan-'+p).classList.remove('selected'); });
-  if(plan) selectPlan(plan);
-}
+  var statusEl = document.getElementById('payStatus');
+  if(statusEl){ statusEl.className = 'pay-status'; statusEl.textContent = ''; }
+  var btn = document.getElementById('payNowBtn');
+  if(btn){ btn.disabled = false; btn.textContent = '📱 Send M-Pesa Prompt'; btn.onclick = window.initiatePayment; }
+  var phoneEl = document.getElementById('payPhone');
+  if(phoneEl) phoneEl.value = '';
+  ['daily','fiveday','jackpot'].forEach(function(p){
+    var el = document.getElementById('plan-'+p);
+    if(el) el.classList.remove('selected');
+  });
+  if(plan) window.selectPlan(plan);
+};
 
-function closePayModal() {
-  document.getElementById('payModal').style.display = 'none';
+window.closePayModal = function() {
+  var modal = document.getElementById('payModal');
+  if(modal) modal.style.display = 'none';
   document.body.style.overflow = '';
-  if(pollInterval) { clearInterval(pollInterval); pollInterval = null; }
-}
+  if(_pollInterval){ clearInterval(_pollInterval); _pollInterval = null; }
+};
 
-function selectPlan(plan) {
-  selectedPlan = plan;
-  ['daily','fiveday','jackpot'].forEach(p => document.getElementById('plan-'+p).classList.remove('selected'));
-  document.getElementById('plan-'+plan).classList.add('selected');
-}
+window.selectPlan = function(plan) {
+  _selectedPlan = plan;
+  ['daily','fiveday','jackpot'].forEach(function(p){
+    var el = document.getElementById('plan-'+p);
+    if(el) el.classList.remove('selected');
+  });
+  var sel = document.getElementById('plan-'+plan);
+  if(sel) sel.classList.add('selected');
+};
 
 function setStatus(msg, type) {
-  const el = document.getElementById('payStatus');
-  el.textContent = msg;
-  el.className = 'pay-status ' + type;
+  var el = document.getElementById('payStatus');
+  if(el){ el.textContent = msg; el.className = 'pay-status ' + type; }
 }
 
-async function initiatePayment() {
-  if(!selectedPlan) { setStatus('⚠️ Please select a plan first.', 'error'); return; }
-  const phone = document.getElementById('payPhone').value.trim();
-  if(!phone || phone.length < 9) { setStatus('⚠️ Please enter a valid M-Pesa phone number.', 'error'); return; }
-
-  const btn = document.getElementById('payNowBtn');
-  btn.disabled = true;
-  btn.textContent = '⏳ Sending prompt...';
+window.initiatePayment = async function() {
+  if(!_selectedPlan){ setStatus('⚠️ Please select a plan first.', 'error'); return; }
+  var phoneEl = document.getElementById('payPhone');
+  var phone = phoneEl ? phoneEl.value.trim() : '';
+  if(!phone || phone.length < 9){ setStatus('⚠️ Please enter a valid M-Pesa phone number.', 'error'); return; }
+  var btn = document.getElementById('payNowBtn');
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ Sending prompt...'; }
   setStatus('📲 Sending M-Pesa prompt to your phone...', 'waiting');
-
   try {
-    const res = await fetch(API_URL + '/initiate-payment', {
+    var resp = await fetch(PAY_API + '/initiate-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone, plan: selectedPlan })
+      body: JSON.stringify({ phone: phone, plan: _selectedPlan })
     });
-    const data = await res.json();
-
-    if(res.ok && data.success) {
-      setStatus('✅ Prompt sent! Check your phone and enter your M-Pesa PIN. Waiting for confirmation...', 'waiting');
-      btn.textContent = '⏳ Waiting for payment...';
+    var result = await resp.json();
+    if(resp.ok && result.success) {
+      setStatus('✅ Prompt sent! Enter your M-Pesa PIN on your phone. Waiting...', 'waiting');
+      if(btn) btn.textContent = '⏳ Waiting for payment...';
       startPolling(phone);
     } else {
-      setStatus('❌ Failed to send prompt. Please try again or use Till 6012928.', 'error');
-      btn.disabled = false;
-      btn.textContent = '📱 Send M-Pesa Prompt';
+      setStatus('❌ Failed to send prompt. Please try again or pay to Till 6012928.', 'error');
+      if(btn){ btn.disabled = false; btn.textContent = '📱 Send M-Pesa Prompt'; }
     }
   } catch(e) {
-    setStatus('❌ Network error. Please check your connection and try again.', 'error');
-    btn.disabled = false;
-    btn.textContent = '📱 Send M-Pesa Prompt';
+    setStatus('❌ Network error. Check your connection and try again.', 'error');
+    if(btn){ btn.disabled = false; btn.textContent = '📱 Send M-Pesa Prompt'; }
   }
-}
+};
 
 function startPolling(phone) {
-  let attempts = 0;
-  const maxAttempts = 24; // 2 minutes
-  pollInterval = setInterval(async () => {
+  var attempts = 0;
+  var maxTries = 24;
+  _pollInterval = setInterval(async function() {
     attempts++;
-    if(attempts > maxAttempts) {
-      clearInterval(pollInterval); pollInterval = null;
-      setStatus('⏰ Payment not confirmed yet. If you paid, your access will be activated within 1 minute. You can close this.', 'waiting');
-      document.getElementById('payNowBtn').textContent = 'Close';
-      document.getElementById('payNowBtn').disabled = false;
-      document.getElementById('payNowBtn').onclick = closePayModal;
+    if(attempts > maxTries) {
+      clearInterval(_pollInterval); _pollInterval = null;
+      setStatus('⏰ Not confirmed yet. If you paid, access activates within 1 min.', 'waiting');
+      var btn = document.getElementById('payNowBtn');
+      if(btn){ btn.textContent = 'Close'; btn.disabled = false; btn.onclick = window.closePayModal; }
       return;
     }
     try {
-      const res = await fetch(API_URL + '/check-access?phone=' + encodeURIComponent(phone));
-      const data = await res.json();
-      if(data.access) {
-        clearInterval(pollInterval); pollInterval = null;
-        const planNames = { daily: 'Daily Ticket (24hrs)', fiveday: '5-Day Subscription', jackpot: 'Mega Jackpot Slip' };
-        setStatus('🎉 Payment confirmed! ' + planNames[data.plan] + ' unlocked. Access granted!', 'success');
+      var r = await fetch(PAY_API + '/check-access?phone=' + encodeURIComponent(phone));
+      var d = await r.json();
+      if(d.access) {
+        clearInterval(_pollInterval); _pollInterval = null;
+        var names = { daily:'Daily Ticket (24hrs)', fiveday:'5-Day Subscription', jackpot:'Mega Jackpot Slip' };
+        setStatus('🎉 Payment confirmed! ' + (names[d.plan]||d.plan) + ' unlocked!', 'success');
         localStorage.setItem('pt-phone', phone);
-        localStorage.setItem('pt-access', JSON.stringify({ access: true, plan: data.plan, expiresAt: data.expiresAt }));
-        document.getElementById('payNowBtn').textContent = '✅ Go to Tips';
-        document.getElementById('payNowBtn').disabled = false;
-        document.getElementById('payNowBtn').onclick = function(){ closePayModal(); unlockTipsSection(); scrollToFreeTip(); };
+        localStorage.setItem('pt-access', JSON.stringify({ access:true, plan:d.plan, expiresAt:d.expiresAt }));
+        var btn = document.getElementById('payNowBtn');
+        if(btn){ btn.textContent = '✅ Go to Tips'; btn.disabled = false; btn.onclick = function(){ window.closePayModal(); unlockTipsSection(); window.scrollToFreeTip(); }; }
         unlockTipsSection();
       }
-    } catch(e) { /* keep polling */ }
+    } catch(e) {}
   }, 5000);
 }
 
-// ── ACCESS GATE ─────────────────────────────────────────────
-async function checkExistingAccess() {
-  const phone = localStorage.getItem('pt-phone');
+function unlockTipsSection() {
+  var raw = localStorage.getItem('pt-access');
+  if(!raw) return;
+  try {
+    var d = JSON.parse(raw);
+    if(!d.access) return;
+    var names = { daily:'Daily Ticket', fiveday:'5-Day Plan', jackpot:'Jackpot Slip' };
+    var expiry = new Date(d.expiresAt);
+    var infoEl = document.getElementById('access-info-freetip');
+    var payBtn = document.getElementById('freetip-pay-btn');
+    if(infoEl){ infoEl.style.display='block'; infoEl.textContent='✅ Active: '+(names[d.plan]||d.plan)+' · Expires '+expiry.toLocaleString('en-KE',{dateStyle:'short',timeStyle:'short'}); }
+    if(payBtn){ payBtn.textContent='✅ Tips Unlocked'; payBtn.style.background='var(--mint)'; payBtn.onclick=null; payBtn.style.cursor='default'; }
+    document.querySelectorAll('.blur-line').forEach(function(el){ el.style.filter='none'; });
+    document.querySelectorAll('.blur-row').forEach(function(el){ el.style.filter='none'; });
+  } catch(e) {}
+}
+
+// Check access on load
+(async function checkAccess() {
+  var phone = localStorage.getItem('pt-phone');
   if(!phone) return;
   try {
-    const res = await fetch(API_URL + '/check-access?phone=' + encodeURIComponent(phone));
-    const data = await res.json();
-    if(data.access) {
-      localStorage.setItem('pt-access', JSON.stringify(data));
+    var r = await fetch(PAY_API + '/check-access?phone=' + encodeURIComponent(phone));
+    var d = await r.json();
+    if(d.access){
+      localStorage.setItem('pt-access', JSON.stringify(d));
       unlockTipsSection();
     } else {
       localStorage.removeItem('pt-access');
     }
   } catch(e) {}
-}
+})();
 
-function unlockTipsSection() {
-  const stored = localStorage.getItem('pt-access');
-  if(!stored) return;
-  try {
-    const data = JSON.parse(stored);
-    if(!data.access) return;
-    const planNames = { daily: 'Daily Ticket', fiveday: '5-Day Plan', jackpot: 'Jackpot Slip' };
-    const expiry = new Date(data.expiresAt);
-    const infoEl = document.getElementById('access-info-freetip');
-    const payBtn = document.getElementById('freetip-pay-btn');
-    if(infoEl) { infoEl.style.display = 'block'; infoEl.textContent = '✅ Access active: ' + (planNames[data.plan]||data.plan) + ' · Expires ' + expiry.toLocaleString('en-KE', {dateStyle:'short',timeStyle:'short'}); }
-    if(payBtn) { payBtn.textContent = '✅ Tips Unlocked — Access Active'; payBtn.style.background = 'var(--mint)'; payBtn.onclick = null; payBtn.style.cursor = 'default'; }
-    // Unblur the locked picks
-    document.querySelectorAll('.blur-line').forEach(el => el.style.filter = 'none');
-    document.querySelectorAll('.blur-row').forEach(el => el.style.filter = 'none');
-  } catch(e) {}
-}
-
-// Run access check on page load
-checkExistingAccess();
-// ── END MPESA PAYMENT SYSTEM ────────────────────────────────
+})(); // end IIFE
+// ── END MPESA PAYMENT SYSTEM ──────────────────────────────── ────────────────────────────────
 </script>
 </body>
 </html> 
- 
