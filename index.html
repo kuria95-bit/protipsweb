@@ -1120,4 +1120,11 @@ setTimeout(initFCM, 12000);
   }catch(e){console.log('Track load err:',e);}
 })();
 
-window.addEventListener('appinstalled',()=>{document.getElementById(
+window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('heroInstallBtn').textContent='✅ App Installed!';document.getElementById('heroInstallBtn').disabled=true;deferredPrompt=null;});
+
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+if(isIOS&&!isStandalone){document.getElementById('iosHint').style.display='block';document.getElementById('heroInstallBtn').textContent='📲 Add to Home Screen';}
+</script>
+</body>
+</html> 
