@@ -362,7 +362,7 @@
 
         /* ── MPESA PAYMENT MODAL ─────────────────────────────── */
         #payModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:20000;align-items:flex-end;justify-content:center;}
-        #payModal.open{display:flex;}
+        
         .pay-sheet{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:28px 20px 40px;max-height:95vh;overflow-y:auto;}
         .pay-handle{width:40px;height:4px;background:#e2e8f0;border-radius:4px;margin:0 auto 20px;}
         .pay-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);text-align:center;margin-bottom:6px;}
@@ -399,6 +399,12 @@
 <body>
 
 <!-- HEADER -->
+<!-- DEBUG TEST BUTTON - remove after testing -->
+<div id="test-pay-bar" style="background:#dc2626;padding:10px;text-align:center;position:sticky;top:56px;z-index:9000;">
+  <button onclick="alert('JS works! Opening modal now...'); openPayModal('daily');" style="background:#fff;color:#dc2626;border:none;padding:10px 24px;border-radius:50px;font-weight:800;font-size:15px;cursor:pointer;font-family:sans-serif;">
+    🧪 TEST — Tap Here First
+  </button>
+</div>
 <div class="header">
     <div class="header-title">⚽ PRO TIPSTERS</div>
     <div class="live-counter">
@@ -1183,19 +1189,21 @@ let pollInterval = null;
 
 function openPayModal(plan) {
   selectedPlan = null;
-  document.getElementById('payModal').classList.add('open');
+  var modal = document.getElementById('payModal');
+  modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   document.getElementById('payStatus').className = 'pay-status';
   document.getElementById('payStatus').textContent = '';
   document.getElementById('payNowBtn').disabled = false;
   document.getElementById('payNowBtn').textContent = '📱 Send M-Pesa Prompt';
+  document.getElementById('payNowBtn').onclick = initiatePayment;
   document.getElementById('payPhone').value = '';
-  ['daily','fiveday','jackpot'].forEach(p => document.getElementById('plan-'+p).classList.remove('selected'));
+  ['daily','fiveday','jackpot'].forEach(function(p){ document.getElementById('plan-'+p).classList.remove('selected'); });
   if(plan) selectPlan(plan);
 }
 
 function closePayModal() {
-  document.getElementById('payModal').classList.remove('open');
+  document.getElementById('payModal').style.display = 'none';
   document.body.style.overflow = '';
   if(pollInterval) { clearInterval(pollInterval); pollInterval = null; }
 }
@@ -1317,4 +1325,3 @@ checkExistingAccess();
 </script>
 </body>
 </html> 
- 
