@@ -3,305 +3,515 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pro Tipsters — Live Analytics</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<title>Pro Tipsters — Analytics</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc, increment, serverTimestamp, query, orderBy, limit, where, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// ── CONFIG — update if your firebaseConfig changes ──────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+  authDomain: "pro-tipsters-94171.firebaseapp.com",
+  projectId: "pro-tipsters-94171",
+  storageBucket: "pro-tipsters-94171.firebasestorage.app",
+  messagingSenderId: "737923794509",
+  appId: "1:737923794509:web:921f6a558c11786beebe04"
+};
+// ────────────────────────────────────────────────────────────────────────────
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function today()  { return new Date().toISOString().slice(0,10); }       // YYYY-MM-DD
+function thisHour(){ const d=new Date(); return `${today()}_${String(d.getHours()).padStart(2,'0')}`; }
+function getVisitorId(){
+  let id = localStorage.getItem('pt_vid');
+  if(!id){ id = 'v_'+Math.random().toString(36).slice(2,11)+Date.now(); localStorage.setItem('pt_vid',id); }
+  return id;
+}
+function getDevice(){
+  const ua = navigator.userAgent;
+  if(/mobile|android|iphone|ipad/i.test(ua)) return 'Mobile';
+  if(/tablet/i.test(ua)) return 'Tablet';
+  return 'Desktop';
+}
+function getRef(){
+  const r = document.referrer;
+  if(!r) return 'Direct';
+  if(r.includes('google')) return 'Google';
+  if(r.includes('facebook')||r.includes('fb.')) return 'Facebook';
+  if(r.includes('twitter')||r.includes('t.co')) return 'Twitter';
+  if(r.includes('whatsapp')) return 'WhatsApp';
+  if(r.includes('instagram')) return 'Instagram';
+  try{ return new URL(r).hostname.replace('www.',''); }catch(e){ return 'Other'; }
+}
+
+// ── TRACK VISIT (call this from index.html too) ──────────────────────────────
+async function trackVisit(){
+  const vid   = getVisitorId();
+  const dateKey = today();
+  const hourKey = thisHour();
+  const device  = getDevice();
+  const ref     = getRef();
+
+  // Visitor document — has this visitor been seen before?
+  const visitorRef = doc(db, 'visitors', vid);
+  const visitorSnap = await getDoc(visitorRef);
+  const isNew = !visitorSnap.exists();
+  const isReturning = visitorSnap.exists() && visitorSnap.data().visits > 0;
+
+  // Upsert visitor
+  if(isNew){
+    await setDoc(visitorRef,{ firstSeen: serverTimestamp(), lastSeen: serverTimestamp(), visits:1, device, ref });
+  } else {
+    await updateDoc(visitorRef,{ lastSeen: serverTimestamp(), visits: increment(1) });
+  }
+
+  // Daily summary
+  const dailyRef = doc(db, 'analytics_daily', dateKey);
+  const dailySnap = await getDoc(dailyRef);
+  if(!dailySnap.exists()){
+    await setDoc(dailyRef,{ date: dateKey, pageViews:1, uniqueVisitors: isNew?1:0, newVisitors: isNew?1:0, returningVisitors: isReturning?1:0 });
+  } else {
+    const upd = { pageViews: increment(1) };
+    // Only count unique per visitor per day via a sub-field
+    const seen = dailySnap.data().seenToday || [];
+    if(!seen.includes(vid)){
+      upd.uniqueVisitors = increment(1);
+      if(isNew)       upd.newVisitors       = increment(1);
+      if(isReturning) upd.returningVisitors = increment(1);
+      // store seen list (cap at 500 to avoid doc size limits)
+      seen.push(vid);
+      upd.seenToday = seen.slice(-500);
+    }
+    await updateDoc(dailyRef, upd);
+  }
+
+  // Hourly
+  const hourlyRef = doc(db, 'analytics_hourly', hourKey);
+  const hourlySnap = await getDoc(hourlyRef);
+  if(!hourlySnap.exists()){
+    await setDoc(hourlyRef,{ date: dateKey, hour: new Date().getHours(), pageViews:1 });
+  } else {
+    await updateDoc(hourlyRef,{ pageViews: increment(1) });
+  }
+
+  // Device & referrer buckets
+  const metaRef = doc(db, 'analytics_meta', dateKey);
+  const metaSnap = await getDoc(metaRef);
+  if(!metaSnap.exists()){
+    await setDoc(metaRef,{ devices:{[device]:1}, referrers:{[ref]:1} });
+  } else {
+    await updateDoc(metaRef,{
+      [`devices.${device}`]: increment(1),
+      [`referrers.${ref}`]:  increment(1)
+    });
+  }
+}
+
+// ── LOAD DASHBOARD DATA ──────────────────────────────────────────────────────
+async function loadDashboard(){
+  try{
+    const dateKey = today();
+
+    // Last 14 days
+    const days = [];
+    for(let i=13;i>=0;i--){
+      const d = new Date(); d.setDate(d.getDate()-i);
+      days.push(d.toISOString().slice(0,10));
+    }
+
+    // Fetch daily docs
+    const dailyData = {};
+    await Promise.all(days.map(async d=>{
+      const snap = await getDoc(doc(db,'analytics_daily',d));
+      dailyData[d] = snap.exists() ? snap.data() : {pageViews:0,uniqueVisitors:0,newVisitors:0,returningVisitors:0};
+    }));
+
+    // Today's hourly (last 24h)
+    const hourlySnaps = await getDocs(query(collection(db,'analytics_hourly'), where('date','==',dateKey)));
+    const hourlyData = {};
+    hourlySnaps.forEach(s=>{ hourlyData[s.data().hour] = s.data().pageViews; });
+
+    // Meta (today)
+    const metaSnap = await getDoc(doc(db,'analytics_meta',dateKey));
+    const meta = metaSnap.exists() ? metaSnap.data() : {devices:{},referrers:{}};
+
+    // Total visitors collection count (approximate)
+    // Use today's doc totals for summary cards
+    const todayStats = dailyData[dateKey] || {};
+
+    // 7-day totals
+    const last7 = days.slice(-7);
+    const week = last7.reduce((acc,d)=>{
+      const r = dailyData[d];
+      acc.views += r.pageViews||0;
+      acc.unique += r.uniqueVisitors||0;
+      acc.newV   += r.newVisitors||0;
+      acc.ret    += r.returningVisitors||0;
+      return acc;
+    },{views:0,unique:0,newV:0,ret:0});
+
+    renderDashboard({ days, dailyData, hourlyData, meta, todayStats, week });
+  } catch(e){
+    document.getElementById('loading').innerHTML = `<div class="error-box">⚠️ Error loading data: ${e.message}<br><small>Check your Firebase config & Firestore rules.</small></div>`;
+    console.error(e);
+  }
+}
+
+function renderDashboard({ days, dailyData, hourlyData, meta, todayStats, week }){
+  document.getElementById('loading').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+
+  // Summary cards
+  set('card-views',    fmt(todayStats.pageViews||0));
+  set('card-unique',   fmt(todayStats.uniqueVisitors||0));
+  set('card-new',      fmt(todayStats.newVisitors||0));
+  set('card-return',   fmt(todayStats.returningVisitors||0));
+  set('week-views',    fmt(week.views));
+  set('week-unique',   fmt(week.unique));
+  set('week-new',      fmt(week.newV));
+  set('week-return',   fmt(week.ret));
+
+  // 14-day page views chart
+  const maxViews = Math.max(...days.map(d=>dailyData[d].pageViews||0), 1);
+  const bars14 = days.map(d=>{
+    const v = dailyData[d].pageViews||0;
+    const pct = Math.round((v/maxViews)*100);
+    const label = d.slice(5); // MM-DD
+    const isToday = d === days[days.length-1];
+    return `<div class="bar-col">
+      <div class="bar-val">${v||''}</div>
+      <div class="bar" style="height:${Math.max(pct,2)}%" ${isToday?'data-today':''}>
+        <div class="bar-inner" style="height:${pct}%"></div>
+      </div>
+      <div class="bar-lbl ${isToday?'today-lbl':''}">${label}</div>
+    </div>`;
+  }).join('');
+  set('chart-daily', bars14);
+
+  // Hourly chart (0–23)
+  const hours = Array.from({length:24},(_,i)=>i);
+  const maxH = Math.max(...hours.map(h=>hourlyData[h]||0),1);
+  const currentHour = new Date().getHours();
+  const barsH = hours.map(h=>{
+    const v = hourlyData[h]||0;
+    const pct = Math.round((v/maxH)*100);
+    const isCurrent = h===currentHour;
+    return `<div class="bar-col bar-col-sm">
+      <div class="bar-val" style="font-size:9px;">${v||''}</div>
+      <div class="bar" style="height:${Math.max(pct,2)}%" ${isCurrent?'data-today':''}>
+        <div class="bar-inner" style="height:${pct}%"></div>
+      </div>
+      <div class="bar-lbl" style="font-size:8px;">${h}h</div>
+    </div>`;
+  }).join('');
+  set('chart-hourly', barsH);
+
+  // Visitors chart (new vs returning)
+  const maxNR = Math.max(...days.map(d=>Math.max(dailyData[d].newVisitors||0, dailyData[d].returningVisitors||0)),1);
+  const barsNR = days.map(d=>{
+    const nv = dailyData[d].newVisitors||0;
+    const rv = dailyData[d].returningVisitors||0;
+    const pN = Math.round((nv/maxNR)*100);
+    const pR = Math.round((rv/maxNR)*100);
+    return `<div class="bar-col">
+      <div class="bar-duo">
+        <div class="bar-seg new-seg" style="height:${Math.max(pN,nv?2:0)}%" title="New: ${nv}"></div>
+        <div class="bar-seg ret-seg" style="height:${Math.max(pR,rv?2:0)}%" title="Returning: ${rv}"></div>
+      </div>
+      <div class="bar-lbl">${d.slice(5)}</div>
+    </div>`;
+  }).join('');
+  set('chart-visitors', barsNR);
+
+  // Devices
+  const devEntries = Object.entries(meta.devices||{}).sort((a,b)=>b[1]-a[1]);
+  const devTotal = devEntries.reduce((s,[,v])=>s+v,0)||1;
+  set('device-list', devEntries.map(([k,v])=>`
+    <div class="meta-row">
+      <span class="meta-key">${deviceIcon(k)} ${k}</span>
+      <div class="meta-bar-wrap"><div class="meta-bar" style="width:${Math.round(v/devTotal*100)}%"></div></div>
+      <span class="meta-pct">${Math.round(v/devTotal*100)}%</span>
+      <span class="meta-num">${v}</span>
+    </div>`).join('')||'<p class="muted">No data yet</p>');
+
+  // Referrers
+  const refEntries = Object.entries(meta.referrers||{}).sort((a,b)=>b[1]-a[1]);
+  const refTotal = refEntries.reduce((s,[,v])=>s+v,0)||1;
+  set('ref-list', refEntries.map(([k,v])=>`
+    <div class="meta-row">
+      <span class="meta-key">${refIcon(k)} ${k}</span>
+      <div class="meta-bar-wrap"><div class="meta-bar ref-bar" style="width:${Math.round(v/refTotal*100)}%"></div></div>
+      <span class="meta-pct">${Math.round(v/refTotal*100)}%</span>
+      <span class="meta-num">${v}</span>
+    </div>`).join('')||'<p class="muted">No data yet</p>');
+
+  // Last updated
+  set('last-updated', new Date().toLocaleTimeString('en-KE',{hour:'2-digit',minute:'2-digit'}));
+}
+
+function set(id,val){ const el=document.getElementById(id); if(el) el.innerHTML=val; }
+function fmt(n){ return Number(n).toLocaleString(); }
+function deviceIcon(d){ return d==='Mobile'?'📱':d==='Tablet'?'🖥️':'💻'; }
+function refIcon(r){
+  if(r==='Direct') return '🔗';
+  if(r==='Google') return '🔍';
+  if(r==='Facebook') return '📘';
+  if(r==='WhatsApp') return '💬';
+  if(r==='Twitter') return '🐦';
+  if(r==='Instagram') return '📸';
+  return '🌐';
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+// Uncomment if you want this page to also record its own visit:
+// await trackVisit();
+loadDashboard();
+
+// Export trackVisit so index.html can call it
+window.ptTrackVisit = trackVisit;
+</script>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#060a0f;color:#e2f0ff;min-height:100vh;padding:20px 16px 60px;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(#1a2d42 1px,transparent 1px),linear-gradient(90deg,#1a2d42 1px,transparent 1px);background-size:40px 40px;opacity:.2;pointer-events:none;}
-.wrap{max-width:500px;margin:0 auto;position:relative;}
-.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,#0f766e,#10b981);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.logo-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;}
-.logo-sub{font-size:10px;color:#5a7a96;}
-.live{background:#0c1f0e;border:1px solid #10b981;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;color:#10b981;display:flex;align-items:center;gap:5px;}
-.dot{width:6px;height:6px;background:#10b981;border-radius:50%;animation:bl 1.4s infinite;}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:.2}}
-.timer-bar{background:#0d1520;border:1px solid #1a2d42;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
-.tl{font-size:11px;color:#5a7a96;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-.td{font-size:10px;color:#5a7a96;margin-top:2px;}
-.tc{font-size:20px;font-weight:700;color:#f59e0b;font-family:monospace;}
-.hero{background:linear-gradient(135deg,#0a1f1a,#0d2a20);border:1px solid #10b981;border-radius:20px;padding:28px;margin-bottom:16px;text-align:center;}
-.hl{font-size:11px;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
-.hn{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;color:#fff;line-height:1;}
-.hs{font-size:12px;color:#5a7a96;margin-top:6px;}
-.hd{font-size:11px;color:#10b981;margin-top:4px;font-family:monospace;}
-.repeat-badge{display:inline-flex;align-items:center;gap:8px;background:#1a2d42;border:1px solid #2a4060;border-radius:20px;padding:7px 16px;margin-top:12px;flex-wrap:wrap;justify-content:center;}
-.rb-val{font-weight:800;font-family:'Syne',sans-serif;font-size:15px;}
-.rb-label{color:#5a7a96;font-size:11px;}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.sc{background:#0d1520;border:1px solid #1a2d42;border-radius:14px;padding:16px;}
-.si{font-size:20px;margin-bottom:8px;}
-.sv{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
-.mint{color:#10b981;} .blue{color:#38bdf8;} .gold{color:#f59e0b;} .red{color:#f43f5e;}
-.sl{font-size:11px;color:#5a7a96;margin-top:4px;font-weight:600;}
-.sl-sub{font-size:10px;color:#3a5a76;margin-top:2px;}
-.breakdown{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-.bt{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
-.brow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
-.brow:last-child{border-bottom:none;}
-.brn{font-size:13px;color:#e2f0ff;font-weight:600;}
-.brv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;}
-.brl{flex:1;margin-right:14px;}
-.brb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
-.brbf-u{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;transition:width .6s ease;}
-.brbf-r{height:100%;background:linear-gradient(90deg,#9f1239,#f43f5e);border-radius:4px;transition:width .6s ease;}
-.brbf-t{height:100%;background:linear-gradient(90deg,#92400e,#f59e0b);border-radius:4px;}
-.card{background:#0d1520;border:1px solid #1a2d42;border-radius:16px;padding:18px 16px;margin-bottom:16px;}
-.ct{font-size:12px;font-weight:700;color:#5a7a96;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;}
-.bars{display:flex;align-items:flex-end;gap:3px;height:80px;}
-.bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
-.b{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:linear-gradient(180deg,#10b981,#0f766e);}
-.b.now{background:linear-gradient(180deg,#f59e0b,#d97706);box-shadow:0 0 8px rgba(245,158,11,.4);}
-.bl{font-size:8px;color:#5a7a96;font-family:monospace;}
-.row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1a2d42;}
-.row:last-child{border-bottom:none;}
-.rn{font-size:13px;color:#e2f0ff;font-weight:600;}
-.rv{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#10b981;}
-.rb{height:4px;background:#1a2d42;border-radius:4px;margin-top:4px;}
-.rbf{height:100%;background:linear-gradient(90deg,#0f766e,#10b981);border-radius:4px;}
-.rl{flex:1;margin-right:14px;}
-.loading{text-align:center;padding:50px 20px;color:#5a7a96;}
-.sp{width:32px;height:32px;border:3px solid #1a2d42;border-top-color:#10b981;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.err{background:#1c0a06;border:1px solid #f43f5e;border-radius:12px;padding:16px;color:#f87171;font-size:13px;line-height:1.6;margin-bottom:16px;display:none;}
-.btn{width:100%;padding:13px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;border:1.5px solid #1a2d42;background:transparent;color:#e2f0ff;font-family:'Poppins',sans-serif;margin-bottom:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#090e17;
+  --surface:#0f1724;
+  --card:#141e2e;
+  --border:rgba(255,255,255,.07);
+  --green:#10b981;
+  --mint:#34d399;
+  --gold:#f59e0b;
+  --blue:#3b82f6;
+  --text:#e2e8f0;
+  --muted:#64748b;
+  --red:#ef4444;
+}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;min-height:100vh;padding:0;}
+
+/* HEADER */
+.topbar{
+  background:linear-gradient(135deg,#0a1628,#0f2040);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(10px);
+}
+.topbar-brand{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;letter-spacing:.5px;}
+.topbar-brand span{color:var(--green);}
+.topbar-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:16px;}
+.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;animation:pulse 1.8s ease-in-out infinite;margin-right:5px;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+
+/* CONTENT */
+.content{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+
+/* SECTION TITLES */
+.section-head{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+  margin:32px 0 14px;display:flex;align-items:center;gap:10px;
+}
+.section-head::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:8px;}
+@media(min-width:640px){.cards{grid-template-columns:repeat(4,1fr);}}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px 14px;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top left,var(--glow,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.card-icon{font-size:20px;margin-bottom:8px;}
+.card-label{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin-bottom:4px;}
+.card-value{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1;}
+.card-sub{font-size:10px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono',monospace;}
+.card.green{--glow:rgba(16,185,129,.12);border-color:rgba(16,185,129,.2);}
+.card.green .card-value{color:var(--green);}
+.card.gold{--glow:rgba(245,158,11,.1);border-color:rgba(245,158,11,.18);}
+.card.gold .card-value{color:var(--gold);}
+.card.blue{--glow:rgba(59,130,246,.1);border-color:rgba(59,130,246,.18);}
+.card.blue .card-value{color:var(--blue);}
+.card.red{--glow:rgba(239,68,68,.1);border-color:rgba(239,68,68,.18);}
+.card.red .card-value{color:#f87171;}
+
+/* WEEK STRIP */
+.week-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:12px 14px;margin-bottom:4px;
+}
+.ws-item{text-align:center;}
+.ws-label{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+.ws-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;color:var(--text);margin-top:2px;}
+
+/* CHART CONTAINERS */
+.chart-box{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:18px 14px 10px;margin-bottom:12px;
+}
+.chart-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;color:var(--text);display:flex;align-items:center;gap:8px;}
+.chart-title span{font-size:10px;color:var(--muted);font-family:'Poppins',sans-serif;font-weight:400;}
+
+/* BAR CHARTS */
+.bar-chart{display:flex;align-items:flex-end;height:120px;gap:3px;padding-bottom:22px;position:relative;}
+.bar-col{display:flex;flex-direction:column;align-items:center;flex:1;height:100%;}
+.bar{width:100%;display:flex;flex-direction:column;justify-content:flex-end;position:relative;border-radius:4px 4px 0 0;background:rgba(255,255,255,.04);}
+.bar-inner{width:100%;background:linear-gradient(180deg,var(--green),rgba(16,185,129,.4));border-radius:4px 4px 0 0;transition:height .6s cubic-bezier(.34,1.56,.64,1);}
+.bar[data-today] .bar-inner{background:linear-gradient(180deg,var(--gold),rgba(245,158,11,.5));}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:2px;min-height:12px;}
+.bar-lbl{font-size:9px;color:var(--muted);position:absolute;bottom:-18px;white-space:nowrap;transform:rotate(-30deg);transform-origin:top left;font-family:'JetBrains Mono',monospace;}
+.today-lbl{color:var(--gold);font-weight:700;}
+.bar-col-sm{flex:0 0 calc(100%/24 - 3px);}
+
+/* Visitor duo bars */
+.bar-duo{display:flex;gap:2px;align-items:flex-end;height:90px;width:100%;}
+.bar-seg{width:50%;border-radius:3px 3px 0 0;transition:height .6s ease;}
+.new-seg{background:linear-gradient(180deg,var(--blue),rgba(59,130,246,.4));}
+.ret-seg{background:linear-gradient(180deg,#a855f7,rgba(168,85,247,.4));}
+.visitor-legend{display:flex;gap:16px;margin-bottom:10px;}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);}
+.leg-dot{width:10px;height:10px;border-radius:2px;}
+.leg-dot.new{background:var(--blue);}
+.leg-dot.ret{background:#a855f7;}
+
+/* META ROWS (device / referrer) */
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:580px){.meta-grid{grid-template-columns:1fr;}}
+.meta-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.meta-box-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;margin-bottom:14px;color:var(--text);}
+.meta-row{display:grid;grid-template-columns:110px 1fr 36px 40px;align-items:center;gap:8px;margin-bottom:10px;}
+.meta-key{font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.meta-bar-wrap{background:rgba(255,255,255,.06);border-radius:30px;height:5px;overflow:hidden;}
+.meta-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--mint));border-radius:30px;transition:width .8s ease;}
+.ref-bar{background:linear-gradient(90deg,var(--gold),#f97316);}
+.meta-pct{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:right;}
+.meta-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:right;}
+
+/* MISC */
+.muted{color:var(--muted);font-size:13px;}
+#loading{padding:60px 20px;text-align:center;}
+.spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--green);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#dashboard{display:none;}
+.error-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:12px;padding:20px;color:#fca5a5;font-size:13px;line-height:1.7;}
+.refresh-btn{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);color:var(--green);padding:7px 16px;border-radius:30px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:.2s;}
+.refresh-btn:hover{background:rgba(16,185,129,.25);}
+.config-banner{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:12px 14px;margin-bottom:20px;font-size:12px;color:#fde68a;line-height:1.6;}
+.config-banner code{background:rgba(0,0,0,.4);padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top">
-    <div class="logo">
-      <div class="logo-icon">⚽</div>
-      <div><div class="logo-name">PRO TIPSTERS</div><div class="logo-sub">Live Analytics — All Visitors</div></div>
-    </div>
-    <div class="live"><span class="dot"></span>LIVE</div>
-  </div>
 
-  <div class="timer-bar">
-    <div><div class="tl">⏱ Resets at Midnight</div><div class="td" id="dateLabel">--</div></div>
-    <div style="text-align:right"><div class="tc" id="timer">--:--:--</div><div class="td">until reset</div></div>
-  </div>
-
-  <div class="err" id="errBox"></div>
-  <div class="loading" id="loadDiv"><div class="sp"></div>Connecting to Firebase...</div>
-
-  <div id="mainDiv" style="display:none">
-
-    <!-- HERO: Unique visitors as main number -->
-    <div class="hero">
-      <div class="hl">👥 Unique Devices Today</div>
-      <div class="hn" id="bigNum">0</div>
-      <div class="hs">unique devices visited your site today</div>
-      <div class="hd" id="dateStr">--</div>
-      <div class="repeat-badge">
-        <span class="rb-label">Total clicks</span>
-        <span class="rb-val gold" id="totalBadge">0</span>
-        <span style="color:#2a4060;">|</span>
-        <span class="rb-label">Repeat visits</span>
-        <span class="rb-val red" id="repeatBadge">0</span>
-      </div>
-    </div>
-
-    <!-- STATS GRID -->
-    <div class="grid">
-      <div class="sc"><div class="si">📅</div><div class="sv blue" id="wk">0</div><div class="sl">This Week</div><div class="sl-sub">unique devices</div></div>
-      <div class="sc"><div class="si">🏆</div><div class="sv gold" id="best">0</div><div class="sl">Best Day Ever</div><div class="sl-sub">unique devices</div></div>
-      <div class="sc"><div class="si">📊</div><div class="sv mint" id="avg">0</div><div class="sl">Daily Average</div><div class="sl-sub">unique devices</div></div>
-      <div class="sc"><div class="si">🔔</div><div class="sv red" id="notif">0</div><div class="sl">From Notifs</div></div>
-    </div>
-
-    <!-- UNIQUE vs REPEAT BREAKDOWN -->
-    <div class="breakdown">
-      <div class="bt">📱 Today's Visitor Breakdown</div>
-      <div class="brow">
-        <div class="brl">
-          <div class="brn">✅ Unique Devices</div>
-          <div class="brb"><div class="brbf-u" id="uniqueBar" style="width:0%"></div></div>
-        </div>
-        <div class="brv mint" id="uniqueVal">0</div>
-      </div>
-      <div class="brow">
-        <div class="brl">
-          <div class="brn">🔁 Repeat Visits</div>
-          <div class="brb"><div class="brbf-r" id="repeatBar" style="width:0%"></div></div>
-        </div>
-        <div class="brv red" id="repeatVal">0</div>
-      </div>
-      <div class="brow">
-        <div class="brl">
-          <div class="brn">📊 Total Clicks</div>
-          <div class="brb"><div class="brbf-t" style="width:100%"></div></div>
-        </div>
-        <div class="brv gold" id="totalVal">0</div>
-      </div>
-    </div>
-
-    <!-- HOURLY CHART -->
-    <div class="card">
-      <div class="ct">📈 Hourly Visits Today</div>
-      <div class="bars" id="barsDiv"></div>
-    </div>
-
-    <!-- TRAFFIC SOURCES -->
-    <div class="card">
-      <div class="ct">🔗 Traffic Sources</div>
-      <div class="row"><div class="rn">📘 Facebook</div><div class="rv" id="fb">0</div></div>
-      <div class="row"><div class="rn">🔔 Notifications</div><div class="rv" id="notifSrc">0</div></div>
-      <div class="row"><div class="rn">💬 WhatsApp</div><div class="rv" id="wa">0</div></div>
-      <div class="row"><div class="rn">🌐 Direct</div><div class="rv" id="direct">0</div></div>
-    </div>
-
-    <!-- LAST 7 DAYS -->
-    <div class="card">
-      <div class="ct">📆 Last 7 Days <span style="font-size:10px;color:#3a5a76;font-weight:400;">(unique devices)</span></div>
-      <div id="histDiv"></div>
-    </div>
-
-    <button class="btn" onclick="load()">🔄 Refresh</button>
+<div class="topbar">
+  <div class="topbar-brand">Pro <span>Tipsters</span> Analytics</div>
+  <div class="topbar-meta">
+    <span><span class="live-dot"></span>LIVE</span>
+    <span>Updated: <span id="last-updated">—</span> EAT</span>
+    <button class="refresh-btn" onclick="location.reload()">↻ Refresh</button>
   </div>
 </div>
 
-<script>
-firebase.initializeApp({
-  apiKey:"AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
-  authDomain:"pro-tipsters-94171.firebaseapp.com",
-  projectId:"pro-tipsters-94171",
-  storageBucket:"pro-tipsters-94171.firebasestorage.app",
-  messagingSenderId:"737923794509",
-  appId:"1:737923794509:web:921f6a558c11786beebe04"
-});
-const db = firebase.firestore();
+<div class="content">
 
-function todayKey(){ return new Date().toISOString().split('T')[0]; }
+  <div class="config-banner">
+    ⚙️ <strong>Setup:</strong> Replace <code>YOUR_API_KEY</code>, <code>YOUR_SENDER_ID</code>, <code>YOUR_APP_ID</code> in the &lt;script&gt; block at the top with your Firebase project values from the Firebase Console → Project Settings → Your Apps.
+    Also add this tracker call to <strong>index.html</strong>: import the module and call <code>ptTrackVisit()</code> on page load.
+  </div>
 
-function safeHourly(raw) {
-  if (!raw) return new Array(24).fill(0);
-  if (Array.isArray(raw)) {
-    var arr = raw.slice();
-    while (arr.length < 24) arr.push(0);
-    return arr;
-  }
-  if (typeof raw === 'object') {
-    var result = new Array(24).fill(0);
-    Object.keys(raw).forEach(function(k) {
-      var idx = parseInt(k, 10);
-      if (!isNaN(idx) && idx >= 0 && idx < 24) result[idx] = raw[k] || 0;
-    });
-    return result;
-  }
-  return new Array(24).fill(0);
-}
+  <!-- TODAY CARDS -->
+  <div class="section-head">📅 Today's Overview</div>
+  <div class="cards">
+    <div class="card green">
+      <div class="card-icon">👁️</div>
+      <div class="card-label">Page Views</div>
+      <div class="card-value" id="card-views">—</div>
+      <div class="card-sub">today</div>
+    </div>
+    <div class="card blue">
+      <div class="card-icon">🧑‍💻</div>
+      <div class="card-label">Unique Visitors</div>
+      <div class="card-value" id="card-unique">—</div>
+      <div class="card-sub">today</div>
+    </div>
+    <div class="card gold">
+      <div class="card-icon">🆕</div>
+      <div class="card-label">New Visitors</div>
+      <div class="card-value" id="card-new">—</div>
+      <div class="card-sub">first time today</div>
+    </div>
+    <div class="card red">
+      <div class="card-icon">🔄</div>
+      <div class="card-label">Returning</div>
+      <div class="card-value" id="card-return">—</div>
+      <div class="card-sub">came back today</div>
+    </div>
+  </div>
 
-async function load(){
-  document.getElementById('loadDiv').style.display='block';
-  document.getElementById('mainDiv').style.display='none';
-  document.getElementById('errBox').style.display='none';
-  try {
-    const today = todayKey();
-    const snap = await db.collection('analytics').doc(today).get();
-    const td = snap.exists ? snap.data() : {total:0,unique:0,repeat:0,hourly:new Array(24).fill(0),sources:{}};
+  <!-- 7-DAY STRIP -->
+  <div class="section-head">📆 Last 7 Days Total</div>
+  <div class="week-strip">
+    <div class="ws-item"><div class="ws-label">Views</div><div class="ws-val" id="week-views">—</div></div>
+    <div class="ws-item"><div class="ws-label">Unique</div><div class="ws-val" id="week-unique">—</div></div>
+    <div class="ws-item"><div class="ws-label">New</div><div class="ws-val" id="week-new">—</div></div>
+    <div class="ws-item"><div class="ws-label">Return</div><div class="ws-val" id="week-return">—</div></div>
+  </div>
 
-    const col = await db.collection('analytics').get();
-    const days = [];
-    col.forEach(function(d){ days.push({id:d.id, total:d.data().total||0, unique:d.data().unique||0}); });
-    days.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
+  <!-- 14-DAY CHART -->
+  <div class="section-head">📊 14-Day Page Views</div>
+  <div class="chart-box">
+    <div class="chart-title">Daily Page Views <span>— last 14 days · gold = today</span></div>
+    <div class="bar-chart" id="chart-daily"></div>
+  </div>
 
-    const total   = td.total  || 0;
-    const unique  = td.unique || 0;
-    const repeat  = td.repeat || 0;
-    const hourly  = safeHourly(td.hourly);
-    const sources = td.sources || {};
+  <!-- HOURLY CHART -->
+  <div class="section-head">⏰ Today — Hourly Breakdown</div>
+  <div class="chart-box">
+    <div class="chart-title">Hourly Page Views <span>— 0h to 23h EAT · gold = current hour</span></div>
+    <div class="bar-chart" style="height:100px;" id="chart-hourly"></div>
+  </div>
 
-    const uniqueCounts = days.map(function(d){ return d.unique || 0; });
-    const week = days.slice(0,7).reduce(function(a,d){ return a+(d.unique||0); },0);
-    const best = uniqueCounts.length ? Math.max.apply(null, uniqueCounts) : 0;
-    const avg  = uniqueCounts.length ? Math.round(uniqueCounts.reduce(function(a,b){ return a+b; },0)/uniqueCounts.length) : 0;
+  <!-- NEW vs RETURNING CHART -->
+  <div class="section-head">👥 New vs Returning Visitors — 14 Days</div>
+  <div class="chart-box">
+    <div class="visitor-legend">
+      <div class="leg-item"><div class="leg-dot new"></div>New Visitors</div>
+      <div class="leg-item"><div class="leg-dot ret"></div>Returning Visitors</div>
+    </div>
+    <div class="bar-chart" id="chart-visitors" style="height:130px;"></div>
+  </div>
 
-    // Hero
-    document.getElementById('bigNum').textContent      = unique.toLocaleString();
-    document.getElementById('totalBadge').textContent  = total.toLocaleString();
-    document.getElementById('repeatBadge').textContent = repeat.toLocaleString();
-    document.getElementById('dateStr').textContent     = new Date().toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+  <!-- DEVICE & REFERRER -->
+  <div class="section-head">📡 Traffic Sources — Today</div>
+  <div class="meta-grid">
+    <div class="meta-box">
+      <div class="meta-box-title">📱 Device Breakdown</div>
+      <div id="device-list"><p class="muted">Loading…</p></div>
+    </div>
+    <div class="meta-box">
+      <div class="meta-box-title">🔗 Traffic Sources</div>
+      <div id="ref-list"><p class="muted">Loading…</p></div>
+    </div>
+  </div>
 
-    // Grid
-    document.getElementById('wk').textContent    = week.toLocaleString();
-    document.getElementById('best').textContent  = best.toLocaleString();
-    document.getElementById('avg').textContent   = avg.toLocaleString();
-    document.getElementById('notif').textContent = (sources.notif||0).toLocaleString();
+</div><!-- /content -->
 
-    // Breakdown
-    var maxB = total || 1;
-    document.getElementById('uniqueVal').textContent  = unique.toLocaleString();
-    document.getElementById('repeatVal').textContent  = repeat.toLocaleString();
-    document.getElementById('totalVal').textContent   = total.toLocaleString();
-    document.getElementById('uniqueBar').style.width  = Math.round((unique/maxB)*100)+'%';
-    document.getElementById('repeatBar').style.width  = Math.round((repeat/maxB)*100)+'%';
+<!-- LOADING STATE -->
+<div id="loading">
+  <div class="spinner"></div>
+  <div style="color:var(--muted);font-size:13px;">Loading analytics from Firestore…</div>
+</div>
+<div id="dashboard"></div>
 
-    // Sources
-    document.getElementById('fb').textContent       = (sources.fb||0).toLocaleString();
-    document.getElementById('notifSrc').textContent = (sources.notif||0).toLocaleString();
-    document.getElementById('wa').textContent       = (sources.wa||0).toLocaleString();
-    document.getElementById('direct').textContent   = (sources.direct||0).toLocaleString();
-
-    // Hourly bars
-    var maxH = Math.max.apply(null, hourly.concat([1]));
-    var curHr = new Date().getHours();
-    var bHtml = '';
-    for(var i=0;i<24;i++){
-      var h = Math.max((hourly[i]/maxH)*74, hourly[i]>0?4:2);
-      var lbl = i%4===0 ? String(i).padStart(2,'0') : '';
-      bHtml += '<div class="bw"><div class="b'+(i===curHr?' now':'')+'" style="height:'+h+'px" title="'+hourly[i]+' visits"></div><div class="bl">'+lbl+'</div></div>';
-    }
-    document.getElementById('barsDiv').innerHTML = bHtml;
-
-    // History
-    var maxC = best || 1;
-    var hHtml = '';
-    var show = days.slice(0,7);
-    if(!show.length){
-      hHtml = '<div style="color:#5a7a96;font-size:13px;text-align:center;padding:10px;">No history yet — come back tomorrow!</div>';
-    } else {
-      for(var j=0;j<show.length;j++){
-        var d = show[j];
-        var u = d.unique || 0;
-        var t = d.total  || 0;
-        var pct = Math.round((u/maxC)*100);
-        hHtml += '<div class="row"><div class="rl"><div class="rn">'+d.id+'</div><div class="rb"><div class="rbf" style="width:'+pct+'%"></div></div><div style="font-size:10px;color:#3a5a76;margin-top:2px;">'+t.toLocaleString()+' total clicks</div></div><div class="rv">'+u.toLocaleString()+'</div></div>';
-      }
-    }
-    document.getElementById('histDiv').innerHTML = hHtml;
-
-    document.getElementById('loadDiv').style.display = 'none';
-    document.getElementById('mainDiv').style.display = 'block';
-
-  } catch(e) {
-    console.error(e);
-    document.getElementById('loadDiv').style.display = 'none';
-    var eb = document.getElementById('errBox');
-    eb.style.display = 'block';
-    eb.innerHTML = '❌ Firebase error: ' + e.message + '<br><br>Make sure your Firestore rules allow read/write and your site files are updated on GitHub.';
-  }
-}
-
-function tick(){
-  var now = new Date(), mid = new Date();
-  mid.setHours(24,0,0,0);
-  var diff = mid - now;
-  var h = String(Math.floor(diff/3600000)).padStart(2,'0');
-  var m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  var s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  document.getElementById('timer').textContent = h+':'+m+':'+s;
-  document.getElementById('dateLabel').textContent = new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'});
-}
-
-load();
-setInterval(load, 30000);
-setInterval(tick, 1000);
-tick();
-</script>
 </body>
 </html>
