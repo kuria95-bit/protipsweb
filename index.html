@@ -363,12 +363,12 @@
         </div>
     </div>
     <nav class="nav-tabs">
-        <button class="nav-tab active" onclick="scrollTo('proof-anchor')">📊 Results</button>
-        <button class="nav-tab" onclick="scrollTo('free-tip-anchor')">🎁 Free Tip</button>
-        <button class="nav-tab" onclick="scrollTo('packages-anchor')">💎 Packages</button>
-        <button class="nav-tab" onclick="scrollTo('jackpot-anchor')">🏆 Jackpot</button>
-        <button class="nav-tab" onclick="scrollTo('how-anchor')">📖 How It Works</button>
-        <button class="nav-tab" onclick="scrollTo('faq-anchor')">❓ FAQ</button>
+        <button class="nav-tab active" onclick="scrollToSection('free-tip-anchor')">📊 Results</button>
+        <button class="nav-tab" onclick="scrollToSection('free-tip-anchor')">🎁 Free Tip</button>
+        <button class="nav-tab" onclick="scrollToSection('packages-anchor')">💎 Packages</button>
+        <button class="nav-tab" onclick="scrollToSection('jackpot-anchor')">🏆 Jackpot</button>
+        <button class="nav-tab" onclick="scrollToSection('how-anchor')">📖 How It Works</button>
+        <button class="nav-tab" onclick="scrollToSection('faq-anchor')">❓ FAQ</button>
     </nav>
 </div>
 
@@ -447,22 +447,24 @@
         </div>
 
         <!-- JACKPOT CTA — the big one -->
-        <button onclick="scrollTo('jackpot-anchor')"
+        <button onclick="scrollToSection('jackpot-anchor')"
             style="width:100%;max-width:360px;background:linear-gradient(135deg,#92400e,var(--gold),#f97316);color:#fff;border:none;padding:18px 24px;border-radius:50px;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 10px 36px rgba(245,158,11,.55);animation:pillGlow 2s ease-in-out infinite alternate;display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 10px;">
             🏆 I WANT THE JACKPOT SLIP →
         </button>
         <div style="font-size:11.5px;color:rgba(255,255,255,.4);margin-bottom:4px;">Only <strong style="color:var(--gold);">Ksh 599</strong> · M-Pesa Till 6012928 · Instant WhatsApp delivery</div>
 
         <!-- MIDWEEK TEASER -->
-        <button onclick="scrollTo('jackpot-anchor')"
+        <button onclick="scrollToSection('jackpot-anchor')"
             style="background:rgba(147,197,253,.1);border:1px solid rgba(147,197,253,.3);color:#93c5fd;padding:9px 20px;border-radius:30px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;margin-top:8px;">
             ⚡ Also: Midweek Jackpot Slip — Ksh 399
         </button>
     </div>
 
     <!-- DIVIDING LINE with "OR" -->
-    <div style="position:relative;background:var(--light);height:2px;">
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--light);padding:0 14px;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:2px;white-space:nowrap;">— OR —</div>
+    <div style="position:relative;background:#fff;padding:14px 18px;display:flex;align-items:center;gap:12px;border-top:3px solid var(--gold);border-bottom:3px solid var(--mint);">
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,transparent,rgba(245,158,11,.4));"></div>
+        <div style="background:#fff;border:2px solid var(--border);border-radius:30px;padding:7px 20px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:2px;white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.08);">— OR —</div>
+        <div style="flex:1;height:2px;background:linear-gradient(90deg,rgba(16,185,129,.4),transparent);"></div>
     </div>
 
     <!-- ══ BOTTOM HALF — DAILY TIPS (green) ══ -->
@@ -474,29 +476,29 @@
 
         <!-- YESTERDAY'S PROOF — compact -->
         <div class="hero-proof-card" style="margin-bottom:10px;">
-            <div class="hero-proof-header">📋 Yesterday's Results — 15/05/2026 &nbsp;•&nbsp; ALL WON ✅</div>
+            <div class="hero-proof-header">📋 Yesterday's Results — 16/05/2026 &nbsp;•&nbsp; ALL WON ✅</div>
             <div class="hero-proof-row">
-                <span class="hero-proof-match">Aston Villa vs Liverpool</span>
+                <span class="hero-proof-match">Freiburg vs Leipzig</span>
                 <span class="hero-proof-pick">Home Win</span>
-                <span class="hero-proof-odds">2.10</span>
+                <span class="hero-proof-odds">2.90</span>
                 <span class="hero-proof-result">✓ WIN</span>
             </div>
             <div class="hero-proof-row">
-                <span class="hero-proof-match">Neman vs Isloch</span>
+                <span class="hero-proof-match">St. Pauli vs Wolfsburg</span>
+                <span class="hero-proof-pick">Away Win</span>
+                <span class="hero-proof-odds">3.10</span>
+                <span class="hero-proof-result">✓ WIN</span>
+            </div>
+            <div class="hero-proof-row">
+                <span class="hero-proof-match">Werder Bremen vs Dortmund</span>
                 <span class="hero-proof-pick">Away Win</span>
                 <span class="hero-proof-odds">2.80</span>
-                <span class="hero-proof-result">✓ WIN</span>
-            </div>
-            <div class="hero-proof-row">
-                <span class="hero-proof-match">FC Minsk vs Belshina</span>
-                <span class="hero-proof-pick">GG</span>
-                <span class="hero-proof-odds">1.75</span>
                 <span class="hero-proof-result">✓ WIN</span>
             </div>
         </div>
         <div class="hero-combined" style="margin-bottom:14px;">
             <span>Combined Odds</span>
-            <strong>10.29 — ALL WON 🔥</strong>
+            <strong>9.71 — ALL WON 🔥</strong>
         </div>
 
         <p class="hero-sub" style="margin-bottom:16px;">50,000+ members received these picks yesterday morning. Ksh 200 stake = <strong style="color:var(--gold);">Ksh 2,058 profit.</strong> Daily. No jackpot needed.</p>
@@ -504,7 +506,7 @@
         <!-- DAILY TIPS CTAs -->
         <div class="hero-btns">
             <button onclick="showTodayPackagesModal()" class="btn-cta-main">⚽ Get Today's Daily Tips — Ksh 99 →</button>
-            <button onclick="scrollTo('free-tip-anchor')" class="btn-cta-free">👀 See Today's Free Tip First</button>
+            <button onclick="scrollToSection('free-tip-anchor')" class="btn-cta-free">👀 See Today's Free Tip First</button>
         </div>
 
         <!-- INSTALL BTN -->
@@ -535,51 +537,26 @@
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">A real pick from our analysts — yours free. No payment, no WhatsApp needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Juventus vs Bologna</div>
+        <div class="free-tip-match">Juventus vs Fiorentina</div>
         <div class="free-tip-badges">
             <span class="badge badge-green">Juventus Win (Home Win 1)</span>
-            <span class="badge badge-gold">Odds: ~1.85</span>
-            <span class="badge badge-blue">Serie A • Today 21:45 EAT</span>
+            <span class="badge badge-gold">Odds: ~1.36</span>
+            <span class="badge badge-blue">Serie A • Today 16:00 EAT</span>
         </div>
-        <div class="free-tip-reason" id="free-tip-intro">Juventus host Bologna at the Allianz Stadium tonight in a crucial Serie A clash. Juve are firmly in the top-4 fight and cannot afford to drop points. Bologna are mid-table with nothing to play for. <button class="read-more-btn" id="readMoreBtn" onclick="document.getElementById('analysis-full').style.display='block';this.style.display='none';">📖 Read Full Analysis ▼</button></div>
-        <div id="analysis-full" class="analysis-full">Juventus have been dominant at the Allianz Stadium this season — their home record is one of the strongest in Serie A, scoring in each of their last 9 home games. Dusan Vlahovic has returned to form with 4 goals in his last 5 appearances. Bologna have struggled away, winning just 4 of their last 14 away games and conceding in 10 of those. Head-to-head strongly favours Juve in Turin. With European qualification on the line, expect a focused, motivated Juventus side to get the job done. Our model gives Juventus a 78% win probability. At 1.85 odds, this is excellent value and one of tonight's top picks. ⚫⚪🔥</div>
+        <div class="free-tip-reason" id="free-tip-intro">Juventus host Fiorentina at the Allianz Stadium today in a high-stakes Serie A Matchday 37 clash. Juve sit 3rd with 68 points — just one point ahead of Milan and Roma — and desperately need a win to secure Champions League qualification. Fiorentina are 15th with nothing left to play for. <button class="read-more-btn" id="readMoreBtn" onclick="document.getElementById('analysis-full').style.display='block';this.style.display='none';">📖 Read Full Analysis ▼</button></div>
+        <div id="analysis-full" class="analysis-full">Juventus are unbeaten in their last 11 Serie A matches — 7 wins, 4 draws, and 7 clean sheets in that run. Under Spalletti they have become one of the league's most disciplined sides, conceding just 30 goals all season (0.83 per game). Dusan Vlahovic scored the fastest goal in Juve's Serie A history (12 seconds!) in their last match, a 1-0 win over Lecce. Fiorentina, meanwhile, have won just 1 of their last 5 matches and have FAILED to score in 5 of their last 8 Serie A meetings against Juventus. They secured safety last week with a 0-0 draw vs Genoa — motivation is almost zero. With UCL qualification on the line for Juve and nothing for Fiorentina, the motivation gap is enormous. Our model gives Juventus a 75% win probability. At 1.36 odds this is a solid banker for your accumulator today. ⚫⚪🔥</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
-            <div class="blur-line">Liverpool vs Chelsea • Home Win • Odds 1.72</div>
-            <div class="blur-line">Sunderland vs Man Utd • Over 2.5 • Odds 1.80</div>
-            <div class="blur-line">Brighton vs Wolves • GG • Odds 1.78</div>
+            <div class="blur-line">Man Utd vs Nott'm Forest • Home Win • Odds 1.72</div>
+            <div class="blur-line">Newcastle vs West Ham • Home Win • Odds 1.68</div>
+            <div class="blur-line">Inter vs Verona • Home Win & Over 1.5 • Odds 1.55</div>
         </div>
-        <div class="full-ticket-teaser">Combined odds on full ticket: ~6.78 • Ksh 200 stake = Ksh 1,356</div>
+        <div class="full-ticket-teaser">Combined odds on full ticket: ~6.16 • Ksh 200 stake = Ksh 1,232</div>
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
     </div>
 </div>
 
 <div class="divider"></div>
-
-<!-- ════════════════════════════════════════════════════════
-     STAGE 2c: FULL RESULTS — deeper proof
-     ════════════════════════════════════════════════════════ -->
-
-<div class="section" id="proof-anchor">
-    <div class="section-title">📊 Yesterday's Full Results — 15/05/2026</div>
-    <div class="section-sub">Every pick verified. No edits. No excuses.</div>
-    <div class="table-wrap">
-        <table class="result-table">
-            <thead><tr><th>Match</th><th>Pick</th><th>Score</th><th>Odds</th><th>Result</th></tr></thead>
-            <tbody>
-                <tr><td data-label="Match">Aston Villa vs Liverpool</td><td data-label="Pick">Home Win (1)</td><td data-label="Score" style="font-weight:700;color:var(--green);">4–2</td><td data-label="Odds">2.10</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">Neman vs Isloch</td><td data-label="Pick">Away Win (2)</td><td data-label="Score" style="font-weight:700;color:var(--green);">0–1</td><td data-label="Odds">2.80</td><td data-label="Result" class="win">✓ WIN</td></tr>
-                <tr><td data-label="Match">FC Minsk vs Belshina</td><td data-label="Pick">GG</td><td data-label="Score" style="font-weight:700;color:var(--green);">5–1</td><td data-label="Odds">1.75</td><td data-label="Result" class="win">✓ WIN</td></tr>
-            </tbody>
-            <tfoot><tr><td colspan="2">Combined Odds</td><td colspan="3">10.29 — ALL WON ✅🔥</td></tr></tfoot>
-        </table>
-    </div>
-    <div style="text-align:center;margin-top:16px;">
-        <button onclick="showTrackRecord()" style="background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;border:none;padding:13px 28px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Poppins',sans-serif;box-shadow:0 6px 20px rgba(15,118,110,.4);display:inline-flex;align-items:center;gap:8px;">
-            📅 View Full Month Record →
-        </button>
-    </div>
-</div>
 
 <!-- ════════════════════════════════════════════════════════
      HONESTY SECTION — radical transparency = trust
@@ -668,53 +645,116 @@
 <div class="divider"></div>
 
 <!-- ════════════════════════════════════════════════════════
-     STAGE 4: WHAT DO I GET & HOW MUCH?
+     STAGE 4: PACKAGES — 4 tiers, mobile-first vertical
      ════════════════════════════════════════════════════════ -->
 
 <div class="section" id="packages-anchor">
     <div class="section-title">💎 Choose Your Package</div>
-    <div class="section-sub">Start from Ksh 99. Pay via M-Pesa Till <strong>6012928</strong>, WhatsApp us your name — done.</div>
-    <div class="package-grid">
-        <div class="pack">
-            <div class="pack-name">Daily Ticket</div>
-            <div class="pack-price">Ksh 99 <span>/ day</span></div>
-            <div class="pack-conf">⚡ 95% Confidence • 3–4 Matches</div>
-            <ul class="pack-features">
-                <li>3–4 carefully selected matches</li>
-                <li>Combined odds ~7x–10x</li>
-                <li>Instant WhatsApp delivery</li>
-                <li>Analysis + reasoning included</li>
-                <li>Free consolation pick if you lose</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket →</a>
+    <div class="section-sub">Pick your package and chat with us on WhatsApp — we'll take it from there.</div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+
+        <!-- ══ DAILY — Entry point ══ -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:16px 16px;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:26px;flex-shrink:0;">⚡</div>
+            <div style="flex:1;">
+                <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--green);">Daily Ticket</div>
+                <div style="font-size:12px;color:var(--muted);margin:2px 0 6px;">3–4 picks · Today's matches · Instant delivery</div>
+                <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);">Ksh 99</div>
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20am%20interested%20in%20the%20Daily%20Ticket%20%28Ksh%2099%29"
+               style="text-decoration:none;background:var(--green);color:#fff;padding:11px 16px;border-radius:30px;font-size:12.5px;font-weight:800;white-space:nowrap;flex-shrink:0;">
+                Chat Now →
+            </a>
         </div>
-        <div class="pack featured">
-            <div class="pack-badge">BEST VALUE</div>
-            <div class="pack-name">5-Day Subscription</div>
-            <div class="pack-price">Ksh 499 <span>/ 5 days</span></div>
-            <div class="pack-conf">💪 Save Ksh 496 vs daily</div>
-            <ul class="pack-features">
-                <li>Daily tips for 5 consecutive days</li>
-                <li>Priority WhatsApp delivery</li>
-                <li>Members average Ksh 8,000+/week</li>
-                <li>Weekend special picks included</li>
-                <li>Free consolation pick if you lose</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days →</a>
+
+        <!-- ══ 3-DAY ══ -->
+        <div style="background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:16px 16px;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:26px;flex-shrink:0;">🗓️</div>
+            <div style="flex:1;">
+                <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--green);">3-Day Pack</div>
+                <div style="font-size:12px;color:var(--muted);margin:2px 0 6px;">3 days of picks · Perfect for trying us out</div>
+                <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);">Ksh 199</div>
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20am%20interested%20in%20the%203-Day%20Pack%20%28Ksh%20199%29"
+               style="text-decoration:none;background:var(--green);color:#fff;padding:11px 16px;border-radius:30px;font-size:12.5px;font-weight:800;white-space:nowrap;flex-shrink:0;">
+                Chat Now →
+            </a>
         </div>
-        <div class="pack">
-            <div class="pack-name">Mega Jackpot</div>
-            <div class="pack-price">Ksh 599 <span>/ slip</span></div>
-            <div class="pack-conf">🤖 Expert + AI • 17-Game Slip</div>
-            <ul class="pack-features">
-                <li>Full 17-game jackpot slip</li>
-                <li>AI-powered predictions</li>
-                <li>Last week: 13/17 ✅</li>
-                <li>Ksh 122M+ pool this week</li>
-                <li>Targeting 15/17 this week 🎯</li>
-            </ul>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get Mega Jackpot →</a>
+
+        <!-- ══ VIP WEEKLY ══ -->
+        <div style="background:#fff;border:2px solid var(--mint);border-radius:18px;padding:18px 16px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:0;right:0;background:var(--mint);color:#fff;font-size:10px;font-weight:800;padding:5px 14px;border-radius:0 16px 0 12px;letter-spacing:.5px;">🏆 VIP</div>
+
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--green),var(--mint));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏆</div>
+                <div>
+                    <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--green);">VIP Weekly</div>
+                    <div style="font-size:11.5px;color:var(--muted);">7 days of winning picks</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:12px;">
+                <div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--text);">Ksh 599</div>
+                <div style="font-size:13px;color:var(--muted);">/ week</div>
+            </div>
+            <div style="display:grid;gap:7px;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;"><span style="color:var(--mint);font-weight:800;">✓</span> 7 days of daily predictions</div>
+                <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;"><span style="color:var(--mint);font-weight:800;">✓</span> Priority WhatsApp delivery</div>
+                <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;"><span style="color:var(--mint);font-weight:800;">✓</span> Weekend special picks included</div>
+                <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;"><span style="color:var(--mint);font-weight:800;">✓</span> Free consolation pick if you lose</div>
+                <div style="display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;"><span style="color:var(--mint);font-weight:800;">✓</span> VIP members WhatsApp group</div>
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20am%20interested%20in%20the%20VIP%20Weekly%20%28Ksh%20599%29"
+               style="display:block;text-align:center;text-decoration:none;background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:14px;border-radius:50px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:800;box-shadow:0 6px 20px rgba(16,185,129,.3);">
+                🏆 Chat Now — VIP Weekly →
+            </a>
         </div>
+
+        <!-- ══ VVIP MONTHLY — HERO PACKAGE ══ -->
+        <div style="background:linear-gradient(145deg,#0a1a0e,#0f2d1e);border:2px solid var(--gold);border-radius:20px;padding:20px 18px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(245,158,11,.15),transparent 70%);pointer-events:none;"></div>
+            <div style="position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;font-size:10px;font-weight:900;padding:5px 16px;border-radius:0 18px 0 14px;letter-spacing:1px;">⭐ BEST VALUE</div>
+
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <div style="width:42px;height:42px;background:linear-gradient(135deg,var(--gold),#f97316);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💎</div>
+                <div>
+                    <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold);">VVIP Monthly</div>
+                    <div style="font-size:11.5px;color:rgba(255,255,255,.55);">The complete winning package</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:4px;margin-bottom:14px;">
+                <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:#fff;">Ksh 1,999</div>
+                <div style="font-size:14px;color:rgba(255,255,255,.5);">/ month</div>
+            </div>
+            <div style="display:grid;gap:7px;margin-bottom:16px;">
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> 30 days of daily predictions</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> All 4 Mega Jackpot slips included</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> All 4 Midweek Jackpot slips included</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> Priority delivery — 2hrs before members</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> Direct analyst WhatsApp access</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> Monthly performance report</div>
+                <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:rgba(255,255,255,.88);"><span style="color:var(--gold);font-weight:800;flex-shrink:0;">✦</span> Exclusive VVIP members group</div>
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20am%20interested%20in%20the%20VVIP%20Monthly%20package%20%28Ksh%201%2C999%29"
+               style="display:block;text-align:center;text-decoration:none;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:15px;border-radius:50px;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;box-shadow:0 8px 28px rgba(245,158,11,.45);">
+                💎 Chat Now — VVIP Monthly →
+            </a>
+        </div>
+
+        <!-- ══ JACKPOT SLIP — standalone ══ -->
+        <div style="background:linear-gradient(135deg,#0a1208,#0f2410);border:1.5px solid rgba(16,185,129,.4);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;">
+            <div style="font-size:28px;flex-shrink:0;">🏆</div>
+            <div style="flex:1;">
+                <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--gold);">Mega Jackpot Slip</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.55);margin:2px 0 6px;">17-game expert + AI · Last week 13/17 ✅</div>
+                <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;">Ksh 599</div>
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20am%20interested%20in%20the%20Mega%20Jackpot%20Slip%20%28Ksh%20599%29"
+               style="text-decoration:none;background:linear-gradient(135deg,var(--gold),#f97316);color:#fff;padding:11px 16px;border-radius:30px;font-size:12.5px;font-weight:800;white-space:nowrap;flex-shrink:0;">
+                Chat Now →
+            </a>
+        </div>
+
     </div>
 </div>
 
@@ -784,7 +824,7 @@
      ════════════════════════════════════════════════════════ -->
 
 <!-- ══ JACKPOT ANNOUNCEMENT BANNER — always visible, breaks the page ══ -->
-<div id="jackpot-anchor" id="jp-interstitial-section" style="background:linear-gradient(135deg,#0a0a0a,#1a0a00,#0a0a0a);padding:0;position:relative;overflow:hidden;">
+<div id="jackpot-anchor" style="background:linear-gradient(135deg,#0a0a0a,#1a0a00,#0a0a0a);padding:0;position:relative;overflow:hidden;">
 
     <!-- Animated gold shimmer bg -->
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,rgba(245,158,11,.18) 0%,transparent 65%);pointer-events:none;"></div>
@@ -865,41 +905,63 @@
         <div style="font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:#fff;margin-bottom:6px;">Could Change Your Life.</div>
         <div style="font-size:13.5px;color:rgba(255,255,255,.7);margin-bottom:20px;">Our sealed slip costs <strong style="color:var(--gold);">Ksh 599.</strong> That's the only bet you need to make this week.</div>
 
-        <!-- WHAT Ksh 122M BUYS YOU — the dream section -->
-        <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:18px;padding:18px 16px;margin-bottom:20px;text-align:left;">
-            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:14px;text-align:center;">💭 WHAT Ksh 122,000,000 MEANS</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 10px;text-align:center;">
-                    <div style="font-size:24px;margin-bottom:4px;">🏠</div>
-                    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;">4-Bed House</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.5);">Nairobi suburb</div>
-                    <div style="font-size:12px;font-weight:700;color:var(--gold);margin-top:4px;">≈ Ksh 18M</div>
+        <!-- WHY TRUST OUR JP SLIP -->
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(245,158,11,.25);border-radius:18px;padding:18px 16px;margin-bottom:20px;">
+
+            <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:16px;text-align:center;">🏆 WHY OUR SLIP IS DIFFERENT</div>
+
+            <!-- CREDENTIAL NUMBERS -->
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 8px;text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);">7+</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;line-height:1.4;">Years JP<br>Experience</div>
                 </div>
-                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 10px;text-align:center;">
-                    <div style="font-size:24px;margin-bottom:4px;">🚗</div>
-                    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;">Land Cruiser V8</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.5);">Brand new</div>
-                    <div style="font-size:12px;font-weight:700;color:var(--gold);margin-top:4px;">≈ Ksh 12M</div>
+                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 8px;text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);">847</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;line-height:1.4;">Jackpot Slips<br>Issued</div>
                 </div>
-                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 10px;text-align:center;">
-                    <div style="font-size:24px;margin-bottom:4px;">🎓</div>
-                    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;">Uni for 3 Kids</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.5);">Full education</div>
-                    <div style="font-size:12px;font-weight:700;color:var(--gold);margin-top:4px;">≈ Ksh 6M</div>
-                </div>
-                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 10px;text-align:center;">
-                    <div style="font-size:24px;margin-bottom:4px;">✈️</div>
-                    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:#fff;">World Tour</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.5);">Business class</div>
-                    <div style="font-size:12px;font-weight:700;color:var(--gold);margin-top:4px;">≈ Ksh 4M</div>
+                <div style="background:rgba(0,0,0,.3);border-radius:12px;padding:12px 8px;text-align:center;">
+                    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);">91%</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;line-height:1.4;">Average JP<br>Accuracy</div>
                 </div>
             </div>
-            <div style="background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(249,115,22,.15));border:1px solid rgba(245,158,11,.4);border-radius:12px;padding:12px;margin-top:12px;text-align:center;">
-                <div style="font-size:12px;color:rgba(255,255,255,.6);">After all that you still have</div>
-                <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);">Ksh 82,000,000</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.6);">left in your bank account. 💰</div>
+
+            <!-- 4 PROCESS STEPS -->
+            <div style="display:grid;gap:8px;">
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border-radius:12px;padding:11px 14px;">
+                    <div style="font-size:20px;flex-shrink:0;">📊</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#fff;">5 Seasons of Data Per Match</div>
+                        <div style="font-size:11.5px;color:rgba(255,255,255,.5);margin-top:1px;">Head-to-head stats, form, injuries & referee tendencies all analysed</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border-radius:12px;padding:11px 14px;">
+                    <div style="font-size:20px;flex-shrink:0;">🧠</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#fff;">3 Senior Analysts — Independent Review</div>
+                        <div style="font-size:11.5px;color:rgba(255,255,255,.5);margin-top:1px;">Every pick reviewed separately. If analysts don't agree — it doesn't go on the slip</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border-radius:12px;padding:11px 14px;">
+                    <div style="font-size:20px;flex-shrink:0;">🤖</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#fff;">AI Must Agree With Our Experts</div>
+                        <div style="font-size:11.5px;color:rgba(255,255,255,.5);margin-top:1px;">Human expertise + machine learning cross-checked before every pick is confirmed</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.25);border-radius:12px;padding:11px 14px;">
+                    <div style="font-size:20px;flex-shrink:0;">🔒</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#fff;">Slip Sealed 48hrs Before Deadline</div>
+                        <div style="font-size:11.5px;color:rgba(255,255,255,.5);margin-top:1px;">No last-minute changes. No guesswork. What we send is final and researched</div>
+                    </div>
+                </div>
             </div>
-            <div style="text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.55);">All of that. For <strong style="color:var(--gold);font-size:15px;">Ksh 599.</strong> This Friday.</div>
+
+            <!-- BOTTOM LINE -->
+            <div style="margin-top:14px;background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:11px 14px;text-align:center;font-size:13px;color:rgba(255,255,255,.85);line-height:1.6;">
+                Most tipsters guess. <strong style="color:var(--gold);">We research.</strong><br>13/17 last week wasn't luck — it was 7 years of work. 🎯
+            </div>
         </div>
 
         <!-- NEAR MISS PROOF — emotional hook -->
@@ -1111,10 +1173,10 @@
 </footer>
 
 <!-- FLOAT BUTTONS -->
-<button class="jp-float-btn" onclick="scrollTo('jackpot-anchor')">
+<button class="jp-float-btn" onclick="scrollToSection('jackpot-anchor')">
     🏆 Mega JP <span class="jp-float-badge">Ksh 122M</span>
 </button>
-<button class="free-tip-float" onclick="scrollTo('free-tip-anchor')">🎁 Free Tip</button>
+<button class="free-tip-float" onclick="scrollToSection('free-tip-anchor')">🎁 Free Tip</button>
 <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20tips!" class="whatsapp-float">💬 WhatsApp</a>
 
 <!-- PWA BANNER -->
@@ -1131,14 +1193,15 @@
         <div class="modal-handle"></div>
         <div class="modal-title">🏆 Choose Your Package</div>
         <div class="modal-pkg-jp">
-            <strong>🏆 Mega Jackpot — Ksh 599</strong>
-            <div class="conf">🤖 Expert + AI · 17-Game Slip · Last Week 13/17 ✅</div>
-            <div class="jp-modal-pool">💰 This Week's Pool: <span style="font-size:17px;">Ksh 122,000,000</span></div>
-            <div class="jp-modal-proof">"Niliweka 200 bob — last week 13/17 ilikuwa solid! — James K., Nairobi 🙌"</div>
-            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Mega%20Jackpot%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn" style="text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);">🏆 Get Mega Jackpot — Ksh 599</a>
+            <strong>💎 VVIP Monthly — Ksh 1,999</strong>
+            <div class="conf">⭐ Most Popular · 30 Days + All Jackpots + Priority Access</div>
+            <div class="jp-modal-pool">🏆 Mega JP + Midweek JP · All 8 slips included this month</div>
+            <div class="jp-modal-proof">"Best investment I made — tips every day plus jackpots every week!" — Mary W., Mombasa 🙌</div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VVIP%20Monthly%20package%20for%20Ksh%201%2C999.%20How%20do%20I%20pay%3F" class="wa-btn" style="text-decoration:none;display:block;text-align:center;background:linear-gradient(135deg,var(--gold),#f97316);">💎 Get VVIP Monthly — Ksh 1,999</a>
         </div>
-        <div class="modal-pkg"><strong>Daily Ticket – Ksh 99</strong><div class="conf">⚡ 95% Confidence • 3–4 Matches • Today's picks ready</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;"><div style="filter:blur(4px);user-select:none;">Match 1 • Pick • Odds 2.10</div><div style="filter:blur(4px);user-select:none;">Match 2 • Pick • Odds 1.85</div><div style="font-weight:700;color:var(--mint);margin-top:6px;">Combined Odds: ~6.78</div></div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
-        <div class="modal-pkg"><strong>5-Day Subscription – Ksh 499</strong><div class="conf">💪 Best Value • Daily Tips for 5 Days • Save Ksh 496</div><div style="background:#f1f5f9;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:13px;color:#334155;">Consistent high-confidence picks every day. Members average Ksh 8,000+ per week.</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%205%20Days%20Subscription%20for%20Ksh%20499.%20How%20do%20I%20pay%3F" class="wa-btn">Subscribe 5 Days – Ksh 499</a></div>
+        <div class="modal-pkg"><strong>🏆 VIP Weekly – Ksh 599</strong><div class="conf">7 Days · Priority Delivery · Weekend Specials</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Weekly%20package%20for%20Ksh%20599.%20How%20do%20I%20pay%3F" class="wa-btn">Get VIP Weekly – Ksh 599</a></div>
+        <div class="modal-pkg"><strong>🗓️ 3-Day – Ksh 199</strong><div class="conf">Try it · 3 days of picks · Instant WhatsApp</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%203-Day%20package%20for%20Ksh%20199.%20How%20do%20I%20pay%3F" class="wa-btn">Get 3-Day – Ksh 199</a></div>
+        <div class="modal-pkg"><strong>⚡ Daily Ticket – Ksh 99</strong><div class="conf">Today's picks · 3–4 matches · Instant delivery</div><a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">Get Daily Ticket – Ksh 99</a></div>
         <button class="modal-back" onclick="hideTodayPackagesModal()">← Close</button>
     </div>
 </div>
@@ -1375,7 +1438,7 @@ function showLiveNotification(){
 setTimeout(()=>{showLiveNotification();setInterval(()=>{if(Math.random()>0.3)showLiveNotification();},42000);},4000);
 
 // ── NAV SMOOTH SCROLL ─────────────────────────────────────────
-function scrollTo(id){
+function scrollToSection(id){
   const el=document.getElementById(id);
   if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}
 }
@@ -1435,7 +1498,7 @@ function hideTodayPackagesModal(){document.getElementById('todayPackagesModal').
 function showTrackRecord(){
   const tbody=document.getElementById('trackRecordBody');tbody.innerHTML='';
   const data=[
-    ['15/05','Aston Villa vs Liverpool • Neman vs Isloch • FC Minsk vs Belshina','3','3'],
+    ['16/05','Freiburg vs Leipzig • St. Pauli vs Wolfsburg • Werder Bremen vs Dortmund','3','3'],
     ['12/05','Celta Vigo vs Levante • Osasuna vs Atletico Madrid • Red Star vs Rodez','3','3'],
     ['07/05','Aston Villa vs Nottm Forest • Freiburg vs Braga • Crystal Palace vs Shakhtar','3','3'],
     ['01/05','Leeds United vs Burnley • Girona vs Real Mallorca • Viking vs Rosenborg','3','3'],
