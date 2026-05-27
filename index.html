@@ -28,7 +28,7 @@
     <style>
         :root{--green:#0f766e;--mint:#10b981;--gold:#f59e0b;--light:#f8fafc;--white:#ffffff;--text:#1e2937;--muted:#64748b;--border:#e2e8f0;--red:#ef4444;}
         *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--text);line-height:1.6;font-size:16px;overflow-x:hidden;}
+        body{font-family:'Poppins',sans-serif;background:var(--light);color:var(--text);line-height:1.6;font-size:16px;}
 
         /* ── HEADER ── */
         .header{background:linear-gradient(135deg,var(--green),var(--mint));padding:0 18px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.18);display:flex;flex-direction:column;}
@@ -307,8 +307,8 @@
         .calc-input{flex:1;min-width:80px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
 
         /* ── GLOBAL MOBILE DEFAULTS ── */
-        html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;overflow-x:hidden;}
-        body{font-size:15px;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden;overscroll-behavior-y:contain;}
+        html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;overflow-x:clip;}
+        body{font-size:15px;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-y:auto;}
 
         /* Comfortable tap targets everywhere */
         button,a,[role="button"]{min-height:44px;touch-action:manipulation;}
