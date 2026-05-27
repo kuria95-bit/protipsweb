@@ -306,6 +306,14 @@
         .calc-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px;}
         .calc-input{flex:1;min-width:80px;padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;color:var(--text);}
 
+        /* ── GLOBAL MOBILE DEFAULTS ── */
+        html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent;overflow-x:hidden;}
+        body{font-size:15px;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:hidden;overscroll-behavior-y:contain;}
+
+        /* Comfortable tap targets everywhere */
+        button,a,[role="button"]{min-height:44px;touch-action:manipulation;}
+        .nav-tab{min-height:40px;}
+
         /* ── RESPONSIVE ── */
         @media(min-width:640px){
             .package-grid{grid-template-columns:repeat(3,1fr);}
@@ -313,34 +321,104 @@
             .hero h1{font-size:32px;}
             .how-grid{grid-template-columns:repeat(3,1fr);}
         }
-        @media(max-width:600px){
-            body{font-size:15px;}
+
+        /* ── MOBILE (≤480px) — primary phone target ── */
+        @media(max-width:480px){
+            body{font-size:14.5px;}
+
+            /* Header */
+            .header{padding:0 14px;}
+            .header-title{font-size:17px;}
+            .live-counter{font-size:10.5px;padding:4px 10px;}
+            .nav-tab{font-size:11px;padding:8px 12px;}
+
+            /* Hero section */
+            .hero{padding:22px 14px 18px;}
+            .hero h1{font-size:21px;}
+            .section{padding:18px 14px;}
+            .section-title{font-size:18px;}
+
+            /* Stats bar — 2×2 grid on small screens */
             .stats-bar{grid-template-columns:repeat(2,1fr);}
             .stat-item:nth-child(2){border-right:none;}
             .stat-item:nth-child(3){border-top:1px solid var(--border);}
             .stat-item:last-child{border-top:1px solid var(--border);}
-            .how-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
-            .how-step{padding:14px 8px;}
-            .how-title{font-size:11.5px;}
-            .how-desc{font-size:10.5px;}
-            .hero{padding:24px 16px 20px;}
-            .hero h1{font-size:22px;}
-            .section{padding:20px 14px;}
-            .section-title{font-size:19px;}
-            .ai-input-row{flex-direction:column;gap:10px;max-width:100%;}
-            .ai-input,.ai-btn{border-radius:14px;width:100%;}
+            .stat-num{font-size:15px;}
+            .stat-label{font-size:9.5px;}
+
+            /* How it works — keep 3 cols but tighten */
+            .how-grid{grid-template-columns:repeat(3,1fr);gap:7px;}
+            .how-step{padding:12px 7px;}
+            .how-icon{font-size:20px;margin-bottom:5px;}
+            .how-title{font-size:11px;}
+            .how-desc{font-size:10px;}
+            .how-num{width:30px;height:30px;font-size:14px;}
+
+            /* Free tip */
+            .free-tip-match{font-size:16px;}
+            .free-tip-reason{font-size:13px;}
+            .badge{font-size:11.5px;padding:3px 10px;}
+            .full-ticket-teaser{font-size:12.5px;}
+
+            /* Results table — card layout */
             .result-table{display:block;min-width:0;}
             .result-table thead{display:none;}
             .result-table tbody,.result-table tfoot{display:block;}
-            .result-table tr{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;padding:12px 14px;border-bottom:1px solid var(--border);background:#fff;}
-            .result-table td{display:flex;flex-direction:column;text-align:left;border:none;padding:0;font-size:12.5px;}
-            .result-table td::before{content:attr(data-label);font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:2px;}
-            .result-table td:last-child{grid-column:1/-1;}
+            .result-table tr{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;padding:11px 12px;border-bottom:1px solid var(--border);background:#fff;align-items:start;}
+            .result-table td{display:block;text-align:left;border:none;padding:0;font-size:12px;}
+            .result-table td:nth-child(1){font-weight:700;color:var(--green);font-size:11px;padding-top:2px;}
+            .result-table td:nth-child(2){line-height:1.55;}
+            .result-table td:nth-child(3),.result-table td:nth-child(4){display:none;}
+            .result-table td:nth-child(5){font-size:11px;font-weight:800;padding-top:2px;}
             .result-table tfoot tr{background:#f1f5f9;grid-template-columns:1fr auto;}
             .result-table tfoot td{flex-direction:row;align-items:center;gap:6px;}
-            .result-table tfoot td::before{content:none;}
-            footer{padding:28px 16px 120px;}
-            .nav-tab{font-size:11px;padding:8px 13px;}
+
+            /* Hero two-card grid — stack on very small screens */
+            .hero-two-cards{grid-template-columns:1fr!important;max-width:280px!important;}
+
+            /* Packages */
+            .pack{padding:16px 14px;}
+            .pack-price{font-size:24px;}
+
+            /* Testimonials */
+            .wa-bubble{font-size:13px;}
+
+            /* Float buttons — ensure they don't overlap */
+            .jp-float-btn{bottom:74px;left:10px;font-size:11.5px;padding:10px 13px;}
+            .free-tip-float{bottom:74px;right:10px;font-size:12px;padding:10px 13px;}
+            .whatsapp-float{bottom:14px;right:10px;font-size:13px;padding:12px 18px;}
+
+            /* FOMO stakes grid — stack on phone */
+            .fomo-stakes-grid{grid-template-columns:repeat(3,1fr)!important;}
+
+            /* Transformation section inner padding */
+            .section[style*="padding-top:0"] > div{padding:22px 16px!important;}
+
+            /* Screenshots grid — keep 2 col but tighten */
+            footer{padding:26px 14px 130px;}
+            .footer-links{gap:12px;}
+        }
+
+        /* ── SMALL PHONES (≤360px) ── */
+        @media(max-width:360px){
+            body{font-size:13.5px;}
+            .header-title{font-size:15px;gap:5px;}
+            .hero h1{font-size:19px;}
+            .section-title{font-size:16px;}
+            .stat-num{font-size:14px;}
+            .how-grid{gap:5px;}
+            .how-step{padding:10px 5px;}
+            .how-title{font-size:10px;}
+            .how-desc{font-size:9.5px;}
+            .jp-float-btn,.free-tip-float{font-size:11px;padding:9px 11px;}
+            .screenshots-grid{grid-template-columns:1fr!important;}
+            .fomo-stakes-grid{grid-template-columns:1fr 1fr!important;}
+        }
+
+        /* ── TABLET (601–900px) ── */
+        @media(min-width:601px) and (max-width:900px){
+            .stats-bar{grid-template-columns:repeat(4,1fr);}
+            .section{padding:24px 22px;}
         }
     </style>
 </head>
@@ -401,7 +479,7 @@
     </div>
 
     <!-- TWO CARDS -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:480px;margin:0 auto 28px;">
+    <div class="hero-two-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:480px;margin:0 auto 28px;">
 
         <!-- DAILY TICKET CARD -->
         <div style="background:rgba(16,185,129,.12);border:1.5px solid rgba(16,185,129,.35);border-radius:20px;padding:22px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .2s;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
@@ -639,7 +717,7 @@
 
         <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:700;margin-bottom:16px;">Real Stakes. Real Returns.</div>
 
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;position:relative;">
+        <div class="fomo-stakes-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;position:relative;">
             <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 10px;">
                 <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:6px;">Ksh 200 stake</div>
                 <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#4ade80;line-height:1;">1,800</div>
@@ -991,7 +1069,7 @@
     <div class="section-sub">Real M-Pesa confirmations shared in our WhatsApp group this week.</div>
 
     <!-- MOCK SCREENSHOTS GRID -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+    <div class="screenshots-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
 
         <!-- Screenshot 1 -->
         <div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.09);">
