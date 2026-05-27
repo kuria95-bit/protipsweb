@@ -1471,12 +1471,93 @@
 <button class="free-tip-float" onclick="scrollToSection('free-tip-anchor')">🎁 Free Tip</button>
 <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20tips!" class="whatsapp-float">💬 WhatsApp</a>
 
-<!-- PWA BANNER -->
+<!-- PWA SMALL BANNER (kept for scroll-up nudge) -->
 <div class="pwa-banner" id="pwaBanner">
     <div class="pwa-banner-icon">📲</div>
     <div class="pwa-banner-text"><strong>Install Pro Tipsters App</strong><span>Get instant tip notifications — free!</span></div>
     <button class="pwa-install-btn" id="pwaInstallBtn">Install</button>
     <button class="pwa-close" onclick="dismissPWA()">✕</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     INSTALL APP POPUP MODAL
+     ══════════════════════════════════════════════════════════ -->
+<div id="installPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:99999;align-items:flex-end;justify-content:center;padding:0;">
+    <div id="installPopupCard" style="background:#fff;width:100%;max-width:480px;border-radius:28px 28px 0 0;padding:0 0 36px;overflow:hidden;transform:translateY(100%);transition:transform .38s cubic-bezier(.22,1,.36,1);">
+
+        <!-- Handle -->
+        <div style="width:40px;height:4px;background:#e2e8f0;border-radius:4px;margin:14px auto 0;"></div>
+
+        <!-- Header banner -->
+        <div style="background:linear-gradient(135deg,#0a2a22,#0f766e,#10b981);padding:28px 24px 24px;text-align:center;position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.08) 0%,transparent 70%);pointer-events:none;"></div>
+            <!-- App icon -->
+            <div style="width:72px;height:72px;background:linear-gradient(135deg,#fff,#f0fdf4);border-radius:18px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 8px 28px rgba(0,0,0,.25);">⚽</div>
+            <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;margin-bottom:4px;">Pro Tipsters</div>
+            <div style="font-size:12.5px;color:rgba(255,255,255,.75);font-weight:500;">Africa's #1 Verified Betting Tips</div>
+            <!-- Stars -->
+            <div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px;">
+                <span style="color:#fbbf24;font-size:15px;">★★★★★</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.65);font-weight:600;">50,000+ members</span>
+            </div>
+        </div>
+
+        <!-- Benefits list -->
+        <div style="padding:20px 24px 0;">
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="width:38px;height:38px;background:#ecfdf5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔔</div>
+                    <div>
+                        <div style="font-size:13.5px;font-weight:700;color:#1e2937;">Instant tip notifications</div>
+                        <div style="font-size:12px;color:#64748b;">Get alerts the moment tips are released</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="width:38px;height:38px;background:#fef3c7;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">⚡</div>
+                    <div>
+                        <div style="font-size:13.5px;font-weight:700;color:#1e2937;">Lightning fast access</div>
+                        <div style="font-size:12px;color:#64748b;">Opens instantly, works offline too</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="width:38px;height:38px;background:#eff6ff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎯</div>
+                    <div>
+                        <div style="font-size:13.5px;font-weight:700;color:#1e2937;">91.2% win rate — verified</div>
+                        <div style="font-size:12px;color:#64748b;">Every pick tracked publicly</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Android/Chrome install button -->
+            <div id="androidInstallSection">
+                <button id="popupInstallBtn" onclick="popupTriggerInstall()" style="width:100%;background:linear-gradient(135deg,#0f766e,#10b981);color:#fff;border:none;padding:17px;border-radius:16px;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 28px rgba(16,185,129,.4);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;">
+                    📲 Install App — It's Free
+                </button>
+            </div>
+
+            <!-- iOS instructions section -->
+            <div id="iosInstallSection" style="display:none;">
+                <div style="background:#f1f5f9;border-radius:14px;padding:16px;margin-bottom:10px;">
+                    <div style="font-size:13px;font-weight:700;color:#1e2937;margin-bottom:10px;text-align:center;">Add to your Home Screen in 2 taps:</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#334155;">
+                            <div style="width:26px;height:26px;background:#0f766e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;">1</div>
+                            Tap the <strong style="color:#0f766e;">Share</strong> button <span style="font-size:17px;">⬆️</span> at the bottom of Safari
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#334155;">
+                            <div style="width:26px;height:26px;background:#0f766e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;">2</div>
+                            Scroll down and tap <strong style="color:#0f766e;">"Add to Home Screen"</strong> <span style="font-size:16px;">➕</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dismiss -->
+            <button onclick="dismissInstallPopup()" style="width:100%;background:none;border:none;color:#94a3b8;font-size:13.5px;font-weight:600;padding:12px;cursor:pointer;font-family:'Poppins',sans-serif;min-height:44px;">
+                Not now — maybe later
+            </button>
+        </div>
+    </div>
 </div>
 
 <!-- PACKAGES MODAL -->
@@ -1820,7 +1901,56 @@ const swCode=`self.addEventListener('install',e=>{e.waitUntil(caches.open('pro-t
 if('serviceWorker' in navigator){const swBlob=new Blob([swCode],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(swBlob),{scope:'/'}).catch(()=>{});}
 
 let deferredPrompt=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(!localStorage.getItem('pwa-dismissed')){setTimeout(()=>document.getElementById('pwaBanner').classList.add('show'),8000);}});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+
+// ── INSTALL POPUP ─────────────────────────────────────────────
+function showInstallPopup(){
+  const dismissed=localStorage.getItem('install-popup-dismissed');
+  if(dismissed&&Date.now()-parseInt(dismissed)<86400000)return; // hide for 24h after dismiss
+  const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone;
+  if(isStandalone)return; // already installed
+  const popup=document.getElementById('installPopup');
+  const card=document.getElementById('installPopupCard');
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(isIOS){
+    document.getElementById('iosInstallSection').style.display='block';
+    document.getElementById('androidInstallSection').style.display='none';
+  }
+  popup.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{card.style.transform='translateY(0)';}));
+}
+
+function dismissInstallPopup(){
+  const card=document.getElementById('installPopupCard');
+  card.style.transform='translateY(100%)';
+  setTimeout(()=>{document.getElementById('installPopup').style.display='none';},380);
+  localStorage.setItem('install-popup-dismissed',Date.now().toString());
+}
+
+async function popupTriggerInstall(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const{outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    if(outcome==='accepted'){dismissInstallPopup();}
+  }else{
+    const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    if(isIOS){
+      document.getElementById('iosInstallSection').style.display='block';
+      document.getElementById('androidInstallSection').style.display='none';
+    }
+  }
+}
+
+// Close popup if tapping the dark backdrop
+document.getElementById('installPopup').addEventListener('click',function(e){
+  if(e.target===this)dismissInstallPopup();
+});
+
+// Show popup 3 seconds after page load
+setTimeout(showInstallPopup,3000);
+
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
 
 async function triggerInstall(){
   if(deferredPrompt){
