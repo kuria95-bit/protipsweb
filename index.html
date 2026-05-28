@@ -373,10 +373,7 @@
             .result-table tfoot tr{background:#f1f5f9;grid-template-columns:1fr auto;}
             .result-table tfoot td{flex-direction:row;align-items:center;gap:6px;}
 
-            /* Hero two-card grid — stack on very small screens */
-            .hero-two-cards{grid-template-columns:1fr!important;max-width:280px!important;}
-
-            /* Packages */
+            /* FOMO stakes grid — stack on phone */
             .pack{padding:16px 14px;}
             .pack-price{font-size:24px;}
 
@@ -390,6 +387,10 @@
 
             /* FOMO stakes grid — stack on phone */
             .fomo-stakes-grid{grid-template-columns:repeat(3,1fr)!important;}
+
+            /* Packages */
+            .pack{padding:16px 14px;}
+            .pack-price{font-size:24px;}
 
             /* Transformation section inner padding */
             .section[style*="padding-top:0"] > div{padding:22px 16px!important;}
@@ -478,113 +479,96 @@
         <span>🔒 M-Pesa Verified</span>
     </div>
 
-    <!-- TWO CARDS -->
-    <div class="hero-two-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:480px;margin:0 auto 28px;">
+    <!-- ROW 1: Daily Ticket + Jackpot side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:500px;margin:0 auto 12px;">
 
         <!-- DAILY TICKET CARD -->
-        <div style="background:rgba(16,185,129,.12);border:1.5px solid rgba(16,185,129,.35);border-radius:20px;padding:22px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .2s;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
-            <div style="font-size:28px;margin-bottom:4px;">⚽</div>
-            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff;">Daily Ticket</div>
-            <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.4;text-align:center;">3–4 picks · Today's matches · Instant delivery</div>
-            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--mint);margin:4px 0;">Ksh 99</div>
-            <button onclick="showTodayPackagesModal()" style="width:100%;background:var(--mint);color:#fff;border:none;padding:11px 10px;border-radius:30px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;cursor:pointer;margin-top:4px;box-shadow:0 6px 20px rgba(16,185,129,.35);">
+        <div style="background:rgba(16,185,129,.13);border:1.5px solid rgba(16,185,129,.38);border-radius:16px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <div style="font-size:26px;">⚽</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#fff;text-align:center;">Daily Ticket</div>
+            <div style="font-size:10.5px;color:rgba(255,255,255,.5);text-align:center;line-height:1.4;">3–4 picks · Today's matches</div>
+            <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--mint);">Ksh 99</div>
+            <button onclick="showTodayPackagesModal()" style="width:100%;background:var(--mint);color:#fff;border:none;padding:10px 8px;border-radius:30px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(16,185,129,.35);margin-top:2px;">
                 Get Tips →
             </button>
         </div>
 
         <!-- JACKPOT CARD -->
-        <div style="background:rgba(245,158,11,.1);border:1.5px solid rgba(245,158,11,.35);border-radius:20px;padding:22px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:transform .2s;" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'">
-            <div style="font-size:28px;margin-bottom:4px;">🏆</div>
-            <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff;">Jackpot Slip</div>
-            <div style="font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.4;text-align:center;">Ksh 124.8M pool · 13/17 last week 🔥</div>
-            <div style="font-size:10px;color:#EF9F27;font-weight:700;text-align:center;">7 clients won Ksh 87,000 each!</div>
-            <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);margin:4px 0;">Ksh 599</div>
-            <button onclick="scrollToSection('jackpot-anchor')" style="width:100%;background:linear-gradient(135deg,#92400e,var(--gold));color:#fff;border:none;padding:11px 10px;border-radius:30px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;cursor:pointer;margin-top:4px;box-shadow:0 6px 20px rgba(245,158,11,.3);">
+        <div style="background:rgba(245,158,11,.11);border:1.5px solid rgba(245,158,11,.38);border-radius:16px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:5px;">
+            <div style="font-size:26px;">🏆</div>
+            <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#fff;text-align:center;">Jackpot Slip</div>
+            <div style="font-size:10.5px;color:rgba(255,255,255,.5);text-align:center;line-height:1.4;">Ksh 124.8M · 13/17 last week 🔥</div>
+            <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold);">Ksh 599</div>
+            <button onclick="scrollToSection('jackpot-anchor')" style="width:100%;background:linear-gradient(135deg,#92400e,var(--gold));color:#fff;border:none;padding:10px 8px;border-radius:30px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(245,158,11,.3);margin-top:2px;">
                 Get Slip →
             </button>
         </div>
+
     </div>
 
-    <!-- YESTERDAY TICKET CARD -->
-    <div style="max-width:420px;margin:0 auto 4px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 20px;font-family:'Poppins',sans-serif;text-align:left;">
+    <!-- ROW 2: Yesterday's Ticket — full width below -->
+    <div style="max-width:500px;margin:0 auto 20px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.18);border-radius:16px;padding:14px 16px;font-family:'Poppins',sans-serif;text-align:left;">
 
-        <!-- card header -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-            <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);">Yesterday's Ticket</div>
-            <div style="font-size:10px;color:rgba(255,255,255,.35);font-weight:500;">26 / 05 / 2026</div>
+        <!-- bright header -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;">
+            <div style="font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#ffffff;">✅ Yesterday's Ticket</div>
+            <div style="font-size:10.5px;color:rgba(255,255,255,.6);font-weight:600;background:rgba(255,255,255,.1);padding:2px 9px;border-radius:20px;">27/05/2026</div>
         </div>
 
-        <!-- row 1 -->
-        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08);">
-            <div>
-                <div style="font-size:12.5px;font-weight:600;color:#fff;margin-bottom:3px;">St Etienne vs Nice</div>
-                <div style="display:flex;align-items:center;gap:7px;">
-                    <span style="font-size:11px;color:rgba(255,255,255,.5);">Under 1.5 Goals</span>
-                    <span style="font-size:10.5px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);padding:1px 7px;border-radius:4px;">0 – 0</span>
-                </div>
-            </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
-                <span style="font-size:10.5px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 10px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;">Won</span>
-                <span style="font-size:10px;color:rgba(255,255,255,.3);">@ 2.20</span>
-            </div>
-        </div>
+        <!-- matches grid -->
+        <div style="display:flex;flex-direction:column;gap:0;">
 
-        <!-- row 2 -->
-        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08);">
-            <div>
-                <div style="font-size:12.5px;font-weight:600;color:#fff;margin-bottom:3px;">Dock Sud vs Real Pilar</div>
-                <div style="display:flex;align-items:center;gap:7px;">
-                    <span style="font-size:11px;color:rgba(255,255,255,.5);">Home Win</span>
-                    <span style="font-size:10.5px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);padding:1px 7px;border-radius:4px;">2 – 0</span>
+            <!-- row 1 -->
+            <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">
+                <div>
+                    <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:1px;">Crystal Palace vs Rayo Vallecano</div>
+                    <div style="font-size:10.5px;color:rgba(255,255,255,.45);">Home Win · <span style="color:rgba(255,255,255,.3);">@ 2.11</span></div>
                 </div>
+                <span style="font-size:10px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 9px;border-radius:5px;white-space:nowrap;text-transform:uppercase;">Won ✓</span>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
-                <span style="font-size:10.5px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 10px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;">Won</span>
-                <span style="font-size:10px;color:rgba(255,255,255,.3);">@ 2.05</span>
-            </div>
-        </div>
 
-        <!-- row 3 -->
-        <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:11px 0 0;">
-            <div>
-                <div style="font-size:12.5px;font-weight:600;color:#fff;margin-bottom:3px;">Ezeiza vs Barrancas</div>
-                <div style="display:flex;align-items:center;gap:7px;">
-                    <span style="font-size:11px;color:rgba(255,255,255,.5);">Away Win</span>
-                    <span style="font-size:10.5px;color:rgba(255,255,255,.35);background:rgba(255,255,255,.08);padding:1px 7px;border-radius:4px;">0 – 2</span>
+            <!-- row 2 -->
+            <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);">
+                <div>
+                    <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:1px;">Altai vs FC Astana</div>
+                    <div style="font-size:10.5px;color:rgba(255,255,255,.45);">BTTS YES (GG) · <span style="color:rgba(255,255,255,.3);">@ 1.76</span></div>
                 </div>
+                <span style="font-size:10px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 9px;border-radius:5px;white-space:nowrap;text-transform:uppercase;">Won ✓</span>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
-                <span style="font-size:10.5px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 10px;border-radius:4px;letter-spacing:.5px;text-transform:uppercase;">Won</span>
-                <span style="font-size:10px;color:rgba(255,255,255,.3);">@ 2.40</span>
+
+            <!-- row 3 -->
+            <div style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:8px 0 0;">
+                <div>
+                    <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:1px;">Union Brescia vs Salernitana</div>
+                    <div style="font-size:10.5px;color:rgba(255,255,255,.45);">Under 2.50 · <span style="color:rgba(255,255,255,.3);">@ 1.63</span></div>
+                </div>
+                <span style="font-size:10px;font-weight:700;background:#14532d;color:#4ade80;padding:3px 9px;border-radius:5px;white-space:nowrap;text-transform:uppercase;">Won ✓</span>
             </div>
+
         </div>
 
         <!-- footer -->
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:11px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);">
             <div>
-                <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.35);margin-bottom:2px;">Combined Odds</div>
-                <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;">10.81</div>
+                <div style="font-size:9.5px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);margin-bottom:1px;">Combined Odds</div>
+                <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;">6.05</div>
             </div>
-            <span style="font-size:10.5px;font-weight:700;background:#14532d;color:#4ade80;padding:5px 14px;border-radius:6px;letter-spacing:1px;text-transform:uppercase;">All Won ✓</span>
+            <span style="font-size:11px;font-weight:800;background:linear-gradient(135deg,#14532d,#166534);color:#4ade80;padding:6px 14px;border-radius:8px;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 4px 12px rgba(20,83,45,.4);">🎉 All Won!</span>
         </div>
+
     </div>
 
-    <!-- FREE TIP NUDGE (Step 2) -->
-    <div style="margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:10px;">
-        <button onclick="scrollToSection('free-tip-anchor')" style="background:none;border:none;color:rgba(255,255,255,.45);font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;text-decoration:underline;text-underline-offset:3px;">
-            👀 See today's free tip first
-        </button>
-        <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:8px 18px;">
-            <span style="font-size:13px;color:rgba(255,255,255,.65);font-weight:600;">Start winning today —</span>
-            <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#4ade80;">Ksh 99</span>
-            <span style="font-size:12px;color:rgba(255,255,255,.4);">Less than a cup of tea ☕</span>
-        </div>
+    <!-- CTA ROW -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;max-width:340px;margin:0 auto;">
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" style="background:var(--gold);color:#1a1a1a;padding:13px 28px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;font-family:'Poppins',sans-serif;box-shadow:0 6px 22px rgba(245,158,11,.4);display:inline-block;">
             ⚡ Get Today's Tips — Ksh 99 →
         </a>
+        <button onclick="scrollToSection('free-tip-anchor')" style="background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;text-decoration:underline;text-underline-offset:3px;">
+            👀 See today's free tip first
+        </button>
     </div>
 
-    <!-- iOS hint (hidden by default, shown by JS) -->
+    <!-- iOS hint -->
     <div id="iosHint" style="display:none;margin-top:14px;font-size:12px;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);border-radius:10px;padding:9px 16px;max-width:320px;margin-left:auto;margin-right:auto;">
         Tap <strong>Share ⬆️</strong> then <strong>"Add to Home Screen"</strong>
     </div>
@@ -619,21 +603,21 @@
     <div class="section-title">🎁 Today's Free Tip</div>
     <div class="section-sub">A real pick from our analysts — yours free. No payment, no WhatsApp needed.</div>
     <div class="free-tip-section">
-        <div class="free-tip-match">Atletico Madrid vs Mallorca</div>
+        <div class="free-tip-match">Napoli vs Lecce</div>
         <div class="free-tip-badges">
-            <span class="badge badge-green">Atletico to Win</span>
-            <span class="badge badge-gold">Odds: ~1.60</span>
-            <span class="badge badge-blue">La Liga · Today 27/05/2026 · 21:00 EAT</span>
+            <span class="badge badge-green">Napoli to Win</span>
+            <span class="badge badge-gold">Odds: ~1.65</span>
+            <span class="badge badge-blue">Serie A · Today 28/05/2026 · 21:45 EAT</span>
         </div>
-        <div class="free-tip-reason" id="free-tip-intro">Atletico Madrid close their La Liga campaign at home against Mallorca — and the Colchoneros have unfinished business. They've been near-unbeatable at the Wanda Metropolitano in 2026, winning 8 of their last 9 home games. Mallorca arrive with nothing to fight for and have conceded 2+ in 4 of their last 5 away trips. <button class="read-more-btn" id="readMoreBtn" onclick="document.getElementById('analysis-full').style.display='block';this.style.display='none';">📖 Read Full Analysis ▼</button></div>
-        <div id="analysis-full" class="analysis-full">Atletico's Diego Simeone will demand a professional finish — his side have won 10 consecutive home matches against bottom-half La Liga opposition. Mallorca's xGA away from home this season is a bloated 1.92 per game, and their defensive line has been leaky under set-piece pressure, which is exactly where Atletico's Oblak-to-Morata transition pays off. With Antoine Griezmann continuing his rich vein of form (5 goals in last 6) and Marcos Llorente pulling strings in midfield, the hosts have all the tools. Our model assigns Atletico a 72% win probability at home. At odds of 1.60, this is comfortably positive expected value. Back the home side with confidence. 🔴⚪🎯</div>
+        <div class="free-tip-reason" id="free-tip-intro">Napoli close their Serie A season at home against a relegated Lecce side that has nothing left to play for. The Partenopei have been ruthless at the Diego Armando Maradona in 2026 — unbeaten in their last 11 home games, scoring 2+ in 8 of them. Lecce have the worst away record in the division this season. <button class="read-more-btn" id="readMoreBtn" onclick="document.getElementById('analysis-full').style.display='block';this.style.display='none';">📖 Read Full Analysis ▼</button></div>
+        <div id="analysis-full" class="analysis-full">Napoli are motivated to finish in the top 3 — every point matters for Champions League seeding. Lecce have conceded 2+ goals in 7 of their last 8 away trips and their defensive shape has completely collapsed after the relegation was confirmed. Napoli's Khvicha Kvaratskhelia and Victor Osimhen are both sharp, combining for 28 goals this season. Our model gives Napoli a 74% win probability at home. At odds of 1.65, this represents clear positive expected value — a straightforward, high-confidence selection to cap the week. 💙⚽🎯</div>
         <div class="free-tip-blur">
             <div class="blur-label">🔒 Full Ticket — 3 More Picks (Members Only)</div>
-            <div class="blur-line">Napoli vs Lecce • Home Win • Odds 1.65</div>
             <div class="blur-line">Mainz vs Heidenheim • Under 2.5 Goals • Odds 1.70</div>
             <div class="blur-line">Sporting CP vs Arouca • Home Win & Over 1.5 • Odds 1.55</div>
+            <div class="blur-line">Slavia Prague vs Sigma Olomouc • Home Win • Odds 1.75</div>
         </div>
-        <div class="full-ticket-teaser">Combined odds on full ticket: ~6.95 • Ksh 200 stake = Ksh 1,390</div>
+        <div class="full-ticket-teaser">Combined odds on full ticket: ~7.82 • Ksh 200 stake = Ksh 1,564</div>
         <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20the%20Daily%20Ticket%20for%20Ksh%2099.%20How%20do%20I%20pay%3F" class="wa-btn">🔓 Unlock Full Ticket — Ksh 99</a>
     </div>
 </div>
@@ -766,6 +750,18 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>27/05</td>
+                    <td style="font-size:11px;text-align:left;line-height:1.6;">
+                        Crystal Palace vs Rayo Vallecano · <em>Home Win</em> ✅<br>
+                        Altai vs FC Astana · <em>BTTS YES (GG)</em> ✅<br>
+                        Union Brescia vs Salernitana · <em>Under 2.50</em> ✅<br>
+                        <span style="color:var(--mint);font-weight:700;">Total odds: 6.05</span>
+                    </td>
+                    <td>3</td>
+                    <td style="color:#10b981;font-weight:700;">3</td>
+                    <td style="color:#10b981;font-weight:700;">✓ WIN</td>
+                </tr>
+                <tr>
                     <td>26/05</td>
                     <td style="font-size:11px;text-align:left;line-height:1.6;">
                         St Etienne vs Nice · <em>U1.5 Goals</em> · 0-0 ✅<br>
@@ -822,28 +818,13 @@
                     <td style="color:#10b981;font-weight:700;">3</td>
                     <td style="color:#10b981;font-weight:700;">✓ WIN</td>
                 </tr>
-                <tr>
-                    <td>20/05</td>
-                    <td style="font-size:11px;text-align:left;line-height:1.4;">Brentford vs Fulham • Leeds vs Wolves • Chelsea vs Man Utd</td>
-                    <td>3</td>
-                    <td style="color:#10b981;font-weight:700;">3</td>
-                    <td style="color:#10b981;font-weight:700;">✓ WIN</td>
-                </tr>
-                <tr>
-                    <td>19/05</td>
-                    <td style="font-size:11px;text-align:left;line-height:1.4;">St.Pauli vs Cologne • Inter vs Cagliari • Sassuolo vs Como</td>
-                    <td>3</td>
-                    <td style="color:#10b981;font-weight:700;">3</td>
-                    <td style="color:#10b981;font-weight:700;">✓ WIN</td>
-                </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2" style="text-align:left;font-size:12px;color:var(--muted);">7-day summary</td>
+                    <td colspan="2" style="text-align:left;font-size:12px;color:var(--muted);">7-day summary (21/05 – 27/05)</td>
                     <td>21</td>
                     <td style="color:#10b981;font-weight:700;">20</td>
                     <td style="color:#10b981;font-weight:700;">95.2% acc.</td>
-                    <!-- Note: table shows last 7 rows, 26/05 row added, 19/05 dropped visually -->
                 </tr>
             </tfoot>
         </table>
