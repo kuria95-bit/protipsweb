@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Pro Tipsters</title>
+    <meta name="theme-color" content="#0f766e">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Poppins',sans-serif;background:linear-gradient(160deg,#0a2a22 0%,#0f766e 60%,#10b981 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
+
+        .card{background:#fff;border-radius:24px;padding:32px 24px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.25);}
+
+        .logo{text-align:center;margin-bottom:24px;}
+        .logo-icon{width:64px;height:64px;background:linear-gradient(135deg,#0f766e,#10b981);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 12px;}
+        .logo h1{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#1e2937;}
+        .logo p{font-size:12.5px;color:#64748b;margin-top:3px;}
+
+        .form-group{margin-bottom:16px;}
+        label{display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:6px;}
+        input{width:100%;padding:13px 16px;border:1.5px solid #e2e8f0;border-radius:12px;font-size:14px;font-family:'Poppins',sans-serif;color:#1e2937;outline:none;transition:border .2s;}
+        input:focus{border-color:#0f766e;}
+
+        .phone-wrap{display:flex;gap:8px;}
+        .phone-prefix{background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:12px;padding:13px 14px;font-size:14px;font-weight:600;color:#374151;white-space:nowrap;flex-shrink:0;}
+
+        .password-hint{font-size:11px;color:#94a3b8;margin-top:5px;}
+
+        .btn{width:100%;padding:14px;background:linear-gradient(135deg,#0f766e,#10b981);color:#fff;border:none;border-radius:50px;font-size:15px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;margin-top:8px;box-shadow:0 6px 20px rgba(15,118,110,.35);transition:transform .2s,opacity .2s;}
+        .btn:hover{transform:translateY(-1px);}
+        .btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+        .error-msg{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;display:none;}
+        .success-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;display:none;}
+
+        .terms{font-size:11.5px;color:#64748b;text-align:center;margin-top:14px;line-height:1.6;}
+        .terms a{color:#0f766e;font-weight:600;text-decoration:none;}
+
+        .divider{text-align:center;color:#94a3b8;font-size:12px;margin:18px 0;position:relative;}
+        .divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:#e2e8f0;}
+        .divider::before{left:0;} .divider::after{right:0;}
+
+        .link-row{text-align:center;font-size:13px;color:#64748b;margin-top:16px;}
+        .link-row a{color:#0f766e;font-weight:700;text-decoration:none;}
+
+        .back{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;text-decoration:none;margin-bottom:20px;align-self:flex-start;}
+        .back:hover{color:#fff;}
+
+        .spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        .strength{height:4px;border-radius:4px;margin-top:6px;background:#e2e8f0;overflow:hidden;}
+        .strength-bar{height:100%;border-radius:4px;width:0;transition:width .3s,background .3s;}
+
+        .perks{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px 14px;margin-bottom:20px;}
+        .perks-title{font-size:11px;font-weight:800;color:#15803d;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+        .perk{font-size:12px;color:#374151;display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+    </style>
+</head>
+<body>
+
+    <a href="/" class="back">← Back to site</a>
+
+    <div class="card">
+        <div class="logo">
+            <div class="logo-icon">⚽</div>
+            <h1>Create Account</h1>
+            <p>Join 50,000+ winning bettors across Africa</p>
+        </div>
+
+        <!-- Perks -->
+        <div class="perks">
+            <div class="perks-title">✅ What you get</div>
+            <div class="perk">🎯 Access to daily VIP tickets</div>
+            <div class="perk">📊 Full Mega Jackpot slips</div>
+            <div class="perk">🔔 Instant tip notifications</div>
+            <div class="perk">📱 Members-only dashboard</div>
+        </div>
+
+        <div class="error-msg" id="errorMsg"></div>
+        <div class="success-msg" id="successMsg"></div>
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="e.g. John Kamau" autocomplete="name">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <div class="phone-wrap">
+                <div class="phone-prefix">🇰🇪 +254</div>
+                <input type="tel" id="phone" placeholder="7XX XXX XXX" maxlength="9" inputmode="numeric">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Create a strong password" oninput="checkStrength(this.value)">
+            <div class="strength"><div class="strength-bar" id="strengthBar"></div></div>
+            <div class="password-hint" id="strengthLabel">Min. 6 characters</div>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirm" placeholder="Repeat your password">
+        </div>
+
+        <button class="btn" id="registerBtn" onclick="handleRegister()">🚀 Create My Account</button>
+
+        <p class="terms">By registering you agree to our <a href="#">Terms of Service</a>. Must be 18+ to use this service.</p>
+
+        <div class="divider">already have an account?</div>
+
+        <div class="link-row">
+            <a href="/login.html">← Login here</a>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        const config = {
+            apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+            authDomain:        "pro-tipsters-94171.firebaseapp.com",
+            projectId:         "pro-tipsters-94171",
+            storageBucket:     "pro-tipsters-94171.firebasestorage.app",
+            messagingSenderId: "737923794509",
+            appId:             "1:737923794509:web:921f6a558c11786beebe04"
+        };
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const db   = firebase.firestore();
+
+        // If already logged in, redirect
+        auth.onAuthStateChanged(user => {
+            if(user) window.location.href = '/members.html';
+        });
+
+        function getEmail(phone){
+            return '254' + phone.replace(/\s/g,'') + '@protipsters.app';
+        }
+
+        function checkStrength(val){
+            const bar   = document.getElementById('strengthBar');
+            const label = document.getElementById('strengthLabel');
+            let score = 0;
+            if(val.length >= 6) score++;
+            if(val.length >= 10) score++;
+            if(/[A-Z]/.test(val)) score++;
+            if(/[0-9]/.test(val)) score++;
+            if(/[^A-Za-z0-9]/.test(val)) score++;
+            const map = [
+                {w:'0%',   c:'#e2e8f0', t:'Min. 6 characters'},
+                {w:'25%',  c:'#ef4444', t:'Weak'},
+                {w:'50%',  c:'#f59e0b', t:'Fair'},
+                {w:'75%',  c:'#10b981', t:'Good'},
+                {w:'100%', c:'#0f766e', t:'Strong ✓'}
+            ];
+            const s = map[Math.min(score, 4)];
+            bar.style.width = s.w; bar.style.background = s.c;
+            label.textContent = s.t;
+        }
+
+        async function handleRegister(){
+            const name     = document.getElementById('name').value.trim();
+            const phone    = document.getElementById('phone').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm  = document.getElementById('confirm').value;
+            const btn      = document.getElementById('registerBtn');
+            const errEl    = document.getElementById('errorMsg');
+            const sucEl    = document.getElementById('successMsg');
+
+            errEl.style.display = 'none';
+            sucEl.style.display = 'none';
+
+            if(!name)                    { showError('Please enter your full name'); return; }
+            if(phone.length < 9)         { showError('Enter a valid 9-digit phone number'); return; }
+            if(password.length < 6)      { showError('Password must be at least 6 characters'); return; }
+            if(password !== confirm)     { showError('Passwords do not match'); return; }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span>Creating account...';
+
+            const email = getEmail(phone);
+
+            try{
+                const cred = await auth.createUserWithEmailAndPassword(email, password);
+
+                // Update display name
+                await cred.user.updateProfile({ displayName: name });
+
+                // Save user profile to Firestore
+                await db.collection('users').doc(cred.user.uid).set({
+                    name:      name,
+                    phone:     '+254' + phone,
+                    email:     email,
+                    plan:      'free',
+                    joined:    firebase.firestore.FieldValue.serverTimestamp(),
+                    active:    true
+                });
+
+                sucEl.textContent = '🎉 Account created! Welcome to Pro Tipsters, ' + name + '!';
+                sucEl.style.display = 'block';
+                setTimeout(()=> window.location.href = '/members.html', 1500);
+
+            } catch(e){
+                let msg = 'Registration failed. Please try again.';
+                if(e.code === 'auth/email-already-in-use') msg = 'This phone number is already registered. Try logging in.';
+                if(e.code === 'auth/weak-password')        msg = 'Password is too weak. Use at least 6 characters.';
+                if(e.code === 'auth/network-request-failed') msg = 'No internet connection. Check your network.';
+                showError(msg);
+                btn.disabled = false;
+                btn.innerHTML = '🚀 Create My Account';
+            }
+        }
+
+        function showError(msg){
+            const el = document.getElementById('errorMsg');
+            el.textContent = '⚠️ ' + msg;
+            el.style.display = 'block';
+        }
+
+        document.addEventListener('keydown', e => { if(e.key === 'Enter') handleRegister(); });
+    </script>
+</body>
+</html>
