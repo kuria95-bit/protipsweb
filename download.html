@@ -1,48 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download ProTipsters App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px 20px;
-      background-color: #0a0f0d;
-      color: white;
-      margin: 0;
-    }
-    h1 {
-      color: #0f766e;
-    }
-    .download-btn {
-      background-color: #0f766e;
-      color: white;
-      padding: 20px 50px;
-      font-size: 28px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      margin: 30px 0;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .download-btn:hover {
-      background-color: #0b5c57;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download App — Pro Tipsters</title>
+    <meta name="theme-color" content="#0f766e">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Poppins',sans-serif;background:linear-gradient(160deg,#0a2a22 0%,#0f766e 60%,#10b981 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
+
+        .card{background:#fff;border-radius:24px;padding:32px 24px;width:100%;max-width:400px;box-shadow:0 24px 60px rgba(0,0,0,.25);text-align:center;}
+
+        /* FB WARNING BANNER */
+        .fb-warning{background:#fff3cd;border:2px solid #f59e0b;border-radius:16px;padding:20px;margin-bottom:20px;text-align:center;display:none;}
+        .fb-warning h2{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#92400e;margin-bottom:10px;}
+        .fb-warning p{font-size:13px;color:#78350f;margin-bottom:14px;line-height:1.6;}
+        .fb-steps{background:#fffbeb;border-radius:12px;padding:12px;text-align:left;margin-bottom:14px;}
+        .fb-step{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#374151;margin-bottom:8px;}
+        .fb-step:last-child{margin-bottom:0;}
+        .fb-num{background:#f59e0b;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;}
+        .fb-icon{font-size:40px;margin-bottom:10px;}
+
+        .app-icon{width:90px;height:90px;background:linear-gradient(135deg,#0f766e,#10b981);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:44px;margin:0 auto 16px;box-shadow:0 8px 24px rgba(15,118,110,.35);}
+
+        h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#1e2937;margin-bottom:6px;}
+        .subtitle{font-size:13px;color:#64748b;margin-bottom:24px;}
+
+        .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px;}
+        .stat{background:#f8fafc;border-radius:12px;padding:12px 8px;}
+        .stat-num{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#0f766e;}
+        .stat-label{font-size:10px;color:#64748b;margin-top:2px;}
+
+        .download-btn{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#0f766e,#10b981);color:#fff;padding:16px 24px;border-radius:50px;text-decoration:none;font-weight:800;font-size:16px;box-shadow:0 8px 28px rgba(15,118,110,.4);margin-bottom:12px;transition:transform .2s;}
+        .download-btn:hover{transform:translateY(-2px);}
+        .download-btn span{font-size:24px;}
+
+        .file-info{font-size:11.5px;color:#94a3b8;margin-bottom:24px;}
+
+        .steps{background:#f8fafc;border-radius:16px;padding:16px;margin-bottom:20px;text-align:left;}
+        .steps-title{font-size:11px;font-weight:800;color:#0f766e;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+        .step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:12.5px;color:#374151;}
+        .step:last-child{margin-bottom:0;}
+        .step-num{background:#0f766e;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;margin-top:1px;}
+
+        .warning{background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;padding:12px 14px;margin-bottom:20px;font-size:12px;color:#92400e;text-align:left;}
+        .warning strong{display:block;margin-bottom:4px;}
+
+        .back{color:#64748b;font-size:13px;text-decoration:none;}
+        .back:hover{color:#0f766e;}
+
+        .wa-help{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;padding:12px 20px;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px;margin-bottom:16px;box-shadow:0 4px 14px rgba(37,211,102,.3);}
+    </style>
 </head>
 <body>
-  <h1>📱 ProTipsters App</h1>
-  <p>Africa's #1 Betting Tips Platform</p>
-  <p>Get daily VIP tips, jackpot slips & more</p>
-  
-  <a href="ProTipsters.apk" download class="download-btn">
-    DOWNLOAD APK
-  </a>
-  
-  <p><small>✅ Android Only<br>
-  After download, allow "Install from unknown sources"</small></p>
+
+    <!-- FB IN-APP BROWSER WARNING -->
+    <div class="fb-warning" id="fbWarning">
+        <div class="fb-icon">⚠️</div>
+        <h2>Open in Chrome First!</h2>
+        <p>You're using the Facebook browser. APK downloads don't work here. Follow these steps:</p>
+        <div class="fb-steps">
+            <div class="fb-step">
+                <div class="fb-num">1</div>
+                <div>Tap the <strong>three dots (⋮)</strong> at the top right of your screen</div>
+            </div>
+            <div class="fb-step">
+                <div class="fb-num">2</div>
+                <div>Tap <strong>"Open in Chrome"</strong> or <strong>"Open in browser"</strong></div>
+            </div>
+            <div class="fb-step">
+                <div class="fb-num">3</div>
+                <div>Then tap the <strong>Download button</strong> — it will work! ✅</div>
+            </div>
+        </div>
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20help%20downloading%20the%20app!" class="wa-help" style="margin-bottom:0;">💬 Need help? WhatsApp us</a>
+    </div>
+
+    <div class="card" id="mainCard">
+
+        <div class="app-icon">⚽</div>
+        <h1>Pro Tipsters App</h1>
+        <p class="subtitle">Africa's #1 Soccer Prediction App · Free Download</p>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-num">91.2%</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">50K+</div>
+                <div class="stat-label">Members</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">FREE</div>
+                <div class="stat-label">Download</div>
+            </div>
+        </div>
+
+        <!-- Download Button -->
+        <a href="https://raw.githubusercontent.com/kuria95-bit/protipsweb/main/ProTipsters.apk" download="ProTipsters.apk" class="download-btn">
+            <span>📲</span> Download APK — Free
+        </a>
+        <p class="file-info">Android only · Version 1.0 · ~1.5MB</p>
+
+        <!-- Install Steps -->
+        <div class="steps">
+            <div class="steps-title">📋 How to Install</div>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>Tap the Download button above and wait for the file to download</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>Open your downloads folder and tap <strong>ProTipsters.apk</strong></div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>If prompted, tap <strong>"Settings"</strong> and enable <strong>"Allow from this source"</strong></div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div>Tap <strong>"Install"</strong> — the app will appear on your home screen!</div>
+            </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning">
+            <strong>⚠️ Android Only</strong>
+            This APK works on Android phones only. iPhone users — add our site to your home screen via Safari → Share → Add to Home Screen.
+        </div>
+
+        <!-- WhatsApp Help -->
+        <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20help%20installing%20the%20app!" class="wa-help">
+            💬 Need help installing? WhatsApp us
+        </a>
+
+        <a href="/" class="back">← Back to main site</a>
+
+    </div>
+
+    <script>
+        // Detect Facebook in-app browser
+        const ua = navigator.userAgent || '';
+        const isFB = ua.includes('FBAN') || ua.includes('FBAV') || ua.includes('FB_IAB') || ua.includes('FBIOS') || ua.includes('Facebook');
+
+        if(isFB){
+            // Show FB warning, hide main card
+            document.getElementById('fbWarning').style.display = 'block';
+            document.getElementById('mainCard').style.display  = 'none';
+        }
+    </script>
 </body>
 </html>
