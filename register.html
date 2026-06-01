@@ -210,7 +210,9 @@
                 if(e.code === 'auth/email-already-in-use') msg = 'This phone number is already registered. Try logging in.';
                 if(e.code === 'auth/weak-password')        msg = 'Password is too weak. Use at least 6 characters.';
                 if(e.code === 'auth/network-request-failed') msg = 'No internet connection. Check your network.';
-                showError(msg);
+                if(e.code === 'auth/operation-not-allowed') msg = 'Email/Password login not enabled in Firebase. Please enable it.';
+                // Show exact error for debugging
+                showError(msg + ' [Code: ' + (e.code || 'unknown') + ']');
                 btn.disabled = false;
                 btn.innerHTML = '🚀 Create My Account';
             }
