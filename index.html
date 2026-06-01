@@ -10,7 +10,12 @@
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f766e'/><text y='.9em' font-size='80'>⚽</text></svg>">
-    <link rel="manifest" href="#" id="pwa-manifest">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ProTipsters">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
     <meta name="theme-color" content="#0f766e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1739,13 +1744,12 @@ function showMegaJP(){document.getElementById('megaJPModal').style.display='flex
 function showMidweekJP(){document.getElementById('midweekJPModal').style.display='flex';}
 function toggleFaq(btn){btn.closest('.faq-item').classList.toggle('open');}
 
-// ── PWA ───────────────────────────────────────────────────────
-const manifest={name:'Pro Tipsters',short_name:'ProTipsters',description:"Africa's #1 Betting Tips",start_url:'.',display:'standalone',background_color:'#0f766e',theme_color:'#0f766e',icons:[{src:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="32" fill="%230f766e"/><text y="145" x="20" font-size="150">%E2%9A%BD</text></svg>',sizes:'192x192',type:'image/svg+xml'}]};
-const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'});
-document.getElementById('pwa-manifest').setAttribute('href',URL.createObjectURL(blob));
 
-const swCode=`self.addEventListener('install',e=>{e.waitUntil(caches.open('pro-tipsters-v2').then(cache=>cache.addAll([location.href])));self.skipWaiting();});self.addEventListener('activate',e=>{self.clients.claim();});self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});self.addEventListener('push',e=>{const data=e.data?e.data.json():{};e.waitUntil(self.registration.showNotification(data.title||'Pro Tipsters \uD83D\uDD25',{body:data.body||'New tip available!',icon:data.icon||'',badge:data.icon||'',tag:'pro-tipsters-update',renotify:true,data:{url:data.url||'/'}}));});self.addEventListener('notificationclick',e=>{e.notification.close();e.waitUntil(clients.openWindow(e.notification.data&&e.notification.data.url?e.notification.data.url:'/'));});`;
-if('serviceWorker' in navigator){const swBlob=new Blob([swCode],{type:'text/javascript'});navigator.serviceWorker.register(URL.createObjectURL(swBlob),{scope:'/'}).catch(()=>{});}
+// ── PWA ───────────────────────────────────────────────────────
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js', {scope:'/'}).catch(()=>{});
+}
+
 
 let deferredPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
