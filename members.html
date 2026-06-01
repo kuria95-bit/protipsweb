@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Area — Pro Tipsters</title>
+    <meta name="theme-color" content="#0f766e">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Poppins',sans-serif;background:#f1f5f9;min-height:100vh;}
+
+        .header{background:linear-gradient(135deg,#0f766e,#10b981);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.15);}
+        .header-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;}
+        .logout-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;}
+
+        .hero-banner{background:linear-gradient(160deg,#0a2a22,#0f766e);padding:24px 18px;color:#fff;text-align:center;}
+        .welcome{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px;}
+        .member-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;}
+        .plan-badge{display:inline-block;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.5);color:#f59e0b;font-size:11px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;}
+
+        .content{padding:18px;}
+
+        .card{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+        .card-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#1e2937;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+
+        .upgrade-card{background:linear-gradient(135deg,#0f766e,#10b981);border-radius:16px;padding:20px 18px;margin-bottom:14px;color:#fff;text-align:center;}
+        .upgrade-card h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:6px;}
+        .upgrade-card p{font-size:13px;opacity:.85;margin-bottom:14px;}
+        .upgrade-btn{display:inline-block;background:#f59e0b;color:#1a1a1a;padding:12px 28px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 6px 20px rgba(245,158,11,.4);}
+
+        .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+        .plan-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:border .2s;}
+        .plan-item.active{border-color:#10b981;background:#f0fdf4;}
+        .plan-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#0f766e;}
+        .plan-name{font-size:12px;color:#64748b;margin-top:2px;}
+
+        .info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13.5px;}
+        .info-row:last-child{border-bottom:none;}
+        .info-label{color:#64748b;}
+        .info-val{font-weight:700;color:#1e2937;}
+
+        .wa-btn{display:block;background:#25d366;color:#fff;text-align:center;padding:13px;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;margin-top:8px;box-shadow:0 6px 20px rgba(37,211,102,.3);}
+
+        .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(160deg,#0a2a22,#0f766e);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;}
+        .loading-icon{font-size:48px;margin-bottom:16px;animation:bounce .8s infinite alternate;}
+        .loading p{color:rgba(255,255,255,.7);font-size:14px;}
+        @keyframes bounce{to{transform:translateY(-8px)}}
+    </style>
+</head>
+<body>
+
+    <!-- Loading screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-icon">⚽</div>
+        <p>Loading your account...</p>
+    </div>
+
+    <!-- Header -->
+    <div class="header" id="mainContent" style="display:none;">
+        <div class="header-title">⚽ Pro Tipsters</div>
+        <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+
+    <div id="pageContent" style="display:none;">
+
+        <!-- Hero -->
+        <div class="hero-banner">
+            <div class="welcome">Welcome back 👋</div>
+            <div class="member-name" id="memberName">Loading...</div>
+            <span class="plan-badge" id="planBadge">Free Member</span>
+        </div>
+
+        <div class="content">
+
+            <!-- Upgrade CTA -->
+            <div class="upgrade-card" id="upgradeCard">
+                <h3>🔥 Unlock VIP Tips Today</h3>
+                <p>Get full daily tickets, Jackpot slips, and insider picks from Ksh 99</p>
+                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20upgrade%20my%20account!" class="upgrade-btn">💬 Upgrade via WhatsApp</a>
+            </div>
+
+            <!-- Today's picks teaser -->
+            <div class="card">
+                <div class="card-title">🎯 Today's Tips</div>
+                <div style="background:#f0fdf4;border:2px dashed #10b981;border-radius:12px;padding:20px;text-align:center;">
+                    <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+                    <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#0f766e;margin-bottom:6px;">VIP Ticket Locked</div>
+                    <div style="font-size:12.5px;color:#64748b;margin-bottom:14px;">Today's full ticket (3 picks · odds 6.25) is available for paid members. Upgrade from Ksh 99.</div>
+                    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20VIP%20ticket!" style="display:inline-block;background:#0f766e;color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;">Get Today's Ticket →</a>
+                </div>
+            </div>
+
+            <!-- Account Info -->
+            <div class="card">
+                <div class="card-title">👤 My Account</div>
+                <div class="info-row"><span class="info-label">Name</span><span class="info-val" id="infoName">—</span></div>
+                <div class="info-row"><span class="info-label">Phone</span><span class="info-val" id="infoPhone">—</span></div>
+                <div class="info-row"><span class="info-label">Plan</span><span class="info-val" id="infoPlan">Free</span></div>
+                <div class="info-row"><span class="info-label">Member since</span><span class="info-val" id="infoJoined">—</span></div>
+            </div>
+
+            <!-- Packages -->
+            <div class="card">
+                <div class="card-title">📦 Upgrade Your Plan</div>
+                <div class="plan-grid">
+                    <div class="plan-item">
+                        <div class="plan-price">Ksh 99</div>
+                        <div class="plan-name">Daily Ticket</div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-price">Ksh 199</div>
+                        <div class="plan-name">3-Day Pass</div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-price">Ksh 599</div>
+                        <div class="plan-name">VIP Weekly</div>
+                    </div>
+                    <div class="plan-item">
+                        <div class="plan-price">Ksh 1,999</div>
+                        <div class="plan-name">VVIP Monthly</div>
+                    </div>
+                </div>
+                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20upgrade%20my%20membership!" class="wa-btn">💬 Pay via M-Pesa · WhatsApp Us</a>
+            </div>
+
+            <!-- Back to site -->
+            <div style="text-align:center;margin-top:8px;margin-bottom:20px;">
+                <a href="/" style="color:#64748b;font-size:13px;text-decoration:none;">← Back to main site</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        const config = {
+            apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+            authDomain:        "pro-tipsters-94171.firebaseapp.com",
+            projectId:         "pro-tipsters-94171",
+            storageBucket:     "pro-tipsters-94171.firebasestorage.app",
+            messagingSenderId: "737923794509",
+            appId:             "1:737923794509:web:921f6a558c11786beebe04"
+        };
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const db   = firebase.firestore();
+
+        auth.onAuthStateChanged(async user => {
+            if(!user){
+                // Not logged in — redirect to login
+                window.location.href = '/login.html';
+                return;
+            }
+
+            // Fetch user profile from Firestore
+            try{
+                const doc = await db.collection('users').doc(user.uid).get();
+                const data = doc.exists ? doc.data() : {};
+
+                const name  = data.name  || user.displayName || 'Member';
+                const phone = data.phone || '—';
+                const plan  = data.plan  || 'free';
+                const joined = data.joined ? new Date(data.joined.toDate()).toLocaleDateString('en-KE',{year:'numeric',month:'short',day:'numeric'}) : '—';
+
+                document.getElementById('memberName').textContent  = name;
+                document.getElementById('planBadge').textContent   = plan === 'free' ? 'Free Member' : plan.toUpperCase() + ' Member';
+                document.getElementById('infoName').textContent    = name;
+                document.getElementById('infoPhone').textContent   = phone;
+                document.getElementById('infoPlan').textContent    = plan === 'free' ? 'Free' : plan.toUpperCase();
+                document.getElementById('infoJoined').textContent  = joined;
+
+                // Hide upgrade card for paid members
+                if(plan !== 'free') document.getElementById('upgradeCard').style.display = 'none';
+
+            } catch(e){
+                document.getElementById('memberName').textContent = user.displayName || 'Member';
+            }
+
+            // Show page
+            document.getElementById('loadingScreen').style.display  = 'none';
+            document.getElementById('mainContent').style.display    = 'flex';
+            document.getElementById('pageContent').style.display    = 'block';
+        });
+
+        function handleLogout(){
+            auth.signOut().then(()=> window.location.href = '/');
+        }
+    </script>
+</body>
+</html>
