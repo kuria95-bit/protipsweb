@@ -3,191 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members Area — Pro Tipsters</title>
-    <meta name="theme-color" content="#0f766e">
+    <title>Dashboard — Pro Tipsters</title>
+    <meta name="theme-color" content="#0a0f0d">
+    <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
+        :root{
+            --green:#0f766e;--mint:#10b981;--gold:#EF9F27;--dark:#0a0f0d;
+            --card:#141a17;--border:rgba(255,255,255,.08);--muted:rgba(255,255,255,.45);
+        }
         *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Poppins',sans-serif;background:#f1f5f9;min-height:100vh;}
+        body{font-family:'Poppins',sans-serif;background:var(--dark);color:#fff;min-height:100vh;padding-bottom:30px;}
 
-        .header{background:linear-gradient(135deg,#0f766e,#10b981);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.15);}
-        .header-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;}
-        .logout-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;}
+        /* LOADING */
+        .loading{position:fixed;inset:0;background:linear-gradient(160deg,#0a2a22,#0f766e);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;}
+        .loading-icon{font-size:52px;margin-bottom:16px;animation:bounce .8s infinite alternate;}
+        .loading p{color:rgba(255,255,255,.7);font-size:14px;font-weight:600;}
+        @keyframes bounce{to{transform:translateY(-10px)}}
 
-        .hero-banner{background:linear-gradient(160deg,#0a2a22,#0f766e);padding:24px 18px;color:#fff;text-align:center;}
-        .welcome{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px;}
-        .member-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:6px;}
-        .plan-badge{display:inline-block;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.5);color:#f59e0b;font-size:11px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;}
+        /* HEADER */
+        .header{background:rgba(10,15,13,.95);backdrop-filter:blur(10px);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);}
+        .header-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;display:flex;align-items:center;gap:8px;}
+        .header-logo span{font-size:20px;}
+        .logout-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:7px 14px;border-radius:20px;font-size:11.5px;font-weight:700;font-family:'Poppins',sans-serif;cursor:pointer;transition:all .2s;}
+        .logout-btn:hover{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.3);color:#ef4444;}
 
-        .content{padding:18px;}
+        /* HERO */
+        .hero{background:linear-gradient(160deg,#0a2a22 0%,#0f4f3a 60%,#0f766e 100%);padding:24px 18px 20px;position:relative;overflow:hidden;}
+        .hero::before{content:'⚽';position:absolute;right:-10px;top:-10px;font-size:100px;opacity:.06;}
+        .welcome-text{font-size:12px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+        .member-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;margin-bottom:10px;}
+        .plan-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+        .plan-free{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);}
+        .plan-paid{background:rgba(239,159,39,.15);border:1px solid rgba(239,159,39,.4);color:#EF9F27;}
+        .plan-vip{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.4);color:#4ade80;}
 
-        .card{background:#fff;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
-        .card-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#1e2937;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+        /* STAT ROW */
+        .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:16px 18px 0;}
+        .stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 8px;text-align:center;}
+        .stat-num{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--mint);}
+        .stat-label{font-size:9.5px;color:var(--muted);margin-top:2px;letter-spacing:.5px;}
 
-        .upgrade-card{background:linear-gradient(135deg,#0f766e,#10b981);border-radius:16px;padding:20px 18px;margin-bottom:14px;color:#fff;text-align:center;}
-        .upgrade-card h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:6px;}
-        .upgrade-card p{font-size:13px;opacity:.85;margin-bottom:14px;}
-        .upgrade-btn{display:inline-block;background:#f59e0b;color:#1a1a1a;padding:12px 28px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 6px 20px rgba(245,158,11,.4);}
+        /* CONTENT */
+        .content{padding:14px 18px;}
 
-        .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-        .plan-item{background:#f8fafc;border:2px solid #e2e8f0;border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:border .2s;}
-        .plan-item.active{border-color:#10b981;background:#f0fdf4;}
-        .plan-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#0f766e;}
-        .plan-name{font-size:12px;color:#64748b;margin-top:2px;}
+        /* CARD */
+        .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:14px;}
+        .card-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+        .card-title-icon{font-size:16px;}
 
-        .info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13.5px;}
-        .info-row:last-child{border-bottom:none;}
-        .info-label{color:#64748b;}
-        .info-val{font-weight:700;color:#1e2937;}
+        /* FREE TIP */
+        .tip-match{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;}
+        .tip-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+        .badge{padding:4px 12px;border-radius:20px;font-size:10.5px;font-weight:700;}
+        .badge-green{background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;}
+        .badge-gold{background:rgba(239,159,39,.12);border:1px solid rgba(239,159,39,.3);color:#EF9F27;}
+        .badge-blue{background:rgba(99,179,237,.1);border:1px solid rgba(99,179,237,.25);color:#63b3ed;}
+        .tip-reason{font-size:12.5px;color:var(--muted);line-height:1.7;}
 
-        .wa-btn{display:block;background:#25d366;color:#fff;text-align:center;padding:13px;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;margin-top:8px;box-shadow:0 6px 20px rgba(37,211,102,.3);}
+        /* LOCKED */
+        .locked-box{background:rgba(255,255,255,.03);border:2px dashed rgba(255,255,255,.1);border-radius:14px;padding:22px;text-align:center;}
+        .locked-icon{font-size:32px;margin-bottom:8px;}
+        .locked-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;}
+        .locked-sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6;}
 
-        .loading{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(160deg,#0a2a22,#0f766e);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;}
-        .loading-icon{font-size:48px;margin-bottom:16px;animation:bounce .8s infinite alternate;}
-        .loading p{color:rgba(255,255,255,.7);font-size:14px;}
-        @keyframes bounce{to{transform:translateY(-8px)}}
+        /* PERFORMANCE */
+        .perf-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+        .perf-row:last-child{border-bottom:none;}
+        .perf-label{color:var(--muted);}
+        .perf-val{font-weight:700;color:#fff;}
+        .perf-win{color:#4ade80;font-weight:800;}
+
+        /* PACKAGES */
+        .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+        .pkg-item{background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;padding:14px 12px;text-align:center;cursor:pointer;transition:all .2s;position:relative;}
+        .pkg-item:hover{border-color:var(--mint);background:rgba(16,185,129,.06);}
+        .pkg-popular{position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;font-size:9px;font-weight:800;padding:2px 10px;border-radius:20px;white-space:nowrap;}
+        .pkg-icon{font-size:22px;margin-bottom:6px;}
+        .pkg-name{font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;}
+        .pkg-price{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;}
+        .pkg-price span{font-size:11px;color:var(--muted);font-family:'Poppins',sans-serif;font-weight:400;}
+        .pkg-desc{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4;}
+
+        /* JP PACKAGES */
+        .jp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+        .jp-item{background:rgba(239,159,39,.05);border:1.5px solid rgba(239,159,39,.2);border-radius:14px;padding:14px 12px;text-align:center;}
+        .jp-icon{font-size:22px;margin-bottom:6px;}
+        .jp-name{font-size:11px;color:rgba(239,159,39,.7);margin-bottom:4px;font-weight:600;}
+        .jp-price{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--gold);}
+
+        /* HOW IT WORKS */
+        .how-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+        .how-step:last-child{margin-bottom:0;}
+        .how-num{width:28px;height:28px;background:linear-gradient(135deg,var(--green),var(--mint));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;color:#fff;}
+        .how-text{font-size:13px;color:var(--muted);line-height:1.6;padding-top:4px;}
+        .how-text strong{color:#fff;}
+
+        /* PAYMENT */
+        .mpesa-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:12px;}
+        .mpesa-title{font-size:11px;font-weight:800;color:var(--mint);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+        .mpesa-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+        .mpesa-row:last-child{border-bottom:none;}
+        .mpesa-label{color:var(--muted);}
+        .mpesa-val{font-weight:800;color:#fff;font-family:'Syne',sans-serif;}
+        .till-highlight{font-size:22px;color:var(--mint);}
+
+        /* BUTTONS */
+        .wa-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#fff;padding:14px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.25);margin-top:4px;}
+        .wa-btn-outline{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;border:2px solid #25d366;color:#25d366;padding:12px;border-radius:50px;font-weight:700;font-size:13px;text-decoration:none;margin-top:8px;}
+        .cta-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--green),var(--mint));color:#fff;padding:14px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 6px 20px rgba(15,118,110,.3);margin-top:8px;}
+
+        /* ACCOUNT */
+        .acc-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);font-size:13px;}
+        .acc-row:last-child{border-bottom:none;}
+        .acc-label{color:var(--muted);}
+        .acc-val{font-weight:700;color:#fff;}
+
+        /* FOOTER */
+        .footer{text-align:center;padding:20px 18px 10px;font-size:11px;color:rgba(255,255,255,.2);}
     </style>
 </head>
 <body>
 
-    <!-- Loading screen -->
-    <div class="loading" id="loadingScreen">
-        <div class="loading-icon">⚽</div>
-        <p>Loading your account...</p>
+<!-- LOADING -->
+<div class="loading" id="loadingScreen">
+    <div class="loading-icon">⚽</div>
+    <p>Loading your account...</p>
+</div>
+
+<!-- HEADER -->
+<div class="header" id="mainHeader" style="display:none;">
+    <div class="header-logo"><span>⚽</span> Pro Tipsters</div>
+    <button class="logout-btn" onclick="handleLogout()">Logout</button>
+</div>
+
+<div id="pageContent" style="display:none;">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="welcome-text">Welcome back 👋</div>
+        <div class="member-name" id="memberName">...</div>
+        <span class="plan-badge plan-free" id="planBadge">Free Member</span>
     </div>
 
-    <!-- Header -->
-    <div class="header" id="mainContent" style="display:none;">
-        <div class="header-title">⚽ Pro Tipsters</div>
-        <button class="logout-btn" onclick="handleLogout()">Logout</button>
-    </div>
-
-    <div id="pageContent" style="display:none;">
-
-        <!-- Hero -->
-        <div class="hero-banner">
-            <div class="welcome">Welcome back 👋</div>
-            <div class="member-name" id="memberName">Loading...</div>
-            <span class="plan-badge" id="planBadge">Free Member</span>
+    <!-- STATS -->
+    <div class="stat-row">
+        <div class="stat-box">
+            <div class="stat-num">91.2%</div>
+            <div class="stat-label">Win Rate</div>
         </div>
-
-        <div class="content">
-
-            <!-- Upgrade CTA -->
-            <div class="upgrade-card" id="upgradeCard">
-                <h3>🔥 Unlock VIP Tips Today</h3>
-                <p>Get full daily tickets, Jackpot slips, and insider picks from Ksh 99</p>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20upgrade%20my%20account!" class="upgrade-btn">💬 Upgrade via WhatsApp</a>
-            </div>
-
-            <!-- Today's picks teaser -->
-            <div class="card">
-                <div class="card-title">🎯 Today's Tips</div>
-                <div style="background:#f0fdf4;border:2px dashed #10b981;border-radius:12px;padding:20px;text-align:center;">
-                    <div style="font-size:28px;margin-bottom:8px;">🔒</div>
-                    <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#0f766e;margin-bottom:6px;">VIP Ticket Locked</div>
-                    <div style="font-size:12.5px;color:#64748b;margin-bottom:14px;">Today's full ticket (3 picks · odds 6.25) is available for paid members. Upgrade from Ksh 99.</div>
-                    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%20VIP%20ticket!" style="display:inline-block;background:#0f766e;color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;">Get Today's Ticket →</a>
-                </div>
-            </div>
-
-            <!-- Account Info -->
-            <div class="card">
-                <div class="card-title">👤 My Account</div>
-                <div class="info-row"><span class="info-label">Name</span><span class="info-val" id="infoName">—</span></div>
-                <div class="info-row"><span class="info-label">Phone</span><span class="info-val" id="infoPhone">—</span></div>
-                <div class="info-row"><span class="info-label">Plan</span><span class="info-val" id="infoPlan">Free</span></div>
-                <div class="info-row"><span class="info-label">Member since</span><span class="info-val" id="infoJoined">—</span></div>
-            </div>
-
-            <!-- Packages -->
-            <div class="card">
-                <div class="card-title">📦 Upgrade Your Plan</div>
-                <div class="plan-grid">
-                    <div class="plan-item">
-                        <div class="plan-price">Ksh 99</div>
-                        <div class="plan-name">Daily Ticket</div>
-                    </div>
-                    <div class="plan-item">
-                        <div class="plan-price">Ksh 199</div>
-                        <div class="plan-name">3-Day Pass</div>
-                    </div>
-                    <div class="plan-item">
-                        <div class="plan-price">Ksh 599</div>
-                        <div class="plan-name">VIP Weekly</div>
-                    </div>
-                    <div class="plan-item">
-                        <div class="plan-price">Ksh 1,999</div>
-                        <div class="plan-name">VVIP Monthly</div>
-                    </div>
-                </div>
-                <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20upgrade%20my%20membership!" class="wa-btn">💬 Pay via M-Pesa · WhatsApp Us</a>
-            </div>
-
-            <!-- Back to site -->
-            <div style="text-align:center;margin-top:8px;margin-bottom:20px;">
-                <a href="/" style="color:#64748b;font-size:13px;text-decoration:none;">← Back to main site</a>
-            </div>
-
+        <div class="stat-box">
+            <div class="stat-num">50K+</div>
+            <div class="stat-label">Members</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num" id="statPlan">FREE</div>
+            <div class="stat-label">Your Plan</div>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script>
-        const config = {
-            apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
-            authDomain:        "pro-tipsters-94171.firebaseapp.com",
-            projectId:         "pro-tipsters-94171",
-            storageBucket:     "pro-tipsters-94171.firebasestorage.app",
-            messagingSenderId: "737923794509",
-            appId:             "1:737923794509:web:921f6a558c11786beebe04"
-        };
-        firebase.initializeApp(config);
-        const auth = firebase.auth();
-        const db   = firebase.firestore();
+    <div class="content">
 
-        auth.onAuthStateChanged(async user => {
-            if(!user){
-                // Not logged in — redirect to login
-                window.location.href = '/login.html';
-                return;
-            }
+        <!-- TODAY'S FREE TIP -->
+        <div class="card">
+            <div class="card-title"><span class="card-title-icon">🎯</span> Today's Free Tip</div>
+            <div class="tip-match">Brann 2 vs Askøy FK</div>
+            <div class="tip-badges">
+                <span class="badge badge-green">Home Win</span>
+                <span class="badge badge-gold">Odds: ~1.85</span>
+                <span class="badge badge-blue">Norway 3. Divisjon · 01/06/2026</span>
+            </div>
+            <div class="tip-reason">Brann 2 carry superior squad depth as SK Brann's reserve side. Askøy have drawn 4 of 8 games this season — they struggle to win away. Strong home advantage expected.</div>
+        </div>
 
-            // Fetch user profile from Firestore
-            try{
-                const doc = await db.collection('users').doc(user.uid).get();
-                const data = doc.exists ? doc.data() : {};
+        <!-- TODAY'S VIP TICKET -->
+        <div class="card" id="vipTicketCard">
+            <div class="card-title"><span class="card-title-icon">🔐</span> Today's VIP Ticket</div>
+            <div class="locked-box" id="lockedBox">
+                <div class="locked-icon">🔒</div>
+                <div class="locked-title">Unlock Today's Full Ticket</div>
+                <div class="locked-sub">Subscribe to any plan to get today's full 3-pick ticket with combined odds. Delivered instantly after payment confirmation.</div>
+                <a href="#packages" class="cta-btn">See Packages & Subscribe →</a>
+            </div>
+            <!-- VIP content shown when plan is paid -->
+            <div id="vipContent" style="display:none;">
+                <div style="background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2);border-radius:12px;padding:14px;text-align:center;">
+                    <div style="font-size:11px;font-weight:800;color:#4ade80;letter-spacing:1px;margin-bottom:10px;">✅ TODAY'S FULL TICKET — UNLOCKED</div>
+                    <div style="font-size:13px;color:var(--muted);">Your ticket will be sent via WhatsApp. Make sure your number is active.</div>
+                    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20need%20today%27s%20VIP%20ticket!" class="wa-btn" style="margin-top:12px;">💬 Get Ticket on WhatsApp</a>
+                </div>
+            </div>
+        </div>
 
-                const name  = data.name  || user.displayName || 'Member';
-                const phone = data.phone || '—';
-                const plan  = data.plan  || 'free';
-                const joined = data.joined ? new Date(data.joined.toDate()).toLocaleDateString('en-KE',{year:'numeric',month:'short',day:'numeric'}) : '—';
+        <!-- YESTERDAY'S PERFORMANCE -->
+        <div class="card">
+            <div class="card-title"><span class="card-title-icon">📊</span> Yesterday's Performance</div>
+            <div class="perf-row"><span class="perf-label">Date</span><span class="perf-val">31/05/2026</span></div>
+            <div class="perf-row"><span class="perf-label">Belgium U17 vs Estonia U17</span><span class="perf-win">Home Win ✅ 1-0</span></div>
+            <div class="perf-row"><span class="perf-label">Spain U17 vs Croatia U17</span><span class="perf-win">Over 2.5 ✅ 2-3</span></div>
+            <div class="perf-row"><span class="perf-label">Midland vs San Martín</span><span class="perf-win">Home Win ✅ 2-0</span></div>
+            <div class="perf-row"><span class="perf-label">Combined Odds</span><span class="perf-val" style="color:var(--gold);">6.25 🔥</span></div>
+            <div class="perf-row"><span class="perf-label">Result</span><span class="perf-win">3/3 WIN ✓</span></div>
+        </div>
 
-                document.getElementById('memberName').textContent  = name;
-                document.getElementById('planBadge').textContent   = plan === 'free' ? 'Free Member' : plan.toUpperCase() + ' Member';
-                document.getElementById('infoName').textContent    = name;
-                document.getElementById('infoPhone').textContent   = phone;
-                document.getElementById('infoPlan').textContent    = plan === 'free' ? 'Free' : plan.toUpperCase();
-                document.getElementById('infoJoined').textContent  = joined;
+        <!-- PACKAGES -->
+        <div class="card" id="packages">
+            <div class="card-title"><span class="card-title-icon">📦</span> Daily Tips Packages</div>
+            <div class="pkg-grid">
+                <div class="pkg-item">
+                    <div class="pkg-icon">📅</div>
+                    <div class="pkg-name">Daily</div>
+                    <div class="pkg-price">Ksh 99<span>/day</span></div>
+                    <div class="pkg-desc">1 day full ticket</div>
+                </div>
+                <div class="pkg-item">
+                    <div class="pkg-icon">📆</div>
+                    <div class="pkg-name">3-Day Pass</div>
+                    <div class="pkg-price">Ksh 199<span>/3 days</span></div>
+                    <div class="pkg-desc">3 days full access</div>
+                </div>
+                <div class="pkg-item" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05);">
+                    <div class="pkg-popular">🔥 POPULAR</div>
+                    <div class="pkg-icon">⭐</div>
+                    <div class="pkg-name">VIP Weekly</div>
+                    <div class="pkg-price">Ksh 599<span>/week</span></div>
+                    <div class="pkg-desc">7 days VIP access</div>
+                </div>
+                <div class="pkg-item" style="border-color:rgba(239,159,39,.3);background:rgba(239,159,39,.05);">
+                    <div class="pkg-icon">👑</div>
+                    <div class="pkg-name">VVIP Monthly</div>
+                    <div class="pkg-price">Ksh 1,999<span>/mo</span></div>
+                    <div class="pkg-desc">30 days VVIP access</div>
+                </div>
+            </div>
 
-                // Hide upgrade card for paid members
-                if(plan !== 'free') document.getElementById('upgradeCard').style.display = 'none';
+            <!-- JP PACKAGES -->
+            <div class="card-title" style="margin-top:6px;"><span class="card-title-icon">🎰</span> Jackpot Packages</div>
+            <div class="jp-grid">
+                <div class="jp-item">
+                    <div class="jp-icon">🏆</div>
+                    <div class="jp-name">Mega Jackpot</div>
+                    <div class="jp-price">Ksh 599</div>
+                    <div style="font-size:10px;color:rgba(239,159,39,.6);margin-top:4px;">17 picks · weekly</div>
+                </div>
+                <div class="jp-item">
+                    <div class="jp-icon">⚡</div>
+                    <div class="jp-name">Midweek JP</div>
+                    <div class="jp-price">Ksh 399</div>
+                    <div style="font-size:10px;color:rgba(239,159,39,.6);margin-top:4px;">13 picks · midweek</div>
+                </div>
+            </div>
 
-            } catch(e){
-                document.getElementById('memberName').textContent = user.displayName || 'Member';
-            }
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20to%20subscribe!" class="wa-btn">💬 Subscribe via WhatsApp</a>
+        </div>
 
-            // Show page
-            document.getElementById('loadingScreen').style.display  = 'none';
-            document.getElementById('mainContent').style.display    = 'flex';
-            document.getElementById('pageContent').style.display    = 'block';
-        });
+        <!-- HOW IT WORKS -->
+        <div class="card">
+            <div class="card-title"><span class="card-title-icon">💡</span> How It Works</div>
+            <div class="how-step">
+                <div class="how-num">1</div>
+                <div class="how-text"><strong>Choose your package</strong> — Daily, Weekly, Monthly or Jackpot from the list above</div>
+            </div>
+            <div class="how-step">
+                <div class="how-num">2</div>
+                <div class="how-text"><strong>Pay via M-Pesa</strong> — Go to M-Pesa → Lipa Na M-Pesa → Buy Goods → Enter Till Number below</div>
+            </div>
+            <div class="how-step">
+                <div class="how-num">3</div>
+                <div class="how-text"><strong>WhatsApp us your name + screenshot</strong> — Send payment confirmation to our WhatsApp</div>
+            </div>
+            <div class="how-step">
+                <div class="how-num">4</div>
+                <div class="how-text"><strong>We activate within minutes</strong> — Your account gets upgraded and ticket sent on WhatsApp</div>
+            </div>
+            <div class="how-step">
+                <div class="how-num">5</div>
+                <div class="how-text"><strong>Place your bets and WIN!</strong> 🔥 — Tips delivered daily before matches kick off</div>
+            </div>
+        </div>
 
-        function handleLogout(){
-            auth.signOut().then(()=> window.location.href = '/');
+        <!-- PAYMENT DETAILS -->
+        <div class="card">
+            <div class="card-title"><span class="card-title-icon">💳</span> Payment Details</div>
+            <div class="mpesa-box">
+                <div class="mpesa-title">M-Pesa Payment Info</div>
+                <div class="mpesa-row"><span class="mpesa-label">Method</span><span class="mpesa-val">Lipa Na M-Pesa</span></div>
+                <div class="mpesa-row"><span class="mpesa-label">Till Number</span><span class="mpesa-val till-highlight">6012928</span></div>
+                <div class="mpesa-row"><span class="mpesa-label">Business Name</span><span class="mpesa-val">Pro Tipsters</span></div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.7;">
+                After paying, WhatsApp us your <strong style="color:#fff;">full name</strong> and <strong style="color:#fff;">M-Pesa screenshot</strong>. We activate your account within minutes!
+            </div>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20have%20paid%20for%20a%20subscription.%20Here%20is%20my%20screenshot!" class="wa-btn">💬 Send Payment Confirmation</a>
+            <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20have%20a%20question!" class="wa-btn-outline">💬 Ask a Question</a>
+        </div>
+
+        <!-- MY ACCOUNT -->
+        <div class="card">
+            <div class="card-title"><span class="card-title-icon">👤</span> My Account</div>
+            <div class="acc-row"><span class="acc-label">Name</span><span class="acc-val" id="infoName">—</span></div>
+            <div class="acc-row"><span class="acc-label">Phone</span><span class="acc-val" id="infoPhone">—</span></div>
+            <div class="acc-row"><span class="acc-label">Plan</span><span class="acc-val" id="infoPlan">Free</span></div>
+            <div class="acc-row"><span class="acc-label">Member Since</span><span class="acc-val" id="infoJoined">—</span></div>
+        </div>
+
+        <!-- BACK TO WEBSITE -->
+        <div style="text-align:center;margin-top:4px;margin-bottom:10px;">
+            <a href="/" style="color:var(--muted);font-size:13px;text-decoration:none;">← Back to website</a>
+        </div>
+
+    </div>
+
+    <div class="footer">⚠️ Gamble Responsibly · 18+ Only · Pro Tipsters © 2026</div>
+
+</div><!-- end pageContent -->
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+    const config = {
+        apiKey:            "AIzaSyAM8rbDtHmITlTF9ucEjbYuoyAiqB8UuZo",
+        authDomain:        "pro-tipsters-94171.firebaseapp.com",
+        projectId:         "pro-tipsters-94171",
+        storageBucket:     "pro-tipsters-94171.firebasestorage.app",
+        messagingSenderId: "737923794509",
+        appId:             "1:737923794509:web:921f6a558c11786beebe04"
+    };
+    firebase.initializeApp(config);
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+
+    // Keep user logged in (Firebase persists by default)
+    auth.onAuthStateChanged(async user => {
+        if(!user){
+            window.location.href = '/login.html';
+            return;
         }
-    </script>
+        try{
+            const doc  = await db.collection('users').doc(user.uid).get();
+            const data = doc.exists ? doc.data() : {};
+
+            const name   = data.name   || user.displayName || 'Member';
+            const phone  = data.phone  || '—';
+            const plan   = data.plan   || 'free';
+            const joined = data.joined
+                ? new Date(data.joined.toDate()).toLocaleDateString('en-KE',{year:'numeric',month:'short',day:'numeric'})
+                : '—';
+
+            // Set name & plan badge
+            document.getElementById('memberName').textContent = name;
+            document.getElementById('infoName').textContent   = name;
+            document.getElementById('infoPhone').textContent  = phone;
+            document.getElementById('infoJoined').textContent = joined;
+
+            const planBadge = document.getElementById('planBadge');
+            const statPlan  = document.getElementById('statPlan');
+            const infoPlan  = document.getElementById('infoPlan');
+
+            if(plan === 'free'){
+                planBadge.className     = 'plan-badge plan-free';
+                planBadge.textContent   = '🔓 Free Member';
+                statPlan.textContent    = 'FREE';
+                infoPlan.textContent    = 'Free';
+                // Show locked VIP box
+                document.getElementById('lockedBox').style.display  = 'block';
+                document.getElementById('vipContent').style.display = 'none';
+            } else {
+                planBadge.className     = 'plan-badge plan-vip';
+                planBadge.textContent   = '⭐ ' + plan.toUpperCase();
+                statPlan.textContent    = plan.toUpperCase();
+                infoPlan.textContent    = plan.toUpperCase();
+                // Show unlocked VIP content
+                document.getElementById('lockedBox').style.display  = 'none';
+                document.getElementById('vipContent').style.display = 'block';
+            }
+
+        } catch(e){
+            document.getElementById('memberName').textContent = user.displayName || 'Member';
+        }
+
+        // Show page
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainHeader').style.display    = 'flex';
+        document.getElementById('pageContent').style.display   = 'block';
+    });
+
+    function handleLogout(){
+        if(confirm('Are you sure you want to logout?')){
+            auth.signOut().then(()=> window.location.href = '/login.html');
+        }
+    }
+</script>
 </body>
 </html>
