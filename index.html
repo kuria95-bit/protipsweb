@@ -944,20 +944,76 @@ body {
   <div class="stat"><div class="stat-n gold">14</div><div class="stat-l">Win Streak Days</div></div>
 </div>
 
-<!-- LIVE TICKET -->
-<div class="section-label">Today's VIP Ticket</div>
-<div class="live-ticket">
-  <div class="lt-head">
-    <div class="lt-status"><div class="lt-dot"></div><span>Live — Today's Ticket</span></div>
-    <div class="lt-session">Daily · 1 Ticket</div>
+<!-- YESTERDAY'S RESULTS -->
+<div class="section-label" style="padding-top:0">Yesterday's Performance</div>
+<div class="results">
+  <div class="result-card">
+    <div class="rc-head">
+      <div class="rc-title">All 3 Won · VIP Ticket</div>
+    </div>
+    <div class="rc-rows">
+      <div class="rc-row"><div><div class="rc-match">Oroco vs Haiti</div><div class="rc-pred">Home Win · FT 4–2</div></div><div class="rc-won">WON</div></div>
+      <div class="rc-row"><div><div class="rc-match">Ecuador vs Germany</div><div class="rc-pred">Both Teams to Score · FT 2–1</div></div><div class="rc-won">WON</div></div>
+      <div class="rc-row"><div><div class="rc-match">Curaçao vs Ivory Coast</div><div class="rc-pred">Under 2.5 Goals · FT 0–2</div></div><div class="rc-won">WON</div></div>
+    </div>
+    <div class="rc-foot">
+      <div><div class="rc-odds-l">Combined Odds</div><div class="rc-odds-n">8.75</div></div>
+      <div class="rc-all">✓ 3/3 Won</div>
+    </div>
   </div>
-  <div class="lt-picks">
-    <div class="lt-pick"><div class="lp-label">Pick 1</div><div class="lp-odds">2.45</div><div class="lp-pred">Home Win</div><div class="lp-lock">🔒</div></div>
-    <div class="lt-pick"><div class="lp-label">Pick 2</div><div class="lp-odds">1.87</div><div class="lp-pred">Over 2.5</div><div class="lp-lock">🔒</div></div>
-    <div class="lt-pick"><div class="lp-label">Pick 3</div><div class="lp-odds">1.54</div><div class="lp-pred">Away Win</div><div class="lp-lock">🔒</div></div>
+</div>
+
+<!-- TICKET CARDS -->
+<div class="section-label">Get Your Ticket</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 20px 28px;">
+
+  <!-- Daily Ticket Card -->
+  <div onclick="openDailyMenu()" style="cursor:pointer;border:1px solid var(--gold-bdr);border-radius:var(--radius);background:linear-gradient(160deg,#141208,#171410);padding:20px 14px;text-align:center;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+    <div style="font-size:28px;margin-bottom:8px;">⚽</div>
+    <div style="font-family:'Clash Display',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;">Daily Ticket</div>
+    <div style="font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:12px;">Power · VIP<br>3–5 expert picks</div>
+    <div style="background:var(--gold);color:#08090A;font-size:10px;font-weight:700;padding:6px 12px;border-radius:30px;">Get Ticket →</div>
   </div>
-  <div class="lt-foot">
-    <div class="lt-cta" style="width:100%;text-align:center;"><strong>Subscribe to unlock →</strong></div>
+
+  <!-- Jackpot Card -->
+  <a href="#jackpot" style="text-decoration:none;border:1px solid rgba(99,102,241,.25);border-radius:var(--radius);background:linear-gradient(160deg,#0d0d16,#10101a);padding:20px 14px;text-align:center;display:block;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+    <div style="font-size:28px;margin-bottom:8px;">🏆</div>
+    <div style="font-family:'Clash Display',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;">Mega Jackpot</div>
+    <div style="font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:12px;">17 picks · Ksh 124.8M<br>⏰ Closes Friday 6PM</div>
+    <div style="background:#4f46e5;color:#fff;font-size:10px;font-weight:700;padding:6px 12px;border-radius:30px;">Get JP Slip →</div>
+  </a>
+
+</div>
+
+<!-- DAILY TICKET MENU OVERLAY -->
+<div id="dailyMenuOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)closeDailyMenu()">
+  <div id="dailyMenuCard" style="background:var(--card);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border);transform:translateY(100%);transition:transform .34s ease;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Daily Ticket</div>
+      <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Today's Picks</div>
+    </div>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Power Ticket</div>
+        <div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 99</div>
+        <div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div>
+      </div>
+    </a>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#141208,#171410);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--gold);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">Best Value</div>
+      <div style="margin-top:8px;">
+        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">👑 VIP Ticket</div>
+        <div style="font-size:11px;color:var(--muted);">5 picks · 13+ combined odds</div>
+      </div>
+      <div style="text-align:right;margin-top:8px;">
+        <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 299</div>
+        <div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div>
+      </div>
+    </a>
+    <button onclick="closeDailyMenu()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
   </div>
 </div>
 
@@ -987,16 +1043,6 @@ body {
       <div class="pkg-picks">17 picks · weekly</div>
       <div class="pkg-btn jp-btn">Get</div>
     </a>
-  </div>
-
-  <!-- MPESA -->
-  <div class="mpesa-card">
-    <div class="mpesa-title">M-Pesa Payment</div>
-    <div class="mpesa-rows">
-      <div class="mpesa-row"><span class="mpesa-key">Method</span><span class="mpesa-val">Lipa Na M-Pesa · Buy Goods</span></div>
-      <div class="mpesa-row"><span class="mpesa-key">Till Number</span><span class="mpesa-till">6012928</span></div>
-      <div class="mpesa-row"><span class="mpesa-key">Business</span><span class="mpesa-val">Pro Tipsters</span></div>
-    </div>
   </div>
 
   <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20have%20paid!%20Here%20is%20my%20screenshot." class="wa-btn">
@@ -1043,29 +1089,8 @@ body {
 <div class="div"></div>
 
 <!-- YESTERDAY'S RESULTS -->
-<div class="section-label" style="padding-top:0">Yesterday's Results</div>
-<div class="results">
-  <div class="result-card">
-    <div class="rc-head">
-      <div class="rc-title">All 3 Won · VIP Ticket</div>
-      <div class="rc-date">24 Jun 2026</div>
-    </div>
-    <div class="rc-rows">
-      <div class="rc-row"><div><div class="rc-match">Panama vs Croatia</div><div class="rc-pred">Away Win · International Friendly · FT 0–1</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">Colombia vs Congo</div><div class="rc-pred">Home Win · International Friendly · FT 1–0</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">Switzerland vs Canada</div><div class="rc-pred">Both Teams to Score · International Friendly · FT 2–1</div></div><div class="rc-won">WON</div></div>
-    </div>
-    <div class="rc-foot">
-      <div><div class="rc-odds-l">Combined Odds</div><div class="rc-odds-n">9.30</div></div>
-      <div class="rc-all">✓ 3/3 Won</div>
-    </div>
-  </div>
-</div>
-
-<div class="div"></div>
-
 <!-- JACKPOT -->
-<div class="section-label" style="padding-top:0">Mega Jackpot</div>
+<div id="jackpot" class="section-label" style="padding-top:0">Mega Jackpot</div>
 <div class="jackpot">
   <div class="jp-card">
     <div class="jp-head">
@@ -1293,6 +1318,20 @@ function showNotif(){
   setTimeout(()=>{box.classList.remove('n-in');box.classList.add('n-out');setTimeout(()=>{box.style.display='none';box.classList.remove('n-out');},320);},6000);
 }
 setTimeout(()=>{showNotif();setInterval(showNotif,20000);},7000);
+
+// ── DAILY TICKET MENU ─────────────────────────────────────────
+function openDailyMenu(){
+  const overlay=document.getElementById('dailyMenuOverlay');
+  const card=document.getElementById('dailyMenuCard');
+  overlay.style.display='flex';
+  setTimeout(()=>{card.style.transform='translateY(0)';},10);
+}
+function closeDailyMenu(){
+  const overlay=document.getElementById('dailyMenuOverlay');
+  const card=document.getElementById('dailyMenuCard');
+  card.style.transform='translateY(100%)';
+  setTimeout(()=>{overlay.style.display='none';},360);
+}
 
 // ── EXIT INTENT ───────────────────────────────────────────────
 function dismissExit(){document.getElementById('exitOverlay').style.display='none';localStorage.setItem('pt-exit-shown','1');}
