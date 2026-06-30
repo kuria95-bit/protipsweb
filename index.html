@@ -130,16 +130,17 @@ body {
 @keyframes breathe { 0%,100%{opacity:1} 50%{opacity:.3} }
 
 .hdr-login {
-  font-size:12px;
-  font-weight:600;
-  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  color:#08090A;
   text-decoration:none;
-  padding:6px 14px;
-  border:1px solid var(--border);
+  padding:9px 20px;
+  background:var(--gold);
+  border:1px solid var(--gold);
   border-radius:30px;
-  transition:border-color .2s, color .2s;
+  transition:transform .15s, opacity .15s;
 }
-.hdr-login:hover { border-color:var(--gold-bdr); color:var(--gold); }
+.hdr-login:hover { transform:translateY(-1px); opacity:.92; }
 
 /* ─── HERO ──────────────────────────────────────────────────── */
 .hero {
@@ -790,8 +791,8 @@ body {
 #pwaBanner {
   position:fixed; bottom:0; left:0; right:0;
   background:var(--surface);
-  border-top:1px solid var(--border);
-  padding:10px 20px;
+  border-top:1px solid var(--gold-bdr);
+  padding:14px 20px;
   display:none;
   align-items:center;
   justify-content:space-between;
@@ -799,17 +800,18 @@ body {
   z-index:300;
 }
 #pwaBanner.show { display:flex; }
-#pwaBanner span { font-size:12px; color:var(--white); font-weight:500; }
+#pwaBanner span { font-size:13px; color:var(--white); font-weight:600; }
 #pwaInstallBtn {
   background:var(--gold);
   color:#08090A;
   border:none;
   border-radius:30px;
-  padding:7px 18px;
-  font-size:12px;
-  font-weight:700;
+  padding:11px 26px;
+  font-size:14px;
+  font-weight:800;
   cursor:pointer;
   font-family:'DM Sans',sans-serif;
+  box-shadow:0 2px 12px rgba(201,151,58,.35);
 }
 
 /* ─── INSTALL POPUP ─────────────────────────────────────────── */
@@ -900,13 +902,13 @@ body {
     <span>100% This Week</span>
     <span>50,000+ Members</span>
     <span>7x–16x+ Daily Odds</span>
-    <span>Mega JP 12/17 Last Round</span>
+    <span>Mega JP 13/17 Last Round</span>
     <span>Pay M-Pesa · Win on WhatsApp</span>
     <span>14 Winning Days</span>
     <span>100% This Week</span>
     <span>50,000+ Members</span>
     <span>7x–16x+ Daily Odds</span>
-    <span>Mega JP 12/17 Last Round</span>
+    <span>Mega JP 13/17 Last Round</span>
     <span>Pay M-Pesa · Win on WhatsApp</span>
   </div>
 </div>
@@ -952,9 +954,9 @@ body {
       <div class="rc-title">All 3 Won · VIP Ticket</div>
     </div>
     <div class="rc-rows">
-      <div class="rc-row"><div><div class="rc-match">Cape Verde vs Saudi Arabia</div><div class="rc-pred">Under 2.5 Goals · FT 0–0</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">Uruguay vs Spain</div><div class="rc-pred">Away Win · FT 0–1</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">Egypt vs Iran</div><div class="rc-pred">Both Teams to Score · FT 1–1</div></div><div class="rc-won">WON</div></div>
+      <div class="rc-row"><div><div class="rc-match">Brazil vs Japan</div><div class="rc-pred">Both Teams to Score · FT 2–1</div></div><div class="rc-won">WON</div></div>
+      <div class="rc-row"><div><div class="rc-match">Germany vs Paraguay</div><div class="rc-pred">Under 2.5 Goals · FT 1–1</div></div><div class="rc-won">WON</div></div>
+      <div class="rc-row"><div><div class="rc-match">Fenix vs General Lamadrid</div><div class="rc-pred">Over 2.5 Goals · FT 3–1</div></div><div class="rc-won">WON</div></div>
     </div>
     <div class="rc-foot">
       <div><div class="rc-odds-l">Combined Odds</div><div class="rc-odds-n">7.34</div></div>
@@ -1044,11 +1046,6 @@ body {
       <div class="pkg-btn jp-btn">Get</div>
     </a>
   </div>
-
-  <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20have%20paid!%20Here%20is%20my%20screenshot." class="wa-btn">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Send Payment · Get Ticket Now
-  </a>
 </div>
 
 <div class="div"></div>
@@ -1099,7 +1096,7 @@ body {
       <div class="jp-target">This week's target: <strong>14 / 17 correct</strong></div>
     </div>
     <div class="jp-last">
-      <div><div class="jp-last-label">Last Round · 30–31 May</div><div class="jp-last-score">12 / 17</div></div>
+      <div><div class="jp-last-label">Last Round · 27–29 June</div><div class="jp-last-score">13 / 17</div></div>
       <div style="text-align:right;">
         <div style="font-size:9px;color:var(--muted);margin-bottom:4px;">This week</div>
         <div style="font-size:11px;font-weight:700;color:#a5b4fc;line-height:1.3;">Deeper research.<br>Better slip.</div>
@@ -1107,7 +1104,7 @@ body {
     </div>
     <div style="padding:14px 16px;border-bottom:1px solid var(--border);background:rgba(99,102,241,.04);">
       <div style="font-size:11px;color:var(--muted);line-height:1.65;">
-        12/17 last round — no magic, just research. This week we've gone deeper: every lineup tracked, every angle covered. <span style="color:var(--white);font-weight:600;">How many correct picks will you miss by sitting out?</span>
+        13/17 last round — no magic, just research. This week we've gone deeper: every lineup tracked, every angle covered. <span style="color:var(--white);font-weight:600;">How many correct picks will you miss by sitting out?</span>
       </div>
     </div>
     <div class="jp-slip">
@@ -1157,7 +1154,10 @@ body {
 <!-- PWA BANNER -->
 <div id="pwaBanner">
   <span>Install Pro Tipsters App — Free</span>
-  <button id="pwaInstallBtn">Install</button>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button id="pwaInstallBtn">Install</button>
+    <button id="pwaBannerClose" aria-label="Dismiss" style="background:none;border:none;color:var(--muted);font-size:18px;line-height:1;cursor:pointer;padding:4px;">×</button>
+  </div>
 </div>
 
 <!-- EXIT OVERLAY -->
@@ -1358,10 +1358,26 @@ function dismissInstall(){
 }
 async function popupTriggerInstall(){
   if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;deferredPrompt=null;if(outcome==='accepted')dismissInstall();}
+  else{document.getElementById('installPopup').style.display='flex';requestAnimationFrame(()=>{document.getElementById('installPopupCard').style.transform='translateY(0)';});}
 }
 document.getElementById('installPopup').addEventListener('click',function(e){if(e.target===this)dismissInstall();});
-document.getElementById('pwaInstallBtn').addEventListener('click',()=>{if(deferredPrompt)deferredPrompt.prompt();});
+document.getElementById('pwaInstallBtn').addEventListener('click',popupTriggerInstall);
 window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');deferredPrompt=null;});
+
+// Show the install banner (unless already installed or dismissed in the last 7 days)
+(function(){
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  const dismissedAt = parseInt(localStorage.getItem('pt-install-dismissed')||'0',10);
+  const sevenDays = 7*24*60*60*1000;
+  if(!isStandalone && (Date.now()-dismissedAt) > sevenDays){
+    document.getElementById('pwaBanner').classList.add('show');
+  }
+})();
+document.getElementById('pwaBannerClose')?.addEventListener('click',()=>{
+  document.getElementById('pwaBanner').classList.remove('show');
+  localStorage.setItem('pt-install-dismissed',Date.now());
+});
+
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone)){
   document.getElementById('iosHint').style.display='block';
   document.getElementById('iosInstallSection').style.display='block';
