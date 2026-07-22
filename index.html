@@ -907,6 +907,43 @@ body {
 </head>
 <body>
 
+<!-- TOP JP HYPE BANNER -->
+<div id="jpTopBanner" style="position:sticky;top:0;left:0;right:0;z-index:950;background:linear-gradient(120deg,#161049 0%,#1a1450 35%,#0d0d20 100%);border-bottom:2px solid rgba(99,102,241,.45);padding:12px 40px 12px 16px;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 0%,rgba(99,102,241,.35),transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),#4f46e5);"></div>
+  <div style="position:absolute;top:0;right:0;bottom:0;width:4px;background:linear-gradient(180deg,#4f46e5,var(--gold));"></div>
+  <button id="jpTopBannerClose" aria-label="Dismiss" style="position:absolute;top:8px;right:10px;background:rgba(255,255,255,.08);border:none;color:#fff;font-size:16px;line-height:1;cursor:pointer;padding:5px 9px;border-radius:8px;z-index:2;">×</button>
+  <div style="position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;max-width:960px;margin:0 auto;">
+    <div style="text-align:center;">
+      <div style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:800;color:#fff;line-height:1.35;letter-spacing:.2px;">
+        USIPITWE NA <span style="color:var(--gold);">KSH 124.8M</span> MEGA JACKPOT PREDICTION!
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <div style="background:rgba(79,70,229,.35);border:1px solid rgba(165,180,252,.35);border-radius:8px;padding:5px 8px;text-align:center;min-width:34px;">
+        <div id="jptb-d" style="font-family:'Clash Display',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1;">--</div>
+        <div style="font-size:7px;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;">Day</div>
+      </div>
+      <span style="color:#a5b4fc;font-weight:700;">:</span>
+      <div style="background:rgba(79,70,229,.35);border:1px solid rgba(165,180,252,.35);border-radius:8px;padding:5px 8px;text-align:center;min-width:34px;">
+        <div id="jptb-h" style="font-family:'Clash Display',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1;">--</div>
+        <div style="font-size:7px;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;">Hrs</div>
+      </div>
+      <span style="color:#a5b4fc;font-weight:700;">:</span>
+      <div style="background:rgba(79,70,229,.35);border:1px solid rgba(165,180,252,.35);border-radius:8px;padding:5px 8px;text-align:center;min-width:34px;">
+        <div id="jptb-m" style="font-family:'Clash Display',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1;">--</div>
+        <div style="font-size:7px;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;">Min</div>
+      </div>
+      <span style="color:#a5b4fc;font-weight:700;">:</span>
+      <div style="background:rgba(79,70,229,.35);border:1px solid rgba(165,180,252,.35);border-radius:8px;padding:5px 8px;text-align:center;min-width:34px;">
+        <div id="jptb-s" style="font-family:'Clash Display',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1;">--</div>
+        <div style="font-size:7px;color:#a5b4fc;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;">Sec</div>
+      </div>
+    </div>
+    <a href="#jackpot" style="text-decoration:none;background:#fff;color:#4f46e5;font-family:'Clash Display',sans-serif;font-size:12px;font-weight:800;padding:9px 18px;border-radius:30px;white-space:nowrap;">WEKELEA MAPEMA! →</a>
+  </div>
+</div>
+
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
@@ -1368,8 +1405,31 @@ function updateJP(){
   if(el)el.textContent=text;
   const el2=document.getElementById('jp-hero-timer');
   if(el2)el2.textContent=text;
+  const days=Math.floor(diff/86400000);
+  const hrs=pad((diff%86400000)/3600000);
+  const mins=pad((diff%3600000)/60000);
+  const secs=pad((diff%60000)/1000);
+  const dEl=document.getElementById('jptb-d');if(dEl)dEl.textContent=String(days).padStart(2,'0');
+  const hEl=document.getElementById('jptb-h');if(hEl)hEl.textContent=hrs;
+  const mEl=document.getElementById('jptb-m');if(mEl)mEl.textContent=mins;
+  const sEl=document.getElementById('jptb-s');if(sEl)sEl.textContent=secs;
 }
 updateJP();setInterval(updateJP,1000);
+
+// ── TOP JP BANNER DISMISS ──────────────────────────────────────
+(function(){
+  const banner=document.getElementById('jpTopBanner');
+  if(!banner)return;
+  const KEY='pt-jp-topbanner-dismissed';
+  const dismissedAt=parseInt(localStorage.getItem(KEY)||'0',10);
+  if(dismissedAt && (Date.now()-dismissedAt) < 6*60*60*1000){
+    banner.style.display='none';
+  }
+  document.getElementById('jpTopBannerClose')?.addEventListener('click',()=>{
+    banner.style.display='none';
+    localStorage.setItem(KEY,String(Date.now()));
+  });
+})();
 
 // ── LIVE NOTIFICATIONS ────────────────────────────────────────
 const NOTIFS=[
