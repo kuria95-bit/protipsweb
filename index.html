@@ -904,26 +904,167 @@ body {
   100% { background-position:200% 0; }
 }
 </style>
+<style>
+/* =========================================================
+   PRO TIPSTERS — CONVERSION V2
+   Presentation-only layer. Existing analytics/tracking/scripts
+   remain unchanged.
+   ========================================================= */
+:root{
+  --jp:#6366f1;
+  --jp-soft:rgba(99,102,241,.10);
+  --jp-border:rgba(99,102,241,.34);
+}
+body{background:var(--bg);}
+.ticker{background:var(--gold);}
+.hdr{height:58px;}
+.hdr-login{padding:8px 17px;font-size:12px;}
+.hero{padding:34px 20px 24px;}
+.hero-kicker{margin-bottom:12px;color:var(--gold);}
+.hero-h1{font-size:40px;letter-spacing:-1.1px;margin-bottom:12px;}
+.hero-sub{max-width:440px;margin-bottom:18px;}
+.hero-sub strong{color:var(--white);}
+.hero-proof{
+  display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;
+  margin:0 auto 18px;color:rgba(245,245,245,.65);font-size:10px;
+}
+.hero-proof span{
+  padding:6px 9px;border:1px solid var(--border);border-radius:30px;background:rgba(255,255,255,.025);
+}
+.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:440px;margin:0 auto;}
+.hero-actions a{
+  display:flex;align-items:center;justify-content:center;text-decoration:none;border-radius:50px;
+  padding:12px 12px;font-size:11px;font-weight:800;
+}
+.hero-primary{background:var(--gold);color:#08090A;}
+.hero-secondary{background:rgba(255,255,255,.04);color:var(--white);border:1px solid var(--border);}
+.stats{margin:0 20px 24px;grid-template-columns:repeat(4,1fr);}
+.stat{padding:13px 6px;}
+.stat-n{font-size:18px;}
+.stat-l{font-size:8px;}
+.feature-wrap{padding:0 20px 26px;}
+.feature-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 1px;}
+.feature-label .eyebrow{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;}
+.feature-label .event{font-size:9px;color:#a5b4fc;font-weight:700;}
+.jp-feature{
+  border:1px solid var(--jp-border);border-radius:18px;overflow:hidden;
+  background:radial-gradient(circle at 88% 8%,rgba(99,102,241,.22),transparent 34%),
+             linear-gradient(155deg,#14112a,#0d0d16 68%);
+  box-shadow:0 14px 45px rgba(0,0,0,.22);
+}
+.jp-feature-top{padding:18px 17px 15px;border-bottom:1px solid rgba(255,255,255,.07);}
+.jp-live-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.jp-live{
+  display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,.12);
+  border:1px solid rgba(239,68,68,.25);color:#ffb4b4;padding:5px 9px;border-radius:20px;
+  font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+}
+.jp-live i{width:6px;height:6px;border-radius:50%;background:var(--red);display:block;animation:breathe 1.2s infinite;}
+.jp-close{text-align:right;}
+.jp-close-label{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;}
+.jp-close-time{font-family:'Clash Display',sans-serif;font-size:14px;color:var(--red);font-weight:800;margin-top:2px;}
+.jp-title{font-family:'Clash Display',sans-serif;font-size:25px;line-height:1.05;font-weight:700;color:#fff;}
+.jp-subtitle{font-size:11px;color:rgba(255,255,255,.62);margin-top:6px;line-height:1.5;}
+.jp-metrics{display:grid;grid-template-columns:1.25fr .9fr .9fr;margin-top:16px;border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;}
+.jp-metric{padding:11px 8px;text-align:center;background:rgba(255,255,255,.025);}
+.jp-metric+.jp-metric{border-left:1px solid rgba(255,255,255,.07);}
+.jp-metric-label{font-size:7.5px;text-transform:uppercase;letter-spacing:.7px;color:rgba(165,180,252,.72);}
+.jp-metric-value{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-top:3px;}
+.jp-metric:first-child .jp-metric-value{color:#a5b4fc;font-size:19px;}
+.jp-metric-value.win{color:var(--green);}
+.jp-proof{display:flex;align-items:center;gap:8px;margin-top:11px;padding:9px 10px;border-radius:10px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.18);}
+.jp-proof-score{font-family:'Clash Display',sans-serif;font-size:18px;font-weight:800;color:var(--green);}
+.jp-proof-copy{font-size:9px;color:rgba(255,255,255,.66);line-height:1.4;}
+.jp-proof-copy strong{color:#fff;}
+.jp-feature-bottom{padding:14px 17px 16px;}
+.jp-lockline{font-size:9px;color:var(--muted);text-align:center;margin-bottom:10px;}
+.jp-feature-btn{
+  display:flex;align-items:center;justify-content:center;text-decoration:none;
+  background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-radius:50px;
+  padding:13px;font-size:12px;font-weight:800;box-shadow:0 9px 26px rgba(99,102,241,.20);
+}
+.jp-feature-note{text-align:center;font-size:8.5px;color:rgba(255,255,255,.38);margin-top:8px;}
+.daily-section{padding:0 20px 28px;}
+.daily-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:11px;}
+.daily-heading h2{font-family:'Clash Display',sans-serif;font-size:19px;font-weight:700;}
+.daily-heading p{font-size:9px;color:var(--muted);text-align:right;line-height:1.35;}
+.daily-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.daily-card{
+  position:relative;display:flex;flex-direction:column;text-decoration:none;
+  border:1px solid var(--border);border-radius:16px;background:var(--card);padding:17px 13px 14px;
+  min-height:190px;overflow:hidden;transition:transform .2s,border-color .2s;
+}
+.daily-card:hover{transform:translateY(-2px);}
+.daily-card.vip{border-color:var(--gold-bdr);background:linear-gradient(160deg,#101c14,#0f1712);}
+.daily-card .mini-badge{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#08090A;font-size:7px;font-weight:800;
+  letter-spacing:.8px;text-transform:uppercase;padding:4px 11px;border-radius:0 0 8px 8px;
+}
+.daily-icon{font-size:25px;margin:7px 0 9px;}
+.daily-name{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:700;color:#fff;}
+.daily-desc{font-size:9.5px;color:var(--muted);line-height:1.5;margin-top:4px;}
+.daily-price{font-family:'Clash Display',sans-serif;font-size:23px;font-weight:800;color:var(--gold);margin-top:auto;padding-top:12px;}
+.daily-meta{font-size:8.5px;color:rgba(255,255,255,.48);margin-top:2px;}
+.daily-btn{margin-top:10px;text-align:center;border-radius:50px;padding:9px;font-size:10px;font-weight:800;background:var(--wa);color:#fff;}
+.daily-card.vip .daily-btn{background:var(--gold);color:#08090A;}
+.section-spacer{height:1px;background:var(--border);margin:0 20px 26px;}
+.compact-results{padding:0 20px 28px;}
+.compact-results .section-label{padding:0;margin-bottom:10px;}
+.proof-strip{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.proof-chip{background:rgba(255,255,255,.025);border:1px solid var(--border);border-radius:10px;padding:9px;text-align:center;font-size:8.5px;color:var(--muted);}
+.proof-chip strong{display:block;color:var(--white);font-size:11px;margin-bottom:2px;}
+.reviews{padding:0 20px 28px;}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.review-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px;}
+.review-card:nth-child(n+3){display:none;}
+.review-top{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+.review-flag{font-size:15px;}
+.review-name{font-size:10px;font-weight:700;color:#fff;}
+.review-stars{font-size:8px;color:#f59e0b;margin-top:1px;}
+.review-text{font-size:9.5px;color:var(--muted);line-height:1.5;}
+.how{padding:0 20px 28px;}
+.how-card{padding:17px 15px;}
+.how-steps{gap:13px;}
+.how-step{gap:11px;}
+.how-num{width:25px;height:25px;font-size:10px;}
+.how-ttl{font-size:11.5px;}
+.how-txt{font-size:10px;}
+.final-cta{margin:0 20px 28px;border:1px solid var(--gold-bdr);background:linear-gradient(145deg,#101b14,#0e1310);border-radius:16px;padding:18px;text-align:center;}
+.final-cta h3{font-family:'Clash Display',sans-serif;font-size:18px;margin-bottom:5px;}
+.final-cta p{font-size:10px;color:var(--muted);margin-bottom:12px;}
+.final-cta a{display:flex;align-items:center;justify-content:center;text-decoration:none;background:var(--gold);color:#08090A;border-radius:50px;padding:12px;font-size:11px;font-weight:800;}
+@media(min-width:700px){
+  .hero,.feature-wrap,.daily-section,.compact-results,.reviews,.how,.final-cta{max-width:680px;margin-left:auto;margin-right:auto;}
+  .hero{padding-top:46px;}
+  .jp-title{font-size:31px;}
+  .daily-card{min-height:210px;}
+}
+@media(max-width:380px){
+  .hero-h1{font-size:35px;}
+  .hero-actions{grid-template-columns:1fr;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .jp-metric:first-child .jp-metric-value{font-size:17px;}
+}
+</style>
+
 </head>
+
 <body>
 
-<!-- TICKER -->
+<!-- TICKER — existing promotional values retained -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>14 Winning Days</span>
-    <span>100% This Week</span>
     <span>50,000+ Members</span>
     <span>7x–16x+ Daily Odds</span>
     <span>Mega JP 13/17 · 2 Aug 🎉</span>
     <span>Midweek JP 9/13 · 31 Jul</span>
-    <span>Pay M-Pesa · Win on WhatsApp</span>
-    <span>14 Winning Days</span>
-    <span>100% This Week</span>
+    <span>Pay M-Pesa · Delivery on WhatsApp</span>
     <span>50,000+ Members</span>
     <span>7x–16x+ Daily Odds</span>
     <span>Mega JP 13/17 · 2 Aug 🎉</span>
     <span>Midweek JP 9/13 · 31 Jul</span>
-    <span>Pay M-Pesa · Win on WhatsApp</span>
+    <span>Pay M-Pesa · Delivery on WhatsApp</span>
   </div>
 </div>
 
@@ -939,7 +1080,7 @@ body {
   </div>
 </header>
 
-<!-- LIVE NOTIFICATION -->
+<!-- LIVE NOTIFICATION — existing functionality retained -->
 <div id="live-notif" role="status" aria-live="polite">
   <div id="n-ico">🏆</div>
   <div id="n-txt"></div>
@@ -947,76 +1088,26 @@ body {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-kicker">Africa's #1 Football Tips Service</div>
-  <h1 class="hero-h1">Stop guessing.<br><em>Start winning.</em></h1>
-  <p class="hero-sub">Africa's most trusted football tips — <strong>researched, verified, and delivered</strong> straight to your WhatsApp before kickoff. Join <strong>50,000+ winners</strong> across Kenya, Nigeria & Ghana.</p>
-  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(46,204,113,.08);border:1px solid var(--gold-bdr);border-radius:30px;padding:8px 16px;font-size:11px;font-weight:600;color:var(--white);margin:-14px auto 24px;">
-    🇰🇪 <span style="color:var(--gold);">Kenya's #1</span>&nbsp;Jackpot Predictors · <span style="color:var(--gold);">10 Mega Jackpot</span> & <span style="color:var(--gold);">6 Midweek Mega Jackpot</span> Bonuses WON in 2026
+  <div class="hero-kicker">Football Predictions · Daily + Jackpot</div>
+  <h1 class="hero-h1">Stop guessing.<br><em>Play with a plan.</em></h1>
+  <p class="hero-sub">
+    Research-backed football picks delivered to your <strong>WhatsApp before kickoff.</strong>
+    Daily tickets from <strong>Ksh 99</strong>.
+  </p>
+
+  <div class="hero-proof">
+    <span>✓ Match-by-match research</span>
+    <span>✓ WhatsApp delivery</span>
+    <span>✓ 50K+ members</span>
   </div>
 
-  <!-- HERO DAILY TICKET CARD (40% weight) -->
-  <div onclick="openDailyMenu()" style="cursor:pointer;text-align:center;max-width:420px;margin:0 auto 12px;position:relative;overflow:hidden;border:1px solid var(--gold-bdr);border-radius:18px;background:linear-gradient(135deg,#132015,#0d1710 65%);padding:16px 18px;">
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
-      <span style="background:var(--gold);color:#08090A;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;">⚡ Today's Ticket</span>
-      <span style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;">Power · VIP</span>
-    </div>
-    <div style="font-family:'Clash Display',sans-serif;font-size:17px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px;">
-      Fresh picks, delivered daily
-    </div>
-    <div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.55;margin-bottom:12px;">
-      3–5 research-backed picks straight to WhatsApp before kickoff. From <strong style="color:var(--gold);">Ksh 99</strong> · <strong style="color:var(--gold);">100% win rate this week</strong>.
-    </div>
-    <div style="display:block;background:var(--gold);color:#08090A;font-size:13px;font-weight:800;padding:12px;border-radius:50px;">⚡ Get Today's Ticket →</div>
-    <div style="font-size:9.5px;color:rgba(255,255,255,.55);margin-top:8px;font-style:italic;">Miss today's ticket, miss today's win. Simple as that.</div>
+  <div class="hero-actions">
+    <a href="#daily-picks" class="hero-primary">GET TODAY'S PICKS →</a>
+    <a href="#jackpot" class="hero-secondary">SEE MEGA JACKPOT →</a>
   </div>
-
-  <!-- HERO JP FOMO BANNER (60% weight) -->
-  <a href="#jackpot" style="display:block;text-decoration:none;max-width:420px;margin:0 auto;position:relative;overflow:hidden;border:1px solid rgba(99,102,241,.5);border-radius:18px;background:linear-gradient(135deg,#171130,#0d0d16 65%);padding:16px 18px;animation:jpGlow 2.6s ease-in-out infinite;">
-    <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 15%,rgba(99,102,241,.3),transparent 55%);pointer-events:none;"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;flex-wrap:wrap;">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span style="background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 9px;border-radius:20px;animation:pulse 1.5s infinite;">🔴 Live</span>
-        <div>
-          <div style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:800;color:#fff;line-height:1.2;">🏆 Midweek & Mega JP are LIVE</div>
-          <div style="font-size:10px;color:rgba(255,255,255,.7);margin-top:2px;">🎉 10 Mega JP & 6 Midweek bonuses WON this year</div>
-        </div>
-      </div>
-      <div style="text-align:center;flex-shrink:0;">
-        <div id="jp-hero-next-label" style="font-size:8px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;white-space:nowrap;">Next Close</div>
-        <div id="jp-hero-timer" style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:800;color:var(--red);letter-spacing:.3px;white-space:nowrap;">--h --m --s</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08);position:relative;">
-      <div style="text-align:center;flex:1;">
-        <div style="font-size:8px;color:rgba(165,180,252,.8);text-transform:uppercase;letter-spacing:.5px;">Pool</div>
-        <div style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:800;color:var(--gold);white-space:nowrap;">Ksh 124.8M</div>
-      </div>
-      <div style="width:1px;height:26px;background:rgba(255,255,255,.1);"></div>
-      <div style="text-align:center;flex:1;">
-        <div style="font-size:8px;color:rgba(165,180,252,.8);text-transform:uppercase;letter-spacing:.5px;">Mega · 2 Aug</div>
-        <div style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:800;color:#2ecc71;white-space:nowrap;">13/17 🎉</div>
-        <div style="font-size:7px;color:#2ecc71;margin-top:1px;white-space:nowrap;">Bonus WON</div>
-      </div>
-      <div style="width:1px;height:26px;background:rgba(255,255,255,.1);"></div>
-      <div style="text-align:center;flex:1;">
-        <div style="font-size:8px;color:rgba(165,180,252,.8);text-transform:uppercase;letter-spacing:.5px;">Midweek · 31 Jul</div>
-        <div style="font-family:'Clash Display',sans-serif;font-size:14px;font-weight:800;color:#fff;white-space:nowrap;">9/13</div>
-        <div style="font-size:7px;color:rgba(255,255,255,.45);margin-top:1px;white-space:nowrap;">Missed bonus by 1</div>
-      </div>
-    </div>
-    <div style="text-align:center;font-family:'Clash Display',sans-serif;font-size:13px;font-weight:800;line-height:1.35;color:#fff;margin-top:12px;padding:9px 10px;background:rgba(255,255,255,.07);border:1px solid rgba(165,180,252,.25);border-radius:10px;">
-      🇰🇪 <span style="color:var(--gold);">Kenya's #1</span> Midweek &amp; Mega JP Predictions — <span style="color:var(--gold);">Verified, Not Guessed.</span>
-    </div>
-    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px;">
-      <div style="font-size:9px;font-weight:600;color:rgba(255,255,255,.8);">✅ Match-by-match research</div>
-      <div style="font-size:9px;font-weight:600;color:rgba(255,255,255,.8);">✅ Proven results, not luck</div>
-      <div style="font-size:9px;font-weight:600;color:rgba(255,255,255,.8);">✅ 50,000+ trust us weekly</div>
-    </div>
-    <div style="display:block;text-align:center;background:#4f46e5;color:#fff;font-size:12px;font-weight:800;padding:11px;border-radius:50px;margin-top:10px;position:relative;">🏆 Get This Week's Slip — Ksh 599 →</div>
-  </a>
 </section>
 
-<!-- STATS -->
+<!-- STATS — existing visitor counter remains separate -->
 <div class="stats">
   <div class="stat"><div class="stat-n gold">100%</div><div class="stat-l">Win Rate This Week</div></div>
   <div class="stat"><div class="stat-n">7x+</div><div class="stat-l">Min Daily Odds</div></div>
@@ -1024,219 +1115,154 @@ body {
   <div class="stat"><div class="stat-n gold">14</div><div class="stat-l">Win Streak Days</div></div>
 </div>
 
-<!-- YESTERDAY'S RESULTS -->
-<div class="section-label" style="padding-top:0">Yesterday's Performance</div>
-<div class="results">
-  <div class="result-card">
-    <div class="rc-head">
-      <div class="rc-title">All 3 Won · VIP Ticket</div>
-    </div>
-    <div class="rc-rows">
-      <div class="rc-row"><div><div class="rc-match">Defensor Sporting vs CA Cerro</div><div class="rc-pred">Home Win · FT 3–2</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">CA Huracán vs Atl. Tucumán</div><div class="rc-pred">Under 2.5 Goals · FT 0–0</div></div><div class="rc-won">WON</div></div>
-      <div class="rc-row"><div><div class="rc-match">Caracas FC vs Estudiantes de Mérida</div><div class="rc-pred">Goal/Goal (GG) · FT 3–3</div></div><div class="rc-won">WON</div></div>
-    </div>
-    <div class="rc-foot">
-      <div class="rc-all">Total Odds: 6.51</div>
-      <div class="rc-all" style="margin-left:auto;">✓ 3/3 Won</div>
-    </div>
-  </div>
-</div>
-
-<!-- TICKET CARDS -->
-<div class="section-label">Get Your Ticket</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 20px 28px;">
-
-  <!-- Daily Ticket Card -->
-  <div onclick="openDailyMenu()" style="cursor:pointer;border:1px solid var(--gold-bdr);border-radius:var(--radius);background:linear-gradient(160deg,#0d1710,#0f1d14);padding:20px 14px;text-align:center;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-    <div style="font-size:28px;margin-bottom:8px;">⚽</div>
-    <div style="font-family:'Clash Display',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;">Daily Ticket</div>
-    <div style="font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:12px;">Power · VIP<br>3–5 expert picks</div>
-    <div style="background:var(--gold);color:#08090A;font-size:10px;font-weight:700;padding:6px 12px;border-radius:30px;">Get Ticket →</div>
+<!-- MEGA JACKPOT FEATURE — primary weekly event -->
+<section class="feature-wrap" id="jackpot">
+  <div class="feature-label">
+    <div class="eyebrow">This Week's Big Play</div>
+    <div class="event">🏆 MEGA JACKPOT</div>
   </div>
 
-  <!-- Jackpot Card -->
-  <a href="#jackpot" style="text-decoration:none;border:1px solid rgba(99,102,241,.25);border-radius:var(--radius);background:linear-gradient(160deg,#0d0d16,#10101a);padding:20px 14px;text-align:center;display:block;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
-    <div style="font-size:28px;margin-bottom:8px;">🏆</div>
-    <div style="font-family:'Clash Display',sans-serif;font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;">Mega Jackpot</div>
-    <div style="font-size:10px;color:var(--muted);line-height:1.4;margin-bottom:12px;">17 picks · Ksh 124.8M<br>⏰ Closes Saturday 5PM</div>
-    <div style="background:#4f46e5;color:#fff;font-size:10px;font-weight:700;padding:6px 12px;border-radius:30px;">Get JP Slip →</div>
-  </a>
-
-</div>
-
-<!-- DAILY TICKET MENU OVERLAY -->
-<div id="dailyMenuOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)closeDailyMenu()">
-  <div id="dailyMenuCard" style="background:var(--card);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border);transform:translateY(100%);transition:transform .34s ease;">
-    <div style="text-align:center;margin-bottom:20px;">
-      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Daily Ticket</div>
-      <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Today's Picks</div>
-    </div>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
-      <div>
-        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Power Ticket</div>
-        <div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div>
+  <div class="jp-feature">
+    <div class="jp-feature-top">
+      <div class="jp-live-row">
+        <div class="jp-live"><i></i> Live now</div>
+        <div class="jp-close">
+          <div class="jp-close-label">Mega JP closes in</div>
+          <div id="jp-hero-timer" class="jp-close-time">--h --m --s</div>
+        </div>
       </div>
-      <div style="text-align:right;">
-        <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 99</div>
-        <div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div>
-      </div>
-    </a>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#0d1710,#0f1d14);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;">
-      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--gold);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">Best Value</div>
-      <div style="margin-top:8px;">
-        <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">👑 VIP Ticket</div>
-        <div style="font-size:11px;color:var(--muted);">5 picks · 13+ combined odds</div>
-      </div>
-      <div style="text-align:right;margin-top:8px;">
-        <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 299</div>
-        <div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div>
-      </div>
-    </a>
-    <button onclick="closeDailyMenu()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
-  </div>
-</div>
 
-<!-- PACKAGES -->
-<div class="section-label">Choose Your Package</div>
-<div class="packages">
-  <div class="pkg-row">
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" class="pkg">
-      <div class="pkg-name">⚡ Power</div>
-      <div class="pkg-odds">7+ odds</div>
-      <div class="pkg-price">Ksh 99</div>
-      <div class="pkg-picks">3 picks · 1 daily ticket</div>
-      <div class="pkg-btn">Get</div>
-    </a>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" class="pkg vip">
-      <div class="pkg-badge">Best Value</div>
-      <div class="pkg-name">👑 VIP</div>
-      <div class="pkg-odds">13+ odds</div>
-      <div class="pkg-price">Ksh 299</div>
-      <div class="pkg-picks">5 picks · 1 daily ticket</div>
-      <div class="pkg-btn">Get</div>
-    </a>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Jackpot%20Master%20for%20Ksh%20599!" class="pkg jp">
-      <div class="pkg-name">🏆 JP Master</div>
-      <div class="pkg-odds">MegaJP</div>
-      <div class="pkg-price jp-color">Ksh 599</div>
-      <div class="pkg-picks">17 picks · weekly</div>
-      <div class="pkg-btn jp-btn">Get</div>
-    </a>
-  </div>
-  <div style="text-align:center;font-size:11px;color:var(--muted);font-style:italic;margin-top:12px;">Ksh 99 to stop guessing. Priceless when it hits.</div>
-</div>
+      <div class="jp-title">Ksh 124.8M Jackpot Pool</div>
+      <div class="jp-subtitle">17 matches · One researched slip · Ksh 599</div>
 
-<div class="div"></div>
+      <div class="jp-metrics">
+        <div class="jp-metric">
+          <div class="jp-metric-label">Current Pool</div>
+          <div class="jp-metric-value">Ksh 124.8M</div>
+        </div>
+        <div class="jp-metric">
+          <div class="jp-metric-label">Last Mega JP</div>
+          <div class="jp-metric-value win">13/17</div>
+        </div>
+        <div class="jp-metric">
+          <div class="jp-metric-label">Target</div>
+          <div class="jp-metric-value">14/17</div>
+        </div>
+      </div>
 
-<!-- JP FOMO BANNER -->
-<div style="margin:0 20px 28px;border:1px solid rgba(99,102,241,.4);border-radius:var(--radius);background:linear-gradient(135deg,#14101f,#0d0d16 60%);padding:16px 18px;position:relative;overflow:hidden;">
-  <div style="position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(99,102,241,.2),transparent 70%);"></div>
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;flex-wrap:wrap;">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <span style="background:var(--red);color:#fff;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 9px;border-radius:20px;animation:pulse 1.5s infinite;">🔴 Live</span>
-      <div>
-        <div style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:800;color:var(--white);line-height:1.2;">🏆 Mega JP is LIVE</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">🎉 Hit 13/17 on 2 Aug — ⚡ Closes Sat 5PM</div>
+      <div class="jp-proof">
+        <div class="jp-proof-score">13/17 🎉</div>
+        <div class="jp-proof-copy"><strong>Bonus WON on 2 Aug.</strong><br>See the current slip before it closes.</div>
       </div>
     </div>
-    <div style="text-align:center;flex-shrink:0;">
-      <div id="jp-fomo-timer" style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:800;color:var(--red);letter-spacing:.3px;white-space:nowrap;">--h --m --s</div>
-    </div>
-  </div>
-  <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20this%20week%27s%20Mega%20Jackpot%20slip!" style="display:block;text-align:center;text-decoration:none;background:#4f46e5;color:#fff;font-size:12px;font-weight:800;padding:11px;border-radius:50px;margin-top:12px;position:relative;">🏆 Get This Week's Slip — Ksh 599 →</a>
-</div>
 
-<!-- REVIEWS -->
-<div class="section-label" style="padding-top:0">What Members Say</div>
-<div class="winners">
-  <div class="winner" style="flex-direction:column;align-items:flex-start;gap:8px;">
-    <div style="display:flex;align-items:center;gap:10px;width:100%;">
-      <div class="w-flag">🇰🇪</div>
-      <div class="w-body"><div class="w-name">David K. · Nairobi</div><div class="w-detail" style="color:#f59e0b;">★★★★★</div></div>
-    </div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.55;">"First week in and I tripled my stake. The VIP picks are accurate — no guesswork, just results."</div>
-  </div>
-  <div class="winner" style="flex-direction:column;align-items:flex-start;gap:8px;">
-    <div style="display:flex;align-items:center;gap:10px;width:100%;">
-      <div class="w-flag">🇳🇬</div>
-      <div class="w-body"><div class="w-name">Chukwuemeka O. · Lagos</div><div class="w-detail" style="color:#f59e0b;">★★★★★</div></div>
-    </div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.55;">"I was sceptical at first but these guys delivered 5/5 picks two days in a row. Legit service."</div>
-  </div>
-  <div class="winner" style="flex-direction:column;align-items:flex-start;gap:8px;">
-    <div style="display:flex;align-items:center;gap:10px;width:100%;">
-      <div class="w-flag">🇬🇭</div>
-      <div class="w-body"><div class="w-name">Kwame A. · Accra</div><div class="w-detail" style="color:#f59e0b;">★★★★★</div></div>
-    </div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.55;">"Got 13/17 on the Mega JP. Best investment I made this month. Already renewed for the next round."</div>
-  </div>
-  <div class="winner" style="flex-direction:column;align-items:flex-start;gap:8px;">
-    <div style="display:flex;align-items:center;gap:10px;width:100%;">
-      <div class="w-flag">🇰🇪</div>
-      <div class="w-body"><div class="w-name">Aisha M. · Mombasa</div><div class="w-detail" style="color:#f59e0b;">★★★★★</div></div>
-    </div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.55;">"Delivery on WhatsApp is so fast — picks arrive well before kickoff. Very professional team."</div>
-  </div>
-</div>
-
-<div class="div"></div>
-
-<!-- YESTERDAY'S RESULTS -->
-<!-- JACKPOT -->
-<div id="jackpot" class="section-label" style="padding-top:0">Mega Jackpot</div>
-<div class="jackpot">
-  <div class="jp-card">
-    <div class="jp-head">
-      <div class="jp-pool-label">Current Jackpot Pool</div>
-      <div class="jp-pool">Ksh 124.8M</div>
-      <div class="jp-target">This week's target: <strong>14 / 17 correct</strong></div>
-    </div>
-    <div style="text-align:center;background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.35);border-radius:10px;padding:6px 10px;margin:0 0 10px;font-size:11px;font-weight:700;color:#2ecc71;">🎉 BONUS WON — Mega JP hit 13/17 on 2 Aug!</div>
-    <div class="jp-last">
-      <div><div class="jp-last-label">Mega JP · 2 August</div><div class="jp-last-score">13 / 17 🎉</div><div style="font-size:9px;color:#2ecc71;font-weight:700;margin-top:2px;">Bonus WON</div></div>
-      <div style="text-align:right;">
-        <div class="jp-last-label">Midweek JP · 31 July</div>
-        <div class="jp-last-score" style="font-size:15px;">9 / 13</div>
-        <div style="font-size:9px;color:var(--muted);font-weight:700;margin-top:2px;">Missed bonus by 1</div>
-      </div>
-    </div>
-    <div class="jp-slip">
-      <div class="jp-slip-label">This Weekend's Slip — 17 Picks</div>
-      <div class="jp-slip-grid">
-        <div class="jp-slip-item">████████ vs ████████ · 1</div>
-        <div class="jp-slip-item">████████ vs ████████ · X</div>
-        <div class="jp-slip-item">████████ vs ████████ · 2</div>
-        <div class="jp-slip-item">████████ vs ████████ · 1</div>
-      </div>
-      <div class="jp-slip-lock">🔒 Unlock all 17 picks for Ksh 599</div>
-    </div>
-    <div class="jp-cta-wrap">
-      <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20this%20week%27s%20Mega%20Jackpot%20slip!" class="jp-btn">
-        Get Jackpot Slip — Ksh 599
+    <div class="jp-feature-bottom">
+      <div class="jp-lockline">🔒 Unlock all 17 researched picks for Ksh 599</div>
+      <a class="jp-feature-btn" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20this%20week%27s%20Mega%20Jackpot%20slip!">
+        🏆 GET MEGA JP — KSH 599
       </a>
-      <div style="text-align:center;margin-top:12px;">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:5px;">⏰ Slip closes <strong style="color:var(--red);">Saturday 5PM</strong></div>
-        <div id="jp-deadline-timer" style="font-family:'Clash Display',sans-serif;font-size:17px;font-weight:800;color:var(--red);letter-spacing:.5px;">--h --m --s</div>
+      <div class="jp-feature-note">Closes Saturday 5PM · Delivered on WhatsApp <span id="jp-fomo-timer" style="display:none">--h --m --s</span><span id="jp-deadline-timer" style="display:none">--h --m --s</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY PRODUCTS -->
+<section class="daily-section" id="daily-picks">
+  <div class="daily-heading">
+    <div>
+      <div class="section-label" style="padding:0;margin:0 0 4px;">For Today's Matches</div>
+      <h2>⚡ Today's Picks</h2>
+    </div>
+    <p>Choose your level<br>Delivered on WhatsApp</p>
+  </div>
+
+  <div class="daily-grid">
+    <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!">
+      <div class="daily-icon">⚡</div>
+      <div class="daily-name">Power</div>
+      <div class="daily-desc">A simple daily entry with focused picks.</div>
+      <div class="daily-price">Ksh 99</div>
+      <div class="daily-meta">3 picks · 7+ combined odds</div>
+      <div class="daily-btn">GET POWER — KSH 99</div>
+    </a>
+
+    <a class="daily-card vip" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!">
+      <div class="mini-badge">🔥 Most Popular</div>
+      <div class="daily-icon">👑</div>
+      <div class="daily-name">VIP</div>
+      <div class="daily-desc">More picks for players wanting the stronger daily option.</div>
+      <div class="daily-price">Ksh 299</div>
+      <div class="daily-meta">5 picks · 13+ combined odds</div>
+      <div class="daily-btn">GET VIP — KSH 299</div>
+    </a>
+  </div>
+</section>
+
+<div class="section-spacer"></div>
+
+<!-- RECENT RESULTS -->
+<section class="compact-results">
+  <div class="section-label">Recent Results</div>
+  <div class="results" style="padding:0;">
+    <div class="result-card">
+      <div class="rc-head">
+        <div class="rc-title">All 3 Won · VIP Ticket</div>
+        <div class="rc-date">Yesterday</div>
+      </div>
+      <div class="rc-rows">
+        <div class="rc-row"><div><div class="rc-match">Defensor Sporting vs CA Cerro</div><div class="rc-pred">Home Win · FT 3–2</div></div><div class="rc-won">WON</div></div>
+        <div class="rc-row"><div><div class="rc-match">CA Huracán vs Atl. Tucumán</div><div class="rc-pred">Under 2.5 Goals · FT 0–0</div></div><div class="rc-won">WON</div></div>
+        <div class="rc-row"><div><div class="rc-match">Caracas FC vs Estudiantes de Mérida</div><div class="rc-pred">Goal/Goal (GG) · FT 3–3</div></div><div class="rc-won">WON</div></div>
+      </div>
+      <div class="rc-foot">
+        <div class="rc-all">Total Odds: 6.51</div>
+        <div class="rc-all">✓ 3/3 Won</div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="div"></div>
+  <div class="proof-strip">
+    <div class="proof-chip"><strong>13/17</strong>Mega JP · 2 Aug</div>
+    <div class="proof-chip"><strong>9/13</strong>Midweek JP · 31 Jul</div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="reviews">
+  <div class="section-label" style="padding:0;margin-bottom:10px;">What Members Say</div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="review-top"><div class="review-flag">🇰🇪</div><div><div class="review-name">David K. · Nairobi</div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-text">"The VIP picks are accurate — no guesswork, just results."</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><div class="review-flag">🇬🇭</div><div><div class="review-name">Kwame A. · Accra</div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-text">"Got 13/17 on the Mega JP. Already renewed for the next round."</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-spacer"></div>
 
 <!-- HOW IT WORKS -->
-<div class="section-label" style="padding-top:0">How It Works</div>
-<div class="how">
+<div class="section-label" style="padding-top:0;">How It Works</div>
+<section class="how">
   <div class="how-card">
     <div class="how-steps">
-      <div class="how-step"><div class="how-num">1</div><div><div class="how-ttl">Pick your package</div><div class="how-txt">Power at Ksh 99, VIP at Ksh 299, or Jackpot Master at Ksh 599.</div></div></div>
+      <div class="how-step"><div class="how-num">1</div><div><div class="how-ttl">Choose your ticket</div><div class="how-txt">Power Ksh 99, VIP Ksh 299, or Mega JP Ksh 599.</div></div></div>
       <div class="how-step"><div class="how-num">2</div><div><div class="how-ttl">Pay via M-Pesa</div><div class="how-txt">Lipa Na M-Pesa → Buy Goods → Till <strong>6012928</strong> → Confirm.</div></div></div>
-      <div class="how-step"><div class="how-num">3</div><div><div class="how-ttl">Send screenshot on WhatsApp</div><div class="how-txt">Send your M-Pesa confirmation to our WhatsApp. Activated within minutes.</div></div></div>
-      <div class="how-step"><div class="how-num">4</div><div><div class="how-ttl">Receive your ticket and win</div><div class="how-txt">Full picks delivered before kickoff. Place bets. Members average Ksh 700–47,000 profit per ticket.</div></div></div>
+      <div class="how-step"><div class="how-num">3</div><div><div class="how-ttl">Send your confirmation</div><div class="how-txt">Send your M-Pesa confirmation to our WhatsApp.</div></div></div>
+      <div class="how-step"><div class="how-num">4</div><div><div class="how-ttl">Receive your picks</div><div class="how-txt">Your ticket is delivered before kickoff.</div></div></div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h3>Ready for today's picks?</h3>
+  <p>Choose Power or VIP. Or take the weekly Mega Jackpot route.</p>
+  <a href="#daily-picks">GET TODAY'S PICKS →</a>
+</section>
 
 <!-- FOOTER -->
 <div class="footer">
@@ -1248,7 +1274,27 @@ body {
   <div class="footer-disc">Gambling involves financial risk. Play responsibly. 18+ only. Pro Tipsters is not responsible for individual betting decisions. © 2026 Pro Tipsters.</div>
 </div>
 
-<!-- PWA BANNER -->
+<!-- DAILY TICKET MENU OVERLAY — existing purchase flow retained -->
+<div id="dailyMenuOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)closeDailyMenu()">
+  <div id="dailyMenuCard" style="background:var(--card);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border);transform:translateY(100%);transition:transform .34s ease;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Daily Ticket</div>
+      <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Today's Picks</div>
+    </div>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
+      <div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Power Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div></div>
+      <div style="text-align:right;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 99</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
+    </a>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#0d1710,#0f1d14);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--gold);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">Most Popular</div>
+      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">👑 VIP Ticket</div><div style="font-size:11px;color:var(--muted);">5 picks · 13+ combined odds</div></div>
+      <div style="text-align:right;margin-top:8px;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 299</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
+    </a>
+    <button onclick="closeDailyMenu()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
+  </div>
+</div>
+
+<!-- PWA BANNER — existing functionality retained -->
 <div id="pwaBanner">
   <span>Install Pro Tipsters App — Free</span>
   <div style="display:flex;align-items:center;gap:10px;">
@@ -1257,26 +1303,26 @@ body {
   </div>
 </div>
 
-<!-- EXIT OVERLAY -->
+<!-- EXIT OVERLAY — existing functionality retained -->
 <div id="exitOverlay">
   <div class="exit-card">
-    <div class="exit-h">Don't miss tonight's ticket</div>
-    <p class="exit-body">Next session drops in <strong id="exit-countdown">—</strong>. Members who subscribed are already placing their bets.</p>
-    <a href="#" onclick="dismissExit()" class="exit-cta">Subscribe from Ksh 99</a>
+    <div class="exit-h">Today's picks are ready</div>
+    <p class="exit-body">Next session drops in <strong id="exit-countdown">—</strong>. Get your ticket before kickoff.</p>
+    <a href="#daily-picks" onclick="dismissExit()" class="exit-cta">View Tickets from Ksh 99</a>
     <button onclick="dismissExit()" class="exit-skip">No thanks</button>
   </div>
 </div>
 
-<!-- INSTALL POPUP -->
+<!-- INSTALL POPUP — existing functionality retained -->
 <div id="installPopup">
   <div id="installPopupCard">
     <div style="text-align:center;margin-bottom:18px;">
       <div style="font-size:36px;margin-bottom:10px;">📲</div>
       <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:6px;">Install Pro Tipsters</div>
-      <div style="font-size:13px;color:var(--muted);">Get instant tip alerts. Never miss a winning ticket.</div>
+      <div style="font-size:13px;color:var(--muted);">Get instant tip alerts. Never miss a ticket.</div>
     </div>
     <div id="androidInstallSection">
-      <button onclick="popupTriggerInstall()" style="width:100%;background:var(--gold);color:#08090A;border:none;border-radius:50px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px;font-family:'DM Sans',sans-serif;">Install App Free</button>
+      <button onclick="popupTriggerInstall()" style="width:100%;background:var(--gold);color:#08090A;border:none;border-radius:50px;padding:14px;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:10px;font-family:'DM Sans',sans-serif;">Install App Free</button>
     </div>
     <div id="iosInstallSection" style="display:none;">
       <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px;">Tap <strong style="color:var(--white)">Share ⬆</strong> then <strong style="color:var(--white)">"Add to Home Screen"</strong></div>
@@ -1286,6 +1332,7 @@ body {
   </div>
 </div>
 
+<!-- EXISTING SCRIPTS — UNCHANGED -->
 <!-- ════ SCRIPTS ════ -->
 <script>
 // ── FIREBASE CONFIG ──────────────────────────────────────────
