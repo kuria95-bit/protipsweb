@@ -1050,6 +1050,8 @@ body{background:var(--bg);}
 
 </head>
 
+<!-- POPUP TRANSACTION FEED -->
+<!-- Production note: populate purchase messages from confirmed transactions; keep phone numbers masked. -->
 <body>
 
 <!-- TICKER — existing promotional values retained -->
@@ -1059,12 +1061,12 @@ body{background:var(--bg);}
     <span>7x–16x+ Daily Odds</span>
     <span>Mega JP 13/17 · 2 Aug 🎉</span>
     <span>Midweek JP 9/13 · 31 Jul</span>
-    <span>Pay M-Pesa · Delivery on WhatsApp</span>
+    <span>Order via WhatsApp · Picks sent after confirmation</span>
     <span>50,000+ Members</span>
     <span>7x–16x+ Daily Odds</span>
     <span>Mega JP 13/17 · 2 Aug 🎉</span>
     <span>Midweek JP 9/13 · 31 Jul</span>
-    <span>Pay M-Pesa · Delivery on WhatsApp</span>
+    <span>Order via WhatsApp · Picks sent after confirmation</span>
   </div>
 </div>
 
@@ -1080,7 +1082,7 @@ body{background:var(--bg);}
   </div>
 </header>
 
-<!-- LIVE NOTIFICATION — existing functionality retained -->
+<!-- LIVE NOTIFICATION — Kenyan customer feed; existing functionality retained -->
 <div id="live-notif" role="status" aria-live="polite">
   <div id="n-ico">🏆</div>
   <div id="n-txt"></div>
@@ -1161,7 +1163,7 @@ body{background:var(--bg);}
       <a class="jp-feature-btn" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20this%20week%27s%20Mega%20Jackpot%20slip!">
         🏆 GET MEGA JP — KSH 599
       </a>
-      <div class="jp-feature-note">Closes Saturday 5PM · Delivered on WhatsApp <span id="jp-fomo-timer" style="display:none">--h --m --s</span><span id="jp-deadline-timer" style="display:none">--h --m --s</span></div>
+      <div class="jp-feature-note">Closes Saturday 5PM · Order via WhatsApp <span id="jp-fomo-timer" style="display:none">--h --m --s</span><span id="jp-deadline-timer" style="display:none">--h --m --s</span></div>
     </div>
   </div>
 </section>
@@ -1173,7 +1175,7 @@ body{background:var(--bg);}
       <div class="section-label" style="padding:0;margin:0 0 4px;">For Today's Matches</div>
       <h2>⚡ Today's Picks</h2>
     </div>
-    <p>Choose your level<br>Delivered on WhatsApp</p>
+    <p>Choose your level<br>Order via WhatsApp</p>
   </div>
 
   <div class="daily-grid">
@@ -1232,7 +1234,7 @@ body{background:var(--bg);}
   <div class="section-label" style="padding:0;margin-bottom:10px;">What Members Say</div>
   <div class="review-grid">
     <div class="review-card">
-      <div class="review-top"><div class="review-flag">🇰🇪</div><div><div class="review-name">David K. · Nairobi</div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-top"><div class="review-flag">🇰🇪</div><div><div class="review-name">Paul · 0789***45</div><div class="review-stars">★★★★★</div></div></div>
       <div class="review-text">"The VIP picks are accurate — no guesswork, just results."</div>
     </div>
     <div class="review-card">
@@ -1246,13 +1248,28 @@ body{background:var(--bg);}
 
 <!-- HOW IT WORKS -->
 <div class="section-label" style="padding-top:0;">How It Works</div>
-<section class="how">
-  <div class="how-card">
-    <div class="how-steps">
-      <div class="how-step"><div class="how-num">1</div><div><div class="how-ttl">Choose your ticket</div><div class="how-txt">Power Ksh 99, VIP Ksh 299, or Mega JP Ksh 599.</div></div></div>
-      <div class="how-step"><div class="how-num">2</div><div><div class="how-ttl">Pay via M-Pesa</div><div class="how-txt">Lipa Na M-Pesa → Buy Goods → Till <strong>6012928</strong> → Confirm.</div></div></div>
-      <div class="how-step"><div class="how-num">3</div><div><div class="how-ttl">Send your confirmation</div><div class="how-txt">Send your M-Pesa confirmation to our WhatsApp.</div></div></div>
-      <div class="how-step"><div class="how-num">4</div><div><div class="how-ttl">Receive your picks</div><div class="how-txt">Your ticket is delivered before kickoff.</div></div></div>
+<section class="how-section" aria-label="How it works">
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <div>
+        <div class="how-ttl">Choose your ticket</div>
+        <div class="how-txt">Pick Power, VIP or Mega Jackpot.</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <div>
+        <div class="how-ttl">Chat with us on WhatsApp</div>
+        <div class="how-txt">Your package button takes you directly to WhatsApp to place your order.</div>
+      </div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <div>
+        <div class="how-ttl">Complete your order</div>
+        <div class="how-txt">We'll guide you through payment and send your picks after confirmation.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1474,7 +1491,7 @@ updateJP();setInterval(updateJP,1000);
 
 // ── LIVE NOTIFICATIONS ────────────────────────────────────────
 const NOTIFS=[
-  {ico:'🏆',name:'David K. · Nairobi',note:'Power Ticket — won Ksh 3,690 tonight'},
+  {ico:'🏆',name:'Paul · 0789***45',note:'Power Ticket — won Ksh 3,690 tonight'},
   {ico:'💰',name:'Chukwuemeka O. · Lagos',note:'VIP Ticket — won ₦45,000 this week'},
   {ico:'✅',name:'Kwame A. · Accra',note:'Mega Jackpot — 13/17 correct'},
   {ico:'🔥',name:'Sipho D. · Johannesburg',note:'Power Ticket — won R2,800 today'},
