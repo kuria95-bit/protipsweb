@@ -612,6 +612,16 @@ body {
   font-weight:700;
   color:var(--green);
 }
+.results-stack { display:flex; flex-direction:column; gap:14px; }
+.rc-vip {
+  border:1px solid var(--jp-border);
+  background:linear-gradient(160deg, rgba(124,111,245,.10), var(--card) 58%);
+}
+.rc-vip .rc-head { border-bottom:1px solid rgba(124,111,245,.20); }
+.rc-vip .rc-title { color:#C9BFFF; }
+.rc-vip .rc-row { border-bottom:1px solid rgba(124,111,245,.16); }
+.rc-vip .rc-foot { background:var(--jp-soft); border-top:1px solid rgba(124,111,245,.20); }
+.rc-vip .rc-all { background:rgba(124,111,245,.18); border:1px solid var(--jp-border); color:#C9BFFF; }
 
 /* ─── JACKPOT ───────────────────────────────────────────────── */
 .jackpot { padding:0 20px 28px; }
@@ -1184,19 +1194,38 @@ body{background:var(--bg);}
 <section class="compact-results">
   <div class="section-label">Recent Results</div>
   <div class="results" style="padding:0;">
-    <div class="result-card">
-      <div class="rc-head">
-        <div class="rc-title">All 3 Won · VIP Ticket</div>
-        <div class="rc-date">Yesterday</div>
+    <div class="results-stack">
+      <div class="result-card">
+        <div class="rc-head">
+          <div class="rc-title">⚡ Daily Ticket · All 3 Won</div>
+          <div class="rc-date">Yesterday</div>
+        </div>
+        <div class="rc-rows">
+          <div class="rc-row"><div><div class="rc-match">Alaves vs Valencia</div><div class="rc-pred">Away Win & Under 2.5 · FT 0–1</div></div><div class="rc-odd">@2.60</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Claypole vs Sacachispas</div><div class="rc-pred">Home Win & Under 4.5 · FT 2–0</div></div><div class="rc-odd">@1.45</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Rayo Vallecano vs Espanyol</div><div class="rc-pred">Goal/Goal (GG) · FT 2–1</div></div><div class="rc-odd">@1.69</div><div class="rc-won">WON</div></div>
+        </div>
+        <div class="rc-foot">
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">6.37</div></div>
+          <div class="rc-all">✓ 3/3 Won</div>
+        </div>
       </div>
-      <div class="rc-rows">
-        <div class="rc-row"><div><div class="rc-match">Lille vs Troyes</div><div class="rc-pred">Home Win · FT 2–0</div></div><div class="rc-odd">@1.55</div><div class="rc-won">WON</div></div>
-        <div class="rc-row"><div><div class="rc-match">Brest vs PSG</div><div class="rc-pred">Away Win & Under 2.5 · FT 0–1</div></div><div class="rc-odd">@1.90</div><div class="rc-won">WON</div></div>
-        <div class="rc-row"><div><div class="rc-match">Le Mans vs Lens</div><div class="rc-pred">Goal/Goal (GG) · FT 2–2</div></div><div class="rc-odd">@2.59</div><div class="rc-won">WON</div></div>
-      </div>
-      <div class="rc-foot">
-        <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">7.63</div></div>
-        <div class="rc-all">✓ 3/3 Won</div>
+
+      <div class="result-card rc-vip">
+        <div class="rc-head">
+          <div class="rc-title">👑 VIP Ticket · All 4 Won</div>
+          <div class="rc-date">Yesterday</div>
+        </div>
+        <div class="rc-rows">
+          <div class="rc-row"><div><div class="rc-match">Alaves vs Valencia</div><div class="rc-pred">Away Win & Under 3.5 · FT 0–1</div></div><div class="rc-odd">@2.36</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Claypole vs Sacachispas</div><div class="rc-pred">Home Win & Under 3.5 · FT 2–0</div></div><div class="rc-odd">@2.15</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Rayo Vallecano vs Espanyol</div><div class="rc-pred">Both Teams To Score (GG) · FT 2–1</div></div><div class="rc-odd">@1.69</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Aldershot vs Yeovil</div><div class="rc-pred">Goal/Goal (GG) · FT 1–1</div></div><div class="rc-odd">@2.15</div><div class="rc-won">WON</div></div>
+        </div>
+        <div class="rc-foot">
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">18.43</div></div>
+          <div class="rc-all">✓ 4/4 Won</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1219,13 +1248,13 @@ body{background:var(--bg);}
   </div>
 
   <div class="daily-grid">
-    <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!">
+    <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Daily%20Ticket%20for%20Ksh%2099!">
       <div class="daily-icon">⚡</div>
-      <div class="daily-name">Power</div>
+      <div class="daily-name">Daily</div>
       <div class="daily-desc">A simple daily entry with focused picks.</div>
       <div class="daily-price">Ksh 99</div>
       <div class="daily-meta">3 picks · 7+ combined odds</div>
-      <div class="daily-btn">GET POWER — KSH 99</div>
+      <div class="daily-btn">GET DAILY — KSH 99</div>
     </a>
 
     <a class="daily-card vip" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!">
@@ -1285,7 +1314,7 @@ body{background:var(--bg);}
       <div class="how-num">1</div>
       <div>
         <div class="how-ttl">Choose your ticket</div>
-        <div class="how-txt">Pick Power, VIP or Mega Jackpot.</div>
+        <div class="how-txt">Pick Daily, VIP or Mega Jackpot.</div>
       </div>
     </div>
     <div class="how-step">
@@ -1308,7 +1337,7 @@ body{background:var(--bg);}
 <!-- FINAL CTA -->
 <section class="final-cta">
   <h3>Ready for today's picks?</h3>
-  <p>Choose Power or VIP. Or take the weekly Mega Jackpot route.</p>
+  <p>Choose Daily or VIP. Or take the weekly Mega Jackpot route.</p>
   <a href="#daily-picks">GET TODAY'S PICKS →</a>
 </section>
 
@@ -1329,8 +1358,8 @@ body{background:var(--bg);}
       <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Daily Ticket</div>
       <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Today's Picks</div>
     </div>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
-      <div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Power Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div></div>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Daily%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
+      <div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Daily Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div></div>
       <div style="text-align:right;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 99</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
     </a>
     <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#0d1710,#0f1d14);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;">
@@ -1522,19 +1551,19 @@ updateJP();setInterval(updateJP,1000);
 
 // ── LIVE NOTIFICATIONS ────────────────────────────────────────
 const NOTIFS=[
-  {ico:'⚡',name:'0723***45 · Kisumu',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0723***45 · Kisumu',note:'Just subscribed to Daily Ticket'},
   {ico:'👑',name:'0712***78 · Nairobi',note:'Just subscribed to VIP Ticket'},
   {ico:'🏆',name:'0798***12 · Mombasa',note:'Just subscribed to Mega Jackpot'},
-  {ico:'⚡',name:'0733***56 · Nakuru',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0733***56 · Nakuru',note:'Just subscribed to Daily Ticket'},
   {ico:'🎯',name:'0745***89 · Eldoret',note:'Just subscribed to Midweek Jackpot'},
   {ico:'👑',name:'0701***34 · Thika',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0768***67 · Nyeri',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0768***67 · Nyeri',note:'Just subscribed to Daily Ticket'},
   {ico:'🏆',name:'0722***90 · Machakos',note:'Just subscribed to Mega Jackpot'},
   {ico:'👑',name:'0710***23 · Kakamega',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0757***45 · Kitale',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0757***45 · Kitale',note:'Just subscribed to Daily Ticket'},
   {ico:'🎯',name:'0788***78 · Malindi',note:'Just subscribed to Midweek Jackpot'},
   {ico:'👑',name:'0714***12 · Naivasha',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0741***56 · Kericho',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0741***56 · Kericho',note:'Just subscribed to Daily Ticket'},
   {ico:'🏆',name:'0799***89 · Meru',note:'Just subscribed to Mega Jackpot'},
   {ico:'👑',name:'0729***34 · Kisii',note:'Just subscribed to VIP Ticket'},
 ];
