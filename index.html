@@ -924,6 +924,45 @@ body {
   0% { background-position:-200% 0; }
   100% { background-position:200% 0; }
 }
+
+/* ─── ANIMATED BET SLIP ─────────────────────────────────────── */
+.slip-wrap{margin:0 20px 28px;max-width:420px;margin-left:auto;margin-right:auto;padding:0 20px;}
+.slip{position:relative;background:var(--card);border:1px solid var(--gold-bdr);border-radius:var(--radius);overflow:hidden;}
+.slip::before,.slip::after{content:'';position:absolute;top:52px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:1px solid var(--gold-bdr);}
+.slip::before{left:-8px}.slip::after{right:-8px}
+.slip-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px dashed var(--gold-bdr);}
+.slip-name{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.slip-dots{display:flex;gap:5px}
+.slip-dots i{width:6px;height:6px;border-radius:50%;background:var(--border);transition:background .3s}
+.slip-dots i.on{background:var(--gold)}
+.slip-body{padding:6px 16px 0;min-height:168px;}
+.slip-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);opacity:0;transform:translateX(-14px);transition:opacity .45s ease,transform .45s ease;}
+.slip-row.in{opacity:1;transform:none}
+.slip-match{font-size:13px;font-weight:600;line-height:1.3}
+.slip-pick{font-size:11px;color:var(--muted);margin-top:2px}
+.slip-odd{font-family:'Clash Display',sans-serif;font-size:15px;font-weight:700;color:var(--gold);min-width:42px;text-align:right}
+.slip-foot{padding:14px 16px 16px;background:rgba(245,179,1,.05);border-top:1px dashed var(--gold-bdr);}
+.slip-line{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--muted);padding:3px 0}
+.slip-line b{font-family:'Clash Display',sans-serif;font-size:15px;color:var(--white);font-weight:700;font-variant-numeric:tabular-nums}
+.slip-win{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:10px;border-top:1px solid var(--border);}
+.slip-win span{font-size:12px;font-weight:600;color:var(--white)}
+.slip-win b{font-family:'Clash Display',sans-serif;font-size:26px;color:var(--green);font-weight:700;font-variant-numeric:tabular-nums;transition:text-shadow .5s}
+.slip-win b.glow{text-shadow:0 0 18px rgba(34,214,126,.55)}
+@media (prefers-reduced-motion:reduce){.slip-row{transition:none}}
+.slip-sub{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
+.slip-ok{font-size:10px;font-weight:700;color:var(--green);background:var(--green-dim);border:1px solid var(--green-bdr);border-radius:6px;padding:3px 6px;opacity:0;transform:scale(.6);transition:opacity .3s,transform .3s cubic-bezier(.3,1.6,.5,1)}
+.slip-row.in .slip-ok{opacity:1;transform:none;transition-delay:.45s}
+.slip-right{display:flex;align-items:center;gap:8px}
+.slip-badge{font-size:11px;font-weight:700;color:#08090A;background:var(--green);border-radius:30px;padding:4px 10px;opacity:0;transform:scale(.7);transition:opacity .35s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.slip-badge.on{opacity:1;transform:none}
+
+.slip-day{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;font-size:13px;font-weight:700;letter-spacing:1.2px;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:30px;padding:9px 14px}
+.slip-day-dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.slip-day-sep{opacity:.5}
+#slip-day-name{color:var(--white);letter-spacing:.3px;font-weight:600}
+.slip-sub b{color:var(--gold);font-weight:700;letter-spacing:.8px}
+
+.slip-cta{margin-top:16px}
 </style>
 <style>
 /* =========================================================
@@ -1124,11 +1163,92 @@ body{background:var(--bg);}
     <span>✓ 50K+ members</span>
   </div>
 
-  <div class="hero-actions">
+</section>
+
+<!-- ═══ ANIMATED BET SLIP ═══ -->
+<div class="slip-wrap">
+  <div class="slip-day"><span class="slip-day-dot"></span>YESTERDAY'S TICKET<span class="slip-day-sep">·</span><span id="slip-day-name">Power Ticket</span></div>
+  <div class="slip">
+    <div class="slip-head">
+      <div><div class="slip-name"><span id="slip-ico">⚡</span><span id="slip-title">Power Ticket</span></div><div class="slip-sub"><b>YESTERDAY</b> · <span id="slip-n">3/3</span> won</div></div>
+      <div class="slip-right"><span class="slip-badge" id="slip-badge">✓ ALL WON</span><div class="slip-dots"><i class="on"></i><i></i></div></div>
+    </div>
+    <div class="slip-body" id="slip-body"></div>
+    <div class="slip-foot">
+      <div class="slip-line"><span>Total odds</span><b id="slip-total">1.00</b></div>
+      <div class="slip-line"><span>Stake</span><b>Ksh <span id="slip-stake">0</span></b></div>
+      <div class="slip-win"><span>Winnings</span><b id="slip-win">Ksh 0.00</b></div>
+    </div>
+  </div>
+
+  <div class="hero-actions slip-cta">
     <a href="#daily-picks" class="hero-primary">GET TODAY'S PICKS →</a>
     <a href="#jackpot" class="hero-secondary">SEE MEGA JACKPOT →</a>
   </div>
-</section>
+</div>
+<script>
+(function(){
+  var STAKES=[100,200,300,400,500],round=0,STAKE=200;
+  var TICKETS=[
+    {ico:'⚡',name:'Power Ticket',total:8.56,picks:[
+      {m:'Coventry vs Newcastle',p:'Home Win · FT 4–1',o:1.75},
+      {m:'Atalanta vs Venezia',p:'Home Win · FT 3–1',o:2.05},
+      {m:'Levante vs Sevilla',p:'BTTS · FT 3–3',o:2.39}]},
+    {ico:'👑',name:'VIP Ticket',total:15.67,picks:[
+      {m:'Torino vs Udinese',p:'Home Win & BTTS · FT 2–1',o:2.15},
+      {m:'Shamrock Rovers vs Bohemians',p:'Home Win & BTTS · FT 2–1',o:2.60},
+      {m:'Hapoel Jerusalem vs Maccabi Haifa',p:'Away Win & BTTS · FT 1–4',o:2.80}]}
+  ];
+  var body=document.getElementById('slip-body'),
+      tot=document.getElementById('slip-total'),
+      stk=document.getElementById('slip-stake'),
+      win=document.getElementById('slip-win'),
+      ttl=document.getElementById('slip-title'),
+      ico=document.getElementById('slip-ico'),
+      dots=document.querySelectorAll('.slip-dots i'),badge=document.getElementById('slip-badge');
+  if(!body)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var timers=[],idx=0;
+  function later(fn,ms){timers.push(setTimeout(fn,ms));}
+  function money(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function count(el,from,to,ms,fmt){
+    if(reduce){el.textContent=fmt(to);return;}
+    var t0=performance.now();
+    (function step(t){
+      var k=Math.min(1,(t-t0)/ms),e=1-Math.pow(1-k,3);
+      el.textContent=fmt(from+(to-from)*e);
+      if(k<1)requestAnimationFrame(step);
+    })(t0);
+  }
+  function play(){
+    timers.forEach(clearTimeout);timers=[];
+    var tk=TICKETS[idx];STAKE=STAKES[round%STAKES.length];round++;
+    ico.textContent=tk.ico;ttl.textContent=tk.name;var dn=document.getElementById('slip-day-name');if(dn)dn.textContent=tk.name;
+    dots.forEach(function(d,i){d.classList.toggle('on',i===idx);});
+    body.innerHTML='';tot.textContent='1.00';stk.textContent='0';win.textContent='Ksh 0.00';win.classList.remove('glow');
+    var total=tk.total;badge.classList.remove('on');
+    var gap=reduce?0:700;
+    tk.picks.forEach(function(p,i){
+      later(function(){
+        var r=document.createElement('div');r.className='slip-row';
+        r.innerHTML='<div><div class="slip-match">'+p.m+'</div><div class="slip-pick">'+p.p+'</div></div><div class="slip-right"><span class="slip-ok">WON</span><div class="slip-odd">'+p.o.toFixed(2)+'</div></div>';
+        body.appendChild(r);
+        requestAnimationFrame(function(){requestAnimationFrame(function(){r.classList.add('in');});});
+      },300+i*gap);
+    });
+    var t=300+tk.picks.length*gap+200;
+    later(function(){count(tot,1,total,1100,function(v){return v.toFixed(2);});},t);
+    later(function(){count(stk,0,STAKE,700,function(v){return Math.round(v);});},t+1100);
+    later(function(){count(win,0,STAKE*total,1300,function(v){return 'Ksh '+money(v);});},t+1900);
+    later(function(){win.classList.add('glow');badge.classList.add('on');},t+3200);
+    later(function(){idx=(idx+1)%TICKETS.length;play();},t+6800);
+  }
+  play();
+})();
+</script>
+<!-- ═══ END ANIMATED BET SLIP ═══ -->
+
+
 
 <!-- STATS — existing visitor counter remains separate -->
 <div class="stats">
