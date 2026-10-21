@@ -622,6 +622,15 @@ body {
 .rc-vip .rc-row { border-bottom:1px solid rgba(124,111,245,.16); }
 .rc-vip .rc-foot { background:var(--jp-soft); border-top:1px solid rgba(124,111,245,.20); }
 .rc-vip .rc-all { background:rgba(124,111,245,.18); border:1px solid var(--jp-border); color:#C9BFFF; }
+.rc-vvip {
+  border:1px solid rgba(245,179,1,.4);
+  background:linear-gradient(160deg, rgba(245,179,1,.10), var(--card) 58%);
+}
+.rc-vvip .rc-head { border-bottom:1px solid rgba(245,179,1,.25); }
+.rc-vvip .rc-title { color:#FFD866; }
+.rc-vvip .rc-row { border-bottom:1px solid rgba(245,179,1,.18); }
+.rc-vvip .rc-foot { background:rgba(245,179,1,.06); border-top:1px solid rgba(245,179,1,.25); }
+.rc-vvip .rc-all { background:rgba(245,179,1,.18); border:1px solid rgba(245,179,1,.4); color:#FFD866; }
 
 /* ─── JACKPOT ───────────────────────────────────────────────── */
 .jackpot { padding:0 20px 28px; }
@@ -948,7 +957,7 @@ body {
 .slip-win span{font-size:12px;font-weight:600;color:var(--white)}
 .slip-win b{font-family:'Clash Display',sans-serif;font-size:26px;color:var(--green);font-weight:700;font-variant-numeric:tabular-nums;transition:text-shadow .5s}
 .slip-win b.glow{text-shadow:0 0 18px rgba(34,214,126,.55)}
-@media (prefers-reduced-motion:reduce){.slip-row{transition:none}}
+@media (prefers-reduced-motion:reduce){.slip-row{transition:none}.daily-card.vvip::before{animation:none;opacity:.8;}}
 .slip-sub{font-size:11px;color:var(--muted);font-weight:500;margin-top:2px}
 .slip-ok{font-size:10px;font-weight:700;color:var(--green);background:var(--green-dim);border:1px solid var(--green-bdr);border-radius:6px;padding:3px 6px;opacity:0;transform:scale(.6);transition:opacity .3s,transform .3s cubic-bezier(.3,1.6,.5,1)}
 .slip-row.in .slip-ok{opacity:1;transform:none;transition-delay:.45s}
@@ -1056,11 +1065,27 @@ body{background:var(--bg);}
 }
 .daily-card:hover{transform:translateY(-2px);}
 .daily-card.vip{border-color:var(--gold-bdr);background:linear-gradient(160deg,#101c14,#0f1712);}
+.daily-card.vvip{
+  border-color:rgba(245,179,1,.55);background:linear-gradient(160deg,#1a1308,#120c18);
+  box-shadow:0 0 0 1px rgba(245,179,1,.12) inset, 0 0 24px rgba(245,179,1,.08);
+  position:relative;
+}
+.daily-card.vvip::before{
+  content:'';position:absolute;inset:0;border-radius:16px;padding:1px;
+  background:linear-gradient(135deg,rgba(245,179,1,.6),rgba(245,179,1,0) 30%,rgba(245,179,1,0) 70%,rgba(245,179,1,.6));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  animation:vvipShimmer 3.5s ease-in-out infinite;
+}
+@keyframes vvipShimmer{0%,100%{opacity:.5;}50%{opacity:1;}}
+.daily-card.vvip .daily-price{color:#FFD866;}
+.daily-card.vvip .daily-btn{background:linear-gradient(90deg,#F5B301,#FFD866,#F5B301);color:#08090A;}
 .daily-card .mini-badge{
   position:absolute;top:0;left:50%;transform:translateX(-50%);
   background:var(--gold);color:#08090A;font-size:7px;font-weight:800;
   letter-spacing:.8px;text-transform:uppercase;padding:4px 11px;border-radius:0 0 8px 8px;
 }
+.daily-card .mini-badge.vvip-badge{background:linear-gradient(90deg,#F5B301,#FFD866,#F5B301);}
 .daily-icon{font-size:25px;margin:7px 0 9px;}
 .daily-name{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:700;color:#fff;}
 .daily-desc{font-size:9.5px;color:var(--muted);line-height:1.5;margin-top:4px;}
@@ -1167,10 +1192,10 @@ body{background:var(--bg);}
 
 <!-- ═══ ANIMATED BET SLIP ═══ -->
 <div class="slip-wrap">
-  <div class="slip-day"><span class="slip-day-dot"></span>YESTERDAY'S TICKET<span class="slip-day-sep">·</span><span id="slip-day-name">Power Ticket</span></div>
+  <div class="slip-day"><span class="slip-day-dot"></span>YESTERDAY'S TICKET<span class="slip-day-sep">·</span><span id="slip-day-name">Regular Ticket</span></div>
   <div class="slip">
     <div class="slip-head">
-      <div><div class="slip-name"><span id="slip-ico">⚡</span><span id="slip-title">Power Ticket</span></div><div class="slip-sub"><b>YESTERDAY</b> · <span id="slip-n">3/3</span> won</div></div>
+      <div><div class="slip-name"><span id="slip-ico">⚡</span><span id="slip-title">Regular Ticket</span></div><div class="slip-sub"><b>YESTERDAY</b> · <span id="slip-n">3/3</span> won</div></div>
       <div class="slip-right"><span class="slip-badge" id="slip-badge">✓ ALL WON</span><div class="slip-dots"><i class="on"></i><i></i></div></div>
     </div>
     <div class="slip-body" id="slip-body"></div>
@@ -1190,14 +1215,18 @@ body{background:var(--bg);}
 (function(){
   var STAKES=[100,200,300,400,500],round=0,STAKE=200;
   var TICKETS=[
-    {ico:'⚡',name:'Power Ticket',total:7.89,picks:[
-      {m:'Bournemouth vs Sunderland',p:'Home Win · FT 2–0',o:1.60},
-      {m:'Brighton vs Crystal Palace',p:'Home Win · FT 5–0',o:2.10},
-      {m:'Notts County vs Arsenal',p:'Away Win · FT 0–1',o:2.35}]},
-    {ico:'👑',name:'VIP Ticket',total:26.78,picks:[
-      {m:'Angers vs Marseille',p:'Away Win & BTTS · FT 2–5',o:2.60},
-      {m:'Paris FC vs Rennes',p:'Home Win & BTTS · FT 4–3',o:3.15},
-      {m:'Lyon vs Nice',p:'Home Win & BTTS · FT 2–1',o:3.27}]}
+    {ico:'⚡',name:'Regular Ticket',total:7.00,picks:[
+      {m:'Sabah Baku vs Dortmund',p:'Away Win · FT 1–2',o:1.55},
+      {m:'FC Porto vs PSV',p:'Under 2.5 Goals · FT 0–1',o:1.85},
+      {m:'PSG vs Barcelona',p:'Home Win & BTTS · FT 4–2',o:2.44}]},
+    {ico:'👑',name:'VIP Ticket',total:13.66,picks:[
+      {m:'Stuttgart vs Atletico Madrid',p:'Draw · FT 1–1',o:3.20},
+      {m:'AS Roma vs Slovan Bratislava',p:'Home Win & No GG · FT 4–0',o:1.95},
+      {m:'Fenerbahçe vs Slavia Prague',p:'Over 3.5 Goals · FT 2–2',o:2.19}]},
+    {ico:'💎',name:'VVIP Ticket',total:20.67,picks:[
+      {m:'Man City vs AEK Athens',p:'Home Win & BTTS · FT 5–1',o:2.50},
+      {m:'Napoli vs Bodø/Glimt',p:'Home Win & BTTS · FT 4–3',o:2.90},
+      {m:'Liverpool vs Villarreal',p:'Home Win & BTTS · FT 4–3',o:2.85}]}
   ];
   var body=document.getElementById('slip-body'),
       tot=document.getElementById('slip-total'),
@@ -1253,7 +1282,7 @@ body{background:var(--bg);}
 <!-- STATS — existing visitor counter remains separate -->
 <div class="stats">
   <div class="stat"><div class="stat-n gold">100%</div><div class="stat-l">Win Rate This Week</div></div>
-  <div class="stat"><div class="stat-n">7x+</div><div class="stat-l">Min Daily Odds</div></div>
+  <div class="stat"><div class="stat-n">33x+</div><div class="stat-l">VVIP Odds</div></div>
   <div class="stat"><div class="stat-n">50K+</div><div class="stat-l">Members Africa</div></div>
   <div class="stat"><div class="stat-n gold">14</div><div class="stat-l">Win Streak Days</div></div>
 </div>
@@ -1317,16 +1346,16 @@ body{background:var(--bg);}
     <div class="results-stack">
       <div class="result-card">
         <div class="rc-head">
-          <div class="rc-title">⚡ Power Ticket · All 3 Won</div>
+          <div class="rc-title">⚡ Regular Ticket · All 3 Won</div>
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Bournemouth vs Sunderland</div><div class="rc-pred">Home Win · FT 2–0</div></div><div class="rc-odd">@1.60</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Brighton vs Crystal Palace</div><div class="rc-pred">Home Win · FT 5–0</div></div><div class="rc-odd">@2.10</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Notts County vs Arsenal</div><div class="rc-pred">Away Win · FT 0–1</div></div><div class="rc-odd">@2.35</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Sabah Baku vs Dortmund</div><div class="rc-pred">Away Win · FT 1–2</div></div><div class="rc-odd">@1.55</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">FC Porto vs PSV</div><div class="rc-pred">Under 2.5 Goals · FT 0–1</div></div><div class="rc-odd">@1.85</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">PSG vs Barcelona</div><div class="rc-pred">Home Win & BTTS · FT 4–2</div></div><div class="rc-odd">@2.44</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">7.89</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">7.00</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
@@ -1337,12 +1366,28 @@ body{background:var(--bg);}
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Angers vs Marseille</div><div class="rc-pred">Away Win & BTTS · FT 2–5</div></div><div class="rc-odd">@2.60</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Paris FC vs Rennes</div><div class="rc-pred">Home Win & BTTS · FT 4–3</div></div><div class="rc-odd">@3.15</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Lyon vs Nice</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@3.27</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Stuttgart vs Atletico Madrid</div><div class="rc-pred">Draw · FT 1–1</div></div><div class="rc-odd">@3.20</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">AS Roma vs Slovan Bratislava</div><div class="rc-pred">Home Win & No GG · FT 4–0</div></div><div class="rc-odd">@1.95</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Fenerbahçe vs Slavia Prague</div><div class="rc-pred">Over 3.5 Goals · FT 2–2</div></div><div class="rc-odd">@2.19</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">26.78</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">13.66</div></div>
+          <div class="rc-all">✓ 3/3 Won</div>
+        </div>
+      </div>
+
+      <div class="result-card rc-vvip">
+        <div class="rc-head">
+          <div class="rc-title">💎 VVIP Ticket · All 3 Won</div>
+          <div class="rc-date">Yesterday</div>
+        </div>
+        <div class="rc-rows">
+          <div class="rc-row"><div><div class="rc-match">Man City vs AEK Athens</div><div class="rc-pred">Home Win & BTTS · FT 5–1</div></div><div class="rc-odd">@2.50</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Napoli vs Bodø/Glimt</div><div class="rc-pred">Home Win & BTTS · FT 4–3</div></div><div class="rc-odd">@2.90</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Liverpool vs Villarreal</div><div class="rc-pred">Home Win & BTTS · FT 4–3</div></div><div class="rc-odd">@2.85</div><div class="rc-won">WON</div></div>
+        </div>
+        <div class="rc-foot">
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">20.67</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
@@ -1367,37 +1412,33 @@ body{background:var(--bg);}
   </div>
 
   <div class="daily-grid">
-    <div class="daily-card">
-      <div class="mini-badge">🆕 Try Us First</div>
-      <div class="daily-icon">🔥</div>
-      <div class="daily-name">2Sure Wins</div>
-      <div class="daily-desc">Two high-confidence picks with 3.5 to 4.99 combined odds — the easy way to try us.</div>
-      <div class="daily-price">Ksh 50</div>
-      <div class="daily-meta">2 picks · 3.5–4.99 odds</div>
-      <a class="daily-btn" style="display:block;text-decoration:none;" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%202Sure%20Wins%20Pick%20for%20Ksh%2050!">GET 2SURE WINS — KSH 50</a>
-      <button onclick="openBankerPerf()" style="margin-top:8px;width:100%;background:rgba(245,179,1,.10);border:1.5px solid var(--gold);color:var(--gold);font-family:'DM Sans',sans-serif;font-weight:800;padding:9px 6px;border-radius:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.3;">
-        <span style="font-size:10.5px;">👉 Tap to See Results</span>
-        <span style="font-size:8px;font-weight:700;color:rgba(245,179,1,.75);text-decoration:underline;">Last week: 2W–0L →</span>
-      </button>
-    </div>
-
-    <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!">
+    <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Regular%20Ticket%20for%20Ksh%2099!">
       <div class="daily-icon">⚡</div>
-      <div class="daily-name">Daily</div>
-      <div class="daily-desc">A simple daily entry with focused picks.</div>
+      <div class="daily-name">Regular</div>
+      <div class="daily-desc">Low risk. High confidence.</div>
       <div class="daily-price">Ksh 99</div>
-      <div class="daily-meta">3 picks · 7+ combined odds</div>
-      <div class="daily-btn">GET DAILY — KSH 99</div>
+      <div class="daily-meta">3 picks · 5–7 combined odds</div>
+      <div class="daily-btn">GET REGULAR — KSH 99</div>
     </a>
 
-    <a class="daily-card vip" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!">
+    <a class="daily-card vip" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20399!">
       <div class="mini-badge">🔥 Most Popular</div>
       <div class="daily-icon">👑</div>
       <div class="daily-name">VIP</div>
-      <div class="daily-desc">More picks for players wanting the stronger daily option.</div>
-      <div class="daily-price">Ksh 299</div>
-      <div class="daily-meta">5 picks · 13+ combined odds</div>
-      <div class="daily-btn">GET VIP — KSH 299</div>
+      <div class="daily-desc">Sharper picks. Bigger multipliers.</div>
+      <div class="daily-price">Ksh 399</div>
+      <div class="daily-meta">3 picks · 13–16 combined odds</div>
+      <div class="daily-btn">GET VIP — KSH 399</div>
+    </a>
+
+    <a class="daily-card vvip" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VVIP%20Ticket%20for%20Ksh%20599!">
+      <div class="mini-badge vvip-badge">💎 Premium</div>
+      <div class="daily-icon">💎</div>
+      <div class="daily-name">VVIP</div>
+      <div class="daily-desc">The slip that breaks the bank.</div>
+      <div class="daily-price">Ksh 599</div>
+      <div class="daily-meta">3 picks · 24–33 combined odds</div>
+      <div class="daily-btn">GET VVIP — KSH 599</div>
     </a>
 
     <a class="daily-card" href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20this%20week%27s%20Mega%20Jackpot%20%40%20Ksh%20399!">
@@ -1488,150 +1529,24 @@ body{background:var(--bg);}
 <div id="dailyMenuOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)closeDailyMenu()">
   <div id="dailyMenuCard" style="background:var(--card);border-radius:20px 20px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;border-top:1px solid var(--border);transform:translateY(100%);transition:transform .34s ease;">
     <div style="text-align:center;margin-bottom:20px;">
-      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Power Ticket</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Choose Your Ticket</div>
       <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Today's Picks</div>
     </div>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Power%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
-      <div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Power Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 7+ combined odds</div></div>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20Regular%20Ticket%20for%20Ksh%2099!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:10px;">
+      <div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">⚡ Regular Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 5–7 combined odds</div></div>
       <div style="text-align:right;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 99</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
     </a>
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20299!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#0d1710,#0f1d14);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;">
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VIP%20Ticket%20for%20Ksh%20399!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#0d1710,#0f1d14);border:1px solid var(--gold-bdr);border-radius:var(--radius);padding:16px;margin-bottom:10px;position:relative;overflow:hidden;">
       <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--gold);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">Most Popular</div>
-      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">👑 VIP Ticket</div><div style="font-size:11px;color:var(--muted);">5 picks · 13+ combined odds</div></div>
-      <div style="text-align:right;margin-top:8px;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 299</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
+      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">👑 VIP Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 13–16 combined odds</div></div>
+      <div style="text-align:right;margin-top:8px;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 399</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
+    </a>
+    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VVIP%20Ticket%20for%20Ksh%20599!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#1a1308,#120c18);border:1px solid rgba(245,179,1,.55);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(245,179,1,.12) inset;">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#F5B301,#FFD866,#F5B301);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">💎 Premium</div>
+      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">💎 VVIP Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 24–33 combined odds</div></div>
+      <div style="text-align:right;margin-top:8px;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 599</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
     </a>
     <button onclick="closeDailyMenu()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
-  </div>
-</div>
-
-<!-- 2SURE PERFORMANCE — weekly track record -->
-<div id="bankerPerfOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)closeBankerPerf()">
-  <div id="bankerPerfCard" style="background:var(--card);border-radius:20px 20px 0 0;padding:24px 20px 32px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;border-top:1px solid var(--gold-bdr);transform:translateY(100%);transition:transform .34s ease;">
-    <div style="text-align:center;margin-bottom:6px;">
-      <div style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">🔥 2Sure Wins · Safe 3.5–4.99 Odds</div>
-      <div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--white);">Weekly Performance</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:4px;">Last Week (Final) · Mon 28 Sept – Sun 4 Oct · 2W – 0L</div>
-    </div>
-
-    <div style="margin-top:16px;">
-      <div style="padding:11px 0;border-bottom:1px solid var(--border);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Monday · 2-Game Combo</div>
-          <div style="background:var(--green-dim);border:1px solid var(--green-bdr);color:var(--green);font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;white-space:nowrap;">WON</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Armenia vs Montenegro</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">BTTS · FT 2–3</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@1.95</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Sweden vs Poland</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">Home Win · FT 3–1</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@2.39</div>
-        </div>
-        <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:6px;">Combined Odds: <strong style="color:var(--gold);">@4.67</strong></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Tuesday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">No Pick Sent</div>
-      </div>
-      <div style="padding:11px 0;border-bottom:1px solid var(--border);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Wednesday · 2-Game Combo</div>
-          <div style="background:var(--green-dim);border:1px solid var(--green-bdr);color:var(--green);font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;white-space:nowrap;">WON</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Sporting CP Women vs Brøndby</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">Over 2.5 Goals · FT 2–2</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@1.95</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Frome Town vs Taunton Town</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">BTTS · FT 2–2</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@2.39</div>
-        </div>
-        <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:6px;">Combined Odds: <strong style="color:var(--gold);">@4.67</strong></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Thursday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">No Pick Sent</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Friday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">No Pick Sent</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Saturday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">No Pick Sent</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 0;opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Sunday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">No Pick Sent</div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:18px;padding-top:14px;border-top:1px dashed var(--border);">
-      <div style="font-family:'Clash Display',sans-serif;font-size:15px;font-weight:700;color:var(--white);">This Week's Picks</div>
-      <div style="font-size:10.5px;color:var(--muted);margin-top:3px;">Mon 5 – Sun 11 Oct</div>
-    </div>
-    <div style="margin-top:10px;">
-      <div style="padding:11px 0;border-bottom:1px solid var(--border);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Monday · 2-Game Combo</div>
-          <div style="background:var(--green-dim);border:1px solid var(--green-bdr);color:var(--green);font-size:9px;font-weight:700;padding:3px 9px;border-radius:6px;white-space:nowrap;">WON</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Montenegro vs Armenia</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">Under 2.5 Goals · FT 0–0</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@1.65</div>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;">
-          <div>
-            <div style="font-size:12.5px;font-weight:600;color:var(--white);">Cyprus vs Latvia</div>
-            <div style="font-size:10px;color:var(--muted);margin-top:1px;">Home Win · FT 2–1</div>
-          </div>
-          <div style="background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">@2.41</div>
-        </div>
-        <div style="text-align:right;font-size:10px;color:var(--muted);margin-top:6px;">Combined Odds: <strong style="color:var(--gold);">@3.98</strong></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Tuesday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Wednesday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Thursday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Friday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Saturday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;opacity:.5;">
-        <div style="font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;">Sunday</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--muted);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;">Upcoming</div>
-      </div>
-    </div>
-
-    <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20today%27s%202Sure%20Wins%20Pick%20for%20Ksh%2050!" style="text-decoration:none;display:block;text-align:center;margin-top:18px;background:var(--gold);color:#08090A;font-size:13px;font-weight:800;padding:13px;border-radius:50px;">GET TODAY'S 2SURE WINS — KSH 50</a>
-    <button onclick="closeBankerPerf()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:10px;">Close</button>
   </div>
 </div>
 
@@ -1815,19 +1730,19 @@ updateJP();setInterval(updateJP,1000);
 
 // ── LIVE NOTIFICATIONS ────────────────────────────────────────
 const NOTIFS=[
-  {ico:'⚡',name:'0723***45 · Kisumu',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0723***45 · Kisumu',note:'Just subscribed to Regular Ticket'},
   {ico:'👑',name:'0712***78 · Nairobi',note:'Just subscribed to VIP Ticket'},
   {ico:'🏆',name:'0798***12 · Mombasa',note:'Just subscribed to Mega Jackpot'},
-  {ico:'⚡',name:'0733***56 · Nakuru',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0733***56 · Nakuru',note:'Just subscribed to Regular Ticket'},
   {ico:'🎯',name:'0745***89 · Eldoret',note:'Just subscribed to Midweek Jackpot'},
-  {ico:'👑',name:'0701***34 · Thika',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0768***67 · Nyeri',note:'Just subscribed to Power Ticket'},
+  {ico:'💎',name:'0701***34 · Thika',note:'Just subscribed to VVIP Ticket'},
+  {ico:'⚡',name:'0768***67 · Nyeri',note:'Just subscribed to Regular Ticket'},
   {ico:'🏆',name:'0722***90 · Machakos',note:'Just subscribed to Mega Jackpot'},
   {ico:'👑',name:'0710***23 · Kakamega',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0757***45 · Kitale',note:'Just subscribed to Power Ticket'},
+  {ico:'⚡',name:'0757***45 · Kitale',note:'Just subscribed to Regular Ticket'},
   {ico:'🎯',name:'0788***78 · Malindi',note:'Just subscribed to Midweek Jackpot'},
-  {ico:'👑',name:'0714***12 · Naivasha',note:'Just subscribed to VIP Ticket'},
-  {ico:'⚡',name:'0741***56 · Kericho',note:'Just subscribed to Power Ticket'},
+  {ico:'💎',name:'0714***12 · Naivasha',note:'Just subscribed to VVIP Ticket'},
+  {ico:'⚡',name:'0741***56 · Kericho',note:'Just subscribed to Regular Ticket'},
   {ico:'🏆',name:'0799***89 · Meru',note:'Just subscribed to Mega Jackpot'},
   {ico:'👑',name:'0729***34 · Kisii',note:'Just subscribed to VIP Ticket'},
 ];
@@ -1853,19 +1768,6 @@ function openDailyMenu(){
 function closeDailyMenu(){
   const overlay=document.getElementById('dailyMenuOverlay');
   const card=document.getElementById('dailyMenuCard');
-  card.style.transform='translateY(100%)';
-  setTimeout(()=>{overlay.style.display='none';},360);
-}
-
-function openBankerPerf(){
-  const overlay=document.getElementById('bankerPerfOverlay');
-  const card=document.getElementById('bankerPerfCard');
-  overlay.style.display='flex';
-  setTimeout(()=>{card.style.transform='translateY(0)';},10);
-}
-function closeBankerPerf(){
-  const overlay=document.getElementById('bankerPerfOverlay');
-  const card=document.getElementById('bankerPerfCard');
   card.style.transform='translateY(100%)';
   setTimeout(()=>{overlay.style.display='none';},360);
 }
