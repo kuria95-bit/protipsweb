@@ -1215,18 +1215,19 @@ body{background:var(--bg);}
 (function(){
   var STAKES=[100,200,300,400,500],round=0,STAKE=200;
   var TICKETS=[
-    {ico:'⚡',name:'Regular Ticket',total:7.00,picks:[
-      {m:'Sabah Baku vs Dortmund',p:'Away Win · FT 1–2',o:1.55},
-      {m:'FC Porto vs PSV',p:'Under 2.5 Goals · FT 0–1',o:1.85},
-      {m:'PSG vs Barcelona',p:'Home Win & BTTS · FT 4–2',o:2.44}]},
-    {ico:'👑',name:'VIP Ticket',total:13.66,picks:[
-      {m:'Stuttgart vs Atletico Madrid',p:'Draw · FT 1–1',o:3.20},
-      {m:'AS Roma vs Slovan Bratislava',p:'Home Win & No GG · FT 4–0',o:1.95},
-      {m:'Fenerbahçe vs Slavia Prague',p:'Over 3.5 Goals · FT 2–2',o:2.19}]},
-    {ico:'💎',name:'VVIP Ticket',total:20.67,picks:[
-      {m:'Man City vs AEK Athens',p:'Home Win & BTTS · FT 5–1',o:2.50},
-      {m:'Napoli vs Bodø/Glimt',p:'Home Win & BTTS · FT 4–3',o:2.90},
-      {m:'Liverpool vs Villarreal',p:'Home Win & BTTS · FT 4–3',o:2.85}]}
+    {ico:'⚡',name:'Regular Ticket',total:8.76,picks:[
+      {m:'PSG vs Lyon',p:'Home Win · FT 2–0',o:1.65},
+      {m:'Sevilla vs Osasuna',p:'Home Win · FT 2–0',o:1.95},
+      {m:'River Plate vs Racing Club',p:'Under 2.5 Goals · FT 1–0',o:2.72}]},
+    {ico:'👑',name:'VIP Ticket',total:19.45,picks:[
+      {m:'Dendele vs Campim',p:'Away Win & BTTS · FT 2–4',o:2.55},
+      {m:'Montpellier vs Red Star',p:'Home Win & BTTS · FT 2–1',o:2.70},
+      {m:'Crotone vs Casarano',p:'Away Win & No GG · FT 0–1',o:2.83}]},
+    {ico:'💎',name:'VVIP Ticket',total:29.98,picks:[
+      {m:'Circus FC vs D Power',p:'Home Win & BTTS · FT 5–3',o:1.75},
+      {m:'Galatasaray vs Fenerbahçe',p:'Home Win & BTTS · FT 2–1',o:2.05},
+      {m:'Beşiktaş vs Başakşehir',p:'Home Win & Under 2.5 · FT 2–0',o:2.30},
+      {m:'Rizespor vs Trabzonspor',p:'Away Win & BTTS · FT 3–4',o:3.63}]}
   ];
   var body=document.getElementById('slip-body'),
       tot=document.getElementById('slip-total'),
@@ -1350,12 +1351,12 @@ body{background:var(--bg);}
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Sabah Baku vs Dortmund</div><div class="rc-pred">Away Win · FT 1–2</div></div><div class="rc-odd">@1.55</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">FC Porto vs PSV</div><div class="rc-pred">Under 2.5 Goals · FT 0–1</div></div><div class="rc-odd">@1.85</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">PSG vs Barcelona</div><div class="rc-pred">Home Win & BTTS · FT 4–2</div></div><div class="rc-odd">@2.44</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">PSG vs Lyon</div><div class="rc-pred">Home Win · FT 2–0</div></div><div class="rc-odd">@1.65</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Sevilla vs Osasuna</div><div class="rc-pred">Home Win · FT 2–0</div></div><div class="rc-odd">@1.95</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">River Plate vs Racing Club</div><div class="rc-pred">Under 2.5 Goals · FT 1–0</div></div><div class="rc-odd">@2.72</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">7.00</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">8.76</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
@@ -1366,29 +1367,30 @@ body{background:var(--bg);}
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Stuttgart vs Atletico Madrid</div><div class="rc-pred">Draw · FT 1–1</div></div><div class="rc-odd">@3.20</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">AS Roma vs Slovan Bratislava</div><div class="rc-pred">Home Win & No GG · FT 4–0</div></div><div class="rc-odd">@1.95</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Fenerbahçe vs Slavia Prague</div><div class="rc-pred">Over 3.5 Goals · FT 2–2</div></div><div class="rc-odd">@2.19</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Dendele vs Campim</div><div class="rc-pred">Away Win & BTTS · FT 2–4</div></div><div class="rc-odd">@2.55</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Montpellier vs Red Star</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@2.70</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Crotone vs Casarano</div><div class="rc-pred">Away Win & No GG · FT 0–1</div></div><div class="rc-odd">@2.83</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">13.66</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">19.45</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
 
       <div class="result-card rc-vvip">
         <div class="rc-head">
-          <div class="rc-title">💎 VVIP Ticket · All 3 Won</div>
+          <div class="rc-title">💎 VVIP Ticket · All 4 Won</div>
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Man City vs AEK Athens</div><div class="rc-pred">Home Win & BTTS · FT 5–1</div></div><div class="rc-odd">@2.50</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Napoli vs Bodø/Glimt</div><div class="rc-pred">Home Win & BTTS · FT 4–3</div></div><div class="rc-odd">@2.90</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Liverpool vs Villarreal</div><div class="rc-pred">Home Win & BTTS · FT 4–3</div></div><div class="rc-odd">@2.85</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Circus FC vs D Power</div><div class="rc-pred">Home Win & BTTS · FT 5–3</div></div><div class="rc-odd">@1.75</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Galatasaray vs Fenerbahçe</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@2.05</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Beşiktaş vs Başakşehir</div><div class="rc-pred">Home Win & Under 2.5 · FT 2–0</div></div><div class="rc-odd">@2.30</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Rizespor vs Trabzonspor</div><div class="rc-pred">Away Win & BTTS · FT 3–4</div></div><div class="rc-odd">@3.63</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">20.67</div></div>
-          <div class="rc-all">✓ 3/3 Won</div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">29.98</div></div>
+          <div class="rc-all">✓ 4/4 Won</div>
         </div>
       </div>
     </div>
@@ -1437,7 +1439,7 @@ body{background:var(--bg);}
       <div class="daily-name">VVIP</div>
       <div class="daily-desc">The slip that breaks the bank.</div>
       <div class="daily-price">Ksh 599</div>
-      <div class="daily-meta">3 picks · 24–33 combined odds</div>
+      <div class="daily-meta">4 picks · 24–33 combined odds</div>
       <div class="daily-btn">GET VVIP — KSH 599</div>
     </a>
 
@@ -1543,7 +1545,7 @@ body{background:var(--bg);}
     </a>
     <a href="https://wa.me/254762945530?text=Hello%20Pro%20Tipsters%2C%20I%20want%20the%20VVIP%20Ticket%20for%20Ksh%20599!" style="text-decoration:none;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(160deg,#1a1308,#120c18);border:1px solid rgba(245,179,1,.55);border-radius:var(--radius);padding:16px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 0 0 1px rgba(245,179,1,.12) inset;">
       <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#F5B301,#FFD866,#F5B301);color:#08090A;font-size:7px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 12px;border-radius:0 0 8px 8px;">💎 Premium</div>
-      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">💎 VVIP Ticket</div><div style="font-size:11px;color:var(--muted);">3 picks · 24–33 combined odds</div></div>
+      <div style="margin-top:8px;"><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px;">💎 VVIP Ticket</div><div style="font-size:11px;color:var(--muted);">4 picks · 24–33 combined odds</div></div>
       <div style="text-align:right;margin-top:8px;"><div style="font-family:'Clash Display',sans-serif;font-size:20px;font-weight:700;color:var(--gold);">Ksh 599</div><div style="background:var(--wa);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:4px;">Get on WhatsApp</div></div>
     </a>
     <button onclick="closeDailyMenu()" style="width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;padding:12px;font-size:13px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
