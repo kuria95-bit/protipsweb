@@ -1215,19 +1215,17 @@ body{background:var(--bg);}
 (function(){
   var STAKES=[100,200,300,400,500],round=0,STAKE=200;
   var TICKETS=[
-    {ico:'⚡',name:'Regular Ticket',total:7.89,picks:[
-      {m:'Monza vs Napoli',p:'Away Win · FT 1–4',o:1.60},
-      {m:'Genoa vs Juventus',p:'Under 2.5 Goals · FT 2–0',o:2.10},
-      {m:'Parma vs Udinese',p:'Under 2.5 Goals · FT 0–0',o:2.35}]},
-    {ico:'👑',name:'VIP Ticket',total:18.67,picks:[
-      {m:'Bora vs Vilanzia',p:'Home Win & BTTS · FT 2–1',o:1.60},
-      {m:'Fulham vs Crystal Palace',p:'Away Win & No GG · FT 0–1',o:1.85},
-      {m:'Monza vs Napoli',p:'Away Win & BTTS · FT 1–4',o:2.05},
-      {m:'PAOK vs AEK Athens',p:'Home Win & BTTS · FT 3–1',o:3.08}]},
-    {ico:'💎',name:'VVIP Ticket',total:26.91,picks:[
-      {m:'Spezia vs Livorno',p:'Home Win & BTTS · FT 2–1',o:2.60},
-      {m:'Cesena Women vs Vicenza Women',p:'Home Win & Over 2.5 · FT 3–0',o:2.90},
-      {m:'Liverpool vs Chelsea',p:'Draw · FT 1–1',o:3.57}]}
+    {ico:'⚡',name:'Regular Ticket',total:8.93,picks:[
+      {m:'Newcastle vs Everton',p:'Away Win · FT 0–1',o:1.70},
+      {m:'Lorient vs Brest',p:'Away Win · FT 0–2',o:2.05},
+      {m:'Sassuolo vs Fiorentina',p:'BTTS · FT 2–4',o:2.56}]},
+    {ico:'👑',name:'VIP Ticket',total:16.67,picks:[
+      {m:'Atalanta vs Parma',p:'Away Win & No GG · FT 0–3',o:3.95},
+      {m:'Coruña vs Osasuna',p:'Home Win & BTTS · FT 2–1',o:4.22}]},
+    {ico:'💎',name:'VVIP Ticket',total:26.78,picks:[
+      {m:'Guabirá vs Bolívar',p:'Away Win & BTTS · FT 1–2',o:2.75},
+      {m:'Grêmio vs Atlético MG',p:'Home Win & No GG · FT 2–0',o:2.95},
+      {m:'Hull City U21 vs Derby U21',p:'Home Win & No GG · FT 1–0',o:3.30}]}
   ];
   var body=document.getElementById('slip-body'),
       tot=document.getElementById('slip-total'),
@@ -1351,30 +1349,28 @@ body{background:var(--bg);}
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Monza vs Napoli</div><div class="rc-pred">Away Win · FT 1–4</div></div><div class="rc-odd">@1.60</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Genoa vs Juventus</div><div class="rc-pred">Under 2.5 Goals · FT 2–0</div></div><div class="rc-odd">@2.10</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Parma vs Udinese</div><div class="rc-pred">Under 2.5 Goals · FT 0–0</div></div><div class="rc-odd">@2.35</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Newcastle vs Everton</div><div class="rc-pred">Away Win · FT 0–1</div></div><div class="rc-odd">@1.70</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Lorient vs Brest</div><div class="rc-pred">Away Win · FT 0–2</div></div><div class="rc-odd">@2.05</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Sassuolo vs Fiorentina</div><div class="rc-pred">BTTS · FT 2–4</div></div><div class="rc-odd">@2.56</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">7.89</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">8.93</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
 
       <div class="result-card rc-vip">
         <div class="rc-head">
-          <div class="rc-title">👑 VIP Ticket · All 4 Won</div>
+          <div class="rc-title">👑 VIP Ticket · All 2 Won</div>
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Bora vs Vilanzia</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@1.60</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Fulham vs Crystal Palace</div><div class="rc-pred">Away Win & No GG · FT 0–1</div></div><div class="rc-odd">@1.85</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Monza vs Napoli</div><div class="rc-pred">Away Win & BTTS · FT 1–4</div></div><div class="rc-odd">@2.05</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">PAOK vs AEK Athens</div><div class="rc-pred">Home Win & BTTS · FT 3–1</div></div><div class="rc-odd">@3.08</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Atalanta vs Parma</div><div class="rc-pred">Away Win & No GG · FT 0–3</div></div><div class="rc-odd">@3.95</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Coruña vs Osasuna</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@4.22</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">18.67</div></div>
-          <div class="rc-all">✓ 4/4 Won</div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">16.67</div></div>
+          <div class="rc-all">✓ 2/2 Won</div>
         </div>
       </div>
 
@@ -1384,12 +1380,12 @@ body{background:var(--bg);}
           <div class="rc-date">Yesterday</div>
         </div>
         <div class="rc-rows">
-          <div class="rc-row"><div><div class="rc-match">Spezia vs Livorno</div><div class="rc-pred">Home Win & BTTS · FT 2–1</div></div><div class="rc-odd">@2.60</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Cesena Women vs Vicenza Women</div><div class="rc-pred">Home Win & Over 2.5 · FT 3–0</div></div><div class="rc-odd">@2.90</div><div class="rc-won">WON</div></div>
-          <div class="rc-row"><div><div class="rc-match">Liverpool vs Chelsea</div><div class="rc-pred">Draw · FT 1–1</div></div><div class="rc-odd">@3.57</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Guabirá vs Bolívar</div><div class="rc-pred">Away Win & BTTS · FT 1–2</div></div><div class="rc-odd">@2.75</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Grêmio vs Atlético MG</div><div class="rc-pred">Home Win & No GG · FT 2–0</div></div><div class="rc-odd">@2.95</div><div class="rc-won">WON</div></div>
+          <div class="rc-row"><div><div class="rc-match">Hull City U21 vs Derby U21</div><div class="rc-pred">Home Win & No GG · FT 1–0</div></div><div class="rc-odd">@3.30</div><div class="rc-won">WON</div></div>
         </div>
         <div class="rc-foot">
-          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">26.91</div></div>
+          <div><div class="rc-odds-l">Total Odds</div><div class="rc-odds-n">26.78</div></div>
           <div class="rc-all">✓ 3/3 Won</div>
         </div>
       </div>
