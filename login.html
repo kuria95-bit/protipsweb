@@ -153,7 +153,7 @@
             if(phone.length < 9){ showError('Enter your phone number first, then click Forgot Password'); return; }
             try{
                 await auth.sendPasswordResetEmail(getEmail());
-                document.getElementById('successMsg').textContent = '✅ Reset link sent! Check WhatsApp or contact us on +254762945530';
+                document.getElementById('successMsg').textContent = '✅ Reset link sent! Check WhatsApp or contact us on +254100494094';
                 document.getElementById('successMsg').style.display = 'block';
             } catch(e){
                 showError('Could not send reset. Contact us on WhatsApp.');
