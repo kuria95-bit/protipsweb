@@ -1831,12 +1831,27 @@ function dismissInstall(){
   localStorage.setItem('pt-install-dismissed',Date.now());
 }
 async function popupTriggerInstall(){
-  if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;deferredPrompt=null;if(outcome==='accepted')dismissInstall();}
-  else{document.getElementById('installPopup').style.display='flex';requestAnimationFrame(()=>{document.getElementById('installPopupCard').style.transform='translateY(0)';});}
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const{outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    if(outcome==='accepted')dismissInstall();
+    return;
+  }
+  // No native install prompt available -> show manual steps instead of a dead button
+  const inApp=/FBAN|FBAV|Instagram|WhatsApp|Line\/|Snapchat|TikTok|musical_ly/i.test(navigator.userAgent);
+  const android=document.getElementById('androidInstallSection');
+  if(android){
+    android.innerHTML='<div style="background:rgba(255,255,255,.05);border-radius:10px;padding:12px;font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px;line-height:1.6;">'
+      +(inApp?'You opened this inside another app. Tap <strong style="color:var(--white)">⋮</strong> then <strong style="color:var(--white)">"Open in Chrome"</strong>, then install from there.<br><br>':'')
+      +'Tap the <strong style="color:var(--white)">⋮ menu</strong> in Chrome, then <strong style="color:var(--white)">"Install app"</strong> or <strong style="color:var(--white)">"Add to Home screen"</strong>.</div>';
+  }
+  document.getElementById('installPopup').style.display='flex';
+  requestAnimationFrame(()=>{document.getElementById('installPopupCard').style.transform='translateY(0)';});
 }
 document.getElementById('installPopup').addEventListener('click',function(e){if(e.target===this)dismissInstall();});
 document.getElementById('pwaInstallBtn').addEventListener('click',popupTriggerInstall);
-window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');deferredPrompt=null;});
+window.addEventListener('appinstalled',()=>{document.getElementById('pwaBanner').classList.remove('show');document.getElementById('installPopup').style.display='none';deferredPrompt=null;});
 
 // Show the install banner (unless already installed or dismissed in the last 7 days)
 (function(){
