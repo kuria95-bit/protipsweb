@@ -1,16 +1,21 @@
-const CACHE_NAME = 'pro-tipsters-v3';
+const CACHE_NAME = 'pro-tipsters-v4';
 const OFFLINE_URL = '/';
 
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 // ── INSTALL ──────────────────────────────────────────────────
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then(cache =>
+      // add one by one so a single missing file can't break the install
+      Promise.all(STATIC_ASSETS.map(url => cache.add(url).catch(() => {})))
+    )
   );
   self.skipWaiting();
 });
@@ -25,17 +30,25 @@ self.addEventListener('activate', e => {
   self.clients.claim();
 });
 
-// ── FETCH ────────────────────────────────────────────────────
+// ── FETCH (network first, cache fallback, own site only) ─────
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return; // skip Firebase, analytics, etc.
+
   e.respondWith(
-    fetch(e.request)
+    fetch(req)
       .then(res => {
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
+        if (res && res.ok && res.type === 'basic') {
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(req, clone));
+        }
         return res;
       })
-      .catch(() => caches.match(e.request).then(r => r || caches.match(OFFLINE_URL)))
+      .catch(() =>
+        caches.match(req).then(r => r || (req.mode === 'navigate' ? caches.match(OFFLINE_URL) : Response.error()))
+      )
   );
 });
 
